@@ -2201,7 +2201,7 @@ Chain Mail + Antidote = Living Pure
 Chain Mail + Eyedrop = Bravery Scroll
 Chain Mail + Vigor Seed = Defense I
 Chain Mail + Herb = Evasion I
-Chain Mail + Badge of CouragHeavy Axee =
+Chain Mail + Badge of Courage = Heavy Axe
 Chain Mail + Whistle = Double Axe
 Chain Mail + Vigor Nut = Innocent Book
 
