@@ -3,7 +3,7 @@ package nl.sogyo.javaopdrachten.quote;
 public class Quote {
     String[][] quotes = {
         {"galileo", "eppur si muove"},
-        {"achimedes", "eureka!"},
+        {"archimedes", "eureka!"},
         {"erasmus", "in regione caecorum rex est luscus"},
         {"socrates", "I know nothing except the fact of my ignorance"},
         {"rené descartes", "cogito, ergo sum"},
