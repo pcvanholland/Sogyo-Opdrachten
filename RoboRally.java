@@ -1,5 +1,4 @@
-import java.util.Vector;
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class RoboRally
 {
@@ -8,13 +7,24 @@ public class RoboRally
 		Robot robot = new Robot();
 
 		robot.PrintStatus();
+
+		robot.GoForwards(2);
+		robot.GoBackwards();
+		robot.GoTurnLeft();
+
+		robot.PrintStatus();
+
+		robot.ExecuteOrders();
+		robot.PrintStatus();
 	}
 }
 
 class Robot
 {
 	Position pos;
-	Vector orderQueue;
+
+	// Store orders as an array of arrays [[forward/backward, rotation], [order2 ...]];
+	ArrayList<int[]> orderQueue = new ArrayList<int[]>();
 
 	/**
 	 * Initialises the default settings for a robot.
@@ -77,8 +87,27 @@ class Robot
 	public void PrintStatus()
 	{
 		int[] currentPosition = GetPosition();
-		System.out.print("[" + currentPosition[0] + ", " + currentPosition[1] + "]\t");
+		System.out.print("Coordinates: [" + currentPosition[0] + ", " + currentPosition[1] + "]\t");
 		System.out.println("Facing: " + GetFacingStringFromAngle(currentPosition[2]));
+
+		//PrintOrders();
+	}
+
+	/**
+	 * Prints the current orderQueue of the robot.
+	 */
+	private void PrintOrders()
+	{
+		System.out.println("Order Queue:");
+		if (orderQueue.size() == 0)
+		{
+			System.out.println("[ ]");
+			return;
+		}
+		for (int i = 0; i < orderQueue.size(); ++i)
+		{
+			System.out.println("[" + orderQueue.get(i)[0] + ", " + orderQueue.get(i)[1] + "]");
+		}
 	}
 
 	/**
@@ -97,78 +126,53 @@ class Robot
 	 */
 	private int GetAngleFromFacingString(String facing)
 	{
-		int angle = 0;
 		switch (facing)
 		{
 			case "North":
-				angle = 0;
-				break;
+				return 0;
 			case "East":
-				angle = 90;
-				break;
+				return 90;
 			case "South":
-				angle = 180;
-				break;
+				return 180;
 			case "West":
-				angle = 270;
-				break;
+				return 270;
 			default:
 				System.out.println("There was an invalid facing given in GetAngleFromFacingString. \"North\" used.");
 		}
-		return angle;
+		return 0;
 	}
 
 	/**
 	 * Converts a given angle to a facing string.
-	 * (Only the cardinal directions supported.)
+	 * (Only cardinal directions are supported.)
 	 *
 	 * @param {int} angle - The angle belonging to convert.
 	 * @return {String} - The string to be used.
 	 */
 	private String GetFacingStringFromAngle(int angle)
 	{
-		String string = "";
 		if (angle > 315 && angle < 360 || angle <= 45)
 		{
-			string = "North";
+			return "North";
 		}
-		else if (angle < 135)
+		if (angle < 135)
 		{
-			string = "East";
+			return "East";
 		}
-		else if (angle < 225)
+		if (angle < 225)
 		{
-			string = "South";
+			return "South";
 		}
-		else if (angle <= 315)
+		if (angle <= 315)
 		{
-			string = "West";
+			return "West";
 		}
-		else
-		{
-			System.out.println("There was an invalid angle given at GetFacingStringFromAngle.");
-		}
-		return string;
+		System.out.println("There was an invalid angle given at GetFacingStringFromAngle.");
+		return "";
 	}
 
 	/**
-	 * Rotates the robot left.
-	 */
-	public void TurnLeft()
-	{
-		Rotate(-90);
-	}
-
-	/**
-	 * Rotates the robot right.
-	 */
-	public void TurnRight()
-	{
-		Rotate(90);
-	}
-
-	/**
-	 * Moves the robot forward or backwards, depending on the given direction.
+	 * Moves the robot one step forward or backwards, depending on the given direction.
 	 *
 	 * @param {boolean} inLOS - Whether to move forward inLOS == true, or backwards.
 	 */
@@ -195,49 +199,130 @@ class Robot
 	}
 
 	/**
-	 * Moves the robot forward the 1 time.
-	 */
-	public void MoveForwards()
-	{
-		MoveForwardsOrBackwards(true);
-	}
-
-	/**
 	 * Moves the robot forward the specified number of times.
 	 *
 	 * @param {int} amount - The amount of times to move.
 	 */
-	public void MoveForwards(int amount)
+	private void MoveForwards(int amount)
 	{
-		int iterations = 0;
-		while (iterations < amount)
+		for (int i = 0; i < amount; i++)
 		{
 			MoveForwardsOrBackwards(true);
-			++iterations;
 		}
 	}
 
 	/**
-	 * Moves the robot backwards.
-	 */
-	public void MoveBackwards()
-	{
-		MoveForwardsOrBackwards(false);
-	}
-
-	/**
-	 * Moves the robot backwards the specified number of times.
+	 * Moves the robot backward the specified number of times.
 	 *
 	 * @param {int} amount - The amount of times to move.
 	 */
 	private void MoveBackwards(int amount)
 	{
-		int iterations = 0;
-		while (iterations < amount)
+		for (int i = 0; i < amount; i++)
 		{
 			MoveForwardsOrBackwards(false);
-			++iterations;
 		}
+	}
+
+	/**
+	 * Adds an order to the queue.
+	 *
+	 * @param {int[]} order - The order to add. { forward/backward motion, angle to turn }
+	 */
+	private void AddOrder(int[] order)
+	{
+		orderQueue.add(order);
+	}
+
+	/**
+	 * Tells the the robot to move backwards.
+	 */
+	public void GoForwards()
+	{
+		int[] order = { 1, 0 };
+		AddOrder(order);
+	}
+
+	/**
+	 * Tells the the robot to move forwards a specified amount of steps.
+	 *
+	 * @param {int} steps - The amount of steps to go forward.
+	 */
+	public void GoForwards(int steps)
+	{
+		if (steps < 1 || steps > 3)
+		{
+			System.out.println("Sorry, apparently it is not allowed to go forward that many steps!");
+			return;
+		}
+		int[] order = { steps, 0 };
+		AddOrder(order);
+	}
+
+	/**
+	 * Tells the the robot to move backwards.
+	 */
+	public void GoBackwards()
+	{
+		int[] order = { -1, 0 };
+		AddOrder(order);
+	}
+
+	/**
+	 * Tells the the robot to move backwards a specified amount of steps.
+	 *
+	 * @param {int} steps - The amount of steps to go back.
+	 */
+	private void GoBackwards(int steps)
+	{
+		int[] order = { -steps, 0 };
+		AddOrder(order);
+	}
+
+	/**
+	 * Tells the the robot to turn left.
+	 */
+	public void GoTurnLeft()
+	{
+		int[] order = { 0, -90 };
+		AddOrder(order);
+	}
+
+	/**
+	 * Tells the the robot to turn right.
+	 */
+	public void GoTurnRight()
+	{
+		int[] order = { 0, 90 };
+		AddOrder(order);
+	}
+
+	/**
+	 * Execute orders in the order they were given.
+	 */
+	public void ExecuteOrders()
+	{
+		// Execute orders one by one.
+		for (int i = 0; i < orderQueue.size(); ++i)
+		{
+			int movement = orderQueue.get(i)[0];
+			int rotation = orderQueue.get(i)[1];
+			if (movement < 0)
+			{
+				MoveBackwards(movement * -1);
+			}
+			else if (movement > 0)
+			{
+				MoveForwards(movement);
+			}
+			if (rotation != 0)
+			{
+				Rotate(rotation);
+			}
+		}
+
+		// Clear the order queue.
+		orderQueue.clear();
 	}
 }
 
