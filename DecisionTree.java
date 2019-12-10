@@ -8,18 +8,31 @@ public class Tester
 {
 	public static void main(String[] args)
 	{
-		// Initialise the decision tree, with the specified file
-		// and delimiter string.
-		DecisionTree decTree = new DecisionTree("decision-tree-data.txt", ", ");
+		String file = "decision-tree-data.txt";
+		String delimiter = ", ";
+		DecisionTree decTree = new DecisionTree(file, delimiter);
 
-		// We have to specify the starting point, for
-		// there is no logical manner of finding one in the file.
 		decTree.startDeciding();
 	}
 }
 
 class DecisionTree
 {
+	final int NUMBER_OF_ITEMS_IN_NODE = 2;
+	final int NUMBER_OF_ITEMS_IN_EDGE = 3;
+
+	final int POSITION_OF_NODEID_IN_RAW_NODE = 0;
+	final int POSITION_OF_TEXT_IN_RAW_NODE = 1;
+
+	// The variables below would not be needed if the edges
+	// would have been a seperate class,,,
+	final int POSITION_OF_ORIGIN_IN_RAW_EDGE = 0;
+	final int POSITION_OF_DESTINATION_IN_RAW_EDGE = 1;
+	final int POSITION_OF_ANSWER_IN_RAW_EDGE = 2;
+
+	final int POSITION_OF_DESTINATION_IN_EDGE = 1;
+	final int POSITION_OF_ANSWER_IN_EDGE = 0;
+
 	// Save the nodes in an array list.
 	ArrayList<Node> nodes = new ArrayList<Node>();
 
@@ -28,12 +41,15 @@ class DecisionTree
 	/**
 	 * The constructor used to create a decision tree from a given file name.
 	 *
+	 * This function is too large, it could be improved by, at least, splitting the
+	 * file content reading into a seperate function.
+	 * Also having the edges as a seperate class might help?
+	 *
 	 * @param {String} file - The file to read the tree from.
 	 * @param {String} delimiter - The delimiter to use for splitting the line into components.
 	 */
 	DecisionTree(String fileName, String delimiter)
 	{
-		// Store the file contents.
 		String[] fileContents = FileIO.readFileLBL(fileName);
 
 		// Temporarily store all the read edges,
@@ -42,29 +58,29 @@ class DecisionTree
 
 		// Read every line, create a new node for nodes (duh,,,)
 		// and save the edges in an array, for later use.
-		for (int i = 0; i < fileContents.length; ++i)
+		for (String line : fileContents)
 		{
-			String[] splitLine = fileContents[i].split(delimiter);
+			String[] splitLine = line.split(delimiter);
 
-			// We assume any line with two seperated strings is a node...
+			// We assume any line with NUMBER_OF_ITEMS_IN_NODE seperated strings is a node...
 			// We could also check for "splitLine[0].startsWith("N")" if necessary.
-			if (splitLine.length == 2)
+			if (splitLine.length == NUMBER_OF_ITEMS_IN_NODE)
 			{
 				addNode(splitLine);
 			}
-			// ...and any line with three seperated strings is an edge.
+			// ...and any line with NUMBER_OF_ITEMS_IN_EDGE seperated strings is an edge.
 			// We could also check for "splitLine[0].startsWith("N") && splitLine[1].startsWith("N")" if necessary.
-			else if (splitLine.length == 3)
+			else if (splitLine.length == NUMBER_OF_ITEMS_IN_EDGE)
 			{
 				edges.add(splitLine);
 			}
 			else
 			{
-				System.out.println("This line was neither recognised as a node nor an edge: " + fileContents[i]);
+				UserIO.printString("This line was neither recognised as a node nor as an edge: " + line);
 			}
 		}
 
-		addEdges(edges);
+		addEdgesToNodes(edges);
 		startingPoint = getStartingPoint(edges);
 	}
 
@@ -76,7 +92,10 @@ class DecisionTree
 	 */
 	private void addNode(String[] node)
 	{
-		nodes.add(new Node(node[0], node[1]));
+		nodes.add(new Node(
+			node[POSITION_OF_NODEID_IN_RAW_NODE],
+			node[POSITION_OF_TEXT_IN_RAW_NODE]
+		));
 	}
 
 	/**
@@ -85,21 +104,26 @@ class DecisionTree
 	 *
 	 * @param {String[]} node - The node to process.
 	 */
-	private void addEdges(ArrayList<String[]> edges)
+	private void addEdgesToNodes(ArrayList<String[]> edges)
 	{
 		// Loop over all edges and check whether there is any node
 		// that may be the origin of the edge.
-		for (int i = 0; i < edges.size(); ++i)
+		for (String[] edge : edges)
 		{
-			for (int j = 0; j < nodes.size(); j++)
+			for (Node node : nodes)
 			{
-				if (edges.get(i)[0].equals(nodes.get(j).nodeID))
+				if (edge[POSITION_OF_ORIGIN_IN_RAW_EDGE].equals(node.nodeID))
 				{
-					// Add the corresponding edge to the node.
-					// We can break thereafter since it would be strange
+					node.addEdge(edge[
+						POSITION_OF_ANSWER_IN_RAW_EDGE],
+						edge[POSITION_OF_DESTINATION_IN_RAW_EDGE
+					]);
+
+					// We can break thereafter for it would be strange
 					// for an edge to have multiple origin nodes and breaking
 					// can save us a few cycles.
-					nodes.get(j).addEdge(edges.get(i)[2], edges.get(i)[1]);
+					// It would perhaps also be useful to warn a user when there is an
+					// edge having multiple origin node.
 					break;
 				}
 			}
@@ -108,6 +132,9 @@ class DecisionTree
 
 	/**
 	 * Start the decision tree.
+	 *
+	 * Ouch! This is a bad name for this function ;(
+	 * Moreover it should probably be split into seperate functions.
 	 */
 	public void startDeciding()
 	{
@@ -119,13 +146,13 @@ class DecisionTree
 		}
 		while (true)
 		{
-			// If the node contains any branches ask the user for an answer.
+			// If the node contains any branches (edges) ask the user for an answer.
 			if (nodes.get(currentNodeLocation).edges.size() > 0)
 			{
 				String nextNode = nodes.get(currentNodeLocation).getNextNode();
 				currentNodeLocation = getNodeLocation(nextNode);
 			}
-			// Otherwise it is an end branch, so print the string in the node and terminate the loop.
+			// Otherwise it is an end node, so print the string in the node and break the loop.
 			else
 			{
 				nodes.get(currentNodeLocation).printString();
@@ -139,6 +166,7 @@ class DecisionTree
 	 *
 	 * @param {String} nodeID - The ID of the node to check the location for.
 	 * @return {int} - The location of the node in the node-array.
+						returns "-1" if the node was not found.
 	 */
 	private int getNodeLocation(String nodeID)
 	{
@@ -155,29 +183,32 @@ class DecisionTree
 	/**
 	 * Finds the starting point of the decision tree.
 	 * This is done by checking which node does not have an edge pointing towards it.
+	 * If there are multiple nodes which can be used as begin point the
+	 * decision tree is badly designed (or the code is) and the first one encountered is taken;
+	 * that usually boils down to the one highest in the file.
 	 *
 	 * @param {ArrayList<String[]>} edges - The edges to use.
 	 * @return {String} - The starting node.
 	 */
 	private String getStartingPoint(ArrayList<String[]> edges)
 	{
-		String beginPoint = "Bogus";
+		String beginPoint = "BogusBecauseAnyStringWouldSuffice";
 
-		for (int i = 0; i < nodes.size(); i++)
+		for (Node node : nodes)
 		{
-			boolean foundOne = false;
+			boolean foundBeginPoint = false;
 
-			for (int j = 0; j < edges.size(); j++)
+			for (String[] edge : edges)
 			{
-				if (nodes.get(i).nodeID.equals(edges.get(j)[1]))
+				if (node.nodeID.equals(edge[POSITION_OF_DESTINATION_IN_EDGE]))
 				{
-					foundOne = true;
+					foundBeginPoint = true;
 					break;
 				}
 			}
-			if (!foundOne)
+			if (!foundBeginPoint)
 			{
-				beginPoint = nodes.get(i).nodeID;
+				beginPoint = node.nodeID;
 			}
 		}
 		return beginPoint;
@@ -186,6 +217,9 @@ class DecisionTree
 
 class Node
 {
+	final int POSITION_OF_DESTINATION_IN_EDGE = 1;
+	final int POSITION_OF_ANSWER_IN_EDGE = 0;
+
 	String nodeString;
 	String nodeID;
 
@@ -213,29 +247,39 @@ class Node
 	 */
 	public void addEdge(String answer, String destination)
 	{
+		// These positions ought not to be hardcoded but should
+		// use the constants set above. Probably by using an
+		// "Edge"-class.
 		edges.add(new String[] {answer, destination});
 	}
 
 	/**
 	 * Checks the answer given to this node and returns the nodeID of the next node.
 	 *
+	 * Ouch! This is a bad name for this function ;(
+	 * Moreover it should probably be split into seperate functions.
+	 *
 	 * @return {String} - The destination ID of the node to go to next.
 	 */
 	public String getNextNode()
 	{
+		// We list the options for each node, for convenience.
+		// Format: "[Option1/Option2/Option3]".
 		String options = " [";
 		for (int i = 0; i < edges.size(); i++)
 		{
-			options += edges.get(i)[0] + (i == edges.size() -1 ? "]" : "/");
+			options += edges.get(i)[POSITION_OF_ANSWER_IN_EDGE] + (i == edges.size() - 1 ? "]" : "/");
 		}
 		while (true)
 		{
+			// This is case-sensitive on purpose, since the anwers on the
+			// questions might be case-sensitive as well.
 			String answer = UserIO.askString(nodeString + options);
-			for (int i = 0; i < edges.size(); i++)
+			for (String[] edge : edges)
 			{
-				if (edges.get(i)[0].equals(answer))
+				if (edge[POSITION_OF_ANSWER_IN_EDGE].equals(answer))
 				{
-					return edges.get(i)[1];
+					return edge[POSITION_OF_DESTINATION_IN_EDGE];
 				}
 			}
 		}
@@ -306,11 +350,15 @@ class UserIO
 	public static String askString(String textToAsk)
 	{
 		String input;
-		while (true) {
-			try {
+		while (true)
+		{
+			try
+			{
 				input = System.console().readLine(textToAsk + "\t");
 				break;
-			} catch (IllegalArgumentException ex) {
+			} catch (IllegalArgumentException ex)
+			{
+				// Just ask again nicely.
 			}
 		}
 		return input;
