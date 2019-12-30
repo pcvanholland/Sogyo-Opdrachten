@@ -14,8 +14,8 @@ public class Tester
 
 class UserManagementSystem
 {
-	final int USERNAME_MINIMAL_LENGTH = 3;
-	final int PASSPRHASE_MINIMAL_LENGTH = 3;
+	final private int USERNAME_MINIMAL_LENGTH = 3;
+	final private int PASSPRHASE_MINIMAL_LENGTH = 3;
 
 	/**
 	 * Constuctor for a new UMS.
@@ -77,8 +77,8 @@ class UserManagementSystem
 
 class User
 {
-	String userName;
-	String passphrase;
+	private String userName;
+	private String passphrase;
 
 	/**
 	 * Constuctor for a new user.
@@ -182,7 +182,7 @@ class UserIO
 	 * This asks a string.
 	 *
 	 * @param {String} textToAsk - The accompanying text.
-	 * @return {String} - The string the player has entered (in lower case).
+	 * @return {String} - The string the player has entered.
 	 */
 	public static String askString(String textToAsk)
 	{
