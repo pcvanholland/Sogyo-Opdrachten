@@ -1,18 +1,40 @@
 body {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Mono';
     padding: 0px;
     margin: 0px;
 
-    --primary-color: #007936;
-    --accent-color: #eee;
-    --light-text-color: rgb(107, 107, 107);
+    --primary-colour: #007936;
+    --accent-colour: #eee;
+    --light-text-colour: rgb(107, 107, 107);
+    --good-colour: #007936;
+    --bad-colour: red;
 }
 
 /* Describes the styling of the one and only element with id="mainheader", note the # in front of mainheader */
 #mainheader {
-    background-color: var(--primary-color);
+    position: sticky;
+    top: 0;
+    background-color: var(--primary-colour);
     font-size: 3rem;
     color: white;
+}
+
+#nav-bar
+{
+    position: sticky;
+    top: 0;
+    float: right;
+    height: 2rem;
+    line-height: 2rem;
+    background-color: var(--primary-colour);
+}
+
+a:link {
+    color: white;
+}
+
+a:hover {
+    color: black;
 }
 
 #logo-header {
@@ -29,16 +51,9 @@ main {
     padding: 25px;
 }
 
-nav
-{
-    height: 2rem;
-    line-height: 2rem;
-    background-color: var(--accent-color);
-}
-
 /* Describes the styling of all elements with class="parkname", note the . in front of parkname */
 .parkname {
-    background-color: var(--primary-color);
+    background-color: var(--primary-colour);
     color: white;
     font-size: 2rem;
     font-weight: bold;
@@ -47,13 +62,18 @@ nav
 
 /* Describes the styling of all <article> elements */
 article {
-    border: 1px solid var(--primary-color);
-    color: var(--light-text-color);
+    border: 1px solid var(--primary-colour);
+    color: var(--light-text-colour);
     margin: 5px;
 }
 
 .order {
     padding-top: 25px;
+}
+
+.orderbutton {
+    color: var(--good-colour);
+    border-color: var(--good-colour);
 }
 
 .badge {
