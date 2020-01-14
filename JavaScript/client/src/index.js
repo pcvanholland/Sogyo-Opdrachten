@@ -46,13 +46,16 @@ saveOrderInShoppingBasket = function(nameOfAttraction, numberOfAdults, numberOfC
 {
     for (let i = 0; true; ++i)
     {
-        if (localStorage.getItem(nameOfAttraction + "_" + i))
+        if (localStorage.getItem(i))
         {
             continue;
         }
 
-        localStorage.setItem(nameOfAttraction + "_" + + i,
-            "NA: " + numberOfAdults + ",NC: " + numberOfChilderen);
+        localStorage.setItem(i, JSON.stringify({
+            "nameOfAttraction": nameOfAttraction,
+            "numberOfAdults": numberOfAdults,
+            "numberOfChilderen": numberOfChilderen
+        }));
         break;
     }
 
