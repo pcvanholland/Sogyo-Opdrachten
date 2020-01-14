@@ -8,6 +8,9 @@
         <meta name="description" content="The ticket shop for Sogyo employees">
 
         <link rel="stylesheet" href="style/main.css">
+
+        <script src="src/generic.js" defer></script>
+        <script src="src/shoppingbasket.js" defer></script>
     </head>
 
     <body>
@@ -40,15 +43,15 @@
             </a>
         </nav>
 
-        <main>
+        <main id="paynowbutton">
             <button id="finalizepaymentbutton">Pay now</button>
         </main>
 
-        <template id="ticket">
+        <template id="tickettemplate">
             <article>
                 <div>Parkname</div>
                 <div>Adults: </div>
-                <div>Kids:</div>
+                <div>Kids: </div>
                 <button>Cancel order</button>
             </article>
         </template>
