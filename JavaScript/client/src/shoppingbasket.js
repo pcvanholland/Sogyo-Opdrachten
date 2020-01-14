@@ -28,16 +28,14 @@ updateShoppingBasket = function()
             addItemToShoppingBasket(element);
         }
     }
-
-    console.log("Updated shopping basket!");
 }
 
 addItemToShoppingBasket = function(element)
 {
-    data = localStorage.getItem(element)
-    let parkName = element.split("_")[0];
-    let numberOfAdults = parseInt(data.split(",")[0].substring(4), 10);
-    let numberOfChildren = parseInt(data.split(",")[1].substring(4), 10);
+    data = JSON.parse(localStorage.getItem(element));
+    let parkName = data.nameOfAttraction;
+    let numberOfAdults = parseInt(data.numberOfAdults || 0, 10) ;
+    let numberOfChildren = parseInt(data.numberOfChildren || 0, 10);
 
     let template = document.getElementById("tickettemplate");
     let ticket = template.content.cloneNode(true);
