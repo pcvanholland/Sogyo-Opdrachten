@@ -1,8 +1,10 @@
+window.onload = function()
+{
+    updateShoppingBasketBadge();
+}
 
 orderButtonClicked = function(msg)
 {
-    console.log("called!");
-
     let nameOfAttraction;
     // Ugly hardcoding of the path ;(
     for (let element of msg.target.parentElement.parentElement.children)
@@ -13,7 +15,6 @@ orderButtonClicked = function(msg)
             break;
         }
     }
-    console.log(nameOfAttraction);
     if (!nameOfAttraction)
     {
         return;
@@ -33,8 +34,6 @@ orderButtonClicked = function(msg)
             numberOfChildren = parseInt(element.value, 10);
         }
     }
-    console.log(numberOfAdults);
-    console.log(numberOfChildren);
 
     if (numberOfAdults > 0 || numberOfChildren > 0)
     {
@@ -57,15 +56,9 @@ saveOrderInShoppingBasket = function(nameOfAttraction, numberOfAdults, numberOfC
         }
 
         localStorage.setItem(nameOfAttraction + "_" + + i,
-            "NA: " + numberOfAdults + ", NC: " + numberOfChilderen);
+            "NA: " + numberOfAdults + ",NC: " + numberOfChilderen);
         break;
     }
-    console.log("Order saved.");
 
     updateShoppingBasketBadge();
-}
-
-updateShoppingBasketBadge = function()
-{
-    document.getElementById("shoppingbasketbadge").innerText = localStorage.length;
 }
