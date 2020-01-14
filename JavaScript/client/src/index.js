@@ -1,7 +1,3 @@
-window.onload = function()
-{
-    updateShoppingBasketBadge();
-}
 
 orderButtonClicked = function(msg)
 {
