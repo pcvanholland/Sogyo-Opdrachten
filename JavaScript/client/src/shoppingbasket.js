@@ -2,6 +2,7 @@
 window.onload = function()
 {
     updateShoppingBasket();
+    updateShoppingBasketBadge();
 }
 
 cancelOrderButtonClicked = function(msg)
