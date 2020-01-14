@@ -24,13 +24,13 @@ orderButtonClicked = function(msg)
     // Ugly hardcoding of the path ;(
     for (let element of msg.target.parentElement.attributes[0].ownerElement.children)
     {
-        if (element.className === "numberofadults" && element.value >= 0)
+        if (element.className === "numberofadults" && parseInt(element.value) >= 0)
         {
-            numberOfAdults = element.value;
+            numberOfAdults = parseInt(element.value, 10);
         }
-        if (element.className === "numberofkids" && element.value >= 0)
+        if (element.className === "numberofkids" && parseInt(element.value) >= 0)
         {
-            numberOfChildren = element.value;
+            numberOfChildren = parseInt(element.value, 10);
         }
     }
     console.log(numberOfAdults);
@@ -49,5 +49,23 @@ for (let element of document.querySelectorAll("button"))
 
 saveOrderInShoppingBasket = function(nameOfAttraction, numberOfAdults, numberOfChilderen)
 {
+    for (let i = 0; true; ++i)
+    {
+        if (localStorage.getItem(nameOfAttraction + "_" + i))
+        {
+            continue;
+        }
+
+        localStorage.setItem(nameOfAttraction + "_" + + i,
+            "NA: " + numberOfAdults + ", NC: " + numberOfChilderen);
+        break;
+    }
     console.log("Order saved.");
+
+    updateShoppingBasketBadge();
+}
+
+updateShoppingBasketBadge = function()
+{
+    document.getElementById("shoppingbasketbadge").innerText = localStorage.length;
 }

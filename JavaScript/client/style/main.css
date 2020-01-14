@@ -6,7 +6,7 @@ body {
     --primary-colour: #007936;
     --accent-colour: #eee;
     --light-text-colour: rgb(107, 107, 107);
-    --good-colour: #007936;
+    --good-colour: green;
     --bad-colour: red;
 }
 
@@ -77,8 +77,8 @@ article {
 }
 
 .badge {
-    background-color: red;
-    display: none;
+    background-color: blue;
+    display: inline;
     color: white;
     font-weight: bold;
     width: 25px;
