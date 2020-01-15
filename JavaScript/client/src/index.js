@@ -65,7 +65,7 @@ orderButtonClicked = function(msg)
     }
 
     let numberOfAdults = 0;
-    let numberOfChildren = 0;
+    let numberOfKids = 0;
     // Ugly hardcoding of the path ;(
     for (let element of msg.target.parentElement.attributes[0].ownerElement.children)
     {
@@ -75,17 +75,17 @@ orderButtonClicked = function(msg)
         }
         if (element.className === "numberofkids" && parseInt(element.value) >= 0)
         {
-            numberOfChildren = parseInt(element.value, 10);
+            numberOfKids = parseInt(element.value, 10);
         }
     }
 
-    if (numberOfAdults > 0 || numberOfChildren > 0)
+    if (numberOfAdults > 0 || numberOfKids > 0)
     {
-        saveOrderInShoppingBasket(nameOfAttraction, numberOfAdults, numberOfChildren);
+        saveOrderInShoppingBasket(nameOfAttraction, numberOfAdults, numberOfKids);
     }
 }
 
-saveOrderInShoppingBasket = function(nameOfAttraction, numberOfAdults, numberOfChilderen)
+saveOrderInShoppingBasket = function(nameOfAttraction, numberOfAdults, numberOfKids)
 {
     for (let i = 0; true; ++i)
     {
@@ -97,7 +97,7 @@ saveOrderInShoppingBasket = function(nameOfAttraction, numberOfAdults, numberOfC
         localStorage.setItem(i, JSON.stringify({
             "nameOfAttraction": nameOfAttraction,
             "numberOfAdults": numberOfAdults,
-            "numberOfChilderen": numberOfChilderen
+            "numberOfKids": numberOfKids
         }));
         break;
     }
