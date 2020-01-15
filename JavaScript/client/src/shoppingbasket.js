@@ -14,8 +14,7 @@ cancelOrderButtonClicked = function(msg)
 
 orderNowButtonClicked = function(msg)
 {
-
-console.log(msg);
+    let orderSucceeded;
 
 // https://stackoverflow.com/questions/29775797/fetch-post-json-data
 (async() => {
@@ -27,12 +26,13 @@ console.log(msg);
     body: JSON.stringify(localStorage)
   });
   const content = await rawResponse;
-    //localStorage.clear();
-
-  console.log(content);
 })();
 
-    //window.location.replace("orderplaced.html");
+    if (orderSucceeded)
+    {
+        localStorage.clear();
+        window.location.replace("orderplaced.html");
+    }
 }
 
 updateShoppingBasket = function()

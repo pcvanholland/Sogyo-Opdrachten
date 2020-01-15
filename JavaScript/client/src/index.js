@@ -43,6 +43,10 @@ addItemToIndex = function(themeParkObject)
 
     item = themeParkNode.getElementsByClassName("orderbutton")[0];
     item.addEventListener("click", orderButtonClicked);
+    if (themeParkObject.available < 1)
+    {
+        item.disabled = true;
+    }
 
     document.body.appendChild(themeParkNode);
 }
