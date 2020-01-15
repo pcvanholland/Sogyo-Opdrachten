@@ -151,4 +151,4 @@ app.get("/api/admin/edit", function (request, response) {
  * Make our webserver available on port 8000.
  * Visit localhost:8000 in any browser to see your site!
  */
-app.listen(8000, () => console.log('Example app listening on port 8000!'));
+app.listen(8000, () => console.log('Sogyo X-plore listening on port 8000!'));
