@@ -1,4 +1,52 @@
 
+fetch("api/attractions")
+  .then((response) => {
+    return response.json();
+  })
+  .then((responsInJSON) => {
+    addItemsToIndex(responsInJSON);
+  });
+
+addItemsToIndex = function(itemsInJSON)
+{
+    for (let themePark of itemsInJSON)
+    {
+        addItemToIndex(themePark);
+    }
+}
+
+addItemToIndex = function(themeParkObject)
+{
+    let template = document.getElementById("parktemplate");
+    let themeParkNode = document.importNode(template.content.querySelector("article"), true);
+
+    let item = themeParkNode.getElementsByClassName("parkname")[0];
+    item.innerHTML = themeParkObject.name;
+
+    item = themeParkNode.getElementsByClassName("parkdescription")[0];
+    item.innerText = themeParkObject.description;
+
+    item = themeParkNode.getElementsByClassName("adultprice")[0].getElementsByClassName("price")[0];
+    item.innerText = themeParkObject.adultPrice;
+
+    item = themeParkNode.getElementsByClassName("kidsprice")[0].getElementsByClassName("price")[0];
+    item.innerText = themeParkObject.kidsPrice;
+
+    item = themeParkNode.getElementsByClassName("discountadults")[0];
+    item.innerText = themeParkObject.minimumNumberOfAdults;
+
+    item = themeParkNode.getElementsByClassName("discountkids")[0];
+    item.innerText = themeParkObject.minimumNumberOfKids;
+
+    item = themeParkNode.getElementsByClassName("discountpercentage")[0];
+    item.innerText = themeParkObject.discount;
+
+    item = themeParkNode.getElementsByClassName("orderbutton")[0];
+    item.addEventListener("click", orderButtonClicked);
+
+    document.body.appendChild(themeParkNode);
+}
+
 orderButtonClicked = function(msg)
 {
     let nameOfAttraction;
@@ -35,11 +83,6 @@ orderButtonClicked = function(msg)
     {
         saveOrderInShoppingBasket(nameOfAttraction, numberOfAdults, numberOfChildren);
     }
-}
-
-for (let element of document.querySelectorAll("button"))
-{
-    element.addEventListener("click", orderButtonClicked);
 }
 
 saveOrderInShoppingBasket = function(nameOfAttraction, numberOfAdults, numberOfChilderen)
