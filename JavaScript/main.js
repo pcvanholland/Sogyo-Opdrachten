@@ -1,20 +1,20 @@
 /**
  * Server side code using the express framework running on a Node.js server.
  * 
- * Load the express framework and create an app.
+ * Load the express framework and create an application.
  */
 const express = require('express');
-const app = express();
+const application = express();
 /** 
  * Host all files in the client folder as static resources.
  * That means: localhost:8080/someFileName.js corresponds to client/someFileName.js.
  */
-app.use(express.static('client'));
+application.use(express.static('client'));
 
 /**
  * Allow express to understand json serialization.
  */
-app.use(express.json());
+application.use(express.json());
 
 /**
  * Our code starts here.
@@ -103,7 +103,9 @@ const attractions = [
         available: 0,
         location: { lon: 4.352633, lat: 52.052608, },
     }, 
-]
+];
+
+const orders = [];
 
 /**
  * A route is like a method call. It has a name, some parameters and some return value.
@@ -118,14 +120,49 @@ const attractions = [
  * the Express framework will call one of the methods defined here.
  * These are just regular functions. You can edit, expand or rewrite the code here as needed.
  */
-app.get("/api/attractions", function (request, response) {
-    console.log("Api call received for /attractions");
+application.get("/api/attractions", function (request, response) {
+    //console.log("Api call received for /attractions");
 
     response.json(attractions)
 });
 
-app.post("/api/placeorder", function (request, response) {
-    console.log("Api call received for /placeorder");
+application.post("/api/placeorder", function (request, response) {
+
+    let tempOrders = [];
+    let fullOrderSucceeded = true;
+
+    for (let item in request.body)
+    {
+        item = JSON.parse(request.body[item]);
+        for (let attraction of attractions)
+        {
+            if (attraction.name.toLowerCase() == item.nameOfAttraction.toLowerCase())
+            {
+                let numberOfVisitors = item.numberOfAdults + item.numberOfKids;
+                if (numberOfVisitors <= attraction.available)
+                {
+                    attraction.available -= numberOfVisitors;
+                    tempOrders.push(item);
+                }
+                else
+                {
+                    fullOrderSucceeded = false;
+                }
+            }
+        }
+    }
+
+    if (fullOrderSucceeded)
+    {
+        for (let order of tempOrders)
+        {
+            orders.push(order);
+        }
+    }
+
+    // Okay, here we should add data whether
+    // the order has been succesfully processed.
+    // But too hard and not part of the assignment.
 
     /**
      * Send the status code 200 back to the clients browser.
@@ -134,13 +171,13 @@ app.post("/api/placeorder", function (request, response) {
     response.sendStatus(200);
 });
 
-app.get("/api/myorders", function (request, response) {
+application.get("/api/myorders", function (request, response) {
     console.log("Api call received for /myorders");
 
     response.sendStatus(200);
 });
 
-app.get("/api/admin/edit", function (request, response) {
+application.get("/api/admin/edit", function (request, response) {
     console.log("Api call received for /admin/edit");
 
     response.sendStatus(200);
@@ -151,4 +188,4 @@ app.get("/api/admin/edit", function (request, response) {
  * Make our webserver available on port 8000.
  * Visit localhost:8000 in any browser to see your site!
  */
-app.listen(8000, () => console.log('Sogyo X-plore listening on port 8000!'));
+application.listen(8000, () => console.log('Sogyo X-plore; port 8000'));

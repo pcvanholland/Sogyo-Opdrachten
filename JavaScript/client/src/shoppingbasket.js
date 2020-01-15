@@ -14,9 +14,25 @@ cancelOrderButtonClicked = function(msg)
 
 orderNowButtonClicked = function(msg)
 {
-    localStorage.clear();
 
-    window.location.replace("orderplaced.html");
+console.log(msg);
+
+// https://stackoverflow.com/questions/29775797/fetch-post-json-data
+(async() => {
+  const rawResponse = await fetch("/api/placeorder", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(localStorage)
+  });
+  const content = await rawResponse;
+    //localStorage.clear();
+
+  console.log(content);
+})();
+
+    //window.location.replace("orderplaced.html");
 }
 
 updateShoppingBasket = function()
@@ -35,7 +51,7 @@ addItemToShoppingBasket = function(element)
     data = JSON.parse(localStorage.getItem(element));
     let parkName = data.nameOfAttraction;
     let numberOfAdults = parseInt(data.numberOfAdults || 0, 10) ;
-    let numberOfChildren = parseInt(data.numberOfChildren || 0, 10);
+    let numberOfKids = parseInt(data.numberOfKids || 0, 10);
 
     let template = document.getElementById("tickettemplate");
     let ticket = template.content.cloneNode(true);
@@ -48,7 +64,7 @@ addItemToShoppingBasket = function(element)
     item.innerHTML += numberOfAdults;
     item = item.nextElementSibling;
 
-    item.innerHTML += numberOfChildren;
+    item.innerHTML += numberOfKids;
 
     button = item.nextElementSibling;
     button.referenceElement = element;
@@ -57,4 +73,4 @@ addItemToShoppingBasket = function(element)
     document.body.insertBefore(ticket, document.getElementById("paynowbutton"));
 }
 
-document.getElementById("paynowbutton").addEventListener("click", orderNowButtonClicked);
+document.getElementById("finalisepaymentbutton").addEventListener("click", orderNowButtonClicked);
