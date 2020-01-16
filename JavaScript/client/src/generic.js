@@ -5,5 +5,5 @@ window.onload = function()
 
 updateShoppingBasketBadge = function()
 {
-    document.getElementById("shoppingbasketbadge").innerHTML = localStorage.length;
+    document.getElementById("shoppingbasketbadge").innerText = localStorage.length;
 }
