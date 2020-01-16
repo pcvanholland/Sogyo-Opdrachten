@@ -76,28 +76,20 @@ orderButtonClicked = function(msg)
 
     let numberOfAdults = 0;
     let numberOfKids = 0;
+    let price = 0;
     // Ugly hardcoding of the path ;(
-    for (let element of msg.target.parentElement.attributes[0].ownerElement.children)
-    {
-        if (element.className === "numberofadults" && parseInt(element.value) >= 0)
-        {
-            numberOfAdults = parseInt(element.value, 10);
-        }
-        if (element.className === "numberofkids" && parseInt(element.value) >= 0)
-        {
-            numberOfKids = parseInt(element.value, 10);
-        }
-    }
+    numberOfAdults = parseInt(msg.target.parentElement.getElementsByClassName("numberofadults")[0].value || 0, 10);
+    numberOfKids = parseInt(msg.target.parentElement.getElementsByClassName("numberofkids")[0].value || 0, 10);
+    price = parseFloat(msg.target.parentElement.getElementsByClassName("total")[0].data || 0);
 
-    if (numberOfAdults > 0 || numberOfKids > 0)
+    if (numberOfAdults < 0 || numberOfKids < 0 || numberOfAdults == 0 && numberOfKids == 0)
     {
-        saveOrderInShoppingBasket(nameOfAttraction, numberOfAdults, numberOfKids);
+        return;
     }
-
-updatePricesInIndex();
+    saveOrderInShoppingBasket(nameOfAttraction, numberOfAdults, numberOfKids, price);
 }
 
-saveOrderInShoppingBasket = function(nameOfAttraction, numberOfAdults, numberOfKids)
+saveOrderInShoppingBasket = function(nameOfAttraction, numberOfAdults, numberOfKids, price)
 {
     for (let i = 0; true; ++i)
     {
@@ -109,7 +101,8 @@ saveOrderInShoppingBasket = function(nameOfAttraction, numberOfAdults, numberOfK
         localStorage.setItem(i, JSON.stringify({
             "nameOfAttraction": nameOfAttraction,
             "numberOfAdults": numberOfAdults,
-            "numberOfKids": numberOfKids
+            "numberOfKids": numberOfKids,
+            "price": price
         }));
         break;
     }
@@ -131,14 +124,16 @@ updatePricesInIndex = function()
 
         let normalPrice = adultPricing * numberOfAdults + kidPricing * numberOfKids
 
-        let discount = "";
+        let discountString = "";
+        let discountValue = 0;
         if (numberOfAdults >= parseInt(parkEntry.getElementsByClassName("discountadults")[0].innerText, 10) &&
             numberOfKids >= parseInt(parkEntry.getElementsByClassName("discountkids")[0].innerText, 10))
         {
             let percentage = parseInt(parkEntry.getElementsByClassName("discountpercentage")[0].innerText, 10);
-            let discountValue = normalPrice * percentage / 100;
-            discount += " - " + discountValue + " = " + (normalPrice - discountValue);
+            discountValue = normalPrice * percentage / 100;
+            discountString += " - " + discountValue + " = " + (normalPrice - discountValue);
         }
-        priceElement.innerText = normalPrice + discount;
+        priceElement.innerText = normalPrice + discountString;
+        parkEntry.getElementsByClassName("total")[0].data = normalPrice - discountValue;
     }
 }
