@@ -50,7 +50,7 @@
         </main>
 
         <template id="parktemplate">
-            <article>
+            <article class="parkentry">
                 <div class="parkname">[Placeholder]</div>
                 <div class="parkdescription">[Placeholder]</div>
                 <div class="order">
@@ -62,8 +62,8 @@
                             Buy <span class="discountadults">x</span> adult tickets & <span class="discountkids">y</span> kid tickets for a <span class="discountpercentage">000</span>% discount!
                         </div>
                     </div>
-                    <label>Adults: </label><input placeholder="adults" type="number" class="numberofadults" />
-                    <label>Kids: </label><input placeholder="kids" type="number" class="numberofkids" />
+                    <label>Adults: </label><input min=0 placeholder="adults" type="number" class="numberofadults" />
+                    <label>Kids: </label><input min=0 placeholder="kids" type="number" class="numberofkids" />
                     <div class="total"><span class="sign">&euro;</span><span class="price">000</span></div>
                     <button class="orderbutton">Add to shopping basket</button>
                 </div>

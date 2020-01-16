@@ -163,6 +163,8 @@ application.post("/api/placeorder", function (request, response) {
     // Okay, here we should add data whether
     // the order has been succesfully processed.
     // But too hard and not part of the assignment.
+    // We *could* use the status codes but it sounds
+    // ugly, for we did receive and answered a request.
 
     /**
      * Send the status code 200 back to the clients browser.

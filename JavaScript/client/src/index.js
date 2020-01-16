@@ -41,6 +41,12 @@ addItemToIndex = function(themeParkObject)
     item = themeParkNode.getElementsByClassName("discountpercentage")[0];
     item.innerText = themeParkObject.discount;
 
+    item = themeParkNode.getElementsByClassName("numberofadults")[0];
+    item.addEventListener("change", updatePricesInIndex);
+
+    item = themeParkNode.getElementsByClassName("numberofkids")[0];
+    item.addEventListener("change", updatePricesInIndex);
+
     item = themeParkNode.getElementsByClassName("orderbutton")[0];
     item.addEventListener("click", orderButtonClicked);
     if (themeParkObject.available < 1)
@@ -87,6 +93,8 @@ orderButtonClicked = function(msg)
     {
         saveOrderInShoppingBasket(nameOfAttraction, numberOfAdults, numberOfKids);
     }
+
+updatePricesInIndex();
 }
 
 saveOrderInShoppingBasket = function(nameOfAttraction, numberOfAdults, numberOfKids)
@@ -107,4 +115,30 @@ saveOrderInShoppingBasket = function(nameOfAttraction, numberOfAdults, numberOfK
     }
 
     updateShoppingBasketBadge();
+}
+
+updatePricesInIndex = function()
+{
+    for (let parkEntry of document.getElementsByClassName("parkentry"))
+    {
+        let priceElement = parkEntry.getElementsByClassName("total")[0].getElementsByClassName("price")[0];
+
+        let adultPricing = parseInt(parkEntry.getElementsByClassName("adultprice")[0].getElementsByClassName("price")[0].innerText, 10);
+        let numberOfAdults = parseInt(parkEntry.getElementsByClassName("numberofadults")[0].value || 0, 10);
+
+        let kidPricing = parseInt(parkEntry.getElementsByClassName("kidsprice")[0].getElementsByClassName("price")[0].innerText, 10);
+        let numberOfKids = parseInt(parkEntry.getElementsByClassName("numberofkids")[0].value || 0, 10);
+
+        let normalPrice = adultPricing * numberOfAdults + kidPricing * numberOfKids
+
+        let discount = "";
+        if (numberOfAdults >= parseInt(parkEntry.getElementsByClassName("discountadults")[0].innerText, 10) &&
+            numberOfKids >= parseInt(parkEntry.getElementsByClassName("discountkids")[0].innerText, 10))
+        {
+            let percentage = parseInt(parkEntry.getElementsByClassName("discountpercentage")[0].innerText, 10);
+            let discountValue = normalPrice * percentage / 100;
+            discount += " - " + discountValue + " = " + (normalPrice - discountValue);
+        }
+        priceElement.innerText = normalPrice + discount;
+    }
 }
