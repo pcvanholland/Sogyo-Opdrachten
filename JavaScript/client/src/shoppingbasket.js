@@ -52,19 +52,23 @@ addItemToShoppingBasket = function(element)
     let parkName = data.nameOfAttraction;
     let numberOfAdults = parseInt(data.numberOfAdults || 0, 10) ;
     let numberOfKids = parseInt(data.numberOfKids || 0, 10);
+    let price = parseFloat(data.price || 0, 10);
 
     let template = document.getElementById("tickettemplate");
     let ticket = template.content.cloneNode(true);
 
     let item = ticket.querySelector("div");
 
-    item.innerHTML = parkName;
-    item = item.nextElementSibling;
+    item.innerText = parkName;
 
-    item.innerHTML += numberOfAdults;
     item = item.nextElementSibling;
+    item.innerText += numberOfAdults;
 
-    item.innerHTML += numberOfKids;
+    item = item.nextElementSibling;
+    item.innerText += numberOfKids;
+
+    item = item.nextElementSibling;
+    item.getElementsByClassName("price")[0].innerText = price;
 
     button = item.nextElementSibling;
     button.referenceElement = element;
