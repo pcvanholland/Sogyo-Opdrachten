@@ -1,0 +1,3 @@
+# docker start <databasename>
+$ mysql -h <IP of the server> -u <username> -p
+I.e.: $ ip=$(# docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <databasename>) && mysql -h $ip -u <username> -p
