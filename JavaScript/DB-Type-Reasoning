@@ -1,0 +1,6 @@
+Webshop -> Safety. (SQL)
+Availability of tickets -> No ratrace. (SQL)
+Events extendable -> Can need extra rows. (NoSQL)
+Course -> Small scale. (SQL)
+
+Hence: No NoSQL.
