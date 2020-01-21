@@ -1,0 +1,6 @@
+# apt install docker
+# docker pull mariadb/server:10.4
+# docker run --name <databasename> -e MYSQL_ROOT_PASSWORD=<password> -d mariadb/server:10.4
+# apt install mariadb-client-core-10.4
+$ mysql -h <IP of the server> -u root -p
+I.e.: $ ip=$(# docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mariadb-sogyoadventure) && mysql -h $ip -u root -p
