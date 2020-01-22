@@ -1,22 +1,22 @@
 CREATE DATABASE sogyoadventure;
 
 CREATE TABLE users(
-    id INT ZEROFILL AUTO_INCREMENT PRIMARY KEY,
+    id INT(5) ZEROFILL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(20) NOT NULL CHECK (CHAR_LENGTH(name) > 2),
     pref_location VARCHAR(13),
     admin BOOLEAN NOT NULL DEFAULT false CHECK (admin = false || admin = true)
 );
 
 CREATE TABLE orders(
-    id INT ZEROFILL AUTO_INCREMENT PRIMARY KEY,
-    customer_id INT ZEROFILL NOT NULL,
+    id INT(5) ZEROFILL AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT(5) ZEROFILL NOT NULL,
     CONSTRAINT fk_order_user FOREIGN KEY (customer_id) REFERENCES users (id)
 );
 
 CREATE TABLE orderlines(
-    id INT ZEROFILL AUTO_INCREMENT PRIMARY KEY,
-    order_id INT ZEROFILL NOT NULL,
-    event_id INT ZEROFILL NOT NULL,
+    id INT(5) ZEROFILL AUTO_INCREMENT PRIMARY KEY,
+    order_id INT(5) ZEROFILL NOT NULL,
+    event_id INT(5) ZEROFILL NOT NULL,
     tickets_adult INT UNSIGNED NOT NULL DEFAULT 0,
     tickets_kid INT UNSIGNED NOT NULL DEFAULT 0,
     CONSTRAINT non_zero_tickets CHECK (tickets_adult + tickets_kid > 0),
@@ -25,14 +25,14 @@ CREATE TABLE orderlines(
 );
 
 CREATE TABLE events(
-    id INT ZEROFILL AUTO_INCREMENT PRIMARY KEY,
+    id INT(5) ZEROFILL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(20) NOT NULL CHECK (CHAR_LENGTH(name) > 2),
     location VARCHAR(13) NOT NULL,
     description VARCHAR(127),
     active BOOLEAN NOT NULL DEFAULT false CHECK (active = false || active = true),
     availability INT UNSIGNED NOT NULL DEFAULT 0,
-    price_adult FIXED(10,2) UNSIGNED NOT NULL DEFAULT 0,
-    price_kid FIXED(10,2) UNSIGNED NOT NULL DEFAULT 0,
+    price_adult FIXED(10,2) UNSIGNED NOT NULL,
+    price_kid FIXED(10,2) UNSIGNED NOT NULL,
     discount_req_kids INT UNSIGNED DEFAULT 0,
     discount_req_adults INT UNSIGNED DEFAULT 0,
     discount_percent INT UNSIGNED DEFAULT 0 CHECK (discount_percent < 100)
