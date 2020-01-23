@@ -7,3 +7,5 @@ USE <database>;
 SHOW TABLES;
 DESCRIBE <tablename>;
 SELECT * FROM <tablename>;
+
+SHOW GLOBAL STATUS WHERE variable_name = 'Threads_connected';
