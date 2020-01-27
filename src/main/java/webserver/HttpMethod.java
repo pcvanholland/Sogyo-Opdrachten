@@ -1,4 +1,4 @@
-package nl.sogyo.webserver;
+package webserver;
 
 /// The HTTP method that was used for the request by the client.
 public enum HttpMethod {

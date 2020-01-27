@@ -1,4 +1,4 @@
-package nl.sogyo.webserver;
+package webserver;
 
 import java.time.ZonedDateTime;
 import java.util.Map;

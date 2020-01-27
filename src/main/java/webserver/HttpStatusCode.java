@@ -1,4 +1,4 @@
-package nl.sogyo.webserver;
+package webserver;
 
 /// Predefined status codes that inform the client about the handing of the request.
 public enum HttpStatusCode {

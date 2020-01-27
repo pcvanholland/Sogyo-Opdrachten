@@ -1,4 +1,4 @@
-package nl.sogyo.webserver;
+package webserver;
 
 import java.io.*;
 import java.net.ServerSocket;
