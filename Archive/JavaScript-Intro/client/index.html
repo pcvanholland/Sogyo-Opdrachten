@@ -1,0 +1,74 @@
+<!doctype html>
+
+<html lang="nl">
+    <head>
+        <meta charset="utf-8">
+
+        <title>Sogyo Adventure</title>
+        <meta name="description" content="The ticket shop for Sogyo employees">
+
+        <link rel="stylesheet" href="style/main.css">
+        <link rel="shortcut icon" href="img/favicon.ico" />
+
+        <script src="src/generic.js" defer></script>
+        <script src="src/index.js" defer></script>
+
+    </head>
+
+    <body>
+
+        <header id="logo-header">
+            <img src="img/logo_sogyo_rgb_199x200-1.jpg">
+        </header>
+        <header id="mainheader">
+            Sogyo Adventure
+        </header>
+        <nav id="nav-bar">
+            <a id="home" href="index.html">
+                Home
+            </a>
+            |
+            <a id="map" href="map.html">
+                Discover
+            </a>
+            |
+            <a id="shoppingbasket" href="shoppingbasket.html">
+                Shopping basket <div id="shoppingbasketbadge" class="badge">0</div>
+            </a>
+            |
+            <a id="myorders" href="orders.html">
+                My orders
+            </a>
+            |
+            <a id="admin" href="admin.html">
+                Admin
+            </a>
+        </nav>
+
+        <main>
+
+        </main>
+
+        <template id="parktemplate">
+            <article class="parkentry">
+                <div class="parkname">[Placeholder]</div>
+                <div class="parkdescription">[Placeholder]</div>
+                <div class="order">
+                    <div class="prices">
+                        <div class="adultprice">Adults: <span class="sign">&euro;</span><span class="price">xx,-</span></div>
+                        <div class="kidsprice">Kids: <span class="sign">&euro;</span><span class="price">xx,-</span></div>
+                        <div class="discountrequirement">
+                            <em>Family ticket:</em>
+                            Buy <span class="discountadults">x</span> adult tickets & <span class="discountkids">y</span> kid tickets for a <span class="discountpercentage">000</span>% discount!
+                        </div>
+                    </div>
+                    <label>Adults: </label><input min=0 placeholder="adults" type="number" class="numberofadults" />
+                    <label>Kids: </label><input min=0 placeholder="kids" type="number" class="numberofkids" />
+                    <div class="total"><span class="sign">&euro;</span><span class="price">000</span></div>
+                    <button class="orderbutton">Add to shopping basket</button>
+                </div>
+            </article>
+        </template>
+
+    </body>
+</html>
