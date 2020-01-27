@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Representation of the server HTTP response.
  */
-public interface Response
+public interface IResponse
 {
     /**
      * HTTP status code that informs the client of the
