@@ -1,59 +1,77 @@
 package webserver;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ConnectionHandler implements Runnable {
+public class ConnectionHandler implements Runnable
+{
     private Socket socket;
 
-    public ConnectionHandler(Socket toHandle) {
+    public ConnectionHandler(Socket toHandle)
+    {
         this.socket = toHandle;
     }
 
-    /// Handle the incoming connection. This method is called by the JVM when passing an
-    /// instance of the connection handler class to a Thread.
-    public void run() {
-        try {
-
+    /**
+     * Handle the incoming connection. This method is called by the JVM when passing an
+     * instance of the connection handler class to a Thread.
+     */
+    public void run()
+    {
+        try
+        {
             // Set up a reader that can conveniently read our incoming bytes as lines of text.
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String line = null;
-            do {
-                // Read the incoming message line by line and echo is to the system out.
+            do
+            {
                 line = reader.readLine();
                 System.out.println(line);
             } while (!line.isEmpty());
             
             // Set up a writer that can write text to our binary output stream.
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            // Write a simple hello world textual response to the client.
+
             writer.write("Thank you for connecting!\r\n");
             writer.flush();
 
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            // After handling the request, we can close our socket.
-            socket.close();
+            try
+            {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public static void main(String... args) {
-        try {
-            // A server socket opens a port on the local computer (in this program port 9090).
+    public static void main(String... args)
+    {
+        try
+        {
+            // A server socket opens a port on the local computer (in this program port 8080).
             // The computer now listens to connections that are made using the TCP/IP protocol.
-            ServerSocket socket = new ServerSocket(9090);
-            System.out.println("Application started. Listening at localhost:9090");
+            ServerSocket socket = new ServerSocket(8080);
+            System.out.println("Application started. Listening at localhost:8080");
 
             // Start an infinite loop. This pattern is common for applications that run indefinitely
             // and react on system events (e.g. connection established). Inside the loop, we handle
             // the connection with our application logic. 
-            while(true) {
+            while(true)
+            {
                 // Wait for someone to connect. This call is blocking; i.e. our program is halted
-                // until someone connects to localhost:9090. A socker is a connection (a virtual
+                // until someone connects to localhost:8080. A socker is a connection (a virtual
                 // telephone line) between two endpoints - the client (browser) and the server (this).
                 Socket newConnection = socket.accept();
+
                 // We want to process our incoming call. Furthermore, we want to support multiple
                 // connections. Therefore, we handle the processing on a background thread. Java
                 // threads take a class that implements the Runnable interface as a constructor
