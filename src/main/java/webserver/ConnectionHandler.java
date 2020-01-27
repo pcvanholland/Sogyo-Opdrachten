@@ -29,11 +29,12 @@ public class ConnectionHandler implements Runnable
             // Set up a reader that can conveniently read our incoming bytes as lines of text.
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String line = null;
-            do
+            line = reader.readLine();
+            while (!line.isEmpty())
             {
-                line = reader.readLine();
                 System.out.println(line);
-            } while (!line.isEmpty());
+                line = reader.readLine();
+            } 
             
             // Set up a writer that can write text to our binary output stream.
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
@@ -53,7 +54,7 @@ public class ConnectionHandler implements Runnable
         }
     }
 
-    public static void main(String... args)
+    public static void main(String[] args)
     {
         try
         {
