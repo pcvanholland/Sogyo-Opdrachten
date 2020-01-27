@@ -5,6 +5,33 @@
  */
 const express = require('express');
 const application = express();
+
+const Sequelize = require('sequelize');
+
+const sequelize = new Sequelize('sogyoadventure', 'nodejs-admin', 'SogyoR0cks.', {
+    host: '172.17.0.2',
+    dialect: 'mariadb',
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+    }
+});
+
+sequelize.authenticate()
+    .then(() => {
+        console.log('Connection has been established successfully.');
+    })
+    .catch(err => {
+        console.error('Unable to connect to the database:', err);
+    });
+(async() => {
+    const [results, metadata] = await sequelize.query("SELECT name FROM events WHERE active = true;");
+    console.log(results);
+    sequelize.close();
+})();
+
 /** 
  * Host all files in the client folder as static resources.
  * That means: localhost:8080/someFileName.js corresponds to client/someFileName.js.
@@ -190,4 +217,4 @@ application.get("/api/admin/edit", function (request, response) {
  * Make our webserver available on port 8000.
  * Visit localhost:8000 in any browser to see your site!
  */
-application.listen(8000, () => console.log('Sogyo X-plore; port 8000'));
+application.listen(8080, () => console.log('Sogyo X-plore; port 8080'));

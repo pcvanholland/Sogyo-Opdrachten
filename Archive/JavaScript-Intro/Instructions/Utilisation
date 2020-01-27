@@ -1,0 +1,12 @@
+# dockerd
+# docker start <containername>
+$ mysql -h <IP of the server> -u <username> -p
+I.e.: $ ip=$(# docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <containername>) && mysql -h $ip -u <username> -p
+
+SHOW DATABASES;
+USE <database>;
+SHOW TABLES;
+DESCRIBE <tablename>;
+SELECT * FROM <tablename>;
+
+SHOW GLOBAL STATUS WHERE variable_name = 'Threads_connected';

@@ -4,6 +4,8 @@
   "description": "Het project voor de Ticketshop opdracht",
   "main": "main.js",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "mariadb": "^2.1.5",
+    "sequelize": "^5.21.3"
   }
 }
