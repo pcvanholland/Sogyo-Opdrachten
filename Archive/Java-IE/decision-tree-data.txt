@@ -1,0 +1,21 @@
+N2, Can the edge of the leaf be described as sawn or serrated?
+N5, Is the leaf lobed or does the blade have lobes?
+N6, Ash
+N7, Alder
+N8, Maple
+N9, Birch
+N0, Oak
+N3, Is the edge double sawn instead of single sawn?
+NA, Beech
+N5, NA, Nay
+N3, N7, Nay
+N1, N6, Aye
+N1, N2, Nay
+N2, N3, Aye
+N2, N4, Nay
+N4, N5, Aye
+N4, N8, Nay
+N1, Is the leaf composed of several leaves?
+N4, Is the edge smooth or whole?
+N5, N0, Aye
+N3, N9, Aye
