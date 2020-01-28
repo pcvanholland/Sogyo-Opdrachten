@@ -13,7 +13,7 @@ public class ConnectionHandler implements Runnable
 {
     private Socket socket;
 
-    public ConnectionHandler(Socket toHandle)
+    private ConnectionHandler(Socket toHandle)
     {
         this.socket = toHandle;
     }

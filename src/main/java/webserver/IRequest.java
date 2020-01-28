@@ -37,12 +37,12 @@ public interface IRequest
      * Retrieves the URL parameters that were present in
      * the requested URL.
      */
-    List<String> getParameterNames();
+    List<String> getURLParameterNames();
 
     /**
      * Retreives the URL parameter value corresponding to
      * the name. If no parameter exists with the name,
      * it returns null.
      */
-    String getParameterValue(String name);
+    String getURLParameterValue(String name);
 }
