@@ -18,6 +18,53 @@ public class Request implements IRequest
         methodResourceVersion = incomingRequest.remove(mrvPosition).split(" ");
         setHeaders(incomingRequest);
         setURLparameters();
+
+        if (!isValid())
+        {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    /**
+     * Verifies the validity of this request.
+     *
+     * @return {boolean} - Whether this request is valid.
+     */
+    @Override
+    public boolean isValid()
+    {
+        return this.getHTTPMethod() != null &&
+            methodResourceVersion[versionPosition].equals("HTTP/1.0") ||
+            methodResourceVersion[versionPosition].equals("HTTP/1.1");
+    }
+
+    /**
+     * Defines the HTTP method that was used by the
+     * client in the incoming request.
+     */
+    @Override
+    public HttpMethod getHTTPMethod()
+    {
+        HttpMethod result = null;
+
+        if (methodResourceVersion[methodPosition].equals("GET"))
+        {
+            result = result.GET;
+        }
+        else if (methodResourceVersion[methodPosition].equals("POST"))
+        {
+            result = result.POST;
+        }
+        else if (methodResourceVersion[methodPosition].equals("PUT"))
+        {
+            result = result.PUT;
+        }
+        else if (methodResourceVersion[methodPosition].equals("DELETE"))
+        {
+            result = result.DELETE;
+        }
+
+        return result;
     }
 
     /**
@@ -42,7 +89,7 @@ public class Request implements IRequest
      */
     private void setURLparameters()
     {
-        String resource = this.getResourcePath();
+        String resource = methodResourceVersion[resourcePosition];
         for (String pm : getURLparametersFromURL(resource))
         {
             this.URLparameters.add(pm);
@@ -86,42 +133,18 @@ public class Request implements IRequest
     }
 
     /**
-     * Defines the HTTP method that was used by the
-     * client in the incoming request.
-     */
-    @Override
-    public HttpMethod getHTTPMethod()
-    {
-        HttpMethod result = null;
-
-        if (methodResourceVersion[methodPosition].equals("GET"))
-        {
-            result = result.GET;
-        }
-        else if (methodResourceVersion[methodPosition].equals("POST"))
-        {
-            result = result.POST;
-        }
-        else if (methodResourceVersion[methodPosition].equals("PUT"))
-        {
-            result = result.PUT;
-        }
-        else if (methodResourceVersion[methodPosition].equals("DELETE"))
-        {
-            result = result.DELETE;
-        }
-
-        return result;
-    }
-
-    /**
      * Defines the resource path that was requested by
      * the client. The resource path excludes url parameters.
      */
     @Override
     public String getResourcePath()
     {
-        return methodResourceVersion[resourcePosition];
+        String rawPath = methodResourceVersion[resourcePosition];
+        if (rawPath.indexOf('?') == -1)
+        {
+            return rawPath;
+        }
+        return rawPath.substring(0, rawPath.indexOf('?'));
     }
 
     /**

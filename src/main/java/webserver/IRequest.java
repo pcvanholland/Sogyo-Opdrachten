@@ -9,6 +9,11 @@ import java.util.Optional;
 public interface IRequest
 {
     /**
+     * Whether this was a valid request.
+     */
+    boolean isValid();
+
+    /**
      * Defines the HTTP method that was used by the
      * client in the incoming request.
      */

@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import java.util.ArrayList;
+
 public class ConnectionHandler implements Runnable
 {
     private Socket socket;
@@ -26,30 +28,42 @@ public class ConnectionHandler implements Runnable
     {
         try
         {
+            ArrayList<String> headers = new ArrayList<String>();
             // Set up a reader that can conveniently read our incoming bytes as lines of text.
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String line = null;
-            line = reader.readLine();
-            while (!line.isEmpty())
+            do
             {
-                System.out.println(line);
                 line = reader.readLine();
-            } 
+                headers.add(line);
+            } while (!line.isEmpty());
+for (String l : headers)
+{
+    System.out.println(l);
+}
+            Request request = new Request(headers);
+
+            // Create a respons and send it.
             
             // Set up a writer that can write text to our binary output stream.
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
-            writer.write("Thank you for connecting!\r\n");
+            writer.write("HTTP/1.0 200 OK\r\n");
+            writer.write("Content-Type: text/html; charset=UTF-8");
+            writer.write("\r\n");
+            writer.write("Thank you for connecting!");
             writer.flush();
 
         } catch (IOException e) {
             e.printStackTrace();
+            // Send 500.
         } finally {
             try
             {
                 socket.close();
             } catch (IOException e) {
                 e.printStackTrace();
+                // Send 500?
             }
         }
     }

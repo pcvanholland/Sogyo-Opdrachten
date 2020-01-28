@@ -59,13 +59,10 @@ public class Request_Test
         Assert.assertEquals(expectedResult.DELETE, request.getHTTPMethod());
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void test_getHTTPMethodUnknown()
     {
         Request request = new Request(createStandardRequest("bogus"));
-        HttpMethod expectedResult = null;
-
-        Assert.assertNull(request.getHTTPMethod());
     }
 
     @Test
