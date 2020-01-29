@@ -48,10 +48,15 @@ for (String l : headers)
             // Set up a writer that can write text to our binary output stream.
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
-            writer.write("HTTP/1.0 200 OK\r\n");
-            writer.write("Content-Type: text/html; charset=UTF-8");
-            writer.write("\r\n");
-            writer.write("Thank you for connecting!");
+            String status = "HTTP/1.0 200 OK";
+            String[] header = {
+                "Content-Type: text/html; charset=UTF-8"
+            };
+            String body = "Thank you for connecting!";
+
+            String result = String.join("\r\n", status, String.join("\r\n", header), "", body);
+
+            writer.write(result);
             writer.flush();
 
         } catch (IOException e) {
