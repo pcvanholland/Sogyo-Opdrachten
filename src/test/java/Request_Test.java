@@ -59,10 +59,31 @@ public class Request_Test
         Assert.assertEquals(expectedResult.DELETE, request.getHTTPMethod());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void test_getHTTPMethodUnknown()
     {
         Request request = new Request(createStandardRequest("bogus"));
+        Assert.assertFalse(request.isValid());
+    }
+
+    @Test
+    public void test_isValidUnsupportedType()
+    {
+        ArrayList<String> result = new ArrayList<String>();
+        result.add("GET / HTTP/0.0");
+        result.add("");
+        Request request = new Request(result);
+        Assert.assertFalse(request.isValid());
+    }
+
+    @Test
+    public void test_isValidUnsupportedTypeAndUnkownMethod()
+    {
+        ArrayList<String> result = new ArrayList<String>();
+        result.add("bogus / HTTP/0.0");
+        result.add("");
+        Request request = new Request(result);
+        Assert.assertFalse(request.isValid());
     }
 
     @Test

@@ -13,16 +13,11 @@ public class Request implements IRequest
     private ArrayList<String> headers = new ArrayList<String>();
     private ArrayList<String> URLparameters = new ArrayList<String>();
 
-    Request(ArrayList<String> incomingRequest) throws IllegalArgumentException
+    Request(ArrayList<String> incomingRequest)
     {
         methodResourceVersion = incomingRequest.remove(mrvPosition).split(" ");
         setHeaders(incomingRequest);
         setURLparameters();
-
-        if (!isValid())
-        {
-            throw new IllegalArgumentException();
-        }
     }
 
     /**
@@ -34,8 +29,8 @@ public class Request implements IRequest
     public boolean isValid()
     {
         return this.getHTTPMethod() != null &&
-            methodResourceVersion[versionPosition].equals("HTTP/1.0") ||
-            methodResourceVersion[versionPosition].equals("HTTP/1.1");
+            (methodResourceVersion[versionPosition].equals("HTTP/1.0") ||
+            methodResourceVersion[versionPosition].equals("HTTP/1.1"));
     }
 
     /**

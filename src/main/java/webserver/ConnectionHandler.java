@@ -43,20 +43,15 @@ for (String l : headers)
 }
             Request request = new Request(headers);
 
-            // Create a respons and send it.
+            HttpStatusCode status = null;
+            status = request.isValid() ? status.OK : status.ServerError;
+            Response response = new Response("HTTP/1.0", status);
+            response.addCustomHeader("Content-Type", "text/html; charset=UTF-8");
             
             // Set up a writer that can write text to our binary output stream.
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
-            String status = "HTTP/1.0 200 OK";
-            String[] header = {
-                "Content-Type: text/html; charset=UTF-8"
-            };
-            String body = "Thank you for connecting!";
-
-            String result = String.join("\r\n", status, String.join("\r\n", header), "", body);
-
-            writer.write(result);
+            writer.write(response.getResponse());
             writer.flush();
 
         } catch (IOException e) {
