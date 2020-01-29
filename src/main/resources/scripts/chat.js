@@ -1,4 +1,4 @@
-const socket = new WebSocket("ws://localhost:9090");
+const socket = new WebSocket("ws://localhost:8080");
 socket.onmessage = message => {
     const newElement = document.createElement("div");
     newElement.innerHTML = `<p>${message.data}</p>`;
@@ -8,13 +8,12 @@ socket.onmessage = message => {
         .appendChild(newElement);
 };
 
-const sendMessage = function() {
+const sendMessage = function()
+{
     const form = document.getElementById("sendMessageForm");
     const text = form.elements["text"].value;
 
     socket.send(text);
 
-    document
-        .getElementById("sendMessageForm")
-        .reset();
-}
+    document.getElementById("sendMessageForm").reset();
+};

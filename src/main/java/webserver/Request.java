@@ -1,6 +1,8 @@
 package webserver;
 
 import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 public class Request implements IRequest
 {
@@ -13,11 +15,37 @@ public class Request implements IRequest
     private ArrayList<String> headers = new ArrayList<String>();
     private ArrayList<String> URLparameters = new ArrayList<String>();
 
-    Request(ArrayList<String> incomingRequest)
+    Request(ArrayList<String> headers)
     {
-        methodResourceVersion = incomingRequest.remove(mrvPosition).split(" ");
-        setHeaders(incomingRequest);
+        methodResourceVersion = headers.remove(mrvPosition).split(" ");
+        setHeaders(headers);
         setURLparameters();
+    }
+
+    /**
+     * Converts a request to an ArrayList of lines.
+     * The first empty line we encounter is the end of the headers.
+     *
+     * @param {BufferedReader} input - The input as lines of text.
+     * @return <String[]> - An ArrayList of the lines of text.
+     */
+    protected static ArrayList<String> readInputIntoHeaders(BufferedReader input) throws IOException
+    {
+        ArrayList<String> result = new ArrayList<String>();
+        String line = null;
+        while ((line = input.readLine()) != null)
+        {
+            if (line.isEmpty())
+            {
+                break;
+            }
+            else
+            {
+                result.add(line);
+            }
+        }
+
+        return result;
     }
 
     /**

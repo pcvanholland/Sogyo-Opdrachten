@@ -28,25 +28,32 @@ public class ConnectionHandler implements Runnable
     {
         try
         {
-            ArrayList<String> headers = new ArrayList<String>();
             // Set up a reader that can conveniently read our incoming bytes as lines of text.
-            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            String line = null;
-            do
+            BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+            Request request = new Request(Request.readInputIntoHeaders(input));
+
+            HttpMethod method = null;
+            if (request.getHTTPMethod() == method.POST)
             {
-                line = reader.readLine();
-                headers.add(line);
-            } while (!line.isEmpty());
-for (String l : headers)
-{
-    System.out.println(l);
-}
-            Request request = new Request(headers);
+                String rawLength = request.getHeaderParameterValue("Content-Length");
+                if (rawLength != null)
+                {
+                    int length = Integer.parseInt(rawLength);
+                    char[] body = new char[length];
+                    input.read(body, 0, length);
+
+                // Read body.
+                    System.out.println(body);
+                }
+            }
 
             HttpStatusCode status = null;
             status = request.isValid() ? status.OK : status.ServerError;
             Response response = new Response("HTTP/1.0", status);
-            response.addCustomHeader("Content-Type", "text/html; charset=UTF-8");
+
+            // Below ought to be retreived from content that is sent.
+            response.addCustomHeader("Content-Type", "text/html; charset=US-ASCII");
             
             // Set up a writer that can write text to our binary output stream.
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
