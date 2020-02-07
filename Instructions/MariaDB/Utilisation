@@ -1,0 +1,11 @@
+$ ip=$(# docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <containername>) && mysql -h $ip -u <username> -p
+
+https://mariadb.com/kb/en/
+
+SHOW DATABASES;
+USE <databasename>;
+SHOW TABLES;
+DESCRIBE <tablename>;
+SELECT * FROM <tablename>;
+
+SHOW GLOBAL STATUS WHERE variable_name = 'Threads_connected';

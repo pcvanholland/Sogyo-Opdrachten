@@ -1,0 +1,4 @@
+# apt install nodejs npm
+
+In the directory with package.json:
+$ npm install

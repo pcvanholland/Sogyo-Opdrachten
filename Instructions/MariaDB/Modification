@@ -1,0 +1,18 @@
+https://mariadb.com/kb/en/
+
+CREATE DATABASE <databasename>;
+CREATE TABLE <tablename>(
+    <columnname> <datatype> [<constraints>],
+    <nextcolumnname> <datatype> [<constraints>]
+);
+
+INSERT INTO <tablename>
+    (<columnname>, <columnname>)
+    VALUES('<data>', '<data>')[,
+    ('<dataset2>', '<dataset2>')]
+;
+
+UPDATE <tablename>
+    SET <columnname> = '<data>'[,
+    <nextcolumnname> = '<data>']
+;

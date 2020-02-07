@@ -1,0 +1,13 @@
+(Optional, started together with dockerd:
+# containerd
+)
+# dockerd
+# docker start -i <containername>
+# docker stop <containername>
+
+To run a command (e.g. bash) interactively (-it) in the container.
+# docker exec -it <containername> <command>
+# docker exec -itu <uname> <containername> <command>
+
+Fnd IP-address of a specific container.
+# docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <containername>
