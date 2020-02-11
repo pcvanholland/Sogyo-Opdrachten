@@ -1,0 +1,8 @@
+Motor left: MC
+Motor right: MB
+
+Colour sensor: S4
+IR Sensor: S2
+
+Pressure right: S1
+Pressure left: S3

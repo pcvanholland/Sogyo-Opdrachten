@@ -1,0 +1,6 @@
+image: "python:latest"
+    
+test:
+    script:
+        - cd test
+        - python -m unittest

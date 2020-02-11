@@ -1,0 +1,11 @@
+https://docs.docker.com/install/linux/docker-ce/ubuntu/
+
+Create new container (-it to keep CLI open):
+(One can pull it first:
+# docker pull <image>
+)
+# docker run -p <containerport:hostport> --name <containername> <image>
+
+Stop the services from starting automagically:
+# systemctl disable containerd.io
+# systemctl disable dockerd
