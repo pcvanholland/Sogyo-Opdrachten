@@ -1,0 +1,16 @@
+What I want to make is a (4-player) card-game named Tai-Pan (in Dutch). (https://en.wikipedia.org/wiki/Tichu)
+- Back-end in JAVA (why? OCA).
+- Players can register:
+-- Database (SQL?)
+-- Save game results.
+- Front-end in Vue probably (or React?).
+
+Goals:
+Techniques:
+- Making front end with Vue or React.
+- Different type of DB, perhaps.
+- Use IDE?
+
+Personal:
+- Do not take work home.
+- Plan stuff.
