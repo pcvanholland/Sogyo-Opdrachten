@@ -1,0 +1,2 @@
+Allow a game to be saved (and subsequently loaded by the same players).
+Either use a distinct state or save the turns taken (is that possible with randomised cards?)
