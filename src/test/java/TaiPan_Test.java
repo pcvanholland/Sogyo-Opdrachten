@@ -9,5 +9,6 @@ public class TaiPan_Test
     public void test_init()
     {
         System.out.println("Called test :)");
+        new TaiPan();
     }
 }
