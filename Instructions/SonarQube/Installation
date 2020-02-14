@@ -1,0 +1,6 @@
+Install Docker
+https://hub.docker.com/_/sonarqube/
+
+# dockerd
+# docker run -p <hostport>:9000 --name <containername> sonarqube
+# docker start -i <containername>
