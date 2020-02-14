@@ -57,7 +57,14 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                            <configLocation>checkstyle.xml</configLocation>
+                        </configuration>
                     </plugin>
+                </plugins>
+            </build>
+            <reporting>
+                <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -71,7 +78,7 @@
                         </executions>
                     </plugin>
                 </plugins>
-            </build>
+            </reporting>
         </profile>
     </profiles>
 
