@@ -57,9 +57,6 @@
                                 </goals>
                             </execution>
                         </executions>
-                        <configuration>
-                            <configLocation>checkstyle.xml</configLocation>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -76,6 +73,9 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                            <configLocation>checkstyle.xml</configLocation>
+                        </configuration>
                     </plugin>
                 </plugins>
             </reporting>
