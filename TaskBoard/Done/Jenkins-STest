@@ -2,4 +2,4 @@ Configure Jenkins to statically test code. (I.e. connection to SonarQube.)
 Used warnings-new-generation (https://github.com/jenkinsci/warnings-ng-plugin/).
 "CheckStyle"
 "PMD" (including "CPD")
-"FindBugs"
+"SpotBugs"
