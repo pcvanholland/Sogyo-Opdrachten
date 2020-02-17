@@ -63,6 +63,7 @@
                         <artifactId>maven-checkstyle-plugin</artifactId>
                         <version>3.1.1</version>
                         <configuration>
+                            <configLocation>checkstyle.xml</configLocation>
                             <linkXref>false</linkXref>
                         </configuration>
                         <executions>
@@ -73,9 +74,6 @@
                                 </goals>
                             </execution>
                         </executions>
-                        <configuration>
-                            <configLocation>checkstyle.xml</configLocation>
-                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
