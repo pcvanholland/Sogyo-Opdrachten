@@ -5,7 +5,7 @@ package taipan.domain;
  */
 abstract class Card
 {
-    IRank rank;
+    private IRank rank;
 
     /**
      * Constructor.

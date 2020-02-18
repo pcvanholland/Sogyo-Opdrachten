@@ -12,10 +12,10 @@ public enum StandardRank implements IRank
     private int value;
     private int score;
 
-    StandardRank(final int value, final int score)
+    StandardRank(final int newValue, final int newScore)
     {
-        this.value = value;
-        this.score = score;
+        this.value = newValue;
+        this.score = newScore;
     }
 
     /**

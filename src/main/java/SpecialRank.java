@@ -9,9 +9,9 @@ public enum SpecialRank implements IRank
 
     private int score;
 
-    SpecialRank(final int score)
+    SpecialRank(final int newScore)
     {
-        this.score = score;
+        this.score = newScore;
     }
 
     /**

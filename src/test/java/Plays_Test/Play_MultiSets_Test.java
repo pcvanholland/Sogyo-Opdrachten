@@ -43,6 +43,19 @@ public class Play_MultiSets_Test
     }
 
     @Test
+    public void test_playValidityDoubleSetAddedOrderDoesNotMatter()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
+        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
+
+        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+
+        Assert.assertTrue(Play.isValidPlay(cards));
+    }
+
+    @Test
     public void test_playInvalidityDoubleSetNotInOrder()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
@@ -100,6 +113,38 @@ public class Play_MultiSets_Test
     }
 
     @Test
+    public void test_playValidityTripleSetAddedOrderDoesNotMatter()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(Suit.JADE, StandardRank.FOUR));
+        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
+
+        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+
+        cards.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
+        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
+
+        Assert.assertTrue(Play.isValidPlay(cards));
+    }
+
+    @Test
+    public void test_playInvalidityDoubleSetWithTwoSingles()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+
+        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(Suit.STAR, StandardRank.THREE));
+
+        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FIVE));
+        cards.add(new PlayingCard(Suit.JADE, StandardRank.FOUR));
+
+        Assert.assertFalse(Play.isValidPlay(cards));
+    }
+
+    @Test
     public void test_playInvalidityTripleSetSlightlyNotInOrder()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
@@ -129,5 +174,18 @@ public class Play_MultiSets_Test
         cards.add(new PlayingCard(Suit.STAR, StandardRank.SIX));
 
         Assert.assertFalse(Play.isValidPlay(cards));
+    }
+
+    @Test
+    public void test_playValidityLongSet()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        for (StandardRank rank : StandardRank.values())
+        {
+            cards.add(new PlayingCard(Suit.SWORD, rank));
+            cards.add(new PlayingCard(Suit.JADE, rank));
+        }
+
+        Assert.assertTrue(Play.isValidPlay(cards));
     }
 }

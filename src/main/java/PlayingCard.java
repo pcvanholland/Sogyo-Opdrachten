@@ -32,6 +32,6 @@ class PlayingCard extends Card
      */
     protected int getValue()
     {
-        return ((StandardRank) this.rank).getValue();
+        return ((StandardRank) getRank()).getValue();
     }
 }
