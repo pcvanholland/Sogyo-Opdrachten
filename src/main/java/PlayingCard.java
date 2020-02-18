@@ -3,18 +3,17 @@ package taipan.domain;
 class PlayingCard extends Card
 {
     private Suit suit;
-    private int value;
 
     /**
      * Constructor.
      *
-     * @param {Suit} suit - The suit this card ought to have.
-     * @param {Rank} rank - The rank this card ought to have.
+     * @param newSuit {Suit} - The suit this card ought to have.
+     * @param newRank {StandardRank} - The rank this card ought to have.
      */
-    PlayingCard(Suit suit, StandardRank rank)
+    PlayingCard(final Suit newSuit, final StandardRank newRank)
     {
-        super(rank);
-        this.suit = suit;
+        super(newRank);
+        this.suit = newSuit;
     }
 
     /**

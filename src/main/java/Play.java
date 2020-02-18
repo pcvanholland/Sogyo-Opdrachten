@@ -4,41 +4,41 @@ import java.util.ArrayList;
 
 class Play
 {
-    ArrayList<Card> cards;
+    private ArrayList<Card> cards;
 
     /**
      * Constructor for a play (a set of cards played).
      *
-     * @param {Card[]} cards - An ArrayList of cards bundled in this play.
+     * @param newCards {Card[]} - An ArrayList of cards bundled in this play.
      */
-    Play(ArrayList<Card> cards)
+    Play(final ArrayList<Card> newCards)
     {
-        this.cards = cards;
+        this.cards = newCards;
     }
 
     /**
      * This tests whether a given play is valid.
      * Regardless of the cards in a Trick.
      *
-     * @param {Card[]} cards - The ArrayList of cards to verify.
+     * @param cardsToVerify {Card[]} - The ArrayList of cards to verify.
      * @return {boolean} - The validity of the tested play.
      */
-    protected static boolean isValidPlay(ArrayList<Card> cards)
+    protected static boolean isValidPlay(final ArrayList<Card> cardsToVerify)
     {
-        return areCardsOfEqualRank(cards) ||
-            areCardsASetOfDoubles(cards);
+        return areCardsOfEqualRank(cardsToVerify) ||
+            areCardsASetOfDoubles(cardsToVerify);
     }
 
     /**
      * This tests whether the provided cards are of equal rank.
      *
-     * @param {Card[]} cards - The ArrayList of cards to verify.
+     * @param cardsToCheck {Card[]} - The ArrayList of cards to verify.
      * @return {boolean} - Whether *all* the provided cards are of equal rank.
      */
-    private static boolean areCardsOfEqualRank(ArrayList<Card> cards)
+    private static boolean areCardsOfEqualRank(final ArrayList<Card> cardsToCheck)
     {
-        IRank firstRank = cards.get(0).getRank();
-        for (Card card : cards)
+        IRank firstRank = cardsToCheck.get(0).getRank();
+        for (Card card : cardsToCheck)
         {
             if (card.getRank() != firstRank)
             {
@@ -51,19 +51,19 @@ class Play
     /**
      * This tests whether the cards provided is a set of sets.
      *
-     * @param {Card[]} cards - The ArrayList of cards to verify.
+     * @param cardsToCheck {Card[]} - The ArrayList of cards to verify.
      * @return {boolean} - Whether the provided cards are a set of sets.
      */
-    private static boolean areCardsASetOfDoubles(ArrayList<Card> cards)
+    private static boolean areCardsASetOfDoubles(final ArrayList<Card> cardsToCheck)
     {
         // An odd-sized array is never a valid set.
-        if (cards.size() % 2 != 0)
+        if (cardsToCheck.size() % 2 != 0)
         {
             return false;
         }
 
         ArrayList<IRank> ranks = new ArrayList<IRank>();
-        for (Card card : cards)
+        for (Card card : cardsToCheck)
         {
             ranks.add(card.getRank());
         }
@@ -80,7 +80,8 @@ class Play
         int delta = 0;
         for (IRank firstRank : uniqueRanks)
         {
-            int diff = 15;
+            // Everything larger than 1 is okay here.
+            int diff = 2;
             for (IRank secondRank : uniqueRanks)
             {
                 if (secondRank == firstRank)
@@ -93,15 +94,9 @@ class Play
                 int firstValue = ((StandardRank) firstRank).getValue();
                 int secondValue = ((StandardRank) secondRank).getValue();
 
-                if (Math.abs(firstValue - secondValue) < diff)
-                {
-                    diff = Math.abs(firstValue - secondValue);
-                }
+                diff = Math.min(Math.abs(firstValue - secondValue), diff);
             }
-            if (diff > delta)
-            {
-                delta = diff;
-            }
+            delta = Math.max(diff, delta);
         }
         if (delta > 1)
         {

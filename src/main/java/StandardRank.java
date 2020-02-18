@@ -1,5 +1,8 @@
 package taipan.domain;
 
+/**
+ * The ranks of a standard 52 card set.
+ */
 public enum StandardRank implements IRank
 {
     TWO(2, 0), THREE(3, 0), FOUR(4, 0), FIVE(5, 5),
@@ -9,17 +12,26 @@ public enum StandardRank implements IRank
     private int value;
     private int score;
 
-    StandardRank(int value, int score)
+    StandardRank(final int value, final int score)
     {
         this.value = value;
         this.score = score;
     }
 
+    /**
+     * @return {int} - The score associated with a rank.
+     */
     public int getScore()
     {
         return this.score;
     }
 
+    /**
+     * Gets the value of a rank, this can be used for checking the
+     * order of multiple cards.
+     *
+     * @return {int} - The value associated with a rank.
+     */
     protected int getValue()
     {
         return this.value;

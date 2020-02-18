@@ -2,11 +2,15 @@ package taipan.domain;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents a card dealer.
+ * Players can ask them for a hand of cards.
+ */
 public class Dealer
 {
     // Sum *MUST* be 14.
-    private final int FIRST_HAND_SIZE = 6;
-    private final int SECOND_HAND_SIZE = 8;
+    private static final int FIRST_HAND_SIZE = 6;
+    private static final int SECOND_HAND_SIZE = 8;
 
     private ArrayList<Card> cards;
 
@@ -85,10 +89,10 @@ public class Dealer
         /**
          * Draws a portion of the cards.
          *
-         * @param {int} numberOfCards - The number of cards to draw.
+         * @param numberOfCards {int} - The number of cards to draw.
          * @return {Card[]} - An ArrayList of cards taken from the stack.
          */
-         private ArrayList<Card> drawCards(int numberOfCards)
+         private ArrayList<Card> drawCards(final int numberOfCards)
          {
              ArrayList<Card> cardsDrawn = new ArrayList<Card>();
              while (cardsDrawn.size() < numberOfCards)

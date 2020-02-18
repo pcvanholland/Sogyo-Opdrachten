@@ -10,15 +10,15 @@ abstract class Card
     /**
      * Constructor.
      *
-     * @param {Rank} rank - The rank the new card ought to have.
+     * @param newRank {IRank} - The rank the new card ought to have.
      */
-    Card(IRank rank)
+    Card(final IRank newRank)
     {
-        this.rank = rank;
+        this.rank = newRank;
     }
 
     /**
-     * @return {Rank} - The rank of this card.
+     * @return {IRank} - The rank of this card.
      */
     protected IRank getRank()
     {

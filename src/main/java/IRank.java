@@ -2,5 +2,8 @@ package taipan.domain;
 
 public interface IRank
 {
-    public int getScore();
+    /**
+     * @return {int} - The score associated with a rank.
+     */
+    int getScore();
 }
