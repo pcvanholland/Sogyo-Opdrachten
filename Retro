@@ -1,0 +1,13 @@
+2020-02-19:
+I've got some trouble with the MVP-like approach.
+I do have a website, although nothing shows there yet.
+There is not yet a database but a few of the card combinations are done.
+
+I do start the day with approximately an hour of OCA, so that's good.
+At first, I spent way too much time in getting static code analysis working.
+Still thinking a lot about the project at home.
+
+Therefore I'm gonna try to set up some MVP today and defer the rules to a later date.
+Thus trying to develop more vertically than horizontally.
+
+One part I really like is the CI/CD, or at least the solid testing there is in place.

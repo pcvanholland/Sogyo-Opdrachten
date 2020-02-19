@@ -1,30 +1,31 @@
 <html>
     <head>
         <title>Sample Tai-Pan Application</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="js/index.js" defer></script>
     </head>
 
     <body bgcolor=white>
 
-        <table border="0">
-            <tr>
-                <td>
-                    <h1>Sample Tai-Pan Application</h1>
-                    <p>This is the home page for a sample application used to illustrate the
-                    source directory organization of a web application utilizing the principles
-                    outlined in the Application Developer's Guide.
-                </td>
-            </tr>
-        </table>
+        <h1>Sample Tai-Pan Application</h1>
 
-        <p>To prove that they work, you can execute either of the following links:
-        <ul>
-            <li>To a <a href="index.jsp">JSP page</a>.
-        </ul>
+        <div id="app">
+            <start-screen
+                v-if="!isLoggedIn"
+                v-on:player-confirmed="login">
+            </start-screen>
 
-        <form action="taipan">
-            Name:<input type="text" accept-charset=ASCII name="user"/>
-            <input type="submit" value="go"/>
-        </form>
+            <lobby-screen
+                v-else-if="!gameStarted"
+                v-bind:lobby-state="lobby"
+                v-on:game-started="startAGame">
+            </lobby-screen>
+
+            <game-screen
+                v-else
+                v-bind:game-state="gameState">
+            </game-screen>
+        </div>
 
     </body>
 </html>

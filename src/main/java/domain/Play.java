@@ -178,7 +178,7 @@ class Play
                  int firstValue = ((StandardRank) firstRank).getValue();
                  int secondValue = ((StandardRank) secondRank).getValue();
 
-                 delta = Math.min(Math.abs(firstValue- secondValue), delta);
+                 delta = Math.min(Math.abs(firstValue - secondValue), delta);
              }
              if (delta > 1)
              {
