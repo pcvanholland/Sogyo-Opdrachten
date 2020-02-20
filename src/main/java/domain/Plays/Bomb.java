@@ -15,9 +15,22 @@ class Bomb extends Play
      * @param playToBeat {Play} - The play to beat.
      * @return {boolean} - Whether this play is higher in rank than the given.
      */
-    //@Override
+    @Override
     protected boolean beats(final Play playToBeat)
     {
         return true;
+    }
+
+    /**
+     * Calculates the value of this Play.
+     * For a Street-Bomb the length of the street matters,
+     * besides the highest card.
+     *
+     * @return {int} - The value of this Play.
+     */
+    @Override
+    protected int getValue()
+    {
+        return 0;
     }
 }

@@ -201,4 +201,81 @@ public class Play_Stair_Test
 
         Assert.assertTrue(Play.isValidPlay(cards));
     }
+
+    @Test
+    public void test_higherBeatsLower()
+    {
+        ArrayList<Card> firstCards = new ArrayList<Card>();
+        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
+        firstCards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
+        firstCards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
+        Play firstPlay = new Stair(firstCards);
+
+        ArrayList<Card> secondCards = new ArrayList<Card>();
+        secondCards.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
+        secondCards.add(new PlayingCard(Suit.STAR, StandardRank.THREE));
+        secondCards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
+        secondCards.add(new PlayingCard(Suit.JADE, StandardRank.FOUR));
+        Play secondPlay = new Stair(secondCards);
+
+        Assert.assertTrue(secondPlay.beats(firstPlay));
+    }
+
+    @Test
+    public void test_equalsNotBeats()
+    {
+        ArrayList<Card> firstCards = new ArrayList<Card>();
+        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
+        firstCards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
+        firstCards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
+        Play firstPlay = new Stair(firstCards);
+
+        ArrayList<Card> secondCards = new ArrayList<Card>();
+        secondCards.add(new PlayingCard(Suit.PAGODA, StandardRank.TWO));
+        secondCards.add(new PlayingCard(Suit.STAR, StandardRank.TWO));
+        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
+        firstCards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
+        Play secondPlay = new Stair(secondCards);
+
+        Assert.assertFalse(secondPlay.beats(firstPlay));
+    }
+
+    @Test
+    public void test_lowerNotBeatsHigher()
+    {
+        ArrayList<Card> firstCards = new ArrayList<Card>();
+        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
+        firstCards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
+        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.FOUR));
+        firstCards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
+        Play firstPlay = new Stair(firstCards);
+
+        ArrayList<Card> secondCards = new ArrayList<Card>();
+        secondCards.add(new PlayingCard(Suit.PAGODA, StandardRank.TWO));
+        secondCards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
+        firstCards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
+        Play secondPlay = new Stair(secondCards);
+
+        Assert.assertFalse(secondPlay.beats(firstPlay));
+    }
+
+    @Test
+    public void test_stairNotBeatSingle()
+    {
+        ArrayList<Card> firstCards = new ArrayList<Card>();
+        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
+        firstCards.add(new PlayingCard(Suit.PAGODA, StandardRank.TWO));
+        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
+        firstCards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
+        Play firstPlay = new Stair(firstCards);
+
+        ArrayList<Card> secondCard = new ArrayList<Card>();
+        secondCard.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
+        Play secondPlay = new Single(secondCard);
+
+        Assert.assertFalse(firstPlay.beats(secondPlay));
+    }
 }

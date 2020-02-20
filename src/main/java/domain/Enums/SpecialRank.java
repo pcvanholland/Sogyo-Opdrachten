@@ -5,12 +5,14 @@ package taipan.domain;
  */
 public enum SpecialRank implements IRank
 {
-    DOG(0), MAHJONG(0), PHOENIX(-25), DRAGON(25);
+    DOG(0, 0), MAHJONG(1, 0), PHOENIX(-1, -25), DRAGON(15, 25);
 
+    private int value;
     private int score;
 
-    SpecialRank(final int newScore)
+    SpecialRank(final int newValue, final int newScore)
     {
+        this.value = newValue;
         this.score = newScore;
     }
 
@@ -20,5 +22,16 @@ public enum SpecialRank implements IRank
     public int getScore()
     {
         return this.score;
+    }
+
+    /**
+     * Gets the value of a rank, this can be used for checking the
+     * order of multiple cards.
+     *
+     * @return {int} - The value associated with a rank.
+     */
+    public int getValue()
+    {
+        return this.value;
     }
 }

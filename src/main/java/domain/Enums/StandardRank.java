@@ -32,7 +32,7 @@ public enum StandardRank implements IRank
      *
      * @return {int} - The value associated with a rank.
      */
-    protected int getValue()
+    public int getValue()
     {
         return this.value;
     }

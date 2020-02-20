@@ -2,9 +2,9 @@ package taipan.domain;
 
 import java.util.ArrayList;
 
-class Stair extends Play
+class Pair extends Play
 {
-    Stair(final ArrayList<Card> newCards)
+    Pair(final ArrayList<Card> newCards)
     {
         super(newCards);
     }
@@ -23,18 +23,13 @@ class Stair extends Play
     }
 
     /**
-     * Calculates the value of this Play. I.e. the highest rank.
+     * Calculates the value of this Play. I.e. the rank of the Pair.
      *
      * @return {int} - The value of this Play.
      */
     @Override
     protected int getValue()
     {
-        int highest = -1;
-        for (Card card : this.getCards())
-        {
-            highest = Math.max(card.getRank().getValue(), highest);
-        }
-        return highest;
+        return this.getCards().get(0).getRank().getValue();
     }
 }

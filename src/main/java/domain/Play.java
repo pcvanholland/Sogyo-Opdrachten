@@ -22,7 +22,35 @@ abstract class Play
      * @param play {Play} - The play to beat.
      * @return {boolean} - Whether this play beats the provided one.
      */
-    abstract boolean beats(final Play play);
+    abstract boolean beats(Play play);
+
+    /**
+     * Calculates the value of this Play. which is usually the larges value
+     * present, except for a Bomb or FullHouse.
+     *
+     * @return {int} - The value of this Play.
+     */
+    abstract int getValue();
+
+    /**
+     * Gets the cards belonging to this Play.
+     *
+     * @return {Card[]} - An ArrayList of Cards in this Play.
+     */
+    final ArrayList<Card> getCards()
+    {
+        return this.cards;
+    }
+
+    /**
+     * Gets the cards belonging to this Play.
+     *
+     * @return {boolean} - An ArrayList of Cards in this Play.
+     */
+    final boolean isSameSetAs(Play play)
+    {
+        return this.getClass() == play.getClass();
+    }
 
     /**
      * This tests whether a given play is valid.
