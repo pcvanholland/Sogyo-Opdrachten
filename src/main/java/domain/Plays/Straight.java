@@ -2,9 +2,9 @@ package taipan.domain;
 
 import java.util.ArrayList;
 
-class Street extends Play
+class Straight extends Play
 {
-    Street(final ArrayList<Card> newCards)
+    Straight(final ArrayList<Card> newCards)
     {
         super(newCards);
     }

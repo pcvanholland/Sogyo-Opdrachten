@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Play_Street_Test
+public class Play_Straight_Test
 {
-    
+
 }
