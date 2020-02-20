@@ -142,6 +142,7 @@
     </profiles>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -151,9 +152,6 @@
                     <execution>
                         <id>taipan</id>
                         <phase>package</phase>
-                        <configuration>
-                            <finalName>${project.artifactId}</finalName>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
