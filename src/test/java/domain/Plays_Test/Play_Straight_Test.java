@@ -11,8 +11,11 @@ public class Play_Straight_Test
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         int current = start - 2;
+        // First two cards ought to be different to prevent an accidental bomb.
+        cards.add(new PlayingCard(Suit.SWORD, StandardRank.values()[current++]));
+        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.values()[current++]));
         while (current < stop - 1)
-        {
+        {//ToDo: randomInt for suit, shuffle Play.
             cards.add(new PlayingCard(Suit.SWORD, StandardRank.values()[current++]));
         }
         return new Straight(cards);
@@ -34,15 +37,8 @@ public class Play_Straight_Test
     @Test
     public void test_higherBeatsLower()
     {
-        Play firstPlay = createStraight(2, 6);
-
-        ArrayList<Card> secondCards = new ArrayList<Card>();
-        secondCards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        secondCards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
-        secondCards.add(new PlayingCard(Suit.STAR, StandardRank.FIVE));
-        secondCards.add(new PlayingCard(Suit.SWORD, StandardRank.SEVEN));
-        secondCards.add(new PlayingCard(Suit.JADE, StandardRank.SIX));
-        Play secondPlay = new Straight(secondCards);
+        Play firstPlay = this.createStraight(2, 6);
+        Play secondPlay = this.createStraight(3, 7);
 
         Assert.assertTrue(secondPlay.beats(firstPlay));
     }
@@ -50,21 +46,8 @@ public class Play_Straight_Test
     @Test
     public void test_equalsNotBeats()
     {
-        ArrayList<Card> firstCards = new ArrayList<Card>();
-        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        firstCards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        firstCards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
-        firstCards.add(new PlayingCard(Suit.STAR, StandardRank.FIVE));
-        firstCards.add(new PlayingCard(Suit.JADE, StandardRank.SIX));
-        Play firstPlay = new Straight(firstCards);
-
-        ArrayList<Card> secondCards = new ArrayList<Card>();
-        secondCards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        secondCards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        secondCards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
-        secondCards.add(new PlayingCard(Suit.STAR, StandardRank.FIVE));
-        secondCards.add(new PlayingCard(Suit.JADE, StandardRank.SIX));
-        Play secondPlay = new Straight(secondCards);
+        Play firstPlay = this.createStraight(2, 6);
+        Play secondPlay = this.createStraight(2, 6);
 
         Assert.assertFalse(secondPlay.beats(firstPlay));
     }
@@ -72,20 +55,8 @@ public class Play_Straight_Test
     @Test
     public void test_lowerNotBeatsHigher()
     {
-        ArrayList<Card> firstCards = new ArrayList<Card>();
-        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        firstCards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        firstCards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
-        firstCards.add(new PlayingCard(Suit.STAR, StandardRank.FIVE));
-        firstCards.add(new PlayingCard(Suit.JADE, StandardRank.SIX));
-        Play firstPlay = new Straight(firstCards);
-
-        ArrayList<Card> secondCards = new ArrayList<Card>();
-        secondCards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        secondCards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        secondCards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
-        secondCards.add(new PlayingCard(Suit.JADE, StandardRank.SIX));
-        Play secondPlay = new Straight(secondCards);
+        Play firstPlay = this.createStraight(3, 7);
+        Play secondPlay = this.createStraight(2, 6);
 
         Assert.assertFalse(secondPlay.beats(firstPlay));
     }
@@ -93,13 +64,7 @@ public class Play_Straight_Test
     @Test
     public void test_straightNotBeatSingle()
     {
-        ArrayList<Card> firstCards = new ArrayList<Card>();
-        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        firstCards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        firstCards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
-        firstCards.add(new PlayingCard(Suit.STAR, StandardRank.FIVE));
-        firstCards.add(new PlayingCard(Suit.JADE, StandardRank.SIX));
-        Play firstPlay = new Straight(firstCards);
+        Play firstPlay = this.createStraight(2, 6);
 
         ArrayList<Card> secondCard = new ArrayList<Card>();
         secondCard.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
@@ -111,23 +76,10 @@ public class Play_Straight_Test
     @Test
     public void test_sizeMatters()
     {
-        ArrayList<Card> firstCards = new ArrayList<Card>();
-        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        firstCards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        firstCards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
-        firstCards.add(new PlayingCard(Suit.STAR, StandardRank.FIVE));
-        firstCards.add(new PlayingCard(Suit.JADE, StandardRank.SIX));
-        Play firstPlay = new Straight(firstCards);
-
-        ArrayList<Card> secondCards = new ArrayList<Card>();
-        secondCards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        secondCards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        secondCards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
-        secondCards.add(new PlayingCard(Suit.STAR, StandardRank.FIVE));
-        secondCards.add(new PlayingCard(Suit.JADE, StandardRank.SIX));
-        secondCards.add(new PlayingCard(Suit.JADE, StandardRank.SEVEN));
-        Play secondPlay = new Straight(secondCards);
+        Play firstPlay = this.createStraight(2, 6);
+        Play secondPlay = this.createStraight(2, 7);
 
         Assert.assertFalse(secondPlay.beats(firstPlay));
+        Assert.assertFalse(firstPlay.beats(secondPlay));
     }
 }
