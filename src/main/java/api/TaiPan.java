@@ -16,16 +16,17 @@ import javax.ws.rs.core.Response;
 @Path("/")
 public class TaiPan
 {
-    @PUT
-    @Path("/play/{player}")
+    @POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+    @Path("play")
     public Response play(
-			@PathParam("player") String playerID,
 			@Context HttpServletRequest request
     )
     {
-System.out.println("Put on player " + playerID);
+System.out.println("Post on play.");
         HttpSession session= request.getSession(false);
-        String output = JSONProcessor.createJSONResponse("Played " + playerID + ".");
+        String output = JSONProcessor.createJSONResponse("Played.");
 		return Response.status(200).entity(output).build();
     }
 
@@ -38,6 +39,23 @@ System.out.println("Put on player " + playerID);
     )
     {
 System.out.println("Post on login.");
+        HttpSession session= request.getSession(true);
+
+		//session.setAttribute("taipan", taipan);
+        String output = JSONProcessor.createJSONResponse("PlayerID.");
+
+		return Response.status(200).entity(output).build();
+    }
+
+    @POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+    @Path("join")
+    public Response joinGame(
+			@Context HttpServletRequest request
+    )
+    {
+System.out.println("Post on join.");
         HttpSession session= request.getSession(true);
 
 		//session.setAttribute("taipan", taipan);
