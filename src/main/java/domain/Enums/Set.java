@@ -5,5 +5,5 @@ package taipan.domain;
  */
 public enum Set
 {
-    SINGLE, PAIR, STAIR, THREESOME, STRAIGHT, FULLHOUSE, BOMB;
+    SINGLE, PAIR, STAIR, TRIPLE, STRAIGHT, FULLHOUSE, BOMB;
 }

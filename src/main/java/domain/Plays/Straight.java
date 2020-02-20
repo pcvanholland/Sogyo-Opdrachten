@@ -18,7 +18,8 @@ class Straight extends Play
     @Override
     protected boolean beats(final Play playToBeat)
     {
-        return true;
+        return this.isSameSetAs(playToBeat) &&
+            this.getValue() > playToBeat.getValue();
     }
 
     /**
@@ -29,6 +30,11 @@ class Straight extends Play
     @Override
     protected int getValue()
     {
-        return 0;
+        int highest = -1;
+        for (Card card : this.getCards())
+        {
+            highest = Math.max(card.getRank().getValue(), highest);
+        }
+        return highest;
     }
 }

@@ -49,7 +49,16 @@ abstract class Play
      */
     final boolean isSameSetAs(Play play)
     {
-        return this.getClass() == play.getClass();
+        return this.getClass() == play.getClass() &&
+            this.getLength() == play.getLength();
+    }
+
+    /**
+     * Returns the length of this Straight.
+     */
+    private int getLength()
+    {
+        return this.getCards().size();
     }
 
     /**
