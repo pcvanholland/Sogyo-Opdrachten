@@ -157,7 +157,6 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <addClasspath>true</addClasspath>
                             <mainClass>taipan.api.TaiPan</mainClass>
                         </manifest>
                     </archive>
