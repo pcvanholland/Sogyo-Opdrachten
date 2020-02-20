@@ -2,7 +2,7 @@ package taipan.domain;
 
 import java.util.ArrayList;
 
-class Play
+abstract class Play
 {
     private ArrayList<Card> cards;
 
@@ -15,6 +15,14 @@ class Play
     {
         this.cards = newCards;
     }
+
+    /**
+     * Whether this Play is higher in value than the provided one.
+     *
+     * @param play {Play} - The play to beat.
+     * @return {boolean} - Whether this play beats the provided one.
+     */
+    abstract boolean beats(final Play play);
 
     /**
      * This tests whether a given play is valid.

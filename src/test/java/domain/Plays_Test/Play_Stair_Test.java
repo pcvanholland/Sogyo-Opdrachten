@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Play_MultiSets_Test
+public class Play_Stair_Test
 {
     @Test
     public void test_playValiditySingleSet()
@@ -40,6 +40,19 @@ public class Play_MultiSets_Test
         cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
 
         Assert.assertTrue(Play.isValidPlay(cards));
+    }
+
+    @Test
+    public void test_init()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+
+        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
+        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
+
+        new Stair(cards);
     }
 
     @Test
