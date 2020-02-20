@@ -23,10 +23,9 @@ public class TaiPan
 			@Context HttpServletRequest request
     )
     {
-System.out.println("Put on play.");
+System.out.println("Put on player " + playerID);
         HttpSession session= request.getSession(false);
-		//String output = JSONResultProcessor.createJSONResponse("Tai-Pan: ofiets");
-        String output = "Tai-Pan: ofzoiets.";
+        String output = JSONProcessor.createJSONResponse("Played " + playerID + ".");
 		return Response.status(200).entity(output).build();
     }
 
@@ -42,7 +41,7 @@ System.out.println("Post on login.");
         HttpSession session= request.getSession(true);
 
 		//session.setAttribute("taipan", taipan);
-        String output = "taipan";
+        String output = JSONProcessor.createJSONResponse("PlayerID.");
 
 		return Response.status(200).entity(output).build();
     }

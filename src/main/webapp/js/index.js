@@ -119,8 +119,9 @@ const app = new Vue({
                     "password": password
                 })
             });
-            //const result = await response.json();
-            //this.loggedIn = result.success;
+            const result = await response.json();
+            //this.playerID = result.playerID;
+            console.log(result);
             this.playerID = 1;
         },
         async startAGame()

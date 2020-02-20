@@ -13,11 +13,12 @@ public class JSONProcessor {
 	 * @param player1
 	 * @param player2
 	 * @return
-	 *
-	public String createJSONResponse(Mancala mancala) {
-
+	 */
+	public static String createJSONResponse(String textfornow)
+    {
 		JSONObject result = new JSONObject();
-
+        result.put("result", textfornow);
+/*
 		JSONObject jsonPlayer1 = this.createJSONPlayer(1, mancala, 1);
 		JSONObject jsonPlayer2 = this.createJSONPlayer(8, mancala, 2);
 
@@ -35,7 +36,7 @@ public class JSONProcessor {
         	gameStatus.put("endOfGame", "false");
         }
         result.put("gameStatus", gameStatus);
-
+*/
 		return result.toJSONString();
 	}
 
@@ -44,7 +45,7 @@ public class JSONProcessor {
      *
 	 * @return {JSONObject} - A JSON representation of a player.
 	 *
-	private JSONObject createJSONPlayer(Player player)
+	private static JSONObject createJSONPlayer(Player player)
     {
 		JSONObject jsonPlayer = new JSONObject();
 
@@ -62,7 +63,7 @@ public class JSONProcessor {
      * @param cards {Card[]} - The cards to JSONify.
      * @return {JSONObject} - A JSON representation of a set of cards.
      *
-     private JSONObject createJSONCards(ArrayList<Card> cards)
+     private static JSONObject createJSONCards(ArrayList<Card> cards)
      {
          JSONObject jsonCards = new JSONObject();
          for (Card card : cards)
@@ -78,7 +79,7 @@ public class JSONProcessor {
       * @param card {Card} - The card to JSONify.
       * @return {JSONObject} - A JSON representation of a card.
       *
-      private JSONObject createJSONCard(Card card)
+      private static JSONObject createJSONCard(Card card)
       {
           JSONObject jsonCard = new JSONObject();
           jsonCard.put("suit", card.getSuit());
