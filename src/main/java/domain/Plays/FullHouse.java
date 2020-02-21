@@ -7,6 +7,12 @@ class FullHouse extends Play
     private Triple triple;
     private Pair pair;
 
+    /**
+     * The default constructor for a FullHouse.
+     *
+     * @param newTriple {Triple} - The Triple that is part of this FullHouse.
+     * @param newPair {Pair} - The Pair that is part of this FullHouse.
+     */
     FullHouse(final Triple newTriple, final Pair newPair)
     {
         super(getAllCards(newTriple, newPair));
@@ -14,6 +20,12 @@ class FullHouse extends Play
         this.pair = newPair;
     }
 
+    /**
+     * The inverted constructor for a FullHouse.
+     *
+     * @param newPair {Pair} - The Pair that is part of this FullHouse.
+     * @param newTriple {Triple} - The Triple that is part of this FullHouse.
+     */
     FullHouse(final Pair newPair, final Triple newTriple)
     {
         this(newTriple, newPair);

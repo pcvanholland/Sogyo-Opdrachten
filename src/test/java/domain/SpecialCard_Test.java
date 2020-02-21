@@ -17,8 +17,11 @@ public class SpecialCard_Test
     @Test
     public void test_getRank()
     {
-        SpecialCard card = new SpecialCard(SpecialRank.DOG);
-        Assert.assertEquals(SpecialRank.DOG, card.getRank());
+        for (SpecialRank r : SpecialRank.values())
+        {
+            SpecialCard card = new SpecialCard(r);
+            Assert.assertEquals(r, card.getRank());
+        }
     }
 
     @Test

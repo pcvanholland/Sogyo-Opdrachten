@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 class Bomb extends Play
 {
+    /**
+     * Constructor for a Bomb.
+     *
+     * @param newCards {Card[]} - An ArrayList of Cards comprising the new Bomb.
+     */
     Bomb(final ArrayList<Card> newCards)
     {
         super(newCards);
