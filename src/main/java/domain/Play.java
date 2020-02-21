@@ -22,7 +22,11 @@ abstract class Play
      * @param play {Play} - The play to beat.
      * @return {boolean} - Whether this play beats the provided one.
      */
-    abstract boolean beats(Play play);
+    protected boolean beats(Play playToBeat)
+    {
+        return this.isSameSetAs(playToBeat) &&
+            this.getValue() > playToBeat.getValue();
+    }
 
     /**
      * Calculates the value of this Play. which is usually the larges value
@@ -30,7 +34,15 @@ abstract class Play
      *
      * @return {int} - The value of this Play.
      */
-    abstract int getValue();
+     protected int getValue()
+     {
+         int highest = -1;
+         for (Card card : this.getCards())
+         {
+             highest = Math.max(card.getRank().getValue(), highest);
+         }
+         return highest;
+     }
 
     /**
      * Gets the cards belonging to this Play.
@@ -49,7 +61,7 @@ abstract class Play
      * @param play {Play} - The play to check against.
      * @return {boolean} - Whether the two plays are equal.
      */
-    final boolean isSameSetAs(final Play play)
+    private final boolean isSameSetAs(final Play play)
     {
         return this.getClass() == play.getClass() &&
             this.getLength() == play.getLength();
@@ -58,7 +70,7 @@ abstract class Play
     /**
      * @return {int} - The size of the array of Cards.
      */
-    private int getLength()
+    final int getLength()
     {
         return this.getCards().size();
     }

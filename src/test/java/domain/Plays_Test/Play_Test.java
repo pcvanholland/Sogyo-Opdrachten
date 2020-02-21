@@ -123,4 +123,40 @@ public abstract class Play_Test
         java.util.Collections.shuffle(cards);
         return new Straight(cards);
     }
+
+    /**
+     * Creates a FourOfAKind-Bomb Play.
+     *
+     * @param value {int} - The value the Cards ought to have.
+     * @return {Bomb} - The Play created.
+     */
+    final static Bomb createFOAKBomb(final int value)
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        for (Suit suit : Suit.values())
+        {
+            cards.add(new PlayingCard(suit, StandardRank.values()[value - 2]));
+        }
+        return new Bomb(cards);
+    }
+
+    /**
+     * Creates a Straight-Bomb Play with a random Suit.
+     *
+     * @param start {int} - The lowest value of the Straight.
+     * @param end {int} - The highest value of the Straight.
+     *
+     * @return {Bomb} - The Play created.
+     */
+    final static Bomb createStraightBomb(final int start, final int end)
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        Suit suit = Suit.values()[rng.nextInt(3)];
+        int current = start - 2;
+        while (current < end - 1)
+        {
+            cards.add(new PlayingCard(suit, StandardRank.values()[current++]));
+        }
+        return new Bomb(cards);
+    }
 }

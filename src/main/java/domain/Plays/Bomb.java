@@ -18,19 +18,20 @@ class Bomb extends Play
     @Override
     protected boolean beats(final Play playToBeat)
     {
-        return true;
+        return this.getClass() != playToBeat.getClass() ||
+            this.beatsBomb((Bomb) playToBeat);
     }
 
     /**
-     * Calculates the value of this Play.
-     * For a Street-Bomb the length of the street matters,
-     * besides the highest card.
+     * Test whether this Bomb beats the given Bomb.
      *
-     * @return {int} - The value of this Play.
+     * @param bombToBeat {Bomb} - The Bomb to beat.
+     * @return {boolean} - Whether this Bomb is higher in rank than the given.
      */
-    @Override
-    protected int getValue()
+    private boolean beatsBomb(final Bomb bombToBeat)
     {
-        return 0;
+        return this.getLength() > bombToBeat.getLength() ||
+            (this.getLength() == bombToBeat.getLength() &&
+            this.getValue() > bombToBeat.getValue());
     }
 }
