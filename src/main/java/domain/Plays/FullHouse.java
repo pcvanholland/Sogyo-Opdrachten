@@ -31,9 +31,14 @@ class FullHouse extends Play
     }
 
     /**
+     * Retreives all cards by querying both the Pair and the Triple.
      *
+     * @param newTriple {Triple} - The Triple to check.
+     * @param newPair {Pair} - The Pair to check.
+     *
+     * @return {Card[]} - An ArrayList of the Cards.
      */
-    final private static ArrayList<Card> getAllCards(
+    private static ArrayList<Card> getAllCards(
         final Triple newTriple, final Pair newPair
     )
     {

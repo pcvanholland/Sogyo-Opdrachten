@@ -137,6 +137,7 @@ public abstract class Play_Test
         {
             cards.add(new PlayingCard(suit, StandardRank.values()[value - 2]));
         }
+        java.util.Collections.shuffle(cards);
         return new Bomb(cards);
     }
 
@@ -157,6 +158,19 @@ public abstract class Play_Test
         {
             cards.add(new PlayingCard(suit, StandardRank.values()[current++]));
         }
+        java.util.Collections.shuffle(cards);
         return new Bomb(cards);
+    }
+
+    /**
+     * Creates a Single Play with a Dragon.
+     *
+     * @return {Single} - The Play created.
+     */
+    final static Single createDragon()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new SpecialCard(SpecialRank.DRAGON));
+        return new Single(cards);
     }
 }

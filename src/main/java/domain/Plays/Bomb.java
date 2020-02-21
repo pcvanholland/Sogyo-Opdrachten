@@ -31,7 +31,7 @@ class Bomb extends Play
     private boolean beatsBomb(final Bomb bombToBeat)
     {
         return this.getLength() > bombToBeat.getLength() ||
-            (this.getLength() == bombToBeat.getLength() &&
-            this.getValue() > bombToBeat.getValue());
+            this.getLength() == bombToBeat.getLength() &&
+            this.getValue() > bombToBeat.getValue();
     }
 }

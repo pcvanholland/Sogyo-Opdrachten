@@ -19,10 +19,10 @@ abstract class Play
     /**
      * Whether this Play is higher in value than the provided one.
      *
-     * @param play {Play} - The play to beat.
+     * @param playToBeat {Play} - The play to beat.
      * @return {boolean} - Whether this play beats the provided one.
      */
-    protected boolean beats(Play playToBeat)
+    protected boolean beats(final Play playToBeat)
     {
         return this.isSameSetAs(playToBeat) &&
             this.getValue() > playToBeat.getValue();
@@ -61,7 +61,7 @@ abstract class Play
      * @param play {Play} - The play to check against.
      * @return {boolean} - Whether the two plays are equal.
      */
-    private final boolean isSameSetAs(final Play play)
+    private boolean isSameSetAs(final Play play)
     {
         return this.getClass() == play.getClass() &&
             this.getLength() == play.getLength();
