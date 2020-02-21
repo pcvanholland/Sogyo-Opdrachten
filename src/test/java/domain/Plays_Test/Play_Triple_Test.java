@@ -7,21 +7,6 @@ import java.util.ArrayList;
 
 public class Play_Triple_Test extends Play_Test
 {
-    /**
-     * Creates a Triple Play with random Suits.
-     *
-     * @param value {int} - The value the Cards ought to have.
-     * @return {Triple} - The Play created.
-     */
-    private final Triple createTriple(final int value)
-    {
-        ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(createRandomCard(value));
-        cards.add(createRandomCard(value));
-        cards.add(createRandomCard(value));
-        return new Triple(cards);
-    }
-
     @Test
     public void test_init()
     {
@@ -36,8 +21,8 @@ public class Play_Triple_Test extends Play_Test
     @Test
     public void test_higherBeatsLower()
     {
-        Play firstPlay = this.createTriple(2);
-        Play secondPlay = this.createTriple(3);
+        Play firstPlay = createTriple(2);
+        Play secondPlay = createTriple(3);
 
         Assert.assertTrue(secondPlay.beats(firstPlay));
     }
@@ -46,8 +31,8 @@ public class Play_Triple_Test extends Play_Test
     // Yes, yes, impossible, I know!
     public void test_equalsNotBeats()
     {
-        Play firstPlay = this.createTriple(2);
-        Play secondPlay = this.createTriple(2);
+        Play firstPlay = createTriple(2);
+        Play secondPlay = createTriple(2);
 
         Assert.assertFalse(secondPlay.beats(firstPlay));
     }
@@ -55,8 +40,8 @@ public class Play_Triple_Test extends Play_Test
     @Test
     public void test_lowerNotBeatsHigher()
     {
-        Play firstPlay = this.createTriple(3);
-        Play secondPlay = this.createTriple(2);
+        Play firstPlay = createTriple(3);
+        Play secondPlay = createTriple(2);
 
         Assert.assertFalse(secondPlay.beats(firstPlay));
     }
@@ -64,11 +49,8 @@ public class Play_Triple_Test extends Play_Test
     @Test
     public void test_TripleNotBeatSingle()
     {
-        Play firstPlay = this.createTriple(3);
-
-        ArrayList<Card> secondCard = new ArrayList<Card>();
-        secondCard.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        Play secondPlay = new Single(secondCard);
+        Play firstPlay = createTriple(3);
+        Play secondPlay = createSingle(2);
 
         Assert.assertFalse(firstPlay.beats(secondPlay));
     }

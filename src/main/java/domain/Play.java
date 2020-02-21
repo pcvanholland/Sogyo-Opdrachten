@@ -43,18 +43,20 @@ abstract class Play
     }
 
     /**
-     * Gets the cards belonging to this Play.
+     * Tests whether this Play is equal to the Play to check.
+     * I.e. same class and same length.
      *
-     * @return {boolean} - An ArrayList of Cards in this Play.
+     * @param play {Play} - The play to check against.
+     * @return {boolean} - Whether the two plays are equal.
      */
-    final boolean isSameSetAs(Play play)
+    final boolean isSameSetAs(final Play play)
     {
         return this.getClass() == play.getClass() &&
             this.getLength() == play.getLength();
     }
 
     /**
-     * Returns the length of this Straight.
+     * @return {int} - The size of the array of Cards.
      */
     private int getLength()
     {
@@ -201,21 +203,10 @@ abstract class Play
       {
          for (IRank firstRank : ranksToCheck)
          {
-             // For now, special cards mean false.
-             if (!(firstRank instanceof StandardRank))
-             {
-                 return false;
-             }
              // Everything larger than 1 is okay here.
              int delta = 2;
              for (IRank secondRank : ranksToCheck)
              {
-                 // For now, special cards mean false.
-                 if (!(firstRank instanceof StandardRank))
-                 {
-                     return false;
-                 }
-
                  if (secondRank == firstRank)
                  {
                      continue;

@@ -7,26 +7,6 @@ import java.util.ArrayList;
 
 public class Play_Stair_Test extends Play_Test
 {
-    /**
-     * Creates a Stair Play with random Suits.
-     *
-     * @param start {int} - The lowest value of the Stair.
-     * @param end {int} - The highest value of the Stair.
-     *
-     * @return {Stair} - The Play created.
-     */
-    private final Stair createStair(final int start, final int end)
-    {
-        ArrayList<Card> cards = new ArrayList<Card>();
-        for (int current = start; current < end + 1; ++current)
-        {
-            cards.add(createRandomCard(current));
-            cards.add(createRandomCard(current));
-        }
-        java.util.Collections.shuffle(cards);
-        return new Stair(cards);
-    }
-
     @Test
     public void test_playValiditySingleSet()
     {
@@ -225,8 +205,8 @@ public class Play_Stair_Test extends Play_Test
     @Test
     public void test_higherBeatsLower()
     {
-        Play firstPlay = this.createStair(2, 3);
-        Play secondPlay = this.createStair(3, 4);
+        Play firstPlay = createStair(2, 3);
+        Play secondPlay = createStair(3, 4);
 
         Assert.assertTrue(secondPlay.beats(firstPlay));
     }
@@ -234,8 +214,8 @@ public class Play_Stair_Test extends Play_Test
     @Test
     public void test_equalsNotBeats()
     {
-        Play firstPlay = this.createStair(2, 3);
-        Play secondPlay = this.createStair(2, 3);
+        Play firstPlay = createStair(2, 3);
+        Play secondPlay = createStair(2, 3);
 
         Assert.assertFalse(secondPlay.beats(firstPlay));
     }
@@ -243,8 +223,8 @@ public class Play_Stair_Test extends Play_Test
     @Test
     public void test_lowerNotBeatsHigher()
     {
-        Play firstPlay = this.createStair(3, 4);
-        Play secondPlay = this.createStair(2, 3);
+        Play firstPlay = createStair(3, 4);
+        Play secondPlay = createStair(2, 3);
 
         Assert.assertFalse(secondPlay.beats(firstPlay));
     }
@@ -252,11 +232,8 @@ public class Play_Stair_Test extends Play_Test
     @Test
     public void test_stairNotBeatSingle()
     {
-        Play firstPlay = this.createStair(3, 4);
-
-        ArrayList<Card> secondCard = new ArrayList<Card>();
-        secondCard.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        Play secondPlay = new Single(secondCard);
+        Play firstPlay = createStair(3, 4);
+        Play secondPlay = createSingle(2);
 
         Assert.assertFalse(firstPlay.beats(secondPlay));
     }

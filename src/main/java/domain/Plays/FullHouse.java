@@ -5,11 +5,18 @@ import java.util.ArrayList;
 class FullHouse extends Play
 {
     private Triple triple;
-    private Set set;
+    private Pair pair;
 
-    FullHouse(final ArrayList<Card> newCards)
+    FullHouse(final Triple newTriple, final Pair newPair)
     {
-        super(newCards);
+        super(getAllCards(newTriple, newPair));
+        this.triple = newTriple;
+        this.pair = newPair;
+    }
+
+    FullHouse(final Pair newPair, final Triple newTriple)
+    {
+        this(newTriple, newPair);
     }
 
     /**
@@ -21,7 +28,8 @@ class FullHouse extends Play
     @Override
     protected boolean beats(final Play playToBeat)
     {
-        return true;
+        return this.isSameSetAs(playToBeat) &&
+            this.getValue() > playToBeat.getValue();
     }
 
     /**
@@ -32,6 +40,19 @@ class FullHouse extends Play
     @Override
     protected int getValue()
     {
-        return 0;
+        return this.triple.getValue();
+    }
+
+    /**
+     *
+     */
+    final private static ArrayList<Card> getAllCards(
+        final Triple newTriple, final Pair newPair
+    )
+    {
+        ArrayList<Card> result = new ArrayList<Card>();
+        result.addAll(newTriple.getCards());
+        result.addAll(newPair.getCards());
+        return result;
     }
 }
