@@ -5,8 +5,23 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Play_Triple_Test
+public class Play_Triple_Test extends Play_Test
 {
+    /**
+     * Creates a Triple Play with random Suits.
+     *
+     * @param value {int} - The value the Cards ought to have.
+     * @return {Triple} - The Play created.
+     */
+    private final Triple createTriple(final int value)
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(createRandomCard(value));
+        cards.add(createRandomCard(value));
+        cards.add(createRandomCard(value));
+        return new Triple(cards);
+    }
+
     @Test
     public void test_init()
     {
@@ -21,17 +36,8 @@ public class Play_Triple_Test
     @Test
     public void test_higherBeatsLower()
     {
-        ArrayList<Card> firstCards = new ArrayList<Card>();
-        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        firstCards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        firstCards.add(new PlayingCard(Suit.PAGODA, StandardRank.TWO));
-        Play firstPlay = new Triple(firstCards);
-
-        ArrayList<Card> secondCards = new ArrayList<Card>();
-        secondCards.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
-        secondCards.add(new PlayingCard(Suit.STAR, StandardRank.THREE));
-        secondCards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
-        Play secondPlay = new Triple(secondCards);
+        Play firstPlay = this.createTriple(2);
+        Play secondPlay = this.createTriple(3);
 
         Assert.assertTrue(secondPlay.beats(firstPlay));
     }
@@ -40,17 +46,8 @@ public class Play_Triple_Test
     // Yes, yes, impossible, I know!
     public void test_equalsNotBeats()
     {
-        ArrayList<Card> firstCards = new ArrayList<Card>();
-        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        firstCards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        firstCards.add(new PlayingCard(Suit.PAGODA, StandardRank.TWO));
-        Play firstPlay = new Triple(firstCards);
-
-        ArrayList<Card> secondCards = new ArrayList<Card>();
-        secondCards.add(new PlayingCard(Suit.PAGODA, StandardRank.TWO));
-        secondCards.add(new PlayingCard(Suit.STAR, StandardRank.TWO));
-        secondCards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        Play secondPlay = new Triple(secondCards);
+        Play firstPlay = this.createTriple(2);
+        Play secondPlay = this.createTriple(2);
 
         Assert.assertFalse(secondPlay.beats(firstPlay));
     }
@@ -58,17 +55,8 @@ public class Play_Triple_Test
     @Test
     public void test_lowerNotBeatsHigher()
     {
-        ArrayList<Card> firstCards = new ArrayList<Card>();
-        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
-        firstCards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        firstCards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
-        Play firstPlay = new Triple(firstCards);
-
-        ArrayList<Card> secondCards = new ArrayList<Card>();
-        secondCards.add(new PlayingCard(Suit.PAGODA, StandardRank.TWO));
-        secondCards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        secondCards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        Play secondPlay = new Triple(secondCards);
+        Play firstPlay = this.createTriple(3);
+        Play secondPlay = this.createTriple(2);
 
         Assert.assertFalse(secondPlay.beats(firstPlay));
     }
@@ -76,11 +64,7 @@ public class Play_Triple_Test
     @Test
     public void test_TripleNotBeatSingle()
     {
-        ArrayList<Card> firstCards = new ArrayList<Card>();
-        firstCards.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
-        firstCards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        firstCards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
-        Play firstPlay = new Triple(firstCards);
+        Play firstPlay = this.createTriple(3);
 
         ArrayList<Card> secondCard = new ArrayList<Card>();
         secondCard.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));

@@ -159,15 +159,16 @@ abstract class Play
          final ArrayList<Card> cardsToCheck
      )
      {
+         ArrayList<Card> uniquelyRankedCards = new ArrayList<Card>();
          java.util.HashSet<IRank> uniqueRanks = new java.util.HashSet<IRank>();
          for (Card card : cardsToCheck)
          {
-             uniqueRanks.add(card.getRank());
+             if (uniqueRanks.add(card.getRank()))
+             {
+                 uniquelyRankedCards.add(card);
+             }
          }
-
-         ArrayList<IRank> ranks = new ArrayList<IRank>();
-         ranks.addAll(uniqueRanks);
-         return areRanksSequential(ranks);
+         return areCardsSequential(uniquelyRankedCards);
      }
 
      /**

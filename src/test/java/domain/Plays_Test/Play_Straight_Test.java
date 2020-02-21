@@ -5,19 +5,32 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Play_Straight_Test
+public class Play_Straight_Test extends Play_Test
 {
-    private Straight createStraight(final int start, final int stop)
+    /**
+     * Creates a straight with the specified start and end
+     * values with semi-random suits.
+     *
+     * @param start {int} - The lowest value of the Straight.
+     * @param end {int} - The highest value of the Straight.
+     *
+     * @return {Straight} - The resulting Straight.
+     */
+    private final Straight createStraight(final int start, final int end)
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        int current = start - 2;
+
         // First two cards ought to be different to prevent an accidental bomb.
+        int current = start - 2;
         cards.add(new PlayingCard(Suit.SWORD, StandardRank.values()[current++]));
         cards.add(new PlayingCard(Suit.PAGODA, StandardRank.values()[current++]));
-        while (current < stop - 1)
-        {//ToDo: randomInt for suit, shuffle Play.
-            cards.add(new PlayingCard(Suit.SWORD, StandardRank.values()[current++]));
+        current += 2;
+
+        while (current < end + 1)
+        {
+            cards.add(createRandomCard(current++));
         }
+        java.util.Collections.shuffle(cards);
         return new Straight(cards);
     }
 

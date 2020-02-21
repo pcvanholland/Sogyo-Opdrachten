@@ -5,8 +5,21 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Play_Single_Test
+public class Play_Single_Test extends Play_Test
 {
+    /**
+     * Creates a Single Play with a random Suit.
+     *
+     * @param value {int} - The value the card ought to have.
+     * @return {Single} - The Play created.
+     */
+    private final Single createSingle(final int value)
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(createRandomCard(value));
+        return new Single(cards);
+    }
+
     @Test
     public void test_playValiditySingleCard()
     {
@@ -28,13 +41,8 @@ public class Play_Single_Test
     @Test
     public void test_higherBeatsLower()
     {
-        ArrayList<Card> firstCard = new ArrayList<Card>();
-        firstCard.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        Play firstPlay = new Single(firstCard);
-
-        ArrayList<Card> secondCard = new ArrayList<Card>();
-        secondCard.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
-        Play secondPlay = new Single(secondCard);
+        Play firstPlay = this.createSingle(2);
+        Play secondPlay = this.createSingle(3);
 
         Assert.assertTrue(secondPlay.beats(firstPlay));
     }
@@ -42,13 +50,8 @@ public class Play_Single_Test
     @Test
     public void test_equalsNotBeats()
     {
-        ArrayList<Card> firstCard = new ArrayList<Card>();
-        firstCard.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        Play firstPlay = new Single(firstCard);
-
-        ArrayList<Card> secondCard = new ArrayList<Card>();
-        secondCard.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        Play secondPlay = new Single(secondCard);
+        Play firstPlay = this.createSingle(2);
+        Play secondPlay = this.createSingle(2);
 
         Assert.assertFalse(secondPlay.beats(firstPlay));
     }
@@ -56,13 +59,8 @@ public class Play_Single_Test
     @Test
     public void test_lowerNotBeatsHigher()
     {
-        ArrayList<Card> firstCard = new ArrayList<Card>();
-        firstCard.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
-        Play firstPlay = new Single(firstCard);
-
-        ArrayList<Card> secondCard = new ArrayList<Card>();
-        secondCard.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        Play secondPlay = new Single(secondCard);
+        Play firstPlay = this.createSingle(3);
+        Play secondPlay = this.createSingle(3);
 
         Assert.assertFalse(secondPlay.beats(firstPlay));
     }
@@ -70,13 +68,11 @@ public class Play_Single_Test
     @Test
     public void test_singleNotBeatDouble()
     {
-        ArrayList<Card> firstCard = new ArrayList<Card>();
-        firstCard.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
-        Play firstPlay = new Single(firstCard);
+        Play firstPlay = this.createSingle(3);
 
         ArrayList<Card> secondCards = new ArrayList<Card>();
-        secondCards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        secondCards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+        secondCards.add(createRandomCard(2));
+        secondCards.add(createRandomCard(2));
         Play secondPlay = new Pair(secondCards);
 
         Assert.assertFalse(firstPlay.beats(secondPlay));
