@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Player
 {
+    private final static int NUM_PLAYERS = 4;
     private Dealer dealer;
     private Player neighbour;
     private ArrayList<Card> cards = new ArrayList<Card>();
@@ -17,8 +18,10 @@ public class Player
     Player()
     {
         this.dealer = new Dealer();
-        int numberOfPlayersLeftToCreate = 3;
-        this.neighbour = new Player(this, this.dealer, numberOfPlayersLeftToCreate);
+        int numberOfPlayersLeftToCreate = NUM_PLAYERS - 1;
+        this.neighbour = new Player(this,
+            this.dealer, numberOfPlayersLeftToCreate
+        );
     }
 
     /**
@@ -27,7 +30,7 @@ public class Player
      *
      * @param firstPlayer {Player} - The Player that initiated the chain.
      * @param sharedDealer {Dealer} - The Dealer accompanies these Players.
-     * @param numberOfPlayersLeftToCreate {int} - How many Players are to be made.
+     * @param numberOfPlayersLeftToCreate {int} - # Players to be made.
      */
     Player(final Player firstPlayer,
         final Dealer sharedDealer,

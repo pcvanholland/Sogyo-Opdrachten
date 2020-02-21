@@ -7,7 +7,7 @@ class Single extends Play
     /**
      * The constructor for a Single.
      *
-     * @param newCards {Card[]} - An ArrayList containing the Card for the Single.
+     * @param newCards {Card[]} - ArrayList containing the Card of the Single.
      */
     Single(final ArrayList<Card> newCards)
     {

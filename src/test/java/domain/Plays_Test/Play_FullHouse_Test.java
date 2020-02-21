@@ -11,6 +11,7 @@ public class Play_FullHouse_Test extends Play_Test
     public void test_init()
     {
         new FullHouse(createTriple(2), createPair(3));
+        new FullHouse(createPair(2), createTriple(3));
     }
 
     @Test

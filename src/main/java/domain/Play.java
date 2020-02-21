@@ -29,7 +29,7 @@ abstract class Play
     }
 
     /**
-     * Calculates the value of this Play. which is usually the larges value
+     * Calculates the value of this Play. which is usually the largest value
      * present, except for a Bomb or FullHouse.
      *
      * @return {int} - The value of this Play.

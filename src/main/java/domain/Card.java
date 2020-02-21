@@ -20,7 +20,7 @@ abstract class Card
     /**
      * @return {IRank} - The rank of this card.
      */
-    protected IRank getRank()
+    final protected IRank getRank()
     {
         return this.rank;
     }
@@ -28,8 +28,8 @@ abstract class Card
     /**
      * @return {int} - The scoring value of this card.
      */
-    protected int getScore()
+    final protected int getScore()
     {
-        return this.rank.getScore();
+        return this.getRank().getScore();
     }
 }
