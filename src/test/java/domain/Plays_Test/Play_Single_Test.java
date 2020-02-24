@@ -13,7 +13,10 @@ public class Play_Single_Test extends Play_Test
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
 
-        Assert.assertTrue(Play.isValidPlay(cards));
+        ArrayList<Set> result = new ArrayList<Set>();
+        result.add(Set.SINGLE);
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
     }
 
     @Test

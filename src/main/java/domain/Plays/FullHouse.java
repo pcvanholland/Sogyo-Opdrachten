@@ -59,4 +59,17 @@ class FullHouse extends Play
         result.addAll(newPair.getCards());
         return result;
     }
+
+    /**
+     * @param cardsToCheck - An ArrayList of cards to check.
+     * @return {boolean} - Whether this collection of Cards is a FullHouse.
+     */
+    protected static boolean isFullHouse(final ArrayList<Card> cardsToCheck)
+    {
+        if (cardsToCheck.size() != 5)
+        {
+            return false;
+        }
+        return containsTriple(cardsToCheck) && containsPair(cardsToCheck);
+    }
 }

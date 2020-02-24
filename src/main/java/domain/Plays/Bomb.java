@@ -39,4 +39,41 @@ class Bomb extends Play
             this.getLength() == bombToBeat.getLength() &&
             this.getValue() > bombToBeat.getValue();
     }
+
+    /**
+     * @param cardsToCheck - An ArrayList of cards to check.
+     * @return {boolean} - Whether this collection of Cards can be played as a bomb.
+     */
+    protected static boolean isBomb(final ArrayList<Card> cardsToCheck)
+    {
+        return isFOAKBomb(cardsToCheck) ||
+            isStraightBomb(cardsToCheck);
+    }
+
+    /**
+     * @param cardsToCheck - An ArrayList of cards to check.
+     * @return {boolean} - Whether this collection of Cards is a FOAK bomb.
+     */
+    private static boolean isFOAKBomb(final ArrayList<Card> cardsToCheck)
+    {
+        // for (Card card : cardsToCheck)
+        // {
+        //     if (card.getRank() instanceof SpecialRank)
+        //     {
+        //         return false;
+        //     }
+        // }
+        return cardsToCheck.size() == 4 && areCardsOfEqualRank(cardsToCheck);
+    }
+
+    /**
+     * @param cardsToCheck - An ArrayList of cards to check.
+     * @return {boolean} - Whether this collection of Cards can be
+     *      played as a straight bomb.
+     */
+    private static boolean isStraightBomb(final ArrayList<Card> cardsToCheck)
+    {
+        return Straight.isStraight(cardsToCheck) &&
+            areCardsOfEqualSuit(cardsToCheck);
+    }
 }

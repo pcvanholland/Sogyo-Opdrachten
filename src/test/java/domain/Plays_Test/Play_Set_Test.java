@@ -14,7 +14,10 @@ public class Play_Set_Test
         cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
         cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
 
-        Assert.assertTrue(Play.isValidPlay(cards));
+        ArrayList<Set> result = new ArrayList<Set>();
+        result.add(Set.PAIR);
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
     }
 
     @Test
@@ -24,7 +27,9 @@ public class Play_Set_Test
         cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
         cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
 
-        Assert.assertFalse(Play.isValidPlay(cards));
+        ArrayList<Set> result = new ArrayList<Set>();
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
     }
 
     @Test
@@ -35,7 +40,10 @@ public class Play_Set_Test
         cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(Suit.STAR, StandardRank.TWO));
 
-        Assert.assertTrue(Play.isValidPlay(cards));
+        ArrayList<Set> result = new ArrayList<Set>();
+        result.add(Set.TRIPLE);
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
     }
 
     @Test
@@ -46,7 +54,9 @@ public class Play_Set_Test
         cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
         cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
 
-        Assert.assertFalse(Play.isValidPlay(cards));
+        ArrayList<Set> result = new ArrayList<Set>();
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
     }
 
     @Test
@@ -57,7 +67,9 @@ public class Play_Set_Test
         cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
         cards.add(new PlayingCard(Suit.STAR, StandardRank.TWO));
 
-        Assert.assertFalse(Play.isValidPlay(cards));
+        ArrayList<Set> result = new ArrayList<Set>();
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
     }
 
     @Test
@@ -69,7 +81,10 @@ public class Play_Set_Test
         cards.add(new PlayingCard(Suit.STAR, StandardRank.TWO));
         cards.add(new PlayingCard(Suit.PAGODA, StandardRank.TWO));
 
-        Assert.assertTrue(Play.isValidPlay(cards));
+        ArrayList<Set> result = new ArrayList<Set>();
+        result.add(Set.BOMB);
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
     }
 
     @Test
@@ -81,7 +96,9 @@ public class Play_Set_Test
         cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
         cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FIVE));
 
-        Assert.assertFalse(Play.isValidPlay(cards));
+        ArrayList<Set> result = new ArrayList<Set>();
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
     }
 
     @Test
@@ -93,7 +110,9 @@ public class Play_Set_Test
         cards.add(new PlayingCard(Suit.STAR, StandardRank.TWO));
         cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
 
-        Assert.assertFalse(Play.isValidPlay(cards));
+        ArrayList<Set> result = new ArrayList<Set>();
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
     }
 
     @Test
@@ -105,6 +124,8 @@ public class Play_Set_Test
         cards.add(new PlayingCard(Suit.STAR, StandardRank.TWO));
         cards.add(new PlayingCard(Suit.PAGODA, StandardRank.TWO));
 
-        Assert.assertFalse(Play.isValidPlay(cards));
+        ArrayList<Set> result = new ArrayList<Set>();
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
     }
 }

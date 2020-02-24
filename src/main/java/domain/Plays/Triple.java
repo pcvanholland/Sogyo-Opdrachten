@@ -13,4 +13,13 @@ class Triple extends Play
     {
         super(newCards);
     }
+
+    /**
+     * @param cardsToCheck - An ArrayList of cards to check.
+     * @return {boolean} - Whether this collection of Cards is a Triple.
+     */
+    protected static boolean isTriple(final ArrayList<Card> cardsToCheck)
+    {
+        return cardsToCheck.size() == 3 && areCardsOfEqualRank(cardsToCheck);
+    }
 }

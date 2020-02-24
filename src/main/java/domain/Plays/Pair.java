@@ -13,4 +13,13 @@ class Pair extends Play
     {
         super(newCards);
     }
+
+    /**
+     * @param cardsToCheck - An ArrayList of cards to check.
+     * @return {boolean} - Whether this collection of Cards is a Pair.
+     */
+    protected static boolean isPair(final ArrayList<Card> cardsToCheck)
+    {
+        return cardsToCheck.size() == 2 && areCardsOfEqualRank(cardsToCheck);
+    }
 }

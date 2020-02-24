@@ -13,4 +13,13 @@ class Single extends Play
     {
         super(newCards);
     }
+
+    /**
+     * @param cardsToCheck - An ArrayList of cards to check.
+     * @return {boolean} - Whether this collection of Cards is a Single.
+     */
+    protected static boolean isSingle(final ArrayList<Card> cardsToCheck)
+    {
+        return cardsToCheck.size() == 1;
+    }
 }
