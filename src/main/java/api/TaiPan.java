@@ -39,12 +39,16 @@ System.out.println("Post on play.");
     )
     {
 System.out.println("Post on login.");
-        HttpSession session= request.getSession(true);
+        HttpSession session = request.getSession(true);
+        DataBase db = new DataBase();
 
-		//session.setAttribute("taipan", taipan);
-        String output = JSONProcessor.createJSONResponse("PlayerID.");
-
-		return Response.status(200).entity(output).build();
+        if (db.verifyPassword("FirstPlayer", "guesswhat"))
+        {
+            //session.setAttribute("taipan", taipan);
+            String output = JSONProcessor.createJSONResponse("PlayerID.");
+    		return Response.status(200).entity(output).build();
+        }
+        return Response.status(500).build();
     }
 
     @POST

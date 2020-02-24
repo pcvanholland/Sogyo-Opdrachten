@@ -1,0 +1,7 @@
+$ ip=$(# docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <containername>) && mongo --host $ip --authenticationDatabase admin -u <username> -p
+
+https://docs.mongodb.com/manual/
+
+show dbs;
+use <databasename>
+db.inventory.find({})

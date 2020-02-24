@@ -28,7 +28,7 @@ public class TaiPan_Test
     }
 
     @Test
-    public void test_login()
+    public void test_loginSuccess()
     {
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
@@ -37,6 +37,17 @@ public class TaiPan_Test
 
         Assert.assertEquals(200, tp.login(request).getStatus());
     }
+/*
+    @Test
+    public void test_loginFailure()
+    {
+        HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
+        HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
+
+        TaiPan tp = new TaiPan();
+
+        Assert.assertEquals(500, tp.login(request).getStatus());
+    }*/
 
     @Test
     public void test_join()

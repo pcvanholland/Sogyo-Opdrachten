@@ -1,0 +1,3 @@
+# docker pull mongo
+# docker run --name <databasename> -e MONGO_INITDB_ROOT_PASSWORD=<password> -d mongo
+# apt intall mongodb-clients
