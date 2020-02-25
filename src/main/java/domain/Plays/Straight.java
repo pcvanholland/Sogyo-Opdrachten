@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 class Straight extends Play
 {
+    private static final int MIN_STRAIGHT_LENGTH = 5;
+
     /**
      * The default constructor for a Straight.
      *
@@ -20,7 +22,7 @@ class Straight extends Play
      */
     protected static boolean isStraight(final ArrayList<Card> cardsToCheck)
     {
-        return cardsToCheck.size() >= 5 &&
+        return cardsToCheck.size() >= MIN_STRAIGHT_LENGTH &&
             areCardsSequential(cardsToCheck);
     }
 }

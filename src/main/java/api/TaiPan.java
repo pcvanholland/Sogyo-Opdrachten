@@ -1,7 +1,7 @@
 package taipan.api;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+//import javax.servlet.http.HttpSession;
 
 //import javax.ws.rs.PUT;
 import javax.ws.rs.Consumes;
@@ -16,8 +16,8 @@ import javax.ws.rs.core.Response;
 @Path("/")
 public class TaiPan
 {
-    final private static int SUCCESS = 200;
-    final private static int FAILURE = 500;
+    private static final int SUCCESS = 200;
+    private static final int FAILURE = 500;
 
     /**
      * This handles a play request by a Player.
@@ -33,12 +33,12 @@ public class TaiPan
     @Produces(MediaType.APPLICATION_JSON)
     @Path("play")
     public Response play(
-			final @Context HttpServletRequest request,
+            final @Context HttpServletRequest request,
             final Player player
     )
     {
 System.out.println("Post on play: " + player.getName());
-        HttpSession session = request.getSession(false);
+
         String output = JSONProcessor.createJSONResponse("Played.");
 		return Response.status(SUCCESS).entity(output).build();
     }
@@ -62,7 +62,7 @@ System.out.println("Post on play: " + player.getName());
     )
     {
 System.out.println("Post on login.");
-        HttpSession session = request.getSession(true);
+        //HttpSession session = request.getSession(true);
         DataBase db = new DataBase();
 
         if (db.verifyPassword(player.getName(), player.getPassword()))
@@ -93,7 +93,7 @@ System.out.println("Post on login.");
     )
     {
 System.out.println("Post on register.");
-        HttpSession session = request.getSession(true);
+        //HttpSession session = request.getSession(true);
         DataBase db = new DataBase();
 
         if (db.addPlayer(player.getName(), player.getPassword()))
@@ -124,7 +124,7 @@ System.out.println("Post on register.");
     )
     {
 System.out.println("Post on unregister.");
-        HttpSession session = request.getSession(true);
+        //HttpSession session = request.getSession(true);
         DataBase db = new DataBase();
 
         if (db.removePlayer(player.getName(), player.getPassword()))
@@ -154,7 +154,7 @@ System.out.println("Post on unregister.");
     )
     {
 System.out.println("Post on join.");
-        HttpSession session = request.getSession(true);
+        //HttpSession session = request.getSession(true);
 
 		//session.setAttribute("taipan", taipan);
         String output = JSONProcessor.createJSONResponse("PlayerID.");

@@ -101,7 +101,7 @@ public class Player
      protected void drawCards()
      {
          // ToDo: This ought to be improved!
-         if (this.getCards().size() == 6)
+         if (this.getCards().size() == Dealer.FIRST_HAND_SIZE)
          {
              this.cards.addAll(this.getDealer().drawSecondHand());
          }

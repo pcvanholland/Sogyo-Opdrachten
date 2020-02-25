@@ -26,7 +26,7 @@ public class Player
 
     /**
      * Sets this Player's name.
-     * @param {String} - The new name of this Player.
+     * @param newName {String} - The new name of this Player.
      */
     public void setName(final String newName)
     {
@@ -35,7 +35,7 @@ public class Player
 
     /**
      * Sets this Player's password.
-     * @param {String} - The new password of this Player.
+     * @param newPassword {String} - The new password of this Player.
      */
     public void setPassword(final String newPassword)
     {

@@ -42,7 +42,8 @@ class Bomb extends Play
 
     /**
      * @param cardsToCheck - An ArrayList of cards to check.
-     * @return {boolean} - Whether this collection of Cards can be played as a bomb.
+     * @return {boolean} - Whether this collection of Cards
+      *                     can be played as a Bomb.
      */
     protected static boolean isBomb(final ArrayList<Card> cardsToCheck)
     {
@@ -63,7 +64,8 @@ class Bomb extends Play
         //         return false;
         //     }
         // }
-        return cardsToCheck.size() == 4 && areCardsOfEqualRank(cardsToCheck);
+        return cardsToCheck.size() == Suit.values().length &&
+            areCardsOfEqualRank(cardsToCheck);
     }
 
     /**

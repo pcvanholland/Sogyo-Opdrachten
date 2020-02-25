@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Dealer
 {
     // Sum *MUST* be 14.
-    private static final int FIRST_HAND_SIZE = 6;
+    protected static final int FIRST_HAND_SIZE = 6;
     private static final int SECOND_HAND_SIZE = 8;
 
     private ArrayList<Card> cards;

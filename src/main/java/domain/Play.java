@@ -131,7 +131,7 @@ abstract class Play
      * @param cardsToCheck {Card[]} - The ArrayList of cards to verify.
      * @return {boolean} - Whether *all* the provided cards are of equal rank.
      */
-    final static boolean areCardsOfEqualRank(
+    static final boolean areCardsOfEqualRank(
         final ArrayList<Card> cardsToCheck
     )
     {
@@ -152,7 +152,7 @@ abstract class Play
      * @param cardsToCheck {Card[]} - The ArrayList of cards to verify.
      * @return {boolean} - Whether *all* the provided cards are of equal Suit.
      */
-    final static boolean areCardsOfEqualSuit(
+    static final boolean areCardsOfEqualSuit(
         final ArrayList<Card> cardsToCheck
     )
     {
@@ -180,7 +180,7 @@ abstract class Play
      * @param cardsToCheck {Card[]} - An ArrayList of cards to verify.
      * @return {boolean} - Whether the list contains a Pair.
      */
-    final static boolean containsPair(
+    static final boolean containsPair(
         final ArrayList<Card> cardsToCheck
     )
     {
@@ -193,7 +193,7 @@ abstract class Play
      * @param cardsToCheck {Card[]} - An ArrayList of cards to verify.
      * @return {boolean} - Whether the list contains a Pair.
      */
-    final static boolean containsTriple(
+    static final boolean containsTriple(
         final ArrayList<Card> cardsToCheck
     )
     {
@@ -201,9 +201,12 @@ abstract class Play
     }
 
     /**
-     * This tests whether the given list of cards contains any Pair.
+     * This tests whether the given list of Cards contains at least once
+     * exactly the specified amount of Cards with the same Rank.
      *
      * @param cardsToCheck {Card[]} - An ArrayList of cards to verify.
+     * @param amount {int} - How many of equal rank may be present.
+     *
      * @return {boolean} - Whether the list contains a Pair.
      */
     private static boolean containsNumberOfEqualRanks(
@@ -227,7 +230,7 @@ abstract class Play
      * @param cardsToCheck {Card[]} - An ArrayList of cards to verify.
      * @return {boolean} - Whether the list only contains pairs.
      */
-    final static boolean containsOnlyNumberOfEqualRanks(
+    static final boolean containsOnlyNumberOfEqualRanks(
         final ArrayList<Card> cardsToCheck, final int amount
     )
     {
@@ -248,7 +251,7 @@ abstract class Play
       * @param cardsToCheck {Card[]} - An ArrayList of cards to verify.
       * @return {boolean} - Whether the cards are consecutive.
       */
-     final static boolean areCardsSequential(
+     static final boolean areCardsSequential(
          final ArrayList<Card> cardsToCheck
      )
      {
