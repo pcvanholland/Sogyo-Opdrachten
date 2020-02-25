@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 //import javax.ws.rs.PUT;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 //import javax.ws.rs.PathParam;
@@ -55,23 +56,25 @@ System.out.println("Post on play: " + player.getName());
      *
      * @return {Response} - Whether the Play was successful.
      */
-    @POST
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("getgamestate")
     public Response getGameState(
             final @Context HttpServletRequest request
     )
     {
-System.out.println("Post on GGS.");
+System.out.println("Get on GGS.");
 		HttpSession session = request.getSession(false);
         if (session != null)
         {
     		taipan.domain.TaiPan taipan =
                 (taipan.domain.TaiPan) session.getAttribute("taipan");
             taipan.getGameState();
+
+            String output = JSONProcessor.createJSONResponse("Got GameState.");
+    		return Response.status(SUCCESS).entity(output).build();
         }
 
-        String output = JSONProcessor.createJSONResponse("Got GameState.");
-		return Response.status(SUCCESS).entity(output).build();
+		return Response.status(FAILURE).build();
     }
 }

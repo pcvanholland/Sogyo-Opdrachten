@@ -58,7 +58,6 @@ System.out.println("Post on join.");
      * @param request {HttpServletRequest} - A Request from the server.
      *
      * @return {Response} - Whether the start was successful.
-     *                  If it was successful, it contains the Game's name.
      */
     @POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -69,8 +68,8 @@ System.out.println("Post on join.");
     )
     {
 System.out.println("Post on start.");
-        HttpSession session = request.getSession(true);
 
+        HttpSession session = request.getSession(true);
         //if (game.isFull())
         {
             session.setAttribute("taipan", new taipan.domain.TaiPan());

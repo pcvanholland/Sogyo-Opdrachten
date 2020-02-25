@@ -9,9 +9,6 @@ import org.json.simple.JSONObject;
 public abstract class JSONProcessor
 {
 	/**
-	 * @param mancala
-	 * @param player1
-	 * @param player2
 	 * @return
 	 */
 	public static String createJSONResponse(String textfornow)
@@ -39,6 +36,25 @@ public abstract class JSONProcessor
 */
 		return result.toJSONString();
 	}
+	/**
+     * This converts a TaiPan GameState to a JSONString.
+     *
+     * @param game {TaiPan} - A TaiPan-game to get the GameState from.
+	 * @return
+	 *
+	public static String createJSONGameState(taipan.domain.TaiPan game)
+    {
+		JSONObject result = new JSONObject();
+		JSONArray players = new JSONArray();
+        for (int i = 0; i < 4; i++)
+        {
+            players.add(createJSONPlayer(game, i));
+        }
+
+        result.put("players", players);
+
+		return result.toJSONString();
+	}
 
 	/**
 	 * @param player {Player} - The Player to JSONify.
@@ -49,8 +65,8 @@ public abstract class JSONProcessor
     {
 		JSONObject jsonPlayer = new JSONObject();
 
-        jsonPlayer.put("id", player.getID());
-		jsonPlayer.put("name", ??.getPlayerName(player.getID()));
+        //jsonPlayer.put("id", player.getID());
+		//jsonPlayer.put("name", ??.getPlayerName(player.getID()));
         jsonPlayer.put("cards", this.createJSONCards(player.getCards()));
         jsonPlayer.put("inTurn", player.isInTurn());
 

@@ -239,7 +239,7 @@ const app = new Vue({
         },
         async startAGame()
         {
-            const response = await fetch('api/startgame', {
+            const response = await fetch('api/lobby/startgame', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -251,22 +251,20 @@ const app = new Vue({
             });
             const result = await response.json();
             console.log(result.result);
+            this.getGameState();
             this.gameID = result.result;
         },
         async getGameState()
         {
             const response = await fetch('api/getgamestate', {
-                method: 'POST',
+                method: 'GET',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    "playerID": this.playerID
                 })
             });
             const result = await response.json();
-            console.log(result.result);
+            console.log(result);
             this.gameState = result.result;
         }
     }
