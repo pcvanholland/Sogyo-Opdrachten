@@ -33,21 +33,29 @@ public class TaiPan_Test
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
+        Player player = new Player();
+        player.setName("FirstPlayer");
+        player.setPassword("guesswhat");
+
         TaiPan tp = new TaiPan();
 
-        Assert.assertEquals(200, tp.login(request).getStatus());
+        Assert.assertEquals(200, tp.login(request, player).getStatus());
     }
-/*
+
     @Test
     public void test_loginFailure()
     {
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
+        Player player = new Player();
+        player.setName("FirstPlayer");
+        player.setPassword("guasswhat");
+
         TaiPan tp = new TaiPan();
 
-        Assert.assertEquals(500, tp.login(request).getStatus());
-    }*/
+        Assert.assertEquals(500, tp.login(request, player).getStatus());
+    }
 
     @Test
     public void test_join()

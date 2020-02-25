@@ -35,17 +35,18 @@ System.out.println("Post on play.");
 	@Produces(MediaType.APPLICATION_JSON)
     @Path("login")
     public Response login(
-			@Context HttpServletRequest request
+			@Context HttpServletRequest request,
+            Player player
     )
     {
 System.out.println("Post on login.");
         HttpSession session = request.getSession(true);
         DataBase db = new DataBase();
 
-        if (db.verifyPassword("FirstPlayer", "guesswhat"))
+        if (db.verifyPassword(player.getName(), player.getPassword()))
         {
             //session.setAttribute("taipan", taipan);
-            String output = JSONProcessor.createJSONResponse("PlayerID.");
+            String output = JSONProcessor.createJSONResponse(player.getName());
     		return Response.status(200).entity(output).build();
         }
         return Response.status(500).build();

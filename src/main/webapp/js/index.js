@@ -20,7 +20,7 @@ Vue.component('start-screen', {
                 type="text"
                 accept-charset=ASCII
                 minlength="3"
-                maxlength="10"
+                maxlength="20"
                 v-model="playerName"
             />
             <input
@@ -115,14 +115,16 @@ const app = new Vue({
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "playerName": playerName,
-                    "password": password
+                    name: playerName,
+                    password: password
                 })
             });
             const result = await response.json();
-            //this.playerID = result.playerID;
-            console.log(result);
-            this.playerID = 1;
+            console.log(result.result);
+            if (result.result && result.result == playerName)
+            {
+                this.playerID = playerName;
+            }
         },
         async startAGame()
         {
