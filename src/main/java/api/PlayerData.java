@@ -5,14 +5,15 @@ package taipan.api;
  */
 public class PlayerData
 {
-	private String[] playerNames = new String[4];
+    private static final int MAX_NUMBER_OF_PLAYERS = 4;
+    private String[] playerNames = new String[MAX_NUMBER_OF_PLAYERS];
 
     /**
      * Adds a new player to the game.
      *
      * @param name {String} - The name of the player to add.
      */
-    protected void addPlayer(String name)
+    protected void addPlayer(final String name)
     {
         for (int i = 0; i < playerNames.length; ++i)
         {

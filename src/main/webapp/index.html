@@ -13,7 +13,8 @@
             <start-screen
                 v-if="!isLoggedIn"
                 v-on:player-confirmed="login"
-                v-on:register-player="register">
+                v-on:register-player="register"
+                v-on:unregister-player="unregister">
             </start-screen>
 
             <lobby-screen

@@ -11,8 +11,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 
-import org.bson.Document;
-
 public class DataBase
 {
     private static final String IP = "172.17.0.2";
@@ -24,7 +22,7 @@ public class DataBase
     /**
      * Opens a connection to the TaiPan MongoDB database.
      */
-    protected void openConnection()
+    private void openConnection()
     {
         MongoCredential mongoCredential = MongoCredential.createCredential(
             "Java-API",
@@ -62,7 +60,7 @@ public class DataBase
      * @param name {String} - The name of the Player to add.
      * @param password {String} - The password to use for the Player.
      *
-     * @return {boolean} - Whether the addition was successfull.
+     * @return {boolean} - Whether the addition was successful.
      */
     protected boolean addPlayer(final String name, final String password)
     {
@@ -85,12 +83,12 @@ public class DataBase
     }
 
     /**
-     * Adds a player to the "player" collection.
+     * Removes a player from the "player" collection.
      *
      * @param name {String} - The name of the Player to add.
      * @param password {String} - The password to use for the Player.
      *
-     * @return {boolean} - Whether the addition was successfull.
+     * @return {boolean} - Whether the removal was successful.
      */
     protected boolean removePlayer(final String name, final String password)
     {
@@ -127,7 +125,10 @@ public class DataBase
         return item != null;
     }
 
-    protected void closeConnection()
+    /**
+     * Closes the connection to the database.
+     */
+    private void closeConnection()
     {
         this.mongoClient.close();
     }

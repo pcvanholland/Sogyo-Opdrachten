@@ -22,9 +22,12 @@ public class TaiPan_Test
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
+        Player player = new Player();
+        player.setName("FirstPlayer");
+
         TaiPan tp = new TaiPan();
 
-        Assert.assertEquals(200, tp.play(request).getStatus());
+        Assert.assertEquals(200, tp.play(request, player).getStatus());
     }
 
     @Test

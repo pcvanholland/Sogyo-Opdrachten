@@ -15,7 +15,9 @@ public class DataBase_Test
     public void test_print()
     {
         DataBase db = new DataBase();
+        db.addPlayer("FirstPlayer", "guesswhat");
         db.printCollection();
+        db.removePlayer("FirstPlayer", "guesswhat");
     }
 
     @Test

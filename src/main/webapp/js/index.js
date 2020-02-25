@@ -38,6 +38,9 @@ Vue.component('start-screen', {
 
             <button v-on:click="registerPlayer"
             >Register</button>
+
+            <button v-on:click="unregisterPlayer"
+            >Unregister</button>
         </div>
     `,
     methods: {
@@ -74,6 +77,23 @@ Vue.component('start-screen', {
             this.errorMessage = "";
 
             this.$emit('register-player', this.playerName, this.password);
+        },
+        unregisterPlayer()
+        {
+            if (!this.playerName)
+            {
+                this.errorMessage = "Player name is required.";
+                return;
+            }
+            if (!this.password)
+            {
+                this.errorMessage = "Password is required.";
+                return;
+            }
+
+            this.errorMessage = "";
+
+            this.$emit('unregister-player', this.playerName, this.password);
         }
     }
 });
@@ -180,10 +200,6 @@ const app = new Vue({
             });
             const result = await response.json();
             console.log(result.result);
-            if (result.result && result.result == playerName)
-            {
-                this.playerID = playerName;
-            }
         },
         async startAGame()
         {
