@@ -29,4 +29,15 @@ public class TaiPan_Play_Test
 
         Assert.assertEquals(200, tp.play(request, player).getStatus());
     }
+
+    @Test
+    public void test_getGameState()
+    {
+        HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
+        HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
+
+        TaiPan tp = new TaiPan();
+
+        Assert.assertEquals(200, tp.getGameState(request).getStatus());
+    }
 }

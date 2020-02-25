@@ -17,7 +17,7 @@ public class TaiPan_Join_Test
     }
 
     @Test
-    public void test_play()
+    public void test_join()
     {
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
@@ -25,19 +25,8 @@ public class TaiPan_Join_Test
         Player player = new Player();
         player.setName("FirstPlayer");
 
-        TaiPan tp = new TaiPan();
+        Lobby tp = new Lobby();
 
-        Assert.assertEquals(200, tp.play(request, player).getStatus());
-    }
-
-    @Test
-    public void test_join()
-    {
-        HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
-        HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
-
-        TaiPan tp = new TaiPan();
-
-        Assert.assertEquals(200, tp.joinGame(request).getStatus());
+        Assert.assertEquals(200, tp.joinGame(request, player).getStatus());
     }
 }

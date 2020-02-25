@@ -26,7 +26,7 @@ public class TaiPan_Login_Test
         player.setName("FirstPlayer");
         player.setPassword("guesswhat");
 
-        TaiPan tp = new TaiPan();
+        PlayerHelper tp = new PlayerHelper();
         tp.register(request, player);
 
         Assert.assertEquals(200, tp.login(request, player).getStatus());
@@ -43,7 +43,7 @@ public class TaiPan_Login_Test
         player.setName("FirstPlayer");
         player.setPassword("guasswhat");
 
-        TaiPan tp = new TaiPan();
+        PlayerHelper tp = new PlayerHelper();
 
         Assert.assertEquals(500, tp.login(request, player).getStatus());
     }
@@ -58,7 +58,7 @@ public class TaiPan_Login_Test
         player.setName("FirstPlayer");
         player.setPassword("guesswhat");
 
-        TaiPan tp = new TaiPan();
+        PlayerHelper tp = new PlayerHelper();
         tp.register(request, player);
 
         Assert.assertEquals(500, tp.register(request, player).getStatus());
@@ -75,7 +75,7 @@ public class TaiPan_Login_Test
         player.setName("FirstPlayer");
         player.setPassword("guesswhat");
 
-        TaiPan tp = new TaiPan();
+        PlayerHelper tp = new PlayerHelper();
         tp.register(request, player);
 
         Assert.assertEquals(200, tp.unregister(request, player).getStatus());
@@ -91,7 +91,7 @@ public class TaiPan_Login_Test
         player.setName("FirstPlayer");
         player.setPassword("guesswhat");
 
-        TaiPan tp = new TaiPan();
+        PlayerHelper tp = new PlayerHelper();
 
         Assert.assertEquals(500, tp.unregister(request, player).getStatus());
     }
@@ -106,7 +106,7 @@ public class TaiPan_Login_Test
         player.setName("FirstPlayer");
         player.setPassword("guesswhat");
 
-        TaiPan tp = new TaiPan();
+        PlayerHelper tp = new PlayerHelper();
         tp.register(request, player);
         player.setPassword("guasswhat");
 

@@ -13,7 +13,7 @@ import com.mongodb.ServerAddress;
 
 public class DataBase
 {
-    private static final String IP = "172.17.0.2";
+    private static final String IP = "172.17.0.4";
     private static final int PORT = 27017;
 
     private MongoClient mongoClient;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Player
 {
-    private static final int NUM_PLAYERS = 4;
+    protected static final int NUM_PLAYERS = 4;
     private Dealer dealer;
     private Player neighbour;
     private ArrayList<Card> cards = new ArrayList<Card>();

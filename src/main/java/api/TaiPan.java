@@ -1,7 +1,7 @@
 package taipan.api;
 
 import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 
 //import javax.ws.rs.PUT;
 import javax.ws.rs.Consumes;
@@ -18,6 +18,9 @@ public class TaiPan
 {
     private static final int SUCCESS = 200;
     private static final int FAILURE = 500;
+
+    // The currently active game(s).
+//    private Game game;
 
     /**
      * This handles a play request by a Player.
@@ -44,121 +47,31 @@ System.out.println("Post on play: " + player.getName());
     }
 
     /**
-     * This handles a login request by a Player.
+     * This handles a play request by a Player.
+     * It *should* receive a "Play" - a set of cards - that was played.
      *
      * @param request {HttpServletRequest} - A Request from the server.
      * @param player {Player} - A Player-instance.
      *
-     * @return {Response} - Whether the login was successful.
-     *                  If it was successful, it contains the Player's name.
+     * @return {Response} - Whether the Play was successful.
      */
     @POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-    @Path("login")
-    public Response login(
-			final @Context HttpServletRequest request,
-            final Player player
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getgamestate")
+    public Response getGameState(
+            final @Context HttpServletRequest request
     )
     {
-System.out.println("Post on login.");
-        //HttpSession session = request.getSession(true);
-        DataBase db = new DataBase();
-
-        if (db.verifyPassword(player.getName(), player.getPassword()))
+System.out.println("Post on GGS.");
+		HttpSession session = request.getSession(false);
+        if (session != null)
         {
-            //session.setAttribute("taipan", taipan);
-            String output = JSONProcessor.createJSONResponse(player.getName());
-    		return Response.status(SUCCESS).entity(output).build();
+    		taipan.domain.TaiPan taipan =
+                (taipan.domain.TaiPan) session.getAttribute("taipan");
+            taipan.getGameState();
         }
-        return Response.status(FAILURE).build();
-    }
 
-    /**
-     * This handles a register request by a Player.
-     *
-     * @param request {HttpServletRequest} - A Request from the server.
-     * @param player {Player} - A Player-instance.
-     *
-     * @return {Response} - Whether the registering was successful.
-     *                  If it was successful, it contains the Player's name.
-     */
-    @POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-    @Path("register")
-    public Response register(
-			final @Context HttpServletRequest request,
-            final Player player
-    )
-    {
-System.out.println("Post on register.");
-        //HttpSession session = request.getSession(true);
-        DataBase db = new DataBase();
-
-        if (db.addPlayer(player.getName(), player.getPassword()))
-        {
-            //session.setAttribute("taipan", taipan);
-            String output = JSONProcessor.createJSONResponse(player.getName());
-    		return Response.status(SUCCESS).entity(output).build();
-        }
-        return Response.status(FAILURE).build();
-    }
-
-    /**
-     * This handles a unregister request by a Player.
-     *
-     * @param request {HttpServletRequest} - A Request from the server.
-     * @param player {Player} - A Player-instance.
-     *
-     * @return {Response} - Whether the unregistering was successful.
-     *                  If it was successful, it contains the Player's name.
-     */
-    @POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-    @Path("unregister")
-    public Response unregister(
-			final @Context HttpServletRequest request,
-            final Player player
-    )
-    {
-System.out.println("Post on unregister.");
-        //HttpSession session = request.getSession(true);
-        DataBase db = new DataBase();
-
-        if (db.removePlayer(player.getName(), player.getPassword()))
-        {
-            //session.setAttribute("taipan", taipan);
-            String output = JSONProcessor.createJSONResponse(player.getName());
-    		return Response.status(SUCCESS).entity(output).build();
-        }
-        return Response.status(FAILURE).build();
-    }
-
-    /**
-     * This handles a join request by a Player.
-     * It *should* contain a game to join.
-     *
-     * @param request {HttpServletRequest} - A Request from the server.
-     *
-     * @return {Response} - Whether the join was successful.
-     *                  If it was successful, it contains the Game's name.
-     */
-    @POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-    @Path("join")
-    public Response joinGame(
-			final @Context HttpServletRequest request
-    )
-    {
-System.out.println("Post on join.");
-        //HttpSession session = request.getSession(true);
-
-		//session.setAttribute("taipan", taipan);
-        String output = JSONProcessor.createJSONResponse("PlayerID.");
-
+        String output = JSONProcessor.createJSONResponse("Got GameState.");
 		return Response.status(SUCCESS).entity(output).build();
     }
 }

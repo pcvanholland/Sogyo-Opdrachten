@@ -98,6 +98,9 @@ Vue.component('start-screen', {
     }
 });
 
+/**
+ * Where Players can select a game to join.
+ */
 Vue.component('lobby-screen', {
     props: [ 'lobby' ],
     template: `
@@ -115,11 +118,25 @@ Vue.component('lobby-screen', {
     }
 });
 
+/**
+ * Where all the cards are shown.
+ */
 Vue.component('game-screen', {
     props: [ 'gameState' ],
     template: `
-        <div href="startgame">
+        <div>
             Game screen.
+
+            <div class="taipan-table">
+
+                <ul id="cards-player0">
+                    <li v-for="card in gameState.players[0].cards">
+                        {{ card.value }}
+                    </li>
+                </ul>
+
+            </div>
+
         </div>
     `
 });
@@ -129,6 +146,7 @@ const app = new Vue({
 
     data: {
         playerID: undefined,
+        gameID: undefined,
         gameState: undefined,
         lobby: undefined,
     },
@@ -138,16 +156,16 @@ const app = new Vue({
         {
             return this.playerID != undefined;
         },
-        gameStarted()
+        gameJoined()
         {
-            return this.gameState != undefined;
+            return this.gameID != undefined;
         }
     },
 
     methods: {
         async login(playerName, password)
         {
-            const response = await fetch('api/login', {
+            const response = await fetch('api/user/login', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -167,7 +185,7 @@ const app = new Vue({
         },
         async register(playerName, password)
         {
-            const response = await fetch('api/register', {
+            const response = await fetch('api/user/register', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -187,7 +205,7 @@ const app = new Vue({
         },
         async unregister(playerName, password)
         {
-            const response = await fetch('api/unregister', {
+            const response = await fetch('api/user/unregister', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -200,6 +218,24 @@ const app = new Vue({
             });
             const result = await response.json();
             console.log(result.result);
+            this.playerID = undefined;
+        },
+        async joinGame(gameID)
+        {
+            const response = await fetch('api/lobby/join', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "gameID": gameID,
+                    "playerID": this.playerID
+                })
+            });
+            const result = await response.json();
+            console.log(result.result);
+            this.gameID = result.result;
         },
         async startAGame()
         {
@@ -213,9 +249,25 @@ const app = new Vue({
                     "playerID": this.playerID
                 })
             });
-            //const result = await response.json();
-            //this.gameState = result;
-            this.gameState = true;
+            const result = await response.json();
+            console.log(result.result);
+            this.gameID = result.result;
+        },
+        async getGameState()
+        {
+            const response = await fetch('api/getgamestate', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "playerID": this.playerID
+                })
+            });
+            const result = await response.json();
+            console.log(result.result);
+            this.gameState = result.result;
         }
     }
 });
