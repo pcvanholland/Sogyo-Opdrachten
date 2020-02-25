@@ -77,6 +77,28 @@ System.out.println("Post on register.");
     @POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+    @Path("unregister")
+    public Response unregister(
+			@Context HttpServletRequest request,
+            Player player
+    )
+    {
+System.out.println("Post on unregister.");
+        HttpSession session = request.getSession(true);
+        DataBase db = new DataBase();
+
+        if (db.removePlayer(player.getName(), player.getPassword()))
+        {
+            //session.setAttribute("taipan", taipan);
+            String output = JSONProcessor.createJSONResponse(player.getName());
+    		return Response.status(200).entity(output).build();
+        }
+        return Response.status(500).build();
+    }
+
+    @POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
     @Path("join")
     public Response joinGame(
 			@Context HttpServletRequest request

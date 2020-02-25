@@ -12,14 +12,6 @@ public class DataBase_Test
     }
 
     @Test
-    public void test_additionFailsDueToPresence()
-    {
-        DataBase db = new DataBase();
-        db.addPlayer("FirstPlayer", "guesswhat");
-        Assert.assertFalse(db.addPlayer("FirstPlayer", "guesswhat"));
-    }
-
-    @Test
     public void test_print()
     {
         DataBase db = new DataBase();
@@ -31,9 +23,10 @@ public class DataBase_Test
     {
         DataBase db = new DataBase();
         db.addPlayer("FirstPlayer", "guesswhat");
+
         Assert.assertTrue(db.verifyPassword("FirstPlayer", "guesswhat"));
-        Assert.assertFalse(db.verifyPassword("FirsPlayer", "guesswhat"));
-        Assert.assertFalse(db.verifyPassword("FirstPlayer", "guasswhat"));
+
+        db.removePlayer("FirstPlayer", "guesswhat");
     }
 
     @Test
@@ -41,7 +34,10 @@ public class DataBase_Test
     {
         DataBase db = new DataBase();
         db.addPlayer("FirstPlayer", "guesswhat");
+
         Assert.assertFalse(db.verifyPassword("FirsPlayer", "guesswhat"));
+
+        db.removePlayer("FirstPlayer", "guesswhat");
     }
 
     @Test
@@ -49,6 +45,9 @@ public class DataBase_Test
     {
         DataBase db = new DataBase();
         db.addPlayer("FirstPlayer", "guesswhat");
+
         Assert.assertFalse(db.verifyPassword("FirstPlayer", "guasswhat"));
+
+        db.removePlayer("FirstPlayer", "guesswhat");
     }
 }

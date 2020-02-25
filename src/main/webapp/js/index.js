@@ -165,6 +165,26 @@ const app = new Vue({
                 this.playerID = playerName;
             }
         },
+        async unregister(playerName, password)
+        {
+            const response = await fetch('api/unregister', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: playerName,
+                    password: password
+                })
+            });
+            const result = await response.json();
+            console.log(result.result);
+            if (result.result && result.result == playerName)
+            {
+                this.playerID = playerName;
+            }
+        },
         async startAGame()
         {
             const response = await fetch('api/startgame', {

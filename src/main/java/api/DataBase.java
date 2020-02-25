@@ -85,6 +85,29 @@ public class DataBase
     }
 
     /**
+     * Adds a player to the "player" collection.
+     *
+     * @param name {String} - The name of the Player to add.
+     * @param password {String} - The password to use for the Player.
+     *
+     * @return {boolean} - Whether the addition was successfull.
+     */
+    protected boolean removePlayer(final String name, final String password)
+    {
+        if (!verifyPassword(name, password))
+        {
+            return false;
+        }
+        this.openConnection();
+        BasicDBObject document = new BasicDBObject()
+            .append("name", name);
+        this.mongoCollection.remove(document);
+        System.out.println("Document removed successfully.");
+        this.closeConnection();
+        return true;
+    }
+
+    /**
      * Checks a username/password combination against the collection.
      *
      * @param name {String} - The username to check.
