@@ -34,4 +34,16 @@ public class PlayerData_Test
 
         Assert.assertTrue(pd.isGameFull());
     }
+
+    @Test
+    public void test_gameOverFull()
+    {
+        PlayerData pd = new PlayerData();
+        for (int i = 0; i < 5; ++i)
+        {
+            pd.addPlayer("Name");
+        }
+
+        Assert.assertTrue(pd.isGameFull());
+    }
 }

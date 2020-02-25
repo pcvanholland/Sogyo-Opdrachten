@@ -33,12 +33,15 @@ Vue.component('start-screen', {
 
             {{ errorMessage }}
 
-            <button v-on:click="confirmPlayers"
+            <button v-on:click="confirmPlayer"
             >Login</button>
+
+            <button v-on:click="registerPlayer"
+            >Register</button>
         </div>
     `,
     methods: {
-        confirmPlayers()
+        confirmPlayer()
         {
             if (!this.playerName)
             {
@@ -50,11 +53,27 @@ Vue.component('start-screen', {
                 this.errorMessage = "Password is required.";
                 return;
             }
-            // Try-to-login code here.
 
             this.errorMessage = "";
 
             this.$emit('player-confirmed', this.playerName, this.password);
+        },
+        registerPlayer()
+        {
+            if (!this.playerName)
+            {
+                this.errorMessage = "Player name is required.";
+                return;
+            }
+            if (!this.password)
+            {
+                this.errorMessage = "Password is required.";
+                return;
+            }
+
+            this.errorMessage = "";
+
+            this.$emit('register-player', this.playerName, this.password);
         }
     }
 });
@@ -109,6 +128,26 @@ const app = new Vue({
         async login(playerName, password)
         {
             const response = await fetch('api/login', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: playerName,
+                    password: password
+                })
+            });
+            const result = await response.json();
+            console.log(result.result);
+            if (result.result && result.result == playerName)
+            {
+                this.playerID = playerName;
+            }
+        },
+        async register(playerName, password)
+        {
+            const response = await fetch('api/register', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

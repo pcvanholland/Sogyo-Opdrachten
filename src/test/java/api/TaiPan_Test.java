@@ -58,6 +58,21 @@ public class TaiPan_Test
     }
 
     @Test
+    public void test_registerFailureDueToDuplicity()
+    {
+        HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
+        HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
+
+        Player player = new Player();
+        player.setName("FirstPlayer");
+        player.setPassword("guesswhat");
+
+        TaiPan tp = new TaiPan();
+
+        Assert.assertEquals(500, tp.register(request, player).getStatus());
+    }
+
+    @Test
     public void test_join()
     {
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);

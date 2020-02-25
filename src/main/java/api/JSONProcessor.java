@@ -6,8 +6,8 @@ import org.json.simple.JSONObject;
 /**
  * This is a class that processes JSON to String and vice versa.
  */
-public abstract class JSONProcessor {
-
+public abstract class JSONProcessor
+{
 	/**
 	 * @param mancala
 	 * @param player1

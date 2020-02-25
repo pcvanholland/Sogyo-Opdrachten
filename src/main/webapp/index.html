@@ -12,7 +12,8 @@
         <div id="app">
             <start-screen
                 v-if="!isLoggedIn"
-                v-on:player-confirmed="login">
+                v-on:player-confirmed="login"
+                v-on:register-player="register">
             </start-screen>
 
             <lobby-screen
