@@ -15,7 +15,7 @@ class Stair extends Play
     }
 
     /**
-     * @param cardsToCheck - An ArrayList of cards to check.
+     * @param cardsToCheck - An ArrayList of Cards to check.
      * @return {boolean} - Whether this collection of Cards is a Triple.
      */
     protected static boolean isStair(final ArrayList<Card> cardsToCheck)
@@ -31,10 +31,10 @@ class Stair extends Play
     }
 
     /**
-     * This tests whether the given list of cards only contains pairs.
+     * This tests whether the given list of Cards only contains Pairs.
      *
-     * @param cardsToCheck {Card[]} - An ArrayList of cards to verify.
-     * @return {boolean} - Whether the list only contains pairs.
+     * @param cardsToCheck {Card[]} - An ArrayList of Cards to verify.
+     * @return {boolean} - Whether the list only contains Pairs.
      */
     private static boolean areCardsOnlyPairs(
         final ArrayList<Card> cardsToCheck
@@ -44,10 +44,10 @@ class Stair extends Play
     }
 
     /**
-     * This tests whether the given list of pairs is sequential.
+     * This tests whether the given list of Pairs is sequential.
      *
-     * @param cardsToCheck {Card[]} - An ArrayList of pairs to verify.
-     * @return {boolean} - Whether the pairs are consecutive.
+     * @param cardsToCheck {Card[]} - An ArrayList of Pairs to verify.
+     * @return {boolean} - Whether the Pairs are consecutive.
      */
     private static boolean arePairsOfCardsSequential(
         final ArrayList<Card> cardsToCheck

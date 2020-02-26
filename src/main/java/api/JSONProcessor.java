@@ -91,11 +91,11 @@ public abstract class JSONProcessor
      * @return {JSONObject} - A JSON representation of a set of Cards.
      */
     private static JSONArray createJSONCards(
-        final ArrayList<String> cards
+        final ArrayList<ArrayList<String>> cards
     )
     {
         JSONArray jsonCards = new JSONArray();
-        for (String card : cards)
+        for (ArrayList<String> card : cards)
         {
             jsonCards.add(createJSONCard(card));
         }
@@ -110,12 +110,12 @@ public abstract class JSONProcessor
      * @return {JSONObject} - A JSON representation of a Card.
      */
     private static JSONObject createJSONCard(
-        final String card
+        final ArrayList<String> card
     )
     {
         JSONObject jsonCard = new JSONObject();
-        //jsonCard.put("suit", card.getSuit());
-        jsonCard.put("rank", card);
+        jsonCard.put("suit", card.get(0));
+        jsonCard.put("rank", card.get(1));
         return jsonCard;
     }
 }

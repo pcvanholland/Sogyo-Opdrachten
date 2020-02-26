@@ -46,7 +46,7 @@ public class Dealer
      */
      private void addStandardCards()
      {
-         for (Suit suit : Suit.values())
+         for (StandardSuit suit : StandardSuit.values())
          {
              for (StandardRank rank : StandardRank.values())
              {

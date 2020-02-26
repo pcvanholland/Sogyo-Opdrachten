@@ -11,10 +11,10 @@ public class Play_Straight_Bomb_Test extends Play_Test
     public void test_playInValidityTooShortArray()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FIVE));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -25,11 +25,11 @@ public class Play_Straight_Bomb_Test extends Play_Test
     public void test_playValidityStraightBomb()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.SIX));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
@@ -42,11 +42,11 @@ public class Play_Straight_Bomb_Test extends Play_Test
     public void test_playInValidityBrokenStraightBomb()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.SEVEN));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SEVEN));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -57,12 +57,12 @@ public class Play_Straight_Bomb_Test extends Play_Test
     public void test_playInValidityStraightBombWithExtra()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.SIX));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.EIGHT));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SIX));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.EIGHT));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -73,12 +73,12 @@ public class Play_Straight_Bomb_Test extends Play_Test
     public void test_playInValidityStraightWithPair()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.SIX));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SIX));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -89,16 +89,16 @@ public class Play_Straight_Bomb_Test extends Play_Test
     public void test_playInValidityStraightWithOnlyPairs()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.SIX));
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.SIX));
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SIX));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.SIX));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.FOUR));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
@@ -110,11 +110,11 @@ public class Play_Straight_Bomb_Test extends Play_Test
     public void test_initStraightBomb()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.SIX));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SIX));
 
         new Bomb(cards);
     }

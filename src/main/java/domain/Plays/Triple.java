@@ -15,7 +15,7 @@ class Triple extends Play
     }
 
     /**
-     * @param cardsToCheck - An ArrayList of cards to check.
+     * @param cardsToCheck - An ArrayList of Cards to check.
      * @return {boolean} - Whether this collection of Cards is a Triple.
      */
     protected static boolean isTriple(final ArrayList<Card> cardsToCheck)

@@ -68,7 +68,7 @@ public class Dealer_Test
         java.util.ArrayList<Card> cards = new java.util.ArrayList<Card>();
         Dealer dealer = new Dealer();
 
-        // Deal cards to all four players.
+        // Deal Cards to all four Players.
         for (int i = 0; i < 4; ++i)
         {
             cards.addAll(dealer.drawFirstHand());

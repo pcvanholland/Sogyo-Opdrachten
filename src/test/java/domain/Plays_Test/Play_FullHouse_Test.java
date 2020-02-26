@@ -11,10 +11,10 @@ public class Play_FullHouse_Test extends Play_Test
     public void test_playInValidityTooShortArray()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -25,11 +25,11 @@ public class Play_FullHouse_Test extends Play_Test
     public void test_playValidityFullHouse()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.FOUR));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.FULLHOUSE);
@@ -41,11 +41,11 @@ public class Play_FullHouse_Test extends Play_Test
     public void test_playInValidityTripleWithTwoSingles()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.FOUR));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -56,11 +56,11 @@ public class Play_FullHouse_Test extends Play_Test
     public void test_playInValidityTwoPairWithSingle()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.FOUR));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -71,11 +71,11 @@ public class Play_FullHouse_Test extends Play_Test
     public void test_playInValidityPairWithThreeSingles()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.FIVE));
 
         ArrayList<Set> result = new ArrayList<Set>();
 

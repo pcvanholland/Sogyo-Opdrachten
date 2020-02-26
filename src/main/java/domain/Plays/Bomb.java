@@ -15,10 +15,10 @@ class Bomb extends Play
     }
 
     /**
-     * Test whether this play beats the given play.
+     * Test whether this Play beats the given Play.
      *
-     * @param playToBeat {Play} - The play to beat.
-     * @return {boolean} - Whether this play is higher in rank than the given.
+     * @param playToBeat {Play} - The Play to beat.
+     * @return {boolean} - Whether this Play is higher in rank than the given.
      */
     @Override
     protected boolean beats(final Play playToBeat)
@@ -41,7 +41,7 @@ class Bomb extends Play
     }
 
     /**
-     * @param cardsToCheck - An ArrayList of cards to check.
+     * @param cardsToCheck - An ArrayList of Cards to check.
      * @return {boolean} - Whether this collection of Cards
       *                     can be played as a Bomb.
      */
@@ -52,7 +52,7 @@ class Bomb extends Play
     }
 
     /**
-     * @param cardsToCheck - An ArrayList of cards to check.
+     * @param cardsToCheck - An ArrayList of Cards to check.
      * @return {boolean} - Whether this collection of Cards is a FOAK bomb.
      */
     private static boolean isFOAKBomb(final ArrayList<Card> cardsToCheck)
@@ -64,14 +64,14 @@ class Bomb extends Play
         //         return false;
         //     }
         // }
-        return cardsToCheck.size() == Suit.values().length &&
+        return cardsToCheck.size() == StandardSuit.values().length &&
             areCardsOfEqualRank(cardsToCheck);
     }
 
     /**
-     * @param cardsToCheck - An ArrayList of cards to check.
+     * @param cardsToCheck - An ArrayList of Cards to check.
      * @return {boolean} - Whether this collection of Cards can be
-     *      played as a straight bomb.
+     *      played as a Straight bomb.
      */
     private static boolean isStraightBomb(final ArrayList<Card> cardsToCheck)
     {

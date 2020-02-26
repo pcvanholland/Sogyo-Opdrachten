@@ -15,7 +15,7 @@ public abstract class Play_Test
     final static Card createRandomCard(final int value)
     {
         return new PlayingCard(
-            Suit.values()[rng.nextInt(3)],
+            StandardSuit.values()[rng.nextInt(3)],
             StandardRank.values()[value - 2]
         );
     }
@@ -112,8 +112,8 @@ public abstract class Play_Test
 
         // First two cards ought to be different to prevent an accidental bomb.
         int current = start - 2;
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.values()[current++]));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.values()[current++]));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.values()[current++]));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.values()[current++]));
         current += 2;
 
         while (current < end + 1)
@@ -133,7 +133,7 @@ public abstract class Play_Test
     final static Bomb createFOAKBomb(final int value)
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        for (Suit suit : Suit.values())
+        for (StandardSuit suit : StandardSuit.values())
         {
             cards.add(new PlayingCard(suit, StandardRank.values()[value - 2]));
         }
@@ -152,7 +152,7 @@ public abstract class Play_Test
     final static Bomb createStraightBomb(final int start, final int end)
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        Suit suit = Suit.values()[rng.nextInt(3)];
+        StandardSuit suit = StandardSuit.values()[rng.nextInt(3)];
         int current = start - 2;
         while (current < end - 1)
         {

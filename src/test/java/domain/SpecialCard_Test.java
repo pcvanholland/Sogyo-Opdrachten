@@ -25,6 +25,16 @@ public class SpecialCard_Test
     }
 
     @Test
+    public void test_getSuit()
+    {
+        for (SpecialRank r : SpecialRank.values())
+        {
+            SpecialCard card = new SpecialCard(r);
+            Assert.assertEquals(SpecialSuit.SPECIAL, card.getSuit());
+        }
+    }
+
+    @Test
     public void test_getScore()
     {
         for (SpecialRank r : SpecialRank.values())

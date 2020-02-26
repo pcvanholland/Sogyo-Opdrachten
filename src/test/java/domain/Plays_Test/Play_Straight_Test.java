@@ -11,10 +11,10 @@ public class Play_Straight_Test extends Play_Test
     public void test_playInValidityTooShortArray()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FIVE));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -25,11 +25,11 @@ public class Play_Straight_Test extends Play_Test
     public void test_playValidityStraight()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.SIX));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.SIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
@@ -41,11 +41,11 @@ public class Play_Straight_Test extends Play_Test
     public void test_playInValidityBrokenStraight()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.SEVEN));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.SEVEN));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -56,12 +56,12 @@ public class Play_Straight_Test extends Play_Test
     public void test_playInValidityStraightWithExtra()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.SIX));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.EIGHT));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.SIX));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.EIGHT));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -72,12 +72,12 @@ public class Play_Straight_Test extends Play_Test
     public void test_playInValidityStraightWithPair()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.SIX));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.SIX));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FOUR));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -88,11 +88,11 @@ public class Play_Straight_Test extends Play_Test
     public void test_playInValidityTripleWithTwoSingles()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.FOUR));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -103,13 +103,13 @@ public class Play_Straight_Test extends Play_Test
     public void test_playInValidityStraightWithTriple()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.SIX));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.SIX));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.FOUR));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -120,16 +120,16 @@ public class Play_Straight_Test extends Play_Test
     public void test_playInValidityStraightWithOnlyPairs()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.SIX));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.SIX));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.SIX));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.SIX));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FOUR));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
@@ -141,11 +141,11 @@ public class Play_Straight_Test extends Play_Test
     public void test_init()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.SIX));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SIX));
 
         new Straight(cards);
     }

@@ -1,24 +1,35 @@
 package taipan.domain;
 
 /**
- * This is the abstract class representing all cards.
+ * This is the abstract class representing all Cards.
  */
 abstract class Card
 {
+    private ISuit suit;
     private IRank rank;
 
     /**
      * Constructor.
      *
-     * @param newRank {IRank} - The rank the new card ought to have.
+     * @param newRank {IRank} - The Rank the new Card ought to have.
+     * @param newSuit {ISuit} - The Suit the new Card ought to have.
      */
-    Card(final IRank newRank)
+    Card(final ISuit newSuit, final IRank newRank)
     {
+        this.suit = newSuit;
         this.rank = newRank;
     }
 
     /**
-     * @return {IRank} - The rank of this card.
+     * @return {ISuit} - The Suit of this Card.
+     */
+    protected final ISuit getSuit()
+    {
+        return this.suit;
+    }
+
+    /**
+     * @return {IRank} - The Rank of this Card.
      */
     protected final IRank getRank()
     {
@@ -26,7 +37,7 @@ abstract class Card
     }
 
     /**
-     * @return {int} - The scoring value of this card.
+     * @return {int} - The scoring value of this Card.
      */
     protected final int getScore()
     {

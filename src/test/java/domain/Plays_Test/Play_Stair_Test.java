@@ -11,10 +11,10 @@ public class Play_Stair_Test extends Play_Test
     public void test_playInValidityOddSizedArray()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.THREE));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -25,11 +25,11 @@ public class Play_Stair_Test extends Play_Test
     public void test_playValidityDoubleSet()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
@@ -41,11 +41,11 @@ public class Play_Stair_Test extends Play_Test
     public void test_init()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
 
         new Stair(cards);
     }
@@ -54,11 +54,11 @@ public class Play_Stair_Test extends Play_Test
     public void test_playValidityDoubleSetAddedOrderDoesNotMatter()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
 
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
@@ -70,11 +70,11 @@ public class Play_Stair_Test extends Play_Test
     public void test_playInvalidityDoubleSetNotInOrder()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -85,13 +85,13 @@ public class Play_Stair_Test extends Play_Test
     public void test_playInvalidityDoubleTriple()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
 
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -102,11 +102,11 @@ public class Play_Stair_Test extends Play_Test
     public void test_playInvalidityDoubleWithTwoSingles()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -117,14 +117,14 @@ public class Play_Stair_Test extends Play_Test
     public void test_playValidityTripleSet()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.THREE));
 
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
@@ -136,14 +136,14 @@ public class Play_Stair_Test extends Play_Test
     public void test_playValidityTripleSetAddedOrderDoesNotMatter()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
 
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.THREE));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
@@ -155,14 +155,14 @@ public class Play_Stair_Test extends Play_Test
     public void test_playInvalidityDoubleSetWithTwoSingles()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.THREE));
 
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -173,14 +173,14 @@ public class Play_Stair_Test extends Play_Test
     public void test_playInvalidityTripleSetSlightlyNotInOrder()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FOUR));
 
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.FIVE));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FIVE));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -191,14 +191,14 @@ public class Play_Stair_Test extends Play_Test
     public void test_playInvalidityTripleSetNotInOrder()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.FOUR));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FOUR));
 
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.SIX));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.SIX));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SIX));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.SIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -211,8 +211,8 @@ public class Play_Stair_Test extends Play_Test
         ArrayList<Card> cards = new ArrayList<Card>();
         for (StandardRank rank : StandardRank.values())
         {
-            cards.add(new PlayingCard(Suit.SWORD, rank));
-            cards.add(new PlayingCard(Suit.JADE, rank));
+            cards.add(new PlayingCard(StandardSuit.SWORD, rank));
+            cards.add(new PlayingCard(StandardSuit.JADE, rank));
         }
 
         ArrayList<Set> result = new ArrayList<Set>();

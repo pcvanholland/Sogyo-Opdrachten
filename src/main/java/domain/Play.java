@@ -7,9 +7,9 @@ abstract class Play
     private ArrayList<Card> cards;
 
     /**
-     * Constructor for a play (a set of cards played).
+     * Constructor for a Play (a set of Cards played).
      *
-     * @param newCards {Card[]} - An ArrayList of cards bundled in this play.
+     * @param newCards {Card[]} - An ArrayList of Cards bundled in this Play.
      */
     Play(final ArrayList<Card> newCards)
     {
@@ -19,8 +19,8 @@ abstract class Play
     /**
      * Whether this Play is higher in value than the provided one.
      *
-     * @param playToBeat {Play} - The play to beat.
-     * @return {boolean} - Whether this play beats the provided one.
+     * @param playToBeat {Play} - The Play to beat.
+     * @return {boolean} - Whether this Play beats the provided one.
      */
     protected boolean beats(final Play playToBeat)
     {
@@ -58,8 +58,8 @@ abstract class Play
      * Tests whether this Play is equal to the Play to check.
      * I.e. same class and same length.
      *
-     * @param play {Play} - The play to check against.
-     * @return {boolean} - Whether the two plays are equal.
+     * @param play {Play} - The Play to check against.
+     * @return {boolean} - Whether the two Plays are equal.
      */
     private boolean isSameSetAs(final Play play)
     {
@@ -76,7 +76,7 @@ abstract class Play
     }
 
     /**
-     * Determines which types of Play the provided set of cards can be.
+     * Determines which types of Play the provided set of Cards can be.
      *
      * @param cardsToCheck {Card[]} - An ArrayList of Cards to check.
      * @return {Set[]} - An ArrayList of possible sets to make.
@@ -126,10 +126,10 @@ abstract class Play
     }
 
     /**
-     * This tests whether the provided cards are of equal rank.
+     * This tests whether the provided Cards are of equal Rank.
      *
-     * @param cardsToCheck {Card[]} - The ArrayList of cards to verify.
-     * @return {boolean} - Whether *all* the provided cards are of equal rank.
+     * @param cardsToCheck {Card[]} - The ArrayList of Cards to verify.
+     * @return {boolean} - Whether *all* the provided Cards are of equal rank.
      */
     static final boolean areCardsOfEqualRank(
         final ArrayList<Card> cardsToCheck
@@ -147,26 +147,19 @@ abstract class Play
     }
 
     /**
-     * This tests whether the provided cards are of equal Suit.
+     * This tests whether the provided Cards are of equal Suit.
      *
-     * @param cardsToCheck {Card[]} - The ArrayList of cards to verify.
-     * @return {boolean} - Whether *all* the provided cards are of equal Suit.
+     * @param cardsToCheck {Card[]} - The ArrayList of Cards to verify.
+     * @return {boolean} - Whether *all* the provided Cards are of equal Suit.
      */
     static final boolean areCardsOfEqualSuit(
         final ArrayList<Card> cardsToCheck
     )
     {
-        // for (Card card : cardsToCheck)
-        // {
-        //     if (card instanceof SpecialCard)
-        //     {
-        //         return false;
-        //     }
-        // }
-        Suit firstSuit = ((PlayingCard) cardsToCheck.get(0)).getSuit();
+        ISuit firstSuit = cardsToCheck.get(0).getSuit();
         for (Card card : cardsToCheck)
         {
-            if (((PlayingCard) card).getSuit() != firstSuit)
+            if (card.getSuit() != firstSuit)
             {
                 return false;
             }
@@ -175,9 +168,9 @@ abstract class Play
     }
 
     /**
-     * This tests whether the given list of cards contains any Pair.
+     * This tests whether the given list of Cards contains any Pair.
      *
-     * @param cardsToCheck {Card[]} - An ArrayList of cards to verify.
+     * @param cardsToCheck {Card[]} - An ArrayList of Cards to verify.
      * @return {boolean} - Whether the list contains a Pair.
      */
     static final boolean containsPair(
@@ -188,10 +181,10 @@ abstract class Play
     }
 
     /**
-     * This tests whether the given list of cards contains any Pair.
+     * This tests whether the given list of Cards contains any Triple.
      *
-     * @param cardsToCheck {Card[]} - An ArrayList of cards to verify.
-     * @return {boolean} - Whether the list contains a Pair.
+     * @param cardsToCheck {Card[]} - An ArrayList of Cards to verify.
+     * @return {boolean} - Whether the list contains a Triple.
      */
     static final boolean containsTriple(
         final ArrayList<Card> cardsToCheck
@@ -204,10 +197,10 @@ abstract class Play
      * This tests whether the given list of Cards contains at least once
      * exactly the specified amount of Cards with the same Rank.
      *
-     * @param cardsToCheck {Card[]} - An ArrayList of cards to verify.
-     * @param amount {int} - How many of equal rank may be present.
+     * @param cardsToCheck {Card[]} - An ArrayList of Cards to verify.
+     * @param amount {int} - How many of equal Rank may be present.
      *
-     * @return {boolean} - Whether the list contains a Pair.
+     * @return {boolean} - Whether the list contains the specified multiplicity.
      */
     private static boolean containsNumberOfEqualRanks(
         final ArrayList<Card> cardsToCheck, final int amount
@@ -225,10 +218,10 @@ abstract class Play
     }
 
     /**
-     * This tests whether the given list of cards only contains pairs.
+     * This tests whether the given list of Cards only contains Pairs.
      *
-     * @param cardsToCheck {Card[]} - An ArrayList of cards to verify.
-     * @return {boolean} - Whether the list only contains pairs.
+     * @param cardsToCheck {Card[]} - An ArrayList of Cards to verify.
+     * @return {boolean} - Whether the list only contains Pairs.
      */
     static final boolean containsOnlyNumberOfEqualRanks(
         final ArrayList<Card> cardsToCheck, final int amount
@@ -246,10 +239,10 @@ abstract class Play
     }
 
      /**
-      * This tests whether the given list of cards is sequential.
+      * This tests whether the given list of Cards is sequential.
       *
-      * @param cardsToCheck {Card[]} - An ArrayList of cards to verify.
-      * @return {boolean} - Whether the cards are consecutive.
+      * @param cardsToCheck {Card[]} - An ArrayList of Cards to verify.
+      * @return {boolean} - Whether the Cards are consecutive.
       */
      static final boolean areCardsSequential(
          final ArrayList<Card> cardsToCheck
@@ -260,10 +253,10 @@ abstract class Play
      }
 
     /**
-     * This tests whether the given array of ranks is sequential.
+     * This tests whether the given array of Ranks is sequential.
      *
-     * @param ranksToCheck {IRank[]} - An ArrayList of ranks to verify.
-     * @return {boolean} - Whether all the ranks are consecutive.
+     * @param ranksToCheck {IRank[]} - An ArrayList of Ranks to verify.
+     * @return {boolean} - Whether all the Ranks are consecutive.
      */
     private static boolean areRanksSequential(
         final ArrayList<IRank> ranksToCheck
@@ -295,7 +288,7 @@ abstract class Play
     }
 
     /**
-     * Get the ranks of the Cards.
+     * Get the Ranks of the Cards.
      *
      * @param cardsToCheck {Card[]} - An ArrayList of Cards to process.
      * @return {IRank[]} - An ArrayList of the corresponding Ranks.

@@ -11,8 +11,8 @@ public class Play_Pair_Test extends Play_Test
     public void test_init()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
         new Pair(cards);
     }

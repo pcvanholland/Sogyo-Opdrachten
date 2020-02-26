@@ -1,7 +1,7 @@
 package taipan.domain;
 
 /**
- * The ranks that the special cards can have.
+ * The Ranks that the Special Cards can have.
  */
 public enum SpecialRank implements IRank
 {
@@ -17,7 +17,7 @@ public enum SpecialRank implements IRank
     }
 
     /**
-     * @return {int} - The score associated with this rank.
+     * @return {int} - The score associated with this Rank.
      */
     public int getScore()
     {
@@ -25,10 +25,10 @@ public enum SpecialRank implements IRank
     }
 
     /**
-     * Gets the value of a rank, this can be used for checking the
+     * Gets the value of a Rank, this can be used for checking the
      * order of multiple cards.
      *
-     * @return {int} - The value associated with a rank.
+     * @return {int} - The value associated with a Rank.
      */
     public int getValue()
     {

@@ -29,7 +29,7 @@ public class Player
      * This continues a chain to make four Players in total.
      *
      * @param firstPlayer {Player} - The Player that initiated the chain.
-     * @param sharedDealer {Dealer} - The Dealer accompanies these Players.
+     * @param sharedDealer {Dealer} - The Dealer accompanying these Players.
      * @param numberOfPlayersLeftToCreate {int} - # Players to be made.
      */
     Player(final Player firstPlayer,
@@ -86,8 +86,6 @@ public class Player
      }
 
     /**
-     * Returns the Cards that this Player holds.
-     *
      * @return {Card[]} - The Cards held by this Player.
      */
      protected ArrayList<Card> getCards()
@@ -112,9 +110,7 @@ public class Player
      }
 
     /**
-     * Returns the Cards that this Player holds.
-     *
-     * @return {Card[]} - The Cards held by this Player.
+     * @return {boolean} - Whether this player is in turn.
      */
      protected boolean isInTurn()
      {

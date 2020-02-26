@@ -11,7 +11,7 @@ public class Play_Single_Test extends Play_Test
     public void test_playValiditySingleCard()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.SINGLE);
@@ -23,7 +23,7 @@ public class Play_Single_Test extends Play_Test
     public void test_init()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
 
         new Single(cards);
     }

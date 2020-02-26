@@ -22,6 +22,7 @@ class FullHouse extends Play
 
     /**
      * The inverted constructor for a FullHouse.
+     * For user convenience,,,
      *
      * @param newPair {Pair} - The Pair that is part of this FullHouse.
      * @param newTriple {Triple} - The Triple that is part of this FullHouse.
@@ -32,7 +33,7 @@ class FullHouse extends Play
     }
 
     /**
-     * Calculates the value of this Play. I.e. the rank of the triple.
+     * Calculates the value of this Play. I.e. the Rank of the Triple.
      *
      * @return {int} - The value of this Play.
      */
@@ -43,7 +44,7 @@ class FullHouse extends Play
     }
 
     /**
-     * Retreives all cards by querying both the Pair and the Triple.
+     * Retreives all Cards by querying both the Pair and the Triple.
      *
      * @param newTriple {Triple} - The Triple to check.
      * @param newPair {Pair} - The Pair to check.
@@ -61,8 +62,8 @@ class FullHouse extends Play
     }
 
     /**
-     * @param cardsToCheck - An ArrayList of cards to check.
-     * @return {boolean} - Whether this collection of Cards is a FullHouse.
+     * @param cardsToCheck - An ArrayList of Cards to check.
+     * @return {boolean} - Whether the collection of Cards is a FullHouse.
      */
     protected static boolean isFullHouse(final ArrayList<Card> cardsToCheck)
     {

@@ -3,12 +3,12 @@ package taipan.domain;
 class SpecialCard extends Card
 {
     /**
-     * Constructor.
+     * Constructor of a Special Card.
      *
-     * @param newRank {Rank} - The rank this card ought to have.
+     * @param newRank {Rank} - The Rank this Card ought to have.
      */
     SpecialCard(final SpecialRank newRank)
     {
-        super(newRank);
+        super(SpecialSuit.SPECIAL, newRank);
     }
 }

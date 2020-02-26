@@ -1,7 +1,7 @@
 package taipan.domain;
 
 /**
- * The ranks of a standard 52 card set.
+ * The Ranks of a standard 52 card set.
  */
 public enum StandardRank implements IRank
 {
@@ -19,7 +19,7 @@ public enum StandardRank implements IRank
     }
 
     /**
-     * @return {int} - The score associated with a rank.
+     * @return {int} - The score associated with a Rank.
      */
     public int getScore()
     {
@@ -27,10 +27,10 @@ public enum StandardRank implements IRank
     }
 
     /**
-     * Gets the value of a rank, this can be used for checking the
-     * order of multiple cards.
+     * Gets the value of a Rank, this can be used for checking the
+     * order of multiple Cards.
      *
-     * @return {int} - The value associated with a rank.
+     * @return {int} - The value associated with a Rank.
      */
     public int getValue()
     {

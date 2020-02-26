@@ -15,7 +15,7 @@ class Single extends Play
     }
 
     /**
-     * @param cardsToCheck - An ArrayList of cards to check.
+     * @param cardsToCheck - An ArrayList of Cards to check.
      * @return {boolean} - Whether this collection of Cards is a Single.
      */
     protected static boolean isSingle(final ArrayList<Card> cardsToCheck)
