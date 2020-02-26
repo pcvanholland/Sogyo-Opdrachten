@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Play_Phoenix_Test
+public class Play_Phoenix_Test extends Play_Test
 {
     @Test
     public void test_init()
@@ -42,6 +42,31 @@ public class Play_Phoenix_Test
     }
 
     @Test
+    public void test_phoenixCanBePartOfPairOrderDoesntMatter()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(createRandomCard(2));
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+        result.add(Set.PAIR);
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+    }
+
+    @Test
+    public void test_playInvalidityNonSetPhoenixWithOtherSpecialCard()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(new SpecialCard(SpecialRank.DRAGON));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+    }
+/*
+    @Test
     public void test_phoenixCanBePartOfTriple()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
@@ -56,12 +81,55 @@ public class Play_Phoenix_Test
     }
 
     @Test
+    public void test_phoenixCanBePartOfTripleOrderDoesntMatter()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(createRandomCard(2));
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(createRandomCard(2));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+        result.add(Set.TRIPLE);
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+    }
+
+    @Test
+    public void test_phoenixCantBePartOfInvalidTriple()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(3));
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+    }
+
+    @Test
     public void test_phoenixCanBePartOfFullHouse()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new SpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
+        cards.add(createRandomCard(3));
+        cards.add(createRandomCard(3));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+        result.add(Set.FULLHOUSE);
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+    }
+
+    @Test
+    public void test_phoenixCanBePartOfFullHouseOrderDoesntMatter()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(2));
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(3));
 
@@ -91,12 +159,47 @@ public class Play_Phoenix_Test
     }
 
     @Test
+    public void test_phoenixCanBePartOfStairOrderDoesntMatter()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(3));
+        cards.add(createRandomCard(3));
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(createRandomCard(4));
+        cards.add(createRandomCard(4));
+        cards.add(createRandomCard(5));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+        result.add(Set.STAIR);
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+    }
+
+    @Test
     public void test_phoenixCanBePartOfStraight()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new SpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
+        cards.add(createRandomCard(4));
+        cards.add(createRandomCard(5));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+        result.add(Set.STRAIGHT);
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+    }
+
+    @Test
+    public void test_phoenixCanBePartOfStraightOrderDoesntMatter()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(3));
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(5));
 
@@ -115,6 +218,21 @@ public class Play_Phoenix_Test
         {
             cards.add(createRandomCard(i));
         }
+
+        ArrayList<Set> result = new ArrayList<Set>();
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+    }
+
+    @Test
+    public void test_phoenixCantBePartOfLargestStraightOrderDoesntMatter()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        for (int i = 2; i < StandardRank.values().length + 2; ++i)
+        {
+            cards.add(createRandomCard(i));
+        }
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -156,11 +274,11 @@ public class Play_Phoenix_Test
     public void test_playValidityFullHouseOfFiveEquals()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(Suit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.PAGODA, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.STAR, StandardRank.TWO));
-        cards.add(new PlayingCard(Suit.SWORD, StandardRank.TWO));
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.FULLHOUSE);

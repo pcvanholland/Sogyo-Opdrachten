@@ -54,10 +54,11 @@ class Stair extends Play
     )
     {
         ArrayList<Card> uniquelyRankedCards = new ArrayList<Card>();
-        java.util.HashSet<IRank> uniqueRanks = new java.util.HashSet<IRank>();
+        java.util.HashSet<Integer> uniqueRanks =
+            new java.util.HashSet<Integer>();
         for (Card card : cardsToCheck)
         {
-            if (uniqueRanks.add(card.getRank()))
+            if (uniqueRanks.add(card.getValue()))
             {
                 uniquelyRankedCards.add(card);
             }

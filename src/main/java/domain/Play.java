@@ -39,7 +39,7 @@ abstract class Play
          int highest = -1;
          for (Card card : this.getCards())
          {
-             highest = Math.max(card.getRank().getValue(), highest);
+             highest = Math.max(card.getValue(), highest);
          }
          return highest;
      }
@@ -135,10 +135,10 @@ abstract class Play
         final ArrayList<Card> cardsToCheck
     )
     {
-        IRank firstRank = cardsToCheck.get(0).getRank();
+        Card referenceCard = cardsToCheck.get(0);
         for (Card card : cardsToCheck)
         {
-            if (card.getRank() != firstRank)
+            if (!card.hasEqualRank(referenceCard))
             {
                 return false;
             }
@@ -206,8 +206,8 @@ abstract class Play
         final ArrayList<Card> cardsToCheck, final int amount
     )
     {
-         ArrayList<IRank> ranks = getRanks(cardsToCheck);
-         for (IRank rank : ranks)
+         ArrayList<Integer> ranks = getRanks(cardsToCheck);
+         for (Integer rank : ranks)
          {
              if (java.util.Collections.frequency(ranks, rank) == amount)
              {
@@ -218,7 +218,8 @@ abstract class Play
     }
 
     /**
-     * This tests whether the given list of Cards only contains Pairs.
+     * This tests whether the given list of Cards only contains the
+     * specified number of equal Ranks.
      *
      * @param cardsToCheck {Card[]} - An ArrayList of Cards to verify.
      * @param amount {int} - How many of equal Rank must be present.
@@ -229,8 +230,8 @@ abstract class Play
         final ArrayList<Card> cardsToCheck, final int amount
     )
     {
-         ArrayList<IRank> ranks = getRanks(cardsToCheck);
-         for (IRank rank : ranks)
+         ArrayList<Integer> ranks = getRanks(cardsToCheck);
+         for (Integer rank : ranks)
          {
              if (java.util.Collections.frequency(ranks, rank) != amount)
              {
@@ -261,24 +262,21 @@ abstract class Play
      * @return {boolean} - Whether all the Ranks are consecutive.
      */
     private static boolean areRanksSequential(
-        final ArrayList<IRank> ranksToCheck
+        final ArrayList<Integer> ranksToCheck
     )
     {
-        for (IRank firstRank : ranksToCheck)
+        for (Integer firstRank : ranksToCheck)
         {
             // Everything larger than 1 is okay here.
             int delta = 2;
-            for (IRank secondRank : ranksToCheck)
+            for (Integer secondRank : ranksToCheck)
             {
                 if (secondRank == firstRank)
                 {
                     continue;
                 }
 
-                int firstValue = firstRank.getValue();
-                int secondValue = secondRank.getValue();
-
-                delta = Math.min(Math.abs(firstValue - secondValue), delta);
+                delta = Math.min(Math.abs(firstRank - secondRank), delta);
             }
             if (delta > 1)
             {
@@ -295,14 +293,14 @@ abstract class Play
      * @param cardsToCheck {Card[]} - An ArrayList of Cards to process.
      * @return {IRank[]} - An ArrayList of the corresponding Ranks.
      */
-    private static ArrayList<IRank> getRanks(
+    private static ArrayList<Integer> getRanks(
         final ArrayList<Card> cardsToCheck
     )
     {
-        ArrayList<IRank> ranks = new ArrayList<IRank>();
+        ArrayList<Integer> ranks = new ArrayList<Integer>();
         for (Card card : cardsToCheck)
         {
-            ranks.add(card.getRank());
+            ranks.add(card.getValue());
         }
         return ranks;
     }

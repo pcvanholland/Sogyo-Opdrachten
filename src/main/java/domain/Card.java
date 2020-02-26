@@ -43,4 +43,24 @@ abstract class Card
     {
         return this.getRank().getScore();
     }
+
+    /**
+     * Returns the value of this Playing Card.
+     * This is used to determine a Straight.
+     *
+     * @return {int} - The value of this Card.
+     */
+    protected int getValue()
+    {
+        return this.getRank().getValue();
+    }
+
+    /**
+     * @return {boolean} - Whether this Card has a Rank
+     *                  equal to the reference Card.
+     */
+    protected final boolean hasEqualRank(Card card)
+    {
+        return this.getValue() == card.getValue();
+    }
 }

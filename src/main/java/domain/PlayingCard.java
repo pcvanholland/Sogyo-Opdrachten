@@ -12,15 +12,4 @@ class PlayingCard extends Card
     {
         super(newSuit, newRank);
     }
-
-    /**
-     * Returns the value of this Playing Card.
-     * This is used to determine a street.
-     *
-     * @return {int} - The value of this Card.
-     */
-    protected int getValue()
-    {
-        return this.getRank().getValue();
-    }
 }
