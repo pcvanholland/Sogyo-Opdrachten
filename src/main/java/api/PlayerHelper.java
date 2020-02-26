@@ -29,8 +29,8 @@ public class PlayerHelper
      *                  If it was successful, it contains the Player's name.
      */
     @POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("login")
     public Response login(
 			final @Context HttpServletRequest request,
@@ -60,8 +60,8 @@ System.out.println("Post on login.");
      *                  If it was successful, it contains the Player's name.
      */
     @POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("register")
     public Response register(
 			final @Context HttpServletRequest request,

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 class FullHouse extends Play
 {
     private Triple triple;
-    private Pair pair;
 
     /**
      * The default constructor for a FullHouse.
@@ -17,7 +16,6 @@ class FullHouse extends Play
     {
         super(getAllCards(newTriple, newPair));
         this.triple = newTriple;
-        this.pair = newPair;
     }
 
     /**

@@ -221,6 +221,8 @@ abstract class Play
      * This tests whether the given list of Cards only contains Pairs.
      *
      * @param cardsToCheck {Card[]} - An ArrayList of Cards to verify.
+     * @param amount {int} - How many of equal Rank must be present.
+     *
      * @return {boolean} - Whether the list only contains Pairs.
      */
     static final boolean containsOnlyNumberOfEqualRanks(

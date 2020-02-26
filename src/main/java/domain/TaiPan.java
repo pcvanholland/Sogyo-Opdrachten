@@ -6,6 +6,9 @@ public class TaiPan
 {
     private Player firstPlayer;
 
+    /**
+     * Default constructor of a Tai-Pan game.
+     */
     public TaiPan()
     {
         firstPlayer = new Player();
@@ -13,6 +16,8 @@ public class TaiPan
 
     /**
      * Gets the cards of a specific Player.
+     *
+     * @return {Card[][]} - An ArrayList of ArrayLists of Cards.
      */
     public ArrayList<ArrayList<Card>> getGameState()
     {
@@ -28,7 +33,7 @@ public class TaiPan
     /**
      * Queries whether the specified Player is in turn.
      *
-     * @param player {int} - The Player to query.
+     * @param playerNumber {int} - The Player to query.
      * @return {boolean} - Whether the specified Player is in turn.
      */
     public boolean isPlayerInTurn(final int playerNumber)
@@ -40,7 +45,7 @@ public class TaiPan
     /**
      * Returns the Cards of the specified Player.
      *
-     * @param player {int} - The Player to return the Cards of.
+     * @param playerNumber {int} - The Player to return the Cards of.
      * @return {String[][]} - An ArrayList of the Cards of the specified Player.
      */
     public ArrayList<ArrayList<String>> getCardsOfPlayer(final int playerNumber)
@@ -61,7 +66,7 @@ public class TaiPan
     /**
      * Lets the specified Player draw Cards.
      *
-     * @param player {int} - The Player that wants to draw Cards.
+     * @param playerNumber {int} - The Player that wants to draw Cards.
      */
     public void letPlayerDrawCards(final int playerNumber)
     {

@@ -10,10 +10,11 @@ import org.json.simple.JSONObject;
  */
 public abstract class JSONProcessor
 {
-	/**
-	 * @return
-	 */
-	public static String createJSONResponse(String textfornow)
+    /**
+     * @param textfornow {String} - Some text to JSONify.
+     * @return {String} - JSONString of the given text.
+     */
+	public static String createJSONResponse(final String textfornow)
     {
 		JSONObject result = new JSONObject();
         result.put("result", textfornow);

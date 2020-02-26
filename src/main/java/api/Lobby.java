@@ -30,8 +30,8 @@ public class Lobby
      *                  If it was successful, it contains the Game's name.
      */
     @POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("join")
     public Response joinGame(
 			final @Context HttpServletRequest request,
@@ -60,8 +60,8 @@ System.out.println("Post on join.");
      * @return {Response} - Whether the start was successful.
      */
     @POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("startgame")
     public Response startGame(
 			final @Context HttpServletRequest request
@@ -79,6 +79,5 @@ System.out.println("Post on start.");
     		return Response.status(SUCCESS).entity(output).build();
         }
         return Response.status(FAILURE).build();
-
     }
 }
