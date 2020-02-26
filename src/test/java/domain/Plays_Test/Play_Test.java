@@ -112,8 +112,12 @@ public abstract class Play_Test
 
         // First two cards ought to be different to prevent an accidental bomb.
         int current = start - 2;
-        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.values()[current++]));
-        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.values()[current++]));
+        cards.add(new PlayingCard(StandardSuit.SWORD,
+            StandardRank.values()[current++]
+        ));
+        cards.add(new PlayingCard(StandardSuit.PAGODA,
+            StandardRank.values()[current++]
+        ));
         current += 2;
 
         while (current < end + 1)
@@ -183,6 +187,18 @@ public abstract class Play_Test
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        return new Single(cards);
+    }
+
+    /**
+     * Creates a Single Play with a Phoenix.
+     *
+     * @return {Single} - The Play created.
+     */
+    final static Single createPhoenix()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
         return new Single(cards);
     }
 }

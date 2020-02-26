@@ -17,6 +17,18 @@ public class Play_Mahjong_Test extends Play_Test
     }
 
     @Test
+    public void test_playValiditySingle()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+        result.add(Set.SINGLE);
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+    }
+
+    @Test
     public void test_mahjongBeatenByAllSingles()
     {
         Play firstPlay = createMahjong();
