@@ -14,7 +14,7 @@ public abstract class JSONProcessor
      * @param textfornow {String} - Some text to JSONify.
      * @return {String} - JSONString of the given text.
      */
-	public static String createJSONResponse(final String textfornow)
+    public static String createJSONResponse(final String textfornow)
     {
 		JSONObject result = new JSONObject();
         result.put("result", textfornow);
@@ -38,14 +38,14 @@ public abstract class JSONProcessor
         result.put("gameStatus", gameStatus);
 */
 		return result.toJSONString();
-	}
+    }
 	/**
      * This converts a TaiPan GameState to a JSONString.
      *
      * @param game {TaiPan} - A TaiPan-game to get the GameState from.
 	 * @return {String} - A JSON-String representing the gamestate.
 	 */
-	public static String createJSONGameState(final taipan.domain.TaiPan game)
+    public static String createJSONGameState(final taipan.domain.TaiPan game)
     {
 		JSONObject result = new JSONObject();
 		JSONArray players = new JSONArray();
@@ -57,7 +57,7 @@ public abstract class JSONProcessor
         result.put("players", players);
 
 		return result.toJSONString();
-	}
+    }
 
 	/**
      * This creates a JSON-String of a Player from a TaiPan GameState.
@@ -67,7 +67,7 @@ public abstract class JSONProcessor
      *
 	 * @return {JSONObject} - A JSON representation of a player.
 	 */
-	private static JSONObject createJSONPlayer(
+    private static JSONObject createJSONPlayer(
         final taipan.domain.TaiPan game,
         final int player
     )
@@ -82,7 +82,7 @@ public abstract class JSONProcessor
         jsonPlayer.put("inTurn", game.isPlayerInTurn(player));
 
 		return jsonPlayer;
-	}
+    }
 
     /**
      * Creates a JSON from a set of cards.

@@ -275,8 +275,8 @@ abstract class Play
                     continue;
                 }
 
-                int firstValue = ((StandardRank) firstRank).getValue();
-                int secondValue = ((StandardRank) secondRank).getValue();
+                int firstValue = firstRank.getValue();
+                int secondValue = secondRank.getValue();
 
                 delta = Math.min(Math.abs(firstValue - secondValue), delta);
             }

@@ -173,4 +173,16 @@ public abstract class Play_Test
         cards.add(new SpecialCard(SpecialRank.DRAGON));
         return new Single(cards);
     }
+
+    /**
+     * Creates a Single Play with a Mahjong.
+     *
+     * @return {Single} - The Play created.
+     */
+    final static Single createMahjong()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        return new Single(cards);
+    }
 }

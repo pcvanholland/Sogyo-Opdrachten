@@ -34,8 +34,8 @@ public class Lobby
     @Produces(MediaType.APPLICATION_JSON)
     @Path("join")
     public Response joinGame(
-			final @Context HttpServletRequest request,
-            final Player player
+        final @Context HttpServletRequest request,
+        final Player player
     )
     {
 System.out.println("Post on join.");
@@ -64,7 +64,7 @@ System.out.println("Post on join.");
     @Produces(MediaType.APPLICATION_JSON)
     @Path("startgame")
     public Response startGame(
-			final @Context HttpServletRequest request
+        final @Context HttpServletRequest request
     )
     {
 System.out.println("Post on start.");

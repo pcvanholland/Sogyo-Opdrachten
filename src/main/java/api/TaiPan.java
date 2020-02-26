@@ -37,8 +37,8 @@ public class TaiPan
     @Produces(MediaType.APPLICATION_JSON)
     @Path("play")
     public Response play(
-            final @Context HttpServletRequest request,
-            final Player player
+        final @Context HttpServletRequest request,
+        final Player player
     )
     {
 System.out.println("Post on play: " + player.getName());
@@ -58,7 +58,7 @@ System.out.println("Post on play: " + player.getName());
     @Produces(MediaType.APPLICATION_JSON)
     @Path("getgamestate")
     public Response getGameState(
-            final @Context HttpServletRequest request
+        final @Context HttpServletRequest request
     )
     {
 System.out.println("Get on GGS.");
@@ -86,8 +86,8 @@ System.out.println("Get on GGS.");
     @Produces(MediaType.APPLICATION_JSON)
     @Path("drawcards")
     public Response drawCards(
-            final @Context HttpServletRequest request,
-            final int player
+        final @Context HttpServletRequest request,
+        final int player
     )
     {
 System.out.println("Post on drawCards: " + player);

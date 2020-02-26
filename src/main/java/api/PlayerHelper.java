@@ -33,8 +33,8 @@ public class PlayerHelper
     @Produces(MediaType.APPLICATION_JSON)
     @Path("login")
     public Response login(
-			final @Context HttpServletRequest request,
-            final Player player
+        final @Context HttpServletRequest request,
+        final Player player
     )
     {
 System.out.println("Post on login.");
@@ -64,8 +64,8 @@ System.out.println("Post on login.");
     @Produces(MediaType.APPLICATION_JSON)
     @Path("register")
     public Response register(
-			final @Context HttpServletRequest request,
-            final Player player
+        final @Context HttpServletRequest request,
+        final Player player
     )
     {
 System.out.println("Post on register.");
@@ -95,8 +95,8 @@ System.out.println("Post on register.");
 	@Produces(MediaType.APPLICATION_JSON)
     @Path("unregister")
     public Response unregister(
-			final @Context HttpServletRequest request,
-            final Player player
+        final @Context HttpServletRequest request,
+        final Player player
     )
     {
 System.out.println("Post on unregister.");
