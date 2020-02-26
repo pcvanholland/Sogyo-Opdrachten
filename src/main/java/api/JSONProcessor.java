@@ -1,5 +1,7 @@
 package taipan.api;
 
+import java.util.ArrayList;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -40,13 +42,13 @@ public abstract class JSONProcessor
      * This converts a TaiPan GameState to a JSONString.
      *
      * @param game {TaiPan} - A TaiPan-game to get the GameState from.
-	 * @return
-	 *
-	public static String createJSONGameState(taipan.domain.TaiPan game)
+	 * @return {String} - A JSON-String representing the gamestate.
+	 */
+	public static String createJSONGameState(final taipan.domain.TaiPan game)
     {
 		JSONObject result = new JSONObject();
 		JSONArray players = new JSONArray();
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < PlayerData.MAX_NUMBER_OF_PLAYERS; i++)
         {
             players.add(createJSONPlayer(game, i));
         }
@@ -57,18 +59,26 @@ public abstract class JSONProcessor
 	}
 
 	/**
-	 * @param player {Player} - The Player to JSONify.
+     * This creates a JSON-String of a Player from a TaiPan GameState.
+     *
+	 * @param game {TaiPan} - A TaiPan-game to query the Player of.
+ 	 * @param player {int} - The number of the Player to JSONify.
      *
 	 * @return {JSONObject} - A JSON representation of a player.
-	 *
-	private static JSONObject createJSONPlayer(Player player)
+	 */
+	private static JSONObject createJSONPlayer(
+        final taipan.domain.TaiPan game,
+        final int player
+    )
     {
 		JSONObject jsonPlayer = new JSONObject();
 
         //jsonPlayer.put("id", player.getID());
 		//jsonPlayer.put("name", ??.getPlayerName(player.getID()));
-        jsonPlayer.put("cards", this.createJSONCards(player.getCards()));
-        jsonPlayer.put("inTurn", player.isInTurn());
+        jsonPlayer.put("cards", createJSONCards(
+            game.getCardsOfPlayer(player)
+        ));
+        jsonPlayer.put("inTurn", game.isPlayerInTurn(player));
 
 		return jsonPlayer;
 	}
@@ -76,31 +86,36 @@ public abstract class JSONProcessor
     /**
      * Creates a JSON from a set of cards.
      *
-     * @param cards {Card[]} - The cards to JSONify.
-     * @return {JSONObject} - A JSON representation of a set of cards.
+     * @param cards {Card[]} - The Cards to JSONify.
      *
-     private static JSONObject createJSONCards(ArrayList<Card> cards)
-     {
-         JSONObject jsonCards = new JSONObject();
-         for (Card card : cards)
-         {
-             jsonCards.put(this.createJSONCard(card));
-         }
-         return jsonCards;
-     }
-
-     /**
-      * Creates a JSON from a card.
-      *
-      * @param card {Card} - The card to JSONify.
-      * @return {JSONObject} - A JSON representation of a card.
-      *
-      private static JSONObject createJSONCard(Card card)
-      {
-          JSONObject jsonCard = new JSONObject();
-          jsonCard.put("suit", card.getSuit());
-          jsonCard.put("rank", card.getRank());
-          return jsonCard;
-      }
+     * @return {JSONObject} - A JSON representation of a set of Cards.
      */
+    private static JSONArray createJSONCards(
+        final ArrayList<String> cards
+    )
+    {
+        JSONArray jsonCards = new JSONArray();
+        for (String card : cards)
+        {
+            jsonCards.add(createJSONCard(card));
+        }
+        return jsonCards;
+    }
+
+    /**
+     * Creates a JSON-Object from a Card.
+     *
+     * @param card {Card} - The Card to JSONify.
+     *
+     * @return {JSONObject} - A JSON representation of a Card.
+     */
+    private static JSONObject createJSONCard(
+        final String card
+    )
+    {
+        JSONObject jsonCard = new JSONObject();
+        //jsonCard.put("suit", card.getSuit());
+        jsonCard.put("rank", card);
+        return jsonCard;
+    }
 }

@@ -71,7 +71,7 @@ System.out.println("Get on GGS.");
                 (taipan.domain.TaiPan) session.getAttribute("taipan");
             taipan.getGameState();
 
-            String output = JSONProcessor.createJSONResponse("Got GameState.");
+            String output = JSONProcessor.createJSONGameState(taipan);
     		return Response.status(SUCCESS).entity(output).build();
         }
 

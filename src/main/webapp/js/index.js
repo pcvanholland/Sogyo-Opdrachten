@@ -261,11 +261,11 @@ const app = new Vue({
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
-                })
+                }
             });
             const result = await response.json();
             console.log(result);
-            this.gameState = result.result;
+            this.gameState = result;
         }
     }
 });

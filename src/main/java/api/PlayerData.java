@@ -5,7 +5,7 @@ package taipan.api;
  */
 public class PlayerData
 {
-    private static final int MAX_NUMBER_OF_PLAYERS = 4;
+    protected static final int MAX_NUMBER_OF_PLAYERS = 4;
     private String[] playerNames = new String[MAX_NUMBER_OF_PLAYERS];
 
     /**
