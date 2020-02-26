@@ -131,14 +131,23 @@ Vue.component('game-screen', {
 
                 <ul id="cards-player0">
                     <li v-for="card in gameState.players[0].cards">
-                        {{ card.value }}
+                        {{ card.suit }}, {{ card.rank }}
                     </li>
                 </ul>
 
             </div>
 
+            <button v-on:click="drawCards"
+            >Draw Cards</button>
+
         </div>
-    `
+    `,
+    methods: {
+        drawCards()
+        {
+            this.$emit('draw-cards');
+        }
+    }
 });
 
 const app = new Vue({
@@ -262,6 +271,20 @@ const app = new Vue({
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
+            });
+            const result = await response.json();
+            console.log(result);
+            this.gameState = result;
+        },
+        async drawCards()
+        {
+            const response = await fetch('api/drawcards', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: 0//this.playerID
             });
             const result = await response.json();
             console.log(result);

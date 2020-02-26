@@ -41,5 +41,24 @@ public class TaiPan_Play_Test
         //lobby.startGame(request);
 
         //Assert.assertEquals(200, tp.getGameState(request).getStatus());
+
+        // No session,,,
+        Assert.assertEquals(500, tp.getGameState(request).getStatus());
+    }
+
+    @Test
+    public void test_drawCards()
+    {
+        HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
+        HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
+
+        TaiPan tp = new TaiPan();
+        //Lobby lobby = new Lobby();
+        //lobby.startGame(request);
+
+        //Assert.assertEquals(200, tp.drawCards(request).getStatus());
+
+        // No session,,,
+        Assert.assertEquals(500, tp.drawCards(request, 0).getStatus());
     }
 }

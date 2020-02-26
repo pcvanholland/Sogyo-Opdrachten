@@ -29,4 +29,18 @@ public class TaiPan_Join_Test
 
         Assert.assertEquals(200, tp.joinGame(request, player).getStatus());
     }
+
+    @Test
+    public void test_start()
+    {
+        HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
+        HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
+
+        Lobby tp = new Lobby();
+
+        //Assert.assertEquals(200, tp.startGane(request).getStatus());
+
+        // No session,,,
+        Assert.assertEquals(500, tp.startGame(request).getStatus());
+    }
 }

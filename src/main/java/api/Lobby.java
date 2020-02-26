@@ -71,13 +71,14 @@ System.out.println("Post on start.");
 
         HttpSession session = request.getSession(true);
         //if (game.isFull())
+        if (session != null)
         {
             session.setAttribute("taipan", new taipan.domain.TaiPan());
             String output = JSONProcessor.createJSONResponse("GameID.");
 
     		return Response.status(SUCCESS).entity(output).build();
         }
-        //return Response.status(FAILURE).build();
+        return Response.status(FAILURE).build();
 
     }
 }

@@ -48,13 +48,11 @@ System.out.println("Post on play: " + player.getName());
     }
 
     /**
-     * This handles a play request by a Player.
-     * It *should* receive a "Play" - a set of cards - that was played.
+     * This handles a get GameState request by a Player.
      *
      * @param request {HttpServletRequest} - A Request from the server.
-     * @param player {Player} - A Player-instance.
      *
-     * @return {Response} - Whether the Play was successful.
+     * @return {Response} - The current GameState was successful.
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -69,12 +67,51 @@ System.out.println("Get on GGS.");
         {
     		taipan.domain.TaiPan taipan =
                 (taipan.domain.TaiPan) session.getAttribute("taipan");
-            taipan.getGameState();
-
-            String output = JSONProcessor.createJSONGameState(taipan);
-    		return Response.status(SUCCESS).entity(output).build();
+            return this.returnGameState(taipan);
         }
 
 		return Response.status(FAILURE).build();
+    }
+
+    /**
+     * This handles a Card drawing request by a Player.
+     *
+     * @param request {HttpServletRequest} - A Request from the server.
+     * @param player {int} - Which Player asks for Cards.
+     *
+     * @return {Response} - Whether the drawingOfCards was successful.
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("drawcards")
+    public Response drawCards(
+            final @Context HttpServletRequest request,
+            final int player
+    )
+    {
+System.out.println("Post on drawCards: " + player);
+		HttpSession session = request.getSession(false);
+        if (session != null)
+        {
+    		taipan.domain.TaiPan taipan =
+                (taipan.domain.TaiPan) session.getAttribute("taipan");
+            taipan.letPlayerDrawCards(player);
+            return this.returnGameState(taipan);
+        }
+
+		return Response.status(FAILURE).build();
+    }
+
+    /**
+     * Returns the current GameState as success.
+     *
+     * @param taipan {TaiPan} - The coupled instance of a TaiPan-game.
+     * @return {Response} - The GameState of the provided game.
+     */
+    private Response returnGameState(final taipan.domain.TaiPan taipan)
+    {
+        String output = JSONProcessor.createJSONGameState(taipan);
+        return Response.status(SUCCESS).entity(output).build();
     }
 }

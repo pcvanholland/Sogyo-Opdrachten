@@ -25,7 +25,8 @@
 
             <game-screen
                 v-else
-                v-bind:game-state="gameState">
+                v-bind:game-state="gameState"
+                v-on:draw-cards="drawCards">
             </game-screen>
         </div>
 
