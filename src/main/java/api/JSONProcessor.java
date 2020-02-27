@@ -39,6 +39,36 @@ public abstract class JSONProcessor
 */
 		return result.toJSONString();
     }
+
+	/**
+     * This converts a TaiPan GameState to a JSONString.
+     *
+     * @param game {TaiPan} - A TaiPan-game to get the GameState from.
+     * @param play {String} - A JSONified set of Cards.
+     *
+	 * @return {String} - A JSON-String representing the gamestate.
+	 */
+    public static String createJSONPlayTypes(
+        final taipan.domain.TaiPan game,
+        final String play
+    )
+    {
+		JSONObject result = new JSONObject();
+		JSONArray sets = new JSONArray();
+
+        String process = play.substring(2, play.length() - 2);
+        String[] cards = process.split("\",\"");
+
+        ArrayList<String> types = game.getTypesOfPlay(cards);
+        for (String type : types)
+        {
+            sets.add(type);
+        }
+
+        result.put("sets", sets);
+		return result.toJSONString();
+    }
+
 	/**
      * This converts a TaiPan GameState to a JSONString.
      *

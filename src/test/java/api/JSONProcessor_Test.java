@@ -65,4 +65,32 @@ public class JSONProcessor_Test
 
         Assert.assertNotEquals(notExpectedResult, result);
     }
+
+    @Test
+    public void test_createSingleJSONPlayTypes()
+    {
+        String play = "[\"PAGODA,FIVE\"]";
+        String expectedResult = "{\"sets\":[" +
+            "\"SINGLE\"" +
+        "]}";
+
+        taipan.domain.TaiPan tp = new taipan.domain.TaiPan();
+
+        Assert.assertEquals(expectedResult,
+            JSONProcessor.createJSONPlayTypes(tp, play));
+    }
+
+    @Test
+    public void test_createPairJSONPlayTypes()
+    {
+        String play = "[\"PAGODA,FIVE\",\"JADE,FIVE\"]";
+        String expectedResult = "{\"sets\":[" +
+            "\"PAIR\"" +
+        "]}";
+
+        taipan.domain.TaiPan tp = new taipan.domain.TaiPan();
+
+        Assert.assertEquals(expectedResult,
+            JSONProcessor.createJSONPlayTypes(tp, play));
+    }
 }

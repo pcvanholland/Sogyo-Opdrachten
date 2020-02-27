@@ -48,6 +48,36 @@ System.out.println("Post on play: " + player.getName());
     }
 
     /**
+     * This handles the computing of possible Plays for a given set of Cards.
+     *
+     * @param request {HttpServletRequest} - A Request from the server.
+     * @param play {String} - A set of Cards.
+     *
+     * @return {Response} - Whether the Play was successful.
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getplaytypes")
+    public Response getPlayTypes(
+        final @Context HttpServletRequest request,
+        final String play
+    )
+    {
+System.out.println("Post on getplaytypes: " + play);
+		HttpSession session = request.getSession(false);
+        if (session != null)
+        {
+    		taipan.domain.TaiPan taipan =
+                (taipan.domain.TaiPan) session.getAttribute("taipan");
+            String output = JSONProcessor.createJSONPlayTypes(taipan, play);
+            return Response.status(SUCCESS).entity(output).build();
+        }
+
+		return Response.status(FAILURE).build();
+    }
+
+    /**
      * This handles a get GameState request by a Player.
      *
      * @param request {HttpServletRequest} - A Request from the server.

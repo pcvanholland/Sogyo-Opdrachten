@@ -1,5 +1,6 @@
 /**
- * The screen shown before the game starts, prompting players to enter their names.
+ * The screen shown before the game starts,
+ * prompting players to enter their names.
  */
 Vue.component('start-screen', {
     data()
@@ -12,7 +13,7 @@ Vue.component('start-screen', {
     },
     template: `
         <div>
-            <p>This is the home page for a simple sample Tai-Pan application.</p>
+            <p>This is the home page for a simple Tai-Pan application.</p>
             <p>Please enter your (nick)name to continue:</p>
             <input
                 id="playernameform"
@@ -25,7 +26,7 @@ Vue.component('start-screen', {
             />
             <input
                 id="passwordform"
-                placeholder="p@$$w0rd"
+                placeholder="p@$$w0rd!"
                 type="password"
                 accept-charset=ASCII
                 v-model="password"
@@ -122,16 +123,39 @@ Vue.component('lobby-screen', {
  * Where all the cards are shown.
  */
 Vue.component('game-screen', {
-    props: [ 'gameState' ],
+    props: [ 'gameState', 'playTypes' ],
+    data()
+    {
+        return {
+            checkedCards: [],
+        }
+    },
     template: `
         <div>
             Game screen.
+
+            <div class="taipan-sets">
+
+                <ul id="sets-player0">
+                    <li v-for="type in playTypes">
+                        <button>
+                            {{ type }}
+                        </button>
+                    </li>
+                </ul>
+
+            </div>
 
             <div class="taipan-table">
 
                 <ul id="cards-player0">
                     <li v-for="card in gameState.players[0].cards">
-                        {{ card.suit }}, {{ card.rank }}
+                        <input type="checkbox"
+                            :value="card.suit+','+card.rank"
+                            v-model="checkedCards"
+                            @change="chooseCard()">
+                            {{ card.suit }}, {{ card.rank }}
+                        </input>
                     </li>
                 </ul>
 
@@ -140,12 +164,24 @@ Vue.component('game-screen', {
             <button v-on:click="drawCards"
             >Draw Cards</button>
 
+            <button v-on:click="playCards(playTypes)"
+                :disabled="playTypes.length == 0"
+            >Play Cards</button>
+
         </div>
     `,
     methods: {
         drawCards()
         {
             this.$emit('draw-cards');
+        },
+        chooseCard()
+        {
+            this.$emit('choose-card', this.checkedCards);
+        },
+        playCards(playTypes)
+        {
+            this.$emit('play-cards', this.checkedCards);
         }
     }
 });
@@ -158,6 +194,7 @@ const app = new Vue({
         gameID: undefined,
         gameState: undefined,
         lobby: undefined,
+        playTypes: [],
     },
 
     computed: {
@@ -289,6 +326,34 @@ const app = new Vue({
             const result = await response.json();
             console.log(result);
             this.gameState = result;
+        },
+        async chooseCard(activeCards)
+        {console.log(activeCards);
+            const response = await fetch('api/getplaytypes', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(activeCards)
+            });
+            const result = await response.json();
+            console.log(result);
+            this.playTypes = result.sets;
+        },
+        async playCards(cards)
+        {console.log("play called: " + cards);/*
+            const response = await fetch('api/drawcards', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: 0//this.playerID
+            });
+            const result = await response.json();
+            console.log(result);
+            this.gameState = result;*/
         }
     }
 });

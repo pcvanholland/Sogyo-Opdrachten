@@ -31,6 +31,22 @@ public class TaiPan_Play_Test
     }
 
     @Test
+    public void test_getPlayTypes()
+    {
+        HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
+        HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
+
+        String play = "test";
+
+        TaiPan tp = new TaiPan();
+
+        //Assert.assertEquals(200, tp.getPlayTypes(request, play).getStatus());
+
+        // No session,,,
+        Assert.assertEquals(500, tp.getPlayTypes(request, play).getStatus());
+    }
+
+    @Test
     public void test_getGameState()
     {
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
