@@ -41,14 +41,14 @@ public class Lobby
 System.out.println("Post on join.");
         //HttpSession session = request.getSession(true);
 /*
-		//session.setAttribute("taipan", taipan);
+        //session.setAttribute("taipan", taipan);
         if (game.isFull())
         {
             return Response.status(FAILURE).build();
         }
         game.addPlayer(player.getName());*/
         String output = JSONProcessor.createJSONResponse("PlayerID.");
-		return Response.status(SUCCESS).entity(output).build();
+        return Response.status(SUCCESS).entity(output).build();
     }
 
     /**

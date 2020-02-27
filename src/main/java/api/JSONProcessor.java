@@ -16,13 +16,13 @@ public abstract class JSONProcessor
      */
     public static String createJSONResponse(final String textfornow)
     {
-		JSONObject result = new JSONObject();
+        JSONObject result = new JSONObject();
         result.put("result", textfornow);
 /*
-		JSONObject jsonPlayer1 = this.createJSONPlayer(1, mancala, 1);
-		JSONObject jsonPlayer2 = this.createJSONPlayer(8, mancala, 2);
+        JSONObject jsonPlayer1 = this.createJSONPlayer(1, mancala, 1);
+        JSONObject jsonPlayer2 = this.createJSONPlayer(8, mancala, 2);
 
-		JSONArray players = new JSONArray();
+        JSONArray players = new JSONArray();
         players.add(jsonPlayer1);
         players.add(jsonPlayer2);
 
@@ -37,24 +37,24 @@ public abstract class JSONProcessor
         }
         result.put("gameStatus", gameStatus);
 */
-		return result.toJSONString();
+        return result.toJSONString();
     }
 
-	/**
+    /**
      * This converts a TaiPan GameState to a JSONString.
      *
      * @param game {TaiPan} - A TaiPan-game to get the GameState from.
      * @param play {String} - A JSONified set of Cards.
      *
-	 * @return {String} - A JSON-String representing the gamestate.
-	 */
+     * @return {String} - A JSON-String representing the gamestate.
+     */
     public static String createJSONPlayTypes(
         final taipan.domain.TaiPan game,
         final String play
     )
     {
-		JSONObject result = new JSONObject();
-		JSONArray sets = new JSONArray();
+        JSONObject result = new JSONObject();
+        JSONArray sets = new JSONArray();
 
         if (play.length() > 2)
         {
@@ -69,19 +69,19 @@ public abstract class JSONProcessor
         }
 
         result.put("sets", sets);
-		return result.toJSONString();
+        return result.toJSONString();
     }
 
-	/**
+    /**
      * This converts a TaiPan GameState to a JSONString.
      *
      * @param game {TaiPan} - A TaiPan-game to get the GameState from.
-	 * @return {String} - A JSON-String representing the gamestate.
-	 */
+     * @return {String} - A JSON-String representing the gamestate.
+     */
     public static String createJSONGameState(final taipan.domain.TaiPan game)
     {
-		JSONObject result = new JSONObject();
-		JSONArray players = new JSONArray();
+        JSONObject result = new JSONObject();
+        JSONArray players = new JSONArray();
         for (int i = 0; i < PlayerData.MAX_NUMBER_OF_PLAYERS; i++)
         {
             players.add(createJSONPlayer(game, i));
@@ -89,32 +89,32 @@ public abstract class JSONProcessor
 
         result.put("players", players);
 
-		return result.toJSONString();
+        return result.toJSONString();
     }
 
-	/**
+    /**
      * This creates a JSON-String of a Player from a TaiPan GameState.
      *
-	 * @param game {TaiPan} - A TaiPan-game to query the Player of.
+     * @param game {TaiPan} - A TaiPan-game to query the Player of.
  	 * @param player {int} - The number of the Player to JSONify.
      *
-	 * @return {JSONObject} - A JSON representation of a player.
-	 */
+     * @return {JSONObject} - A JSON representation of a player.
+     */
     private static JSONObject createJSONPlayer(
         final taipan.domain.TaiPan game,
         final int player
     )
     {
-		JSONObject jsonPlayer = new JSONObject();
+        JSONObject jsonPlayer = new JSONObject();
 
         //jsonPlayer.put("id", player.getID());
-		//jsonPlayer.put("name", ??.getPlayerName(player.getID()));
+        //jsonPlayer.put("name", ??.getPlayerName(player.getID()));
         jsonPlayer.put("cards", createJSONCards(
             game.getCardsOfPlayer(player)
         ));
         jsonPlayer.put("inTurn", game.isPlayerInTurn(player));
 
-		return jsonPlayer;
+        return jsonPlayer;
     }
 
     /**

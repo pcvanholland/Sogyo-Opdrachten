@@ -91,8 +91,8 @@ System.out.println("Post on register.");
      *                  If it was successful, it contains the Player's name.
      */
     @POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("unregister")
     public Response unregister(
         final @Context HttpServletRequest request,

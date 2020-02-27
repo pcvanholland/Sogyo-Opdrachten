@@ -44,7 +44,7 @@ public class TaiPan
 System.out.println("Post on play: " + player.getName());
 
         String output = JSONProcessor.createJSONResponse("Played.");
-		return Response.status(SUCCESS).entity(output).build();
+        return Response.status(SUCCESS).entity(output).build();
     }
 
     /**
@@ -65,7 +65,7 @@ System.out.println("Post on play: " + player.getName());
     )
     {
 System.out.println("Post on getplaytypes: " + play);
-		HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(false);
         if (session != null)
         {
     		taipan.domain.TaiPan taipan =
@@ -74,7 +74,7 @@ System.out.println("Post on getplaytypes: " + play);
             return Response.status(SUCCESS).entity(output).build();
         }
 
-		return Response.status(FAILURE).build();
+        return Response.status(FAILURE).build();
     }
 
     /**
@@ -92,7 +92,7 @@ System.out.println("Post on getplaytypes: " + play);
     )
     {
 System.out.println("Get on GGS.");
-		HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(false);
         if (session != null)
         {
     		taipan.domain.TaiPan taipan =
@@ -100,7 +100,7 @@ System.out.println("Get on GGS.");
             return this.returnGameState(taipan);
         }
 
-		return Response.status(FAILURE).build();
+        return Response.status(FAILURE).build();
     }
 
     /**
@@ -121,7 +121,7 @@ System.out.println("Get on GGS.");
     )
     {
 System.out.println("Post on drawCards: " + player);
-		HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(false);
         if (session != null)
         {
     		taipan.domain.TaiPan taipan =
@@ -130,7 +130,7 @@ System.out.println("Post on drawCards: " + player);
             return this.returnGameState(taipan);
         }
 
-		return Response.status(FAILURE).build();
+        return Response.status(FAILURE).build();
     }
 
     /**
