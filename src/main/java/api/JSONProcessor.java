@@ -56,13 +56,16 @@ public abstract class JSONProcessor
 		JSONObject result = new JSONObject();
 		JSONArray sets = new JSONArray();
 
-        String process = play.substring(2, play.length() - 2);
-        String[] cards = process.split("\",\"");
-
-        ArrayList<String> types = game.getTypesOfPlay(cards);
-        for (String type : types)
+        if (play.length() > 2)
         {
-            sets.add(type);
+            String process = play.substring(2, play.length() - 2);
+            String[] cards = process.split("\",\"");
+
+            ArrayList<String> types = game.getTypesOfPlay(cards);
+            for (String type : types)
+            {
+                sets.add(type);
+            }
         }
 
         result.put("sets", sets);

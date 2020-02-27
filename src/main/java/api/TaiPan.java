@@ -53,7 +53,7 @@ System.out.println("Post on play: " + player.getName());
      * @param request {HttpServletRequest} - A Request from the server.
      * @param play {String} - A set of Cards.
      *
-     * @return {Response} - Whether the Play was successful.
+     * @return {Response} - The possible sets.
      */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -82,7 +82,7 @@ System.out.println("Post on getplaytypes: " + play);
      *
      * @param request {HttpServletRequest} - A Request from the server.
      *
-     * @return {Response} - The current GameState was successful.
+     * @return {Response} - The current GameState.
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)

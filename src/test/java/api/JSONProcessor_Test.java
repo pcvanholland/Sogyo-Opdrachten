@@ -93,4 +93,17 @@ public class JSONProcessor_Test
         Assert.assertEquals(expectedResult,
             JSONProcessor.createJSONPlayTypes(tp, play));
     }
+
+    @Test
+    public void test_dontCrashOnEmptyString()
+    {
+        String play = "[]";
+        String expectedResult = "{\"sets\":[" +
+        "]}";
+
+        taipan.domain.TaiPan tp = new taipan.domain.TaiPan();
+
+        Assert.assertEquals(expectedResult,
+            JSONProcessor.createJSONPlayTypes(tp, play));
+    }
 }
