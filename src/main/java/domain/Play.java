@@ -251,8 +251,7 @@ abstract class Play
          final ArrayList<Card> cardsToCheck
      )
      {
-         return containsOnlyNumberOfEqualRanks(cardsToCheck, 1) &&
-            areRanksSequential(getRanks(cardsToCheck));
+         return areRanksSequential(getRanks(cardsToCheck));
      }
 
     /**
@@ -265,26 +264,16 @@ abstract class Play
         final ArrayList<Integer> ranksToCheck
     )
     {
-        for (Integer firstRank : ranksToCheck)
+        java.util.Collections.sort(ranksToCheck);
+        for (int i = 0; i < ranksToCheck.size() - 1; ++i)
         {
-            // Everything larger than 1 is okay here.
-            int delta = 2;
-            for (Integer secondRank : ranksToCheck)
-            {
-                if (secondRank == firstRank)
-                {
-                    continue;
-                }
-
-                delta = Math.min(Math.abs(firstRank - secondRank), delta);
-            }
-            if (delta > 1)
+            if (ranksToCheck.get(i + 1) - ranksToCheck.get(i) != 1)
             {
                 return false;
             }
         }
 
-        return true;
+        return ranksToCheck.size() > 1;
     }
 
     /**

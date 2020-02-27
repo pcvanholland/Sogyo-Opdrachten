@@ -45,7 +45,7 @@ System.out.println("Post on login.");
         {
             //session.setAttribute("taipan", taipan);
             String output = JSONProcessor.createJSONResponse(player.getName());
-    		return Response.status(SUCCESS).entity(output).build();
+            return Response.status(SUCCESS).entity(output).build();
         }
         return Response.status(FAILURE).build();
     }
@@ -76,7 +76,7 @@ System.out.println("Post on register.");
         {
             //session.setAttribute("taipan", taipan);
             String output = JSONProcessor.createJSONResponse(player.getName());
-    		return Response.status(SUCCESS).entity(output).build();
+            return Response.status(SUCCESS).entity(output).build();
         }
         return Response.status(FAILURE).build();
     }
@@ -107,7 +107,7 @@ System.out.println("Post on unregister.");
         {
             //session.setAttribute("taipan", taipan);
             String output = JSONProcessor.createJSONResponse(player.getName());
-    		return Response.status(SUCCESS).entity(output).build();
+            return Response.status(SUCCESS).entity(output).build();
         }
         return Response.status(FAILURE).build();
     }

@@ -30,10 +30,10 @@ public abstract class JSONProcessor
 
         JSONObject gameStatus = new JSONObject();
         if (mancala.isEndOfGame()) {
-        	gameStatus.put("endOfGame", "true");
-        	gameStatus.put("winner", mancala.getWinnersName());
+            gameStatus.put("endOfGame", "true");
+            gameStatus.put("winner", mancala.getWinnersName());
         } else {
-        	gameStatus.put("endOfGame", "false");
+            gameStatus.put("endOfGame", "false");
         }
         result.put("gameStatus", gameStatus);
 */
@@ -96,7 +96,7 @@ public abstract class JSONProcessor
      * This creates a JSON-String of a Player from a TaiPan GameState.
      *
      * @param game {TaiPan} - A TaiPan-game to query the Player of.
- 	 * @param player {int} - The number of the Player to JSONify.
+     * @param player {int} - The number of the Player to JSONify.
      *
      * @return {JSONObject} - A JSON representation of a player.
      */

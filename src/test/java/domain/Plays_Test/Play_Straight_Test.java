@@ -53,6 +53,21 @@ public class Play_Straight_Test extends Play_Test
     }
 
     @Test
+    public void test_playInValidityBrokenStraight2()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SIX));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SEVEN));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+
+        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+    }
+
+    @Test
     public void test_playInValidityStraightWithExtra()
     {
         ArrayList<Card> cards = new ArrayList<Card>();

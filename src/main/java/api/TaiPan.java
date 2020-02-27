@@ -68,7 +68,7 @@ System.out.println("Post on getplaytypes: " + play);
         HttpSession session = request.getSession(false);
         if (session != null)
         {
-    		taipan.domain.TaiPan taipan =
+            taipan.domain.TaiPan taipan =
                 (taipan.domain.TaiPan) session.getAttribute("taipan");
             String output = JSONProcessor.createJSONPlayTypes(taipan, play);
             return Response.status(SUCCESS).entity(output).build();
@@ -95,7 +95,7 @@ System.out.println("Get on GGS.");
         HttpSession session = request.getSession(false);
         if (session != null)
         {
-    		taipan.domain.TaiPan taipan =
+            taipan.domain.TaiPan taipan =
                 (taipan.domain.TaiPan) session.getAttribute("taipan");
             return this.returnGameState(taipan);
         }
@@ -124,7 +124,7 @@ System.out.println("Post on drawCards: " + player);
         HttpSession session = request.getSession(false);
         if (session != null)
         {
-    		taipan.domain.TaiPan taipan =
+            taipan.domain.TaiPan taipan =
                 (taipan.domain.TaiPan) session.getAttribute("taipan");
             taipan.letPlayerDrawCards(player);
             return this.returnGameState(taipan);

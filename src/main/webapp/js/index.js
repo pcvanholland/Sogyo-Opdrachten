@@ -135,38 +135,30 @@ Vue.component('game-screen', {
             Game screen.
 
             <div class="taipan-sets">
-
-                <ul id="sets-player0">
-                    <li v-for="type in playTypes">
-                        <button>
-                            {{ type }}
-                        </button>
-                    </li>
-                </ul>
+                Play as:
+                <div v-for="type in playTypes">
+                    <button v-on:click="playCards(type)">
+                        {{ type }}
+                    </button>
+                </div>
 
             </div>
 
             <div class="taipan-table">
 
-                <ul id="cards-player0">
-                    <li v-for="card in gameState.players[0].cards">
-                        <input type="checkbox"
-                            :value="card.suit+','+card.rank"
-                            v-model="checkedCards"
-                            @change="chooseCard()">
-                            {{ card.suit }}, {{ card.rank }}
-                        </input>
-                    </li>
-                </ul>
+                <div v-for="card in gameState.players[0].cards">
+                    <input type="checkbox"
+                        :value="card.suit+','+card.rank"
+                        v-model="checkedCards"
+                        @change="chooseCard()">
+                        {{ card.suit }}, {{ card.rank }}
+                    </input>
+                </div>
 
             </div>
 
             <button v-on:click="drawCards"
             >Draw Cards</button>
-
-            <button v-on:click="playCards(playTypes)"
-                :disabled="playTypes.length == 0"
-            >Play Cards</button>
 
         </div>
     `,
@@ -179,9 +171,9 @@ Vue.component('game-screen', {
         {
             this.$emit('choose-card', this.checkedCards);
         },
-        playCards(playTypes)
+        playCards(type)
         {
-            this.$emit('play-cards', this.checkedCards);
+            this.$emit('play-cards', this.checkedCards, type);
         }
     }
 });
@@ -328,7 +320,7 @@ const app = new Vue({
             this.gameState = result;
         },
         async chooseCard(activeCards)
-        {console.log(activeCards);
+        {
             const response = await fetch('api/getplaytypes', {
                 method: 'POST',
                 headers: {
@@ -341,19 +333,23 @@ const app = new Vue({
             console.log(result);
             this.playTypes = result.sets;
         },
-        async playCards(cards)
-        {console.log("play called: " + cards);/*
-            const response = await fetch('api/drawcards', {
+        async playCards(cards, type)
+        {console.log("play called: " + cards + " as " + type);
+            const response = await fetch('api/playcards', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: 0//this.playerID
+                body: JSON.stringify({
+                    "playerID": 0,//this.playerID
+                    "cards": JSON.stringify(cards),
+                    "type": type
+                })
             });
             const result = await response.json();
             console.log(result);
-            this.gameState = result;*/
+            this.gameState = result;
         }
     }
 });
