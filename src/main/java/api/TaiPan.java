@@ -25,26 +25,37 @@ public class TaiPan
 
     /**
      * This handles a play request by a Player.
-     * It *should* receive a "Play" - a set of cards - that was played.
      *
      * @param request {HttpServletRequest} - A Request from the server.
-     * @param player {Player} - A Player-instance.
+     * @param play {Play} - A Play-instance.
      *
      * @return {Response} - Whether the Play was successful.
      */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("play")
-    public Response play(
+    @Path("playcards")
+    public Response playCards(
         final @Context HttpServletRequest request,
-        final Player player
+        final Play play
     )
     {
-System.out.println("Post on play: " + player.getName());
-
-        String output = JSONProcessor.createJSONResponse("Played.");
-        return Response.status(SUCCESS).entity(output).build();
+System.out.println("Post on play: " +
+    play.getCards() + " as " + play.getType() + " by " + play.getPlayerID()
+);
+        HttpSession session = request.getSession(false);
+        if (session != null)
+        {
+            taipan.domain.TaiPan taipan =
+                (taipan.domain.TaiPan) session.getAttribute("taipan");
+            taipan.play(
+                Integer.parseInt(play.getPlayerID()),
+                JSONProcessor.createCardArrayFromJSON(play.getCards()),
+                play.getType()
+            );
+            return this.returnGameState(taipan);
+        }
+        return Response.status(FAILURE).build();
     }
 
     /**

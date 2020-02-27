@@ -58,10 +58,9 @@ public abstract class JSONProcessor
 
         if (play.length() > 2)
         {
-            String process = play.substring(2, play.length() - 2);
-            String[] cards = process.split("\",\"");
-
-            ArrayList<String> types = game.getTypesOfPlay(cards);
+            ArrayList<String> types = game.getTypesOfPlay(
+                createCardArrayFromJSON(play)
+            );
             for (String type : types)
             {
                 sets.add(type);
@@ -70,6 +69,18 @@ public abstract class JSONProcessor
 
         result.put("sets", sets);
         return result.toJSONString();
+    }
+
+    /**
+     * This converts a JSONified array of Cards to a String[].
+     *
+     * @param cards {String} - A JSONified String of of Cards.
+     * @return {String[]} - An array of the Cards.
+     */
+    public static String[] createCardArrayFromJSON(final String cards)
+    {
+        String process = cards.substring(2, cards.length() - 2);
+        return process.split("\",\"");
     }
 
     /**

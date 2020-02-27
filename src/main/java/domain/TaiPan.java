@@ -15,6 +15,21 @@ public class TaiPan
     }
 
     /**
+     * Lets the specified Player play a Play.
+     *
+     * @param playerNumber {int} - The Player that wants to play Cards.
+     * @param cards {String[]} - An array of the Cards to play.
+     * @param type {String} - How the Play should be performed.
+     */
+    public void play(final int playerNumber,
+        final String[] cards,
+        final String type
+    )
+    {
+        System.out.println("Nothingness");
+    }
+
+    /**
      * Gets the cards of a specific Player.
      *
      * @return {Card[][]} - An ArrayList of ArrayLists of Cards.

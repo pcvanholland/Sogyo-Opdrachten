@@ -17,20 +17,6 @@ public class TaiPan_Play_Test
     }
 
     @Test
-    public void test_play()
-    {
-        HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
-        HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
-
-        Player player = new Player();
-        player.setName("FirstPlayer");
-
-        TaiPan tp = new TaiPan();
-
-        Assert.assertEquals(200, tp.play(request, player).getStatus());
-    }
-
-    @Test
     public void test_getPlayTypes()
     {
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
@@ -72,9 +58,30 @@ public class TaiPan_Play_Test
         //Lobby lobby = new Lobby();
         //lobby.startGame(request);
 
-        //Assert.assertEquals(200, tp.drawCards(request).getStatus());
+        //Assert.assertEquals(200, tp.drawCards(request, 0).getStatus());
 
         // No session,,,
         Assert.assertEquals(500, tp.drawCards(request, 0).getStatus());
+    }
+
+    @Test
+    public void test_playCards()
+    {
+        HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
+        HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
+
+        TaiPan tp = new TaiPan();
+        Play play = new Play();
+        play.setPlayerID("0");
+        play.setType("TEST");
+        play.setCards("cards");
+
+        //Lobby lobby = new Lobby();
+        //lobby.startGame(request);
+
+        //Assert.assertEquals(200, tp.playCards(request, play).getStatus());
+
+        // No session,,,
+        Assert.assertEquals(500, tp.playCards(request, play).getStatus());
     }
 }
