@@ -146,19 +146,22 @@ Vue.component('game-screen', {
 
             <div class="taipan-table">
 
-                <div v-for="card in gameState.players[0].cards">
-                    <input type="checkbox"
-                        :value="card.suit+','+card.rank"
-                        v-model="checkedCards"
-                        @change="chooseCard()">
-                        {{ card.suit }}, {{ card.rank }}
-                    </input>
+                <div v-for="player in gameState.players">
+                    {{ player.id }}
+                    <div v-for="card in player.cards">
+                        <input type="checkbox"
+                            :value="card.suit+','+card.rank"
+                            v-model="checkedCards"
+                            @change="chooseCard()">
+                            {{ card.suit }}, {{ card.rank }}
+                        </input>
+                    </div>
+
+                    <button v-on:click="drawCards"
+                    >Draw Cards</button>
                 </div>
 
             </div>
-
-            <button v-on:click="drawCards"
-            >Draw Cards</button>
 
         </div>
     `,

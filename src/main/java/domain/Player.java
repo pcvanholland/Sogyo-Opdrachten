@@ -5,11 +5,13 @@ import java.util.ArrayList;
 public class Player
 {
     protected static final int NUM_PLAYERS = 4;
+
     private Dealer dealer;
     private Player neighbour;
-    private ArrayList<Card> cards = new ArrayList<Card>();
 
+    private ArrayList<Card> cards = new ArrayList<Card>();
     private boolean inTurn = false;
+    private int handsDrawn = 0;
 
     /**
      * The default constructor for a Player.
@@ -58,11 +60,11 @@ public class Player
      * @param position {int} - The position which ought to be returned.
      * @return {Player} - The Player at the specified position.
      */
-     protected final Player getPlayerAtPositionCCW(int position)
-     {
-         return position == 0 ? this :
+    protected final Player getPlayerAtPositionCCW(int position)
+    {
+        return position == 0 ? this :
             this.getNeighbour().getPlayerAtPositionCCW(--position);
-     }
+    }
 
     /**
      * Returns the neighbour of this Player.
@@ -70,50 +72,68 @@ public class Player
      *
      * @return {Player} - The neighboring Player.
      */
-     private Player getNeighbour()
-     {
-         return this.neighbour;
-     }
+    private Player getNeighbour()
+    {
+        return this.neighbour;
+    }
 
     /**
      * Returns the shared Dealer.
      *
      * @return {Dealer} - The Card Dealer.
      */
-     private Dealer getDealer()
-     {
-         return this.dealer;
-     }
+    private Dealer getDealer()
+    {
+        return this.dealer;
+    }
 
     /**
      * @return {Card[]} - The Cards held by this Player.
      */
-     protected ArrayList<Card> getCards()
-     {
-         return this.cards;
-     }
+    protected ArrayList<Card> getCards()
+    {
+        return this.cards;
+    }
 
     /**
      * Ask a hand of Cards from the Dealer.
      */
-     protected void drawCards()
-     {
-         // ToDo: This ought to be improved!
-         if (this.getCards().size() == Dealer.FIRST_HAND_SIZE)
-         {
-             this.cards.addAll(this.getDealer().drawSecondHand());
-         }
-         else
-         {
-             this.cards.addAll(this.getDealer().drawFirstHand());
-         }
-     }
+    protected void drawCards()
+    {
+        if (this.handsDrawn() == 0)
+        {
+            this.cards.addAll(this.getDealer().drawFirstHand());
+            this.handsDrawn++;
+        }
+        else if (this.handsDrawn() == 1)
+        {
+            this.cards.addAll(this.getDealer().drawSecondHand());
+            this.handsDrawn++;
+        }
+    }
+
+    /**
+     * @return {int} - How many times this Player has
+     *                drawn a hand from the Dealer.
+     */
+    private int handsDrawn()
+    {
+        return this.handsDrawn;
+    }
+
+    /**
+     * @return {boolean} - Whether this Player can draw a hand from the Dealer.
+     */
+    protected boolean canDrawCards()
+    {
+        return this.handsDrawn() < 2;
+    }
 
     /**
      * @return {boolean} - Whether this player is in turn.
      */
-     protected boolean isInTurn()
-     {
-         return this.inTurn;
-     }
+    protected boolean isInTurn()
+    {
+        return this.inTurn;
+    }
 }

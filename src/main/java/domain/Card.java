@@ -1,5 +1,8 @@
 package taipan.domain;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 /**
  * This is the abstract class representing all Cards.
  */
