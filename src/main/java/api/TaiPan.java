@@ -20,9 +20,6 @@ public class TaiPan
     private static final int SUCCESS = 200;
     private static final int FAILURE = 500;
 
-    // The currently active game(s).
-//    private Game game;
-
     /**
      * This handles a play request by a Player.
      *

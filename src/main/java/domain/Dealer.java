@@ -3,10 +3,10 @@ package taipan.domain;
 import java.util.ArrayList;
 
 /**
- * This class represents a card dealer.
- * Players can ask them for a hand of cards.
+ * This class represents a Card dealer.
+ * Players can ask them for a hand of Cards.
  */
-public class Dealer
+class Dealer
 {
     // Sum *MUST* be 14.
     private static final int FIRST_HAND_SIZE = 6;
@@ -15,7 +15,7 @@ public class Dealer
     private ArrayList<Card> cards;
 
     /**
-     * Constructs a (temporary) dealer.
+     * Constructs a dealer.
      */
     Dealer()
     {

@@ -142,7 +142,7 @@ Vue.component('game-screen', {
                     <div class="taipan-sets">
                         Play as:
                         <div v-for="type in playTypes">
-                            <button v-on:click="playCards(type)">
+                            <button v-on:click="playCards(type,player.id)">
                                 {{ type }}
                             </button>
                         </div>
@@ -159,6 +159,7 @@ Vue.component('game-screen', {
                     </div>
 
                     <button v-on:click="drawCards(player.id)"
+                        :hidden="!player.canDraw"
                     >Draw Cards</button>
                 </div>
 
@@ -175,9 +176,9 @@ Vue.component('game-screen', {
         {
             this.$emit('choose-card', this.checkedCards);
         },
-        playCards(type)
+        playCards(type, player)
         {
-            this.$emit('play-cards', this.checkedCards, type);
+            this.$emit('play-cards', this.checkedCards, type, player);
         }
     }
 });
@@ -337,8 +338,9 @@ const app = new Vue({
             console.log(result);
             this.playTypes = result.sets;
         },
-        async playCards(cards, type)
-        {console.log("play called: " + cards + " as " + type);
+        async playCards(cards, type, playerID)
+        {
+console.log("play called by " + playerID + " : " + cards + " as " + type);
             const response = await fetch('api/playcards', {
                 method: 'POST',
                 headers: {
@@ -346,7 +348,7 @@ const app = new Vue({
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "playerID": 0,//this.playerID
+                    "playerID": playerID,//this.playerID
                     "cards": JSON.stringify(cards),
                     "type": type
                 })

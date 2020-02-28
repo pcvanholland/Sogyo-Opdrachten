@@ -140,7 +140,7 @@ public class Player
     }
 
     /**
-     * @return {boolean} - Whether this player is in turn.
+     * @return {int} - The playerID associated with this Player.
      */
     protected int getPlayerID()
     {

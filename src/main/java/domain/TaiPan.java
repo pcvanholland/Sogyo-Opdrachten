@@ -28,13 +28,14 @@ public class TaiPan
         final String type
     )
     {
+        Player player = this.getPlayer(playerNumber);
         System.out.println("Nothingness");
     }
 
     /**
      * Gets the current state of the game.
      *
-     * @return {JSONArray} - An JSONArray of the GameState.
+     * @return {JSONObject} - An JSONObject of the GameState.
      */
     public JSONObject getJSONGameState()
     {
@@ -42,12 +43,13 @@ public class TaiPan
     }
 
     /**
-     * @param playerNumber {int} - The Player to query.
-     * @return {Player} - The Player at the specified location.
+     * Lets the specified Player draw Cards.
+     *
+     * @param playerNumber {int} - The Player that wants to draw Cards.
      */
-    protected Player getPlayer(final int playerNumber)
+    public void letPlayerDrawCards(final int playerNumber)
     {
-        return this.firstPlayer.getPlayerAtPositionCCW(playerNumber);
+        this.getPlayer(playerNumber).drawCards();
     }
 
     /**
@@ -86,12 +88,11 @@ public class TaiPan
     }
 
     /**
-     * Lets the specified Player draw Cards.
-     *
-     * @param playerNumber {int} - The Player that wants to draw Cards.
+     * @param playerNumber {int} - The Player to query.
+     * @return {Player} - The Player at the specified location.
      */
-    public void letPlayerDrawCards(final int playerNumber)
+    protected Player getPlayer(final int playerNumber)
     {
-        this.firstPlayer.getPlayerAtPositionCCW(playerNumber).drawCards();
+        return this.firstPlayer.getPlayerAtPositionCCW(playerNumber);
     }
 }
