@@ -14,8 +14,8 @@ public class JSONProcessor_Test
         StandardSuit suit = StandardSuit.JADE;
         StandardRank rank = StandardRank.FOUR;
         JSONObject expectedResult = new JSONObject();
-        expectedResult.put("suit", suit);
-        expectedResult.put("rank", rank);
+        expectedResult.put("suit", suit.toString());
+        expectedResult.put("rank", rank.toString());
 
         Card card = new PlayingCard(suit, rank);
 
@@ -49,5 +49,26 @@ public class JSONProcessor_Test
 
         Assert.assertNotEquals(expectedResult,
             JSONProcessor.createJSONPlayer(player));
+    }
+
+    @Test
+    public void test_gameToJSON()
+    {
+        JSONObject expectedResult = new JSONObject();
+        JSONArray players = new JSONArray();
+        for (int i = 0; i < 4; ++i)
+        {
+            JSONObject player = new JSONObject();
+            player.put("cards", new JSONArray());
+            player.put("inTurn", false);
+            player.put("canDraw", true);
+            players.add(player);
+        }
+        expectedResult.put("players", players);
+
+        TaiPan tp = new TaiPan();
+
+        Assert.assertEquals(expectedResult,
+            JSONProcessor.createJSONGame(tp));
     }
 }

@@ -7,6 +7,34 @@ import org.json.simple.JSONObject;
 
 class JSONProcessor
 {
+    /**
+     * Squashes a Game into a JSONObject.
+     *
+     * @param game {TaiPan} - The Game to JSONify.
+     * @return {JSONObject} - The JSON representation of the Game.
+     */
+    protected static final JSONObject createJSONGame(final TaiPan game)
+    {
+        JSONObject result = new JSONObject();
+        result.put("players", createJSONPlayers(game));
+        return result;
+    }
+
+    /**
+     * Squashes the Players of a Game into a JSONArray.
+     *
+     * @param player {Player} - The Player to JSONify.
+     * @return {JSONArray} - The JSON representation of the Player.
+     */
+    protected static final JSONArray createJSONPlayers(final TaiPan game)
+    {
+        JSONArray result = new JSONArray();
+        for (int i = 0; i < Player.NUM_PLAYERS; ++i)
+        {
+            result.add(createJSONPlayer(game.getPlayer(i)));
+        }
+        return result;
+    }
 
     /**
      * Squashes a Player to a JSONObject.
@@ -14,7 +42,7 @@ class JSONProcessor
      * @param player {Player} - The Player to JSONify.
      * @return {JSONObject} - The JSON representation of the Player.
      */
-    protected static final JSONObject createJSONPlayer(Player player)
+    protected static final JSONObject createJSONPlayer(final Player player)
     {
         JSONObject result = new JSONObject();
         result.put("cards", createJSONCards(player.getCards()));
@@ -29,7 +57,9 @@ class JSONProcessor
      * @param player {Player} - The Player to JSONify.
      * @return {JSONObject} - The JSON representation of the Player.
      */
-    protected static final JSONArray createJSONCards(ArrayList<Card> cards)
+    protected static final JSONArray createJSONCards(
+        final ArrayList<Card> cards
+    )
     {
         JSONArray result = new JSONArray();
         for (Card card : cards)
@@ -45,11 +75,11 @@ class JSONProcessor
      * @param card {Card} - The Card to JSONify.
      * @return {JSONObject} - The JSON representation of the Card.
      */
-    protected static final JSONObject createJSONCard(Card card)
+    protected static final JSONObject createJSONCard(final Card card)
     {
         JSONObject result = new JSONObject();
-        result.put("suit", card.getSuit());
-        result.put("rank", card.getRank());
+        result.put("suit", card.getSuit().toString());
+        result.put("rank", card.getRank().toString());
         return result;
     }
 }

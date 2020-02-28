@@ -29,6 +29,9 @@ public class JSONProcessor_Test
                         "," +
                         "\"cards\":" +
                             "[]" +
+                        "," +
+                        "\"canDraw\":" +
+                            "true" +
                     "}";
             expectedResult += i < 3 ? "," : "]}";
         }

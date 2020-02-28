@@ -12,33 +12,4 @@ public class TaiPan_Test
     {
         new TaiPan();
     }
-
-    @Test
-    public void test_getEmptyGameState()
-    {
-        TaiPan tp = new TaiPan();
-        ArrayList<ArrayList<Card>> expectedResult =
-            new ArrayList<ArrayList<Card>>();
-        for (int i = 0; i < 4; ++i)
-        {
-            expectedResult.add(new ArrayList<Card>());
-        }
-
-        Assert.assertEquals(expectedResult, tp.getGameState());
-    }
-
-    @Test
-    public void test_getNonEmptyGameState()
-    {
-        TaiPan tp = new TaiPan();
-        tp.letPlayerDrawCards(0);
-        ArrayList<ArrayList<Card>> expectedResult =
-            new ArrayList<ArrayList<Card>>();
-        for (int i = 0; i < 4; ++i)
-        {
-            expectedResult.add(new ArrayList<Card>());
-        }
-
-        Assert.assertNotEquals(expectedResult, tp.getGameState());
-    }
 }

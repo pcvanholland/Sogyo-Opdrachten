@@ -91,76 +91,7 @@ public abstract class JSONProcessor
      */
     public static String createJSONGameState(final taipan.domain.TaiPan game)
     {
-        JSONObject result = new JSONObject();
-        JSONArray players = new JSONArray();
-        for (int i = 0; i < PlayerData.MAX_NUMBER_OF_PLAYERS; i++)
-        {
-            players.add(createJSONPlayer(game, i));
-        }
 
-        result.put("players", players);
-
-        return result.toJSONString();
-    }
-
-    /**
-     * This creates a JSON-String of a Player from a TaiPan GameState.
-     *
-     * @param game {TaiPan} - A TaiPan-game to query the Player of.
-     * @param player {int} - The number of the Player to JSONify.
-     *
-     * @return {JSONObject} - A JSON representation of a player.
-     */
-    private static JSONObject createJSONPlayer(
-        final taipan.domain.TaiPan game,
-        final int player
-    )
-    {
-        JSONObject jsonPlayer = new JSONObject();
-
-        //jsonPlayer.put("id", player.getID());
-        //jsonPlayer.put("name", ??.getPlayerName(player.getID()));
-        jsonPlayer.put("cards", createJSONCards(
-            game.getCardsOfPlayer(player)
-        ));
-        jsonPlayer.put("inTurn", game.isPlayerInTurn(player));
-
-        return jsonPlayer;
-    }
-
-    /**
-     * Creates a JSON from a set of cards.
-     *
-     * @param cards {Card[]} - The Cards to JSONify.
-     *
-     * @return {JSONObject} - A JSON representation of a set of Cards.
-     */
-    private static JSONArray createJSONCards(
-        final ArrayList<ArrayList<String>> cards
-    )
-    {
-        JSONArray jsonCards = new JSONArray();
-        for (ArrayList<String> card : cards)
-        {
-            jsonCards.add(createJSONCard(card));
-        }
-        return jsonCards;
-    }
-
-    /**
-     * Creates a JSON-Object from a Card.
-     *
-     * @param card {Card} - The Card to JSONify.
-     *
-     * @return {JSONObject} - A JSON representation of a Card.
-     */
-    private static JSONObject createJSONCard(
-        final ArrayList<String> card
-    )
-    {
-        JSONObject jsonCard = new JSONObject();
-        jsonCard.put("suit", card.get(0));
-        jsonCard.put("rank", card.get(1));
-        return jsonCard;
+        return game.getJSONGameState().toJSONString();
     }
 }
