@@ -16,19 +16,45 @@ public class Player
     private int handsDrawn = 0;
 
     /**
-     * The default constructor for a Player.
+     * The default constructor for the first Player.
      * This initiates a chain to make four Players in total.
+     *
+     * @param sharedTable {Table} - The Table these Players exist around.
      */
     Player(final Table sharedTable)
+    {
+        this(sharedTable, new Dealer());
+    }
+
+    /**
+     * The constructor for the first Player with a predefined seed.
+     * This initiates a chain to make four Players in total.
+     *
+     * @param sharedTable {Table} - The Table these Players exist around.
+     * @param seed {int} - The seed to use for the Dealer.
+     */
+    Player(final Table sharedTable, final int seed)
+    {
+        this(sharedTable, new Dealer(seed));
+    }
+
+    /**
+     * The constructor for the first Player with a predefined sharedDealer.
+     * This initiates a chain to make four Players in total.
+     *
+     * @param sharedTable {Table} - The Table these Players exist around.
+     * @param sharedDealer {Dealer} - The Dealer accompanying these Players.
+     */
+    private Player(final Table sharedTable, final Dealer sharedDealer)
     {
         int numberOfPlayersCreated = 0;
 
         this.table = sharedTable;
-        this.dealer = new Dealer();
+        this.dealer = sharedDealer;
         this.id = numberOfPlayersCreated++;
 
         this.neighbour = new Player(this, sharedTable,
-            this.dealer, numberOfPlayersCreated
+            sharedDealer, numberOfPlayersCreated
         );
     }
 
@@ -41,7 +67,7 @@ public class Player
      * @param sharedDealer {Dealer} - The Dealer accompanying these Players.
      * @param numberOfPlayersCreated {int} - # Players already made.
      */
-    Player(final Player firstPlayer,
+    private Player(final Player firstPlayer,
         final Table sharedTable,
         final Dealer sharedDealer,
         int numberOfPlayersCreated
@@ -120,6 +146,7 @@ public class Player
         {
             this.cards.addAll(this.getDealer().drawSecondHand());
             this.handsDrawn++;
+            this.inTurn = this.hasMahJong();
         }
     }
 
@@ -138,6 +165,11 @@ public class Player
     protected boolean canDrawCards()
     {
         return this.handsDrawn() < 2;
+    }
+
+    private boolean hasMahJong()
+    {
+        return false;
     }
 
     /**

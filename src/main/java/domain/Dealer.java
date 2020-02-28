@@ -19,16 +19,24 @@ class Dealer
      */
     Dealer()
     {
-        createAndShuffleCards();
+        createAndShuffleCards(new java.util.Random());
+    }
+
+    /**
+     * Constructs a dealer with a predefined seed.
+     */
+    Dealer(final int seed)
+    {
+        createAndShuffleCards(new java.util.Random(seed));
     }
 
     /**
      * Creates and shuffles a set of cards.
      */
-    private void createAndShuffleCards()
+    private void createAndShuffleCards(final java.util.Random rng)
     {
         createCards();
-        java.util.Collections.shuffle(this.cards);
+        java.util.Collections.shuffle(this.cards, rng);
     }
 
     /**

@@ -19,6 +19,17 @@ public class TaiPan
     }
 
     /**
+     * Constructor of a Tai-Pan game with a predefined random seed.
+     *
+     * @param seed {int} - The seed to use for the Dealer.
+     */
+    public TaiPan(final int seed)
+    {
+        this.playingTable = new Table();
+        this.firstPlayer = new Player(this.playingTable, seed);
+    }
+
+    /**
      * Lets the specified Player play a Play.
      *
      * @param playerNumber {int} - The Player that wants to play Cards.

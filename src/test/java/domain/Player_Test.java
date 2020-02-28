@@ -5,6 +5,8 @@ import org.junit.Test;
 
 public class Player_Test
 {
+    private static final int SEED = 1;
+
     @Test
     public void test_init()
     {
@@ -70,6 +72,25 @@ public class Player_Test
         firstPlayer.drawCards();
 
         Assert.assertEquals(6, firstPlayer.getCards().size());
+    }
+
+    @Test
+    public void test_drawFirstCardsAreSeeded()
+    {
+        Dealer refDealer = new Dealer(SEED);
+        Player firstPlayer = new Player(new Table(), SEED);
+
+        firstPlayer.drawCards();
+
+        int i = 0;
+        for (Card card : refDealer.drawFirstHand())
+        {
+            Assert.assertTrue(
+                card.getSuit() == firstPlayer.getCards().get(i).getSuit() &&
+                card.getRank() == firstPlayer.getCards().get(i).getRank()
+            );
+            i++;
+        }
     }
 
     @Test
