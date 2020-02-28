@@ -32,6 +32,9 @@ public class JSONProcessor_Test
                         "," +
                         "\"canDraw\":" +
                             "true" +
+                        "," +
+                        "\"id\":" +
+                            i +
                     "}";
             expectedResult += i < 3 ? "," : "]}";
         }

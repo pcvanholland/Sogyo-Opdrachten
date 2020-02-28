@@ -48,6 +48,7 @@ class JSONProcessor
         result.put("cards", createJSONCards(player.getCards()));
         result.put("inTurn", player.isInTurn());
         result.put("canDraw", player.canDrawCards());
+        result.put("id", player.getPlayerID());
         return result;
     }
 

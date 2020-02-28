@@ -132,22 +132,23 @@ Vue.component('game-screen', {
     },
     template: `
         <div>
-            Game screen.
-
-            <div class="taipan-sets">
-                Play as:
-                <div v-for="type in playTypes">
-                    <button v-on:click="playCards(type)">
-                        {{ type }}
-                    </button>
-                </div>
-
-            </div>
 
             <div class="taipan-table">
 
-                <div v-for="player in gameState.players">
-                    {{ player.id }}
+                <div class="player-area"
+                    v-for="player in gameState.players">
+                    Player: {{ player.id }}
+
+                    <div class="taipan-sets">
+                        Play as:
+                        <div v-for="type in playTypes">
+                            <button v-on:click="playCards(type)">
+                                {{ type }}
+                            </button>
+                        </div>
+
+                    </div>
+
                     <div v-for="card in player.cards">
                         <input type="checkbox"
                             :value="card.suit+','+card.rank"
@@ -157,7 +158,7 @@ Vue.component('game-screen', {
                         </input>
                     </div>
 
-                    <button v-on:click="drawCards"
+                    <button v-on:click="drawCards(player.id)"
                     >Draw Cards</button>
                 </div>
 
@@ -166,9 +167,9 @@ Vue.component('game-screen', {
         </div>
     `,
     methods: {
-        drawCards()
+        drawCards(player)
         {
-            this.$emit('draw-cards');
+            this.$emit('draw-cards', player);
         },
         chooseCard()
         {
@@ -308,7 +309,7 @@ const app = new Vue({
             console.log(result);
             this.gameState = result;
         },
-        async drawCards()
+        async drawCards(playerID)
         {
             const response = await fetch('api/drawcards', {
                 method: 'POST',
@@ -316,7 +317,7 @@ const app = new Vue({
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: 0//this.playerID
+                body: playerID//this.playerID
             });
             const result = await response.json();
             console.log(result);

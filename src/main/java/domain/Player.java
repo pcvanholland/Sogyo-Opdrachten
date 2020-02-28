@@ -6,6 +6,7 @@ public class Player
 {
     protected static final int NUM_PLAYERS = 4;
 
+    private int id;
     private Dealer dealer;
     private Player neighbour;
 
@@ -20,9 +21,10 @@ public class Player
     Player()
     {
         this.dealer = new Dealer();
-        int numberOfPlayersLeftToCreate = NUM_PLAYERS - 1;
+        int numberOfPlayersCreated = 0;
+        this.id = numberOfPlayersCreated++;
         this.neighbour = new Player(this,
-            this.dealer, numberOfPlayersLeftToCreate
+            this.dealer, numberOfPlayersCreated
         );
     }
 
@@ -32,20 +34,20 @@ public class Player
      *
      * @param firstPlayer {Player} - The Player that initiated the chain.
      * @param sharedDealer {Dealer} - The Dealer accompanying these Players.
-     * @param numberOfPlayersLeftToCreate {int} - # Players to be made.
+     * @param numberOfPlayersCreated {int} - # Players to already made.
      */
     Player(final Player firstPlayer,
         final Dealer sharedDealer,
-        int numberOfPlayersLeftToCreate
+        int numberOfPlayersCreated
     )
     {
         this.dealer = sharedDealer;
-        numberOfPlayersLeftToCreate--;
-        if (numberOfPlayersLeftToCreate > 0)
+        this.id = numberOfPlayersCreated++;
+        if (numberOfPlayersCreated < NUM_PLAYERS)
         {
             this.neighbour = new Player(firstPlayer,
                 sharedDealer,
-                numberOfPlayersLeftToCreate
+                numberOfPlayersCreated
             );
         }
         else
@@ -135,5 +137,13 @@ public class Player
     protected boolean isInTurn()
     {
         return this.inTurn;
+    }
+
+    /**
+     * @return {boolean} - Whether this player is in turn.
+     */
+    protected int getPlayerID()
+    {
+        return this.id;
     }
 }

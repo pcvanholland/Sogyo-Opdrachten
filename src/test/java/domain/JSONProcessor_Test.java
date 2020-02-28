@@ -29,6 +29,7 @@ public class JSONProcessor_Test
         expectedResult.put("cards", new JSONArray());
         expectedResult.put("inTurn", false);
         expectedResult.put("canDraw", true);
+        expectedResult.put("id", 0);
 
         Player player = new Player();
 
@@ -43,6 +44,7 @@ public class JSONProcessor_Test
         expectedResult.put("cards", new JSONArray());
         expectedResult.put("inTurn", false);
         expectedResult.put("canDraw", true);
+        expectedResult.put("id", 0);
 
         Player player = new Player();
         player.drawCards();
@@ -62,6 +64,7 @@ public class JSONProcessor_Test
             player.put("cards", new JSONArray());
             player.put("inTurn", false);
             player.put("canDraw", true);
+            player.put("id", i);
             players.add(player);
         }
         expectedResult.put("players", players);

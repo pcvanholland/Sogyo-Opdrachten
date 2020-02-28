@@ -1,0 +1,11 @@
+.taipan-table {
+    display: inline-block;
+    float: left;
+    border: 1px solid blue;
+    overflow: hidden;
+}
+.player-area {
+    display: inline-block;
+    float: left;
+    border: 1px solid red;
+}
