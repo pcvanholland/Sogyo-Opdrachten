@@ -27,7 +27,7 @@ public class Table_Test
         Play play = Play_Test.createSingle(2);
         Table table = new Table();
 
-        table.lead(play);
+        table.play(play);
 
         Assert.assertNotNull(table.getCurrentTrick());
     }
@@ -38,7 +38,7 @@ public class Table_Test
         Play play = Play_Test.createSingle(2);
         Table table = new Table();
 
-        table.lead(play);
+        table.play(play);
 
         Assert.assertEquals(play, table.getLastPlay());
     }
@@ -49,10 +49,42 @@ public class Table_Test
         Play firstPlay = Play_Test.createSingle(2);
         Play secondPlay = Play_Test.createSingle(2);
         Table table = new Table();
-        table.lead(firstPlay);
+        table.play(firstPlay);
 
         table.play(secondPlay);
 
         Assert.assertEquals(secondPlay, table.getLastPlay());
+    }
+
+    @Test
+    public void test_canPlayWithoutLead()
+    {
+        Play play = Play_Test.createSingle(2);
+        Table table = new Table();
+
+        Assert.assertTrue(table.canPlay(play));
+    }
+
+    @Test
+    public void test_canPlayWithLead()
+    {
+        Play firstPlay = Play_Test.createSingle(2);
+        Play secondPlay = Play_Test.createSingle(5);
+        Table table = new Table();
+        table.play(firstPlay);
+
+        Assert.assertTrue(table.canPlay(secondPlay));
+    }
+
+    @Test
+    public void test_cantPlayCardThatDoesntBeat()
+    {
+        Play lowPlay = Play_Test.createSingle(2);
+        Play highPlay = Play_Test.createSingle(5);
+        Table table = new Table();
+
+        table.play(highPlay);
+
+        Assert.assertFalse(table.canPlay(lowPlay));
     }
 }
