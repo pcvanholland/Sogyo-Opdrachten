@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-class JSONProcessor
+final class JSONProcessor
 {
     /**
      * Squashes a Game into a JSONObject.
@@ -23,8 +23,8 @@ class JSONProcessor
     /**
      * Squashes the Players of a Game into a JSONArray.
      *
-     * @param player {Player} - The Player to JSONify.
-     * @return {JSONArray} - The JSON representation of the Player.
+     * @param game {TaiPan} - The game to JSONify the Players of.
+     * @return {JSONArray} - The JSON representation of the Players.
      */
     protected static final JSONArray createJSONPlayers(final TaiPan game)
     {
@@ -53,10 +53,10 @@ class JSONProcessor
     }
 
     /**
-     * Squashes a Player to a JSONObject.
+     * Squashes an ArrayList of Cards to a JSONObject.
      *
-     * @param player {Player} - The Player to JSONify.
-     * @return {JSONObject} - The JSON representation of the Player.
+     * @param cards {Card[]} - The Cards to JSONify.
+     * @return {JSONArray} - The JSON representation of the Cards.
      */
     protected static final JSONArray createJSONCards(
         final ArrayList<Card> cards
