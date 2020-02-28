@@ -131,4 +131,16 @@ public class Player_Test
 
         Assert.assertTrue(firstPlayer.canPlay(Play_Test.createFOAKBomb(2)));
     }
+
+    @Test
+    public void test_play()
+    {
+        Table playingTable = new Table();
+        Player firstPlayer = new Player(playingTable);
+        Play play = Play_Test.createSingle(2);
+
+        firstPlayer.play(play);
+
+        Assert.assertEquals(play, playingTable.getLastPlay());
+    }
 }

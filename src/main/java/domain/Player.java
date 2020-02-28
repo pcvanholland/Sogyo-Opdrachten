@@ -157,12 +157,28 @@ public class Player
     }
 
     /**
+     * @return {Table} - The Table associated with the Players.
+     */
+    private Table getTable()
+    {
+        return this.table;
+    }
+
+    /**
      * @param play {Play} - The Play to verify.
      * @return {boolean} - Whether this Player can play the specified Play.
      */
     protected boolean canPlay(Play play)
     {
         return (this.inTurn || play instanceof Bomb) &&
-            this.table.canPlay(play);
+            this.getTable().canPlay(play);
+    }
+
+    /**
+     * @param play {Play} - The Play to play.
+     */
+    protected void play(Play play)
+    {
+        this.getTable().play(play);
     }
 }
