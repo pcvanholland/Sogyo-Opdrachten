@@ -8,13 +8,13 @@ public class Player_Test
     @Test
     public void test_init()
     {
-        new Player();
+        new Player(new Table());
     }
 
     @Test
     public void test_neighboursAreNotSelf()
     {
-        Player firstPlayer = new Player();
+        Player firstPlayer = new Player(new Table());
 
         Assert.assertNotEquals(firstPlayer,
             firstPlayer.getPlayerAtPositionCCW(1));
@@ -27,7 +27,7 @@ public class Player_Test
     @Test
     public void test_circleIsRound()
     {
-        Player firstPlayer = new Player();
+        Player firstPlayer = new Player(new Table());
 
         Assert.assertEquals(firstPlayer, firstPlayer.getPlayerAtPositionCCW(4));
     }
@@ -35,7 +35,7 @@ public class Player_Test
     @Test
     public void test_playersStartsEmptyHanded()
     {
-        Player firstPlayer = new Player();
+        Player firstPlayer = new Player(new Table());
         for (int i = 0; i < 4; ++i)
         {
             Assert.assertEquals(0, firstPlayer.getPlayerAtPositionCCW(i).
@@ -46,7 +46,7 @@ public class Player_Test
     @Test
     public void test_playersStartsNotInTurn()
     {
-        Player firstPlayer = new Player();
+        Player firstPlayer = new Player(new Table());
         for (int i = 0; i < 4; ++i)
         {
             Assert.assertFalse(firstPlayer.getPlayerAtPositionCCW(i).
@@ -57,7 +57,7 @@ public class Player_Test
     @Test
     public void test_zeroHandsDrawn()
     {
-        Player firstPlayer = new Player();
+        Player firstPlayer = new Player(new Table());
 
         Assert.assertTrue(firstPlayer.canDrawCards());
     }
@@ -65,7 +65,7 @@ public class Player_Test
     @Test
     public void test_drawFirstCards()
     {
-        Player firstPlayer = new Player();
+        Player firstPlayer = new Player(new Table());
 
         firstPlayer.drawCards();
 
@@ -75,7 +75,7 @@ public class Player_Test
     @Test
     public void test_canDrawSecondHandOfCards()
     {
-        Player firstPlayer = new Player();
+        Player firstPlayer = new Player(new Table());
 
         firstPlayer.drawCards();
 
@@ -85,7 +85,7 @@ public class Player_Test
     @Test
     public void test_drawSecondCards()
     {
-        Player firstPlayer = new Player();
+        Player firstPlayer = new Player(new Table());
 
         firstPlayer.drawCards();
         firstPlayer.drawCards();
@@ -96,7 +96,7 @@ public class Player_Test
     @Test
     public void test_cantDrawThirdHandOfCards()
     {
-        Player firstPlayer = new Player();
+        Player firstPlayer = new Player(new Table());
 
         firstPlayer.drawCards();
         firstPlayer.drawCards();
@@ -107,12 +107,28 @@ public class Player_Test
     @Test
     public void test_cantDrawToManyCards()
     {
-        Player firstPlayer = new Player();
+        Player firstPlayer = new Player(new Table());
 
         firstPlayer.drawCards();
         firstPlayer.drawCards();
         firstPlayer.drawCards();
 
         Assert.assertEquals(14, firstPlayer.getCards().size());
+    }
+
+    @Test
+    public void test_cantPlayWhenOutOfTurn()
+    {
+        Player firstPlayer = new Player(new Table());
+
+        Assert.assertFalse(firstPlayer.canPlay(Play_Test.createSingle(2)));
+    }
+
+    @Test
+    public void test_canPlayBombWhenOutOfTurn()
+    {
+        Player firstPlayer = new Player(new Table());
+
+        Assert.assertTrue(firstPlayer.canPlay(Play_Test.createFOAKBomb(2)));
     }
 }

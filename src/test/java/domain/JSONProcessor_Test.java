@@ -31,7 +31,7 @@ public class JSONProcessor_Test
         expectedResult.put("canDraw", true);
         expectedResult.put("id", 0);
 
-        Player player = new Player();
+        Player player = new Player(new Table());
 
         Assert.assertEquals(expectedResult,
             JSONProcessor.createJSONPlayer(player));
@@ -46,7 +46,7 @@ public class JSONProcessor_Test
         expectedResult.put("canDraw", true);
         expectedResult.put("id", 0);
 
-        Player player = new Player();
+        Player player = new Player(new Table());
         player.drawCards();
 
         Assert.assertNotEquals(expectedResult,

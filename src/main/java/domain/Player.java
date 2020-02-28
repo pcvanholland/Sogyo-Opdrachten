@@ -7,6 +7,7 @@ public class Player
     protected static final int NUM_PLAYERS = 4;
 
     private int id;
+    private Table table;
     private Dealer dealer;
     private Player neighbour;
 
@@ -18,12 +19,15 @@ public class Player
      * The default constructor for a Player.
      * This initiates a chain to make four Players in total.
      */
-    Player()
+    Player(final Table sharedTable)
     {
-        this.dealer = new Dealer();
         int numberOfPlayersCreated = 0;
+
+        this.table = sharedTable;
+        this.dealer = new Dealer();
         this.id = numberOfPlayersCreated++;
-        this.neighbour = new Player(this,
+
+        this.neighbour = new Player(this, sharedTable,
             this.dealer, numberOfPlayersCreated
         );
     }
@@ -33,19 +37,24 @@ public class Player
      * This continues a chain to make four Players in total.
      *
      * @param firstPlayer {Player} - The Player that initiated the chain.
+     * @param sharedTable {Table} - The Table these Players exist around.
      * @param sharedDealer {Dealer} - The Dealer accompanying these Players.
-     * @param numberOfPlayersCreated {int} - # Players to already made.
+     * @param numberOfPlayersCreated {int} - # Players already made.
      */
     Player(final Player firstPlayer,
+        final Table sharedTable,
         final Dealer sharedDealer,
         int numberOfPlayersCreated
     )
     {
+        this.table = sharedTable;
         this.dealer = sharedDealer;
         this.id = numberOfPlayersCreated++;
+
         if (numberOfPlayersCreated < NUM_PLAYERS)
         {
             this.neighbour = new Player(firstPlayer,
+                sharedTable,
                 sharedDealer,
                 numberOfPlayersCreated
             );
@@ -132,7 +141,7 @@ public class Player
     }
 
     /**
-     * @return {boolean} - Whether this player is in turn.
+     * @return {boolean} - Whether this Player is in turn.
      */
     protected boolean isInTurn()
     {
@@ -145,5 +154,15 @@ public class Player
     protected int getPlayerID()
     {
         return this.id;
+    }
+
+    /**
+     * @param play {Play} - The Play to verify.
+     * @return {boolean} - Whether this Player can play the specified Play.
+     */
+    protected boolean canPlay(Play play)
+    {
+        return (this.inTurn || play instanceof Bomb) &&
+            this.table.canPlay(play);
     }
 }

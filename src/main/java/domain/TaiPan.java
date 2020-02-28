@@ -7,13 +7,15 @@ import java.util.ArrayList;
 public class TaiPan
 {
     private Player firstPlayer;
+    private Table playingTable;
 
     /**
      * Default constructor of a Tai-Pan game.
      */
     public TaiPan()
     {
-        firstPlayer = new Player();
+        this.playingTable = new Table();
+        this.firstPlayer = new Player(this.playingTable);
     }
 
     /**
