@@ -58,9 +58,7 @@ public abstract class JSONProcessor
 
         if (play.length() > 2)
         {
-            ArrayList<String> types = game.getTypesOfPlay(
-                createCardArrayFromJSON(play)
-            );
+            ArrayList<String> types = game.getTypesOfPlay(play);
             for (String type : types)
             {
                 sets.add(type);
@@ -72,18 +70,6 @@ public abstract class JSONProcessor
     }
 
     /**
-     * This converts a JSONified array of Cards to a String[].
-     *
-     * @param cards {String} - A JSONified String of of Cards.
-     * @return {String[]} - An array of the Cards.
-     */
-    public static String[] createCardArrayFromJSON(final String cards)
-    {
-        String process = cards.substring(2, cards.length() - 2);
-        return process.split("\",\"");
-    }
-
-    /**
      * This converts a TaiPan GameState to a JSONString.
      *
      * @param game {TaiPan} - A TaiPan-game to get the GameState from.
@@ -91,7 +77,6 @@ public abstract class JSONProcessor
      */
     public static String createJSONGameState(final taipan.domain.TaiPan game)
     {
-
         return game.getJSONGameState().toJSONString();
     }
 }

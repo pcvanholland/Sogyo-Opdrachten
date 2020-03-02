@@ -83,4 +83,35 @@ final class JSONProcessor
         result.put("rank", card.getRank().toString());
         return result;
     }
+
+    /**
+     * This converts a JSONified array of Cards to an ArrayList of Cards.
+     *
+     * @param cards {String} - A JSONified String of Cards.
+     * @return {Card[]} - An ArrayList of the Cards.
+     */
+    protected static ArrayList<Card> createCardsFromJSON(final String cards)
+    {
+        ArrayList<Card> realCards = new ArrayList<Card>();
+        String process = cards.substring(2, cards.length() - 2);
+        String[] splitCards = process.split("\",\"");
+        for (String card : splitCards)
+        {
+            Card realCard;
+            String[] cardProps = card.split(",");
+            if (cardProps[0].equals("SPECIAL"))
+            {
+                realCard = new SpecialCard(SpecialRank.valueOf(cardProps[1]));
+            }
+            else
+            {
+                realCard = new PlayingCard(
+                    StandardSuit.valueOf(cardProps[0]),
+                    StandardRank.valueOf(cardProps[1])
+                );
+            }
+            realCards.add(realCard);
+        }
+        return realCards;
+    }
 }

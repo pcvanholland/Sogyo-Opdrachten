@@ -47,7 +47,7 @@ System.out.println("Post on play: " +
                 (taipan.domain.TaiPan) session.getAttribute("taipan");
             taipan.play(
                 Integer.parseInt(play.getPlayerID()),
-                JSONProcessor.createCardArrayFromJSON(play.getCards()),
+                play.getCards(),
                 play.getType()
             );
             return this.returnGameState(taipan);
