@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Play_Straight_Bomb_Test extends Play_Test
+public class Play_Straight_Bomb_Test extends Play_Test_Helper
 {
     @Test
     public void test_playInValidityTooShortArray()
@@ -113,6 +113,31 @@ public class Play_Straight_Bomb_Test extends Play_Test
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FIVE));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SIX));
+
+        new Bomb(cards);
+    }
+
+    @Test(expected = InvalidPlayException.class)
+    public void test_initFailsWhenWrong()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
+
+        new Bomb(cards);
+    }
+
+    @Test(expected = InvalidBombException.class)
+    public void test_initFailsWhenTriedWithDifferentType()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FIVE));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SIX));
 

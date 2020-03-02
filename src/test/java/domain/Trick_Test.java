@@ -10,13 +10,13 @@ public class Trick_Test
     @Test
     public void test_init()
     {
-        new Trick(Play_Test.createSingle(2));
+        new Trick(Play_Test_Helper.createSingle(2));
     }
 
     @Test
     public void test_getLastPlayReturnsPlay()
     {
-        Play play = Play_Test.createSingle(2);
+        Play play = Play_Test_Helper.createSingle(2);
 
         Trick trick = new Trick(play);
 
@@ -26,8 +26,8 @@ public class Trick_Test
     @Test
     public void test_getLastPlayReturnsLastPlay()
     {
-        Play firstPlay = Play_Test.createSingle(2);
-        Play secondPlay = Play_Test.createSingle(3);
+        Play firstPlay = Play_Test_Helper.createSingle(2);
+        Play secondPlay = Play_Test_Helper.createSingle(3);
         Trick trick = new Trick(firstPlay);
 
         trick.play(secondPlay);

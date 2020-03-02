@@ -12,6 +12,10 @@ class Triple extends Play
     Triple(final ArrayList<Card> newCards)
     {
         super(newCards);
+        if (!isTriple(newCards))
+        {
+            throw new InvalidTripleException();
+        }
     }
 
     /**

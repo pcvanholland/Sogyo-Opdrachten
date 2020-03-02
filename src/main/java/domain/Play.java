@@ -11,8 +11,12 @@ abstract class Play
      *
      * @param newCards {Card[]} - An ArrayList of Cards bundled in this Play.
      */
-    Play(final ArrayList<Card> newCards)
+    Play(final ArrayList<Card> newCards) throws InvalidPlayException
     {
+        if (PlayHelper.determineTypesOfSet(newCards).size() < 1)
+        {
+            throw new InvalidPlayException();
+        }
         this.cards = newCards;
     }
 

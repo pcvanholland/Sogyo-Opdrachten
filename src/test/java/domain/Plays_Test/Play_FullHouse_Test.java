@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Play_FullHouse_Test extends Play_Test
+public class Play_FullHouse_Test extends Play_Test_Helper
 {
     @Test
     public void test_playInValidityTooShortArray()
@@ -87,6 +87,18 @@ public class Play_FullHouse_Test extends Play_Test
     {
         new FullHouse(createTriple(2), createPair(3));
         new FullHouse(createPair(2), createTriple(3));
+    }
+
+    @Test(expected = InvalidPlayException.class)
+    public void test_initFailsWhenWrong()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
+
+        new FullHouse(new Triple(cards), createPair(2));
     }
 
     @Test

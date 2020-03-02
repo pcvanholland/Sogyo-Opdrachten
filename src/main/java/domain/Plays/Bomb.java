@@ -12,6 +12,10 @@ class Bomb extends Play
     Bomb(final ArrayList<Card> newCards)
     {
         super(newCards);
+        if (!isBomb(newCards))
+        {
+            throw new InvalidBombException();
+        }
     }
 
     /**

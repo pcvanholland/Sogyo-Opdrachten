@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Play_Triple_Test extends Play_Test
+public class Play_Triple_Test extends Play_Test_Helper
 {
     @Test
     public void test_init()
@@ -14,6 +14,28 @@ public class Play_Triple_Test extends Play_Test
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
+
+        new Triple(cards);
+    }
+
+    @Test(expected = InvalidPlayException.class)
+    public void test_initFailsWhenWrong()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
+
+        new Triple(cards);
+    }
+
+    @Test(expected = InvalidTripleException.class)
+    public void test_initFailsWhenTriedWithDifferentType()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
         new Triple(cards);
     }

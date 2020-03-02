@@ -12,6 +12,10 @@ class Stair extends Play
     Stair(final ArrayList<Card> newCards)
     {
         super(newCards);
+        if (!isStair(newCards))
+        {
+            throw new InvalidStairException();
+        }
     }
 
     /**

@@ -12,6 +12,10 @@ class Pair extends Play
     Pair(final ArrayList<Card> newCards)
     {
         super(newCards);
+        if (!isPair(newCards))
+        {
+            throw new InvalidPairException();
+        }
     }
 
     /**

@@ -2,7 +2,7 @@ package taipan.domain;
 
 import java.util.ArrayList;
 
-public abstract class Play_Test
+public abstract class Play_Test_Helper
 {
     private final static java.util.Random rng = new java.util.Random(0);
 

@@ -12,9 +12,14 @@ class FullHouse extends Play
      * @param newTriple {Triple} - The Triple that is part of this FullHouse.
      * @param newPair {Pair} - The Pair that is part of this FullHouse.
      */
-    FullHouse(final Triple newTriple, final Pair newPair)
+    FullHouse(final Triple newTriple, final Pair newPair) throws
+        InvalidPlayException
     {
         super(getAllCards(newTriple, newPair));
+        if (!isFullHouse(getAllCards(newTriple, newPair)))
+        {
+            throw new InvalidFullHouseException();
+        }
         this.triple = newTriple;
     }
 
@@ -25,7 +30,8 @@ class FullHouse extends Play
      * @param newPair {Pair} - The Pair that is part of this FullHouse.
      * @param newTriple {Triple} - The Triple that is part of this FullHouse.
      */
-    FullHouse(final Pair newPair, final Triple newTriple)
+    FullHouse(final Pair newPair, final Triple newTriple) throws
+        InvalidPlayException
     {
         this(newTriple, newPair);
     }

@@ -142,7 +142,9 @@ public class Player_Test
     {
         Player firstPlayer = new Player(new Table());
 
-        Assert.assertFalse(firstPlayer.canPlay(Play_Test.createSingle(2)));
+        Assert.assertFalse(
+            firstPlayer.canPlay(Play_Test_Helper.createSingle(2))
+        );
     }
 
     @Test
@@ -150,7 +152,9 @@ public class Player_Test
     {
         Player firstPlayer = new Player(new Table());
 
-        Assert.assertTrue(firstPlayer.canPlay(Play_Test.createFOAKBomb(2)));
+        Assert.assertTrue(
+            firstPlayer.canPlay(Play_Test_Helper.createFOAKBomb(2))
+        );
     }
 
     @Test
@@ -158,7 +162,7 @@ public class Player_Test
     {
         Table playingTable = new Table();
         Player firstPlayer = new Player(playingTable);
-        Play play = Play_Test.createSingle(2);
+        Play play = Play_Test_Helper.createSingle(2);
 
         firstPlayer.play(play);
 

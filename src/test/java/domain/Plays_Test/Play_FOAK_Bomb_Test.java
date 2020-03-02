@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Play_FOAK_Bomb_Test extends Play_Test
+public class Play_FOAK_Bomb_Test extends Play_Test_Helper
 {
     @Test
     public void test_initFourOfAKind()
@@ -15,6 +15,28 @@ public class Play_FOAK_Bomb_Test extends Play_Test
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+
+        new Bomb(cards);
+    }
+
+    @Test(expected = InvalidPlayException.class)
+    public void test_initFourOfAKindFailsWhenWrong()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
+
+        new Bomb(cards);
+    }
+
+    @Test(expected = InvalidBombException.class)
+    public void test_initFourOfAKindFailsWhenTriedWithDifferentType()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
 
         new Bomb(cards);
     }

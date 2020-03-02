@@ -14,6 +14,10 @@ class Straight extends Play
     Straight(final ArrayList<Card> newCards)
     {
         super(newCards);
+        if (!isStraight(newCards))
+        {
+            throw new InvalidStraightException();
+        }
     }
 
     /**

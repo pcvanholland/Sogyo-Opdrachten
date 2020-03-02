@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Play_Single_Test extends Play_Test
+public class Play_Single_Test extends Play_Test_Helper
 {
     @Test
     public void test_playValiditySingleCard()
@@ -24,6 +24,26 @@ public class Play_Single_Test extends Play_Test
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+
+        new Single(cards);
+    }
+
+    @Test(expected = InvalidPlayException.class)
+    public void test_initFailsWhenWrong()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
+
+        new Single(cards);
+    }
+
+    @Test(expected = InvalidSingleException.class)
+    public void test_initFailsWhenTriedWithDifferentType()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
 
         new Single(cards);
     }

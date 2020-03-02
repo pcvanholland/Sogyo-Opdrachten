@@ -12,6 +12,10 @@ class Single extends Play
     Single(final ArrayList<Card> newCards)
     {
         super(newCards);
+        if (!isSingle(newCards))
+        {
+            throw new InvalidSingleException();
+        }
     }
 
     /**

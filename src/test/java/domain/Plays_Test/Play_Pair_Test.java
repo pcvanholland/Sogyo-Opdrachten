@@ -5,13 +5,34 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Play_Pair_Test extends Play_Test
+public class Play_Pair_Test extends Play_Test_Helper
 {
     @Test
     public void test_init()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+
+        new Pair(cards);
+    }
+
+    @Test(expected = InvalidPlayException.class)
+    public void test_initFailsWhenWrong()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
+
+        new Pair(cards);
+    }
+
+    @Test(expected = InvalidPairException.class)
+    public void test_initFailsWhenTriedWithDifferentType()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
         new Pair(cards);
