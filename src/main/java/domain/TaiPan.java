@@ -41,8 +41,17 @@ public class TaiPan
         final String type
     )
     {
-        Player player = this.getPlayer(playerNumber);
-        System.out.println("Nothingness");
+        try
+        {
+            this.getPlayer(playerNumber).play(
+                JSONProcessor.createCardsFromJSON(cards),
+                Set.valueOf(type)
+            );
+        }
+        catch (CantPlayException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /**

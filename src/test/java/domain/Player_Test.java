@@ -3,11 +3,13 @@ package taipan.domain;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class Player_Test
 {
     // Seed of three (3) ensures the first Player gets the Mah Jong and
     // starts thus in turn.
-    private static final int SEED = 3;
+    protected static final int SEED = 3;
 
     /**
      * Helper function to create a Player who starts in turn.
@@ -206,7 +208,7 @@ public class Player_Test
     }
 
     @Test
-    public void test_play() throws
+    public void test_playWithPlay() throws
         CantDrawTooManyTimesException, CantPlayException
     {
         Table playingTable = new Table();
@@ -220,5 +222,97 @@ public class Player_Test
         firstPlayer.play(play);
 
         Assert.assertEquals(play, playingTable.getLastPlay());
+    }
+
+    @Test
+    public void test_playWithArrayListOfCards() throws
+        CantDrawTooManyTimesException, CantPlayException
+    {
+        Table playingTable = new Table();
+        Player firstPlayer = new Player(playingTable, SEED);
+
+        // Draw Cards to get in turn.
+        firstPlayer.drawCards();
+        firstPlayer.drawCards();
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+
+        firstPlayer.play(cards, Set.SINGLE);
+
+        Assert.assertEquals(
+            SpecialRank.MAHJONG.getValue(),
+            playingTable.getLastPlay().getValue()
+        );
+    }
+
+    @Test
+    public void test_playRemovesCard() throws
+        CantDrawTooManyTimesException, CantPlayException
+    {
+        Table playingTable = new Table();
+        Player firstPlayer = new Player(playingTable, SEED);
+
+        // Draw Cards to get in turn.
+        firstPlayer.drawCards();
+        firstPlayer.drawCards();
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+
+        // Only card we are certain the Player in turn has.
+        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+
+        firstPlayer.play(cards, Set.SINGLE);
+
+        Assert.assertEquals(13, firstPlayer.getCards().size());
+    }
+
+    @Test
+    public void test_playNotRemovesCardWhenOutOfTurn() throws
+        CantDrawTooManyTimesException, CantPlayException
+    {
+        Table playingTable = new Table();
+        Player firstPlayer = new Player(playingTable, SEED);
+
+        // Draw Cards to get in turn.
+        firstPlayer.drawCards();
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+
+        // Only card we are certain the Player in turn has.
+        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+
+        try
+        {
+            firstPlayer.play(cards, Set.SINGLE);
+        }
+        catch (CantPlayException e)
+        {
+            System.out.println("We know this error happens," +
+                " but we ought to test it.");
+        }
+
+        Assert.assertEquals(6, firstPlayer.getCards().size());
+    }
+
+    @Test(expected = PlayerDontHasCardException.class)
+    public void test_playCantTakeCardsAPlayerDoesntHave() throws
+        CantDrawTooManyTimesException, CantPlayException
+    {
+        Table playingTable = new Table();
+        Player firstPlayer = new Player(playingTable, SEED);
+
+        // Draw Cards to get in turn.
+        firstPlayer.drawCards();
+        firstPlayer.drawCards();
+
+        // We don't have the SWORD SEVEN with seed 3.
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SEVEN));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.SEVEN));
+
+        firstPlayer.play(cards, Set.PAIR);
+
+        Assert.assertEquals(14, firstPlayer.getCards().size());
     }
 }

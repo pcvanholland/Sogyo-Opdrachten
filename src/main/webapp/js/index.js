@@ -179,6 +179,7 @@ Vue.component('game-screen', {
         playCards(type, player)
         {
             this.$emit('play-cards', this.checkedCards, type, player);
+            this.checkedCards = [];
         }
     }
 });

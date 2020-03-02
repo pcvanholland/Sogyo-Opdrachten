@@ -216,7 +216,7 @@ public class Player
      * @param play {Play} - The Play to verify.
      * @return {boolean} - Whether this Player can play the specified Play.
      */
-    protected boolean canPlay(Play play)
+    protected boolean canPlay(final Play play)
     {
         return (this.inTurn || play instanceof Bomb) &&
             this.getTable().canPlay(play);
@@ -225,12 +225,59 @@ public class Player
     /**
      * @param play {Play} - The Play to play.
      */
-    protected void play(Play play) throws CantPlayException
+    protected void play(final Play play) throws CantPlayException
     {
         if (!this.canPlay(play))
         {
             throw new CantPlayPlayerException();
         }
         this.getTable().play(play);
+    }
+
+    /**
+     * @param cardsToPlay {Card[]} - Cards to play.
+     */
+    protected void play(
+        final ArrayList<Card> cardsToPlay,
+        final Set type
+    ) throws CantPlayException
+    {
+        if (!this.canPlay(PlayHelper.createPlay(cardsToPlay, type)))
+        {
+            throw new CantPlayException();
+        }
+        ArrayList<Card> takenCards = this.takeCards(cardsToPlay);
+        this.play(PlayHelper.createPlay(takenCards, type));
+    }
+
+    /**
+     * This is a helper function that removes certain Cards from
+     * this Players deck.
+     *
+     * @param cardsToTake {Card[]} - The type of Cards to take.
+     * @return {Card[]} - The corresponding Cards taken from the Player's deck.
+     */
+    private ArrayList<Card> takeCards(final ArrayList<Card> cardsToTake) throws
+        PlayerDontHasCardException
+    {
+        ArrayList<Card> takenCards = new ArrayList<Card>();
+        for (Card card : cardsToTake)
+        {
+            boolean hadCard = false;
+            for (int i = 0; i < this.cards.size(); ++i)
+            {
+                if (this.cards.get(i).equals(card))
+                {
+                    takenCards.add(this.cards.remove(i));
+                    hadCard = true;
+                    break;
+                }
+            }
+            if (!hadCard)
+            {
+                throw new PlayerDontHasCardException();
+            }
+        }
+        return takenCards;
     }
 }

@@ -64,4 +64,15 @@ abstract class Card
     {
         return this.getValue() == card.getValue();
     }
+
+    /**
+     * @param card {Card} - The Card to check this Card against.
+     * @return {boolean} - Whether this Card has a Rank
+     *                  equal to the reference Card.
+     */
+    protected final boolean equals(final Card card)
+    {
+        return this.getRank() == card.getRank() &&
+            this.getSuit() == card.getSuit();
+    }
 }
