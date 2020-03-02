@@ -50,7 +50,7 @@ public class Dealer_Test
         }
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test(expected = DealerOutOfCardsException.class)
     public void test_cantTakeTooManyCards()
     {
         Dealer dealer = new Dealer();

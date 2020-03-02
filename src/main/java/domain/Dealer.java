@@ -100,8 +100,13 @@ class Dealer
      * @param numberOfCards {int} - The number of cards to draw.
      * @return {Card[]} - An ArrayList of cards taken from the stack.
      */
-    private ArrayList<Card> drawCards(final int numberOfCards)
+    private ArrayList<Card> drawCards(final int numberOfCards) throws
+        DealerOutOfCardsException
     {
+        if (this.cards.size() < numberOfCards)
+        {
+            throw new DealerOutOfCardsException();
+        }
         ArrayList<Card> cardsDrawn = new ArrayList<Card>();
         while (cardsDrawn.size() < numberOfCards)
         {
