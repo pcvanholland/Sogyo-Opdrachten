@@ -22,7 +22,7 @@ public class Table_Test
     }
 
     @Test
-    public void test_currentTrickReturnsATrick()
+    public void test_currentTrickReturnsATrick() throws CantPlayTableException
     {
         Play play = Play_Test_Helper.createSingle(2);
         Table table = new Table();
@@ -33,7 +33,7 @@ public class Table_Test
     }
 
     @Test
-    public void test_lastPlayReturnsPlay()
+    public void test_lastPlayReturnsPlay() throws CantPlayTableException
     {
         Play play = Play_Test_Helper.createSingle(2);
         Table table = new Table();
@@ -44,10 +44,10 @@ public class Table_Test
     }
 
     @Test
-    public void test_lastPlayReturnsLastPlay()
+    public void test_lastPlayReturnsLastPlay() throws CantPlayTableException
     {
         Play firstPlay = Play_Test_Helper.createSingle(2);
-        Play secondPlay = Play_Test_Helper.createSingle(2);
+        Play secondPlay = Play_Test_Helper.createSingle(3);
         Table table = new Table();
         table.play(firstPlay);
 
@@ -66,7 +66,7 @@ public class Table_Test
     }
 
     @Test
-    public void test_canPlayWithLead()
+    public void test_canPlayWithLead() throws CantPlayTableException
     {
         Play firstPlay = Play_Test_Helper.createSingle(2);
         Play secondPlay = Play_Test_Helper.createSingle(5);
@@ -77,7 +77,7 @@ public class Table_Test
     }
 
     @Test
-    public void test_cantPlayCardThatDoesntBeat()
+    public void test_cantPlayCardThatDoesntBeat() throws CantPlayTableException
     {
         Play lowPlay = Play_Test_Helper.createSingle(2);
         Play highPlay = Play_Test_Helper.createSingle(5);
@@ -86,5 +86,17 @@ public class Table_Test
         table.play(highPlay);
 
         Assert.assertFalse(table.canPlay(lowPlay));
+    }
+
+    @Test(expected = CantPlayTableException.class)
+    public void test_reallyCantPlayCardThatDoesntBeat() throws
+        CantPlayTableException
+    {
+        Play lowPlay = Play_Test_Helper.createSingle(2);
+        Play highPlay = Play_Test_Helper.createSingle(5);
+        Table table = new Table();
+        table.play(highPlay);
+
+        table.play(lowPlay);
     }
 }

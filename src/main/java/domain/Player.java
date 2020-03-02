@@ -97,8 +97,13 @@ public class Player
      * @param position {int} - The position which ought to be returned.
      * @return {Player} - The Player at the specified position.
      */
-    protected final Player getPlayerAtPositionCCW(int position)
+    protected final Player getPlayerAtPositionCCW(int position) throws
+        InvalidPositionException
     {
+        if (position < 0 || position > NUM_PLAYERS)
+        {
+            throw new InvalidPositionException();
+        }
         return position == 0 ? this :
             this.getNeighbour().getPlayerAtPositionCCW(--position);
     }
@@ -135,8 +140,12 @@ public class Player
     /**
      * Ask a hand of Cards from the Dealer.
      */
-    protected void drawCards()
+    protected void drawCards() throws CantDrawTooManyTimesException
     {
+        if (!this.canDrawCards())
+        {
+            throw new CantDrawTooManyTimesException();
+        }
         if (this.handsDrawn() == 0)
         {
             this.cards.addAll(this.getDealer().drawFirstHand());
@@ -169,6 +178,13 @@ public class Player
 
     private boolean hasMahJong()
     {
+        for (Card card : this.getCards())
+        {
+            if (card.getRank() == SpecialRank.MAHJONG)
+            {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -209,8 +225,12 @@ public class Player
     /**
      * @param play {Play} - The Play to play.
      */
-    protected void play(Play play)
+    protected void play(Play play) throws CantPlayException
     {
+        if (!this.canPlay(play))
+        {
+            throw new CantPlayPlayerException();
+        }
         this.getTable().play(play);
     }
 }

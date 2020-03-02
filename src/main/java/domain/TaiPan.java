@@ -62,7 +62,14 @@ public class TaiPan
      */
     public void letPlayerDrawCards(final int playerNumber)
     {
-        this.getPlayer(playerNumber).drawCards();
+        try
+        {
+            this.getPlayer(playerNumber).drawCards();
+        }
+        catch (CantDrawTooManyTimesException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /**

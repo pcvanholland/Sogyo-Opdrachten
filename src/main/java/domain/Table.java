@@ -26,8 +26,12 @@ class Table
      *
      * @param play {Play} - The Play to put on the Table.
      */
-    protected void play(final Play play)
+    protected void play(final Play play) throws CantPlayTableException
     {
+        if (!this.canPlay(play))
+        {
+            throw new CantPlayTableException();
+        }
         if (this.getCurrentTrick() == null)
         {
             this.lead(play);
@@ -43,8 +47,12 @@ class Table
      *
      * @param play {Play} - The Play to lead the Trick with.
      */
-    private void lead(final Play play)
+    private void lead(final Play play) throws CantPlayTableException
     {
+        if (!this.canPlay(play))
+        {
+            throw new CantPlayTableException();
+        }
         this.trick = new Trick(play);
     }
 

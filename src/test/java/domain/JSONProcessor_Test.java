@@ -38,7 +38,8 @@ public class JSONProcessor_Test
     }
 
     @Test
-    public void test_playerToJSONWithCards()
+    public void test_playerToJSONWithCards() throws
+        CantDrawTooManyTimesException
     {
         JSONObject expectedResult = new JSONObject();
         expectedResult.put("cards", new JSONArray());
