@@ -52,6 +52,10 @@ public class TaiPan
         {
             e.printStackTrace();
         }
+        catch (PlayerDontHasCardException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /**
