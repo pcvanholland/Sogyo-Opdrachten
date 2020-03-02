@@ -89,6 +89,19 @@ public class Play_FullHouse_Test extends Play_Test_Helper
         new FullHouse(createPair(2), createTriple(3));
     }
 
+    @Test
+    public void test_initFromArray()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.FOUR));
+
+        new FullHouse(cards);
+    }
+
     @Test(expected = InvalidPlayException.class)
     public void test_initFailsWhenWrong()
     {
@@ -98,7 +111,18 @@ public class Play_FullHouse_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
 
-        new FullHouse(new Triple(cards), createPair(2));
+        new FullHouse(cards);
+    }
+
+    @Test(expected = InvalidPlayException.class)
+    public void test_initFailsWhenDifferentType()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
+
+        new FullHouse(cards);
     }
 
     @Test

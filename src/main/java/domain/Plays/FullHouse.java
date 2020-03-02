@@ -7,6 +7,21 @@ class FullHouse extends Play
     private Triple triple;
 
     /**
+     * The default constructor for a FullHouse using a full set of Cards.
+     *
+     * @param newCards {Card[]} - An ArrayList of Cards to make a FullHouse with.
+     */
+    FullHouse(final ArrayList<Card> newCards)
+    {
+        super(newCards);
+        if (!isFullHouse(newCards))
+        {
+            throw new InvalidFullHouseException();
+        }
+        this.triple = getTripleFromCards(newCards);
+    }
+
+    /**
      * The default constructor for a FullHouse.
      *
      * @param newTriple {Triple} - The Triple that is part of this FullHouse.
@@ -63,6 +78,27 @@ class FullHouse extends Play
         result.addAll(newTriple.getCards());
         result.addAll(newPair.getCards());
         return result;
+    }
+
+    /**
+     * Gets the Triple provided in the set of Cards.
+     *
+     * @param cardsToCheck {Card[]} - The Cards to check.
+     * @return {Triple} - The Triple filtered from the Cards.
+     */
+    private static Triple getTripleFromCards(final ArrayList<Card> cardsToCheck)
+    {
+        ArrayList<Card> result = new ArrayList<Card>();
+        for (Card card : cardsToCheck)
+        {
+            if (java.util.Collections.frequency(
+                    PlayHelper.getRanks(cardsToCheck), card.getValue()
+                ) == 3)
+            {
+                result.add(card);
+            }
+        }
+        return new Triple(result);
     }
 
     /**

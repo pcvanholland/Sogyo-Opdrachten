@@ -216,7 +216,7 @@ abstract class PlayHelper
      * @param cardsToCheck {Card[]} - An ArrayList of Cards to process.
      * @return {IRank[]} - An ArrayList of the corresponding Ranks.
      */
-    private static ArrayList<Integer> getRanks(
+    protected static ArrayList<Integer> getRanks(
         final ArrayList<Card> cardsToCheck
     )
     {
@@ -226,5 +226,51 @@ abstract class PlayHelper
             ranks.add(card.getValue());
         }
         return ranks;
+    }
+
+    /**
+     * Creates a proper Play of the given Cards.
+     *
+     * @param cards {Card[]} - An ArrayList of Cards to convert.
+     * @param set {Set} - The type of Play to use.
+     *
+     * @return {Play} - The Play the Cards have become.
+     */
+    protected static final Play createPlay(
+        final ArrayList<Card> cards,
+        final Set set
+    )
+    {
+        ArrayList<Set> validSets = determineTypesOfSet(cards);
+        if (set.equals(Set.SINGLE))
+        {
+            return new Single(cards);
+        }
+        if (set.equals(Set.PAIR))
+        {
+            return new Pair(cards);
+        }
+        if (set.equals(Set.TRIPLE))
+        {
+            return new Triple(cards);
+        }
+        if (set.equals(Set.STAIR))
+        {
+            return new Stair(cards);
+        }
+        if (set.equals(Set.FULLHOUSE))
+        {
+            return new FullHouse(cards);
+        }
+        if (set.equals(Set.STRAIGHT))
+        {
+            return new Straight(cards);
+        }
+        if (set.equals(Set.BOMB))
+        {
+            return new Bomb(cards);
+        }
+        // We can't arrive here.
+        throw new InvalidPlayException();
     }
 }
