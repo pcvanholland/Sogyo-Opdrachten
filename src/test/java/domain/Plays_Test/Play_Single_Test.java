@@ -16,7 +16,7 @@ public class Play_Single_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.SINGLE);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test

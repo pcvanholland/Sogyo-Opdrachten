@@ -23,6 +23,6 @@ class Straight extends Play
     protected static boolean isStraight(final ArrayList<Card> cardsToCheck)
     {
         return cardsToCheck.size() >= MIN_STRAIGHT_LENGTH &&
-            areCardsSequential(cardsToCheck);
+            PlayHelper.areCardsSequential(cardsToCheck);
     }
 }

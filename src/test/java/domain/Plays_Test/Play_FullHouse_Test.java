@@ -18,7 +18,7 @@ public class Play_FullHouse_Test extends Play_Test
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -34,7 +34,7 @@ public class Play_FullHouse_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.FULLHOUSE);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -49,7 +49,7 @@ public class Play_FullHouse_Test extends Play_Test
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class Play_FullHouse_Test extends Play_Test
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -79,7 +79,7 @@ public class Play_FullHouse_Test extends Play_Test
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test

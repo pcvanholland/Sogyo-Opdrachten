@@ -40,7 +40,7 @@ class Stair extends Play
         final ArrayList<Card> cardsToCheck
     )
     {
-         return containsOnlyNumberOfEqualRanks(cardsToCheck, 2);
+         return PlayHelper.containsOnlyNumberOfEqualRanks(cardsToCheck, 2);
     }
 
     /**
@@ -63,6 +63,6 @@ class Stair extends Play
                 uniquelyRankedCards.add(card);
             }
         }
-        return areCardsSequential(uniquelyRankedCards);
+        return PlayHelper.areCardsSequential(uniquelyRankedCards);
     }
 }

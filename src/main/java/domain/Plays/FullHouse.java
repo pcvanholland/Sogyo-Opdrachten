@@ -69,6 +69,7 @@ class FullHouse extends Play
         {
             return false;
         }
-        return containsTriple(cardsToCheck) && containsPair(cardsToCheck);
+        return PlayHelper.containsTriple(cardsToCheck) &&
+            PlayHelper.containsPair(cardsToCheck);
     }
 }

@@ -25,7 +25,7 @@ public class Play_Phoenix_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.SINGLE);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 /*
     @Test
@@ -38,7 +38,7 @@ public class Play_Phoenix_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.PAIR);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -51,7 +51,7 @@ public class Play_Phoenix_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.PAIR);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class Play_Phoenix_Test extends Play_Test
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 /*
     @Test
@@ -77,7 +77,7 @@ public class Play_Phoenix_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.TRIPLE);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -91,7 +91,7 @@ public class Play_Phoenix_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.TRIPLE);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -104,7 +104,7 @@ public class Play_Phoenix_Test extends Play_Test
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -120,7 +120,7 @@ public class Play_Phoenix_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.FULLHOUSE);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -136,7 +136,7 @@ public class Play_Phoenix_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.FULLHOUSE);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -155,7 +155,7 @@ public class Play_Phoenix_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -174,7 +174,7 @@ public class Play_Phoenix_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -190,7 +190,7 @@ public class Play_Phoenix_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -206,7 +206,7 @@ public class Play_Phoenix_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -221,7 +221,7 @@ public class Play_Phoenix_Test extends Play_Test
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -236,7 +236,7 @@ public class Play_Phoenix_Test extends Play_Test
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -250,7 +250,7 @@ public class Play_Phoenix_Test extends Play_Test
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -267,7 +267,7 @@ public class Play_Phoenix_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -283,7 +283,7 @@ public class Play_Phoenix_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.FULLHOUSE);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test

@@ -25,7 +25,7 @@ public class Play_Mahjong_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.SINGLE);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class Play_Mahjong_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -80,7 +80,7 @@ public class Play_Mahjong_Test extends Play_Test
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -97,6 +97,6 @@ public class Play_Mahjong_Test extends Play_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 }

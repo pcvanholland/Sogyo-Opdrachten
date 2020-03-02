@@ -20,6 +20,7 @@ class Pair extends Play
      */
     protected static boolean isPair(final ArrayList<Card> cardsToCheck)
     {
-        return cardsToCheck.size() == 2 && areCardsOfEqualRank(cardsToCheck);
+        return cardsToCheck.size() == 2 &&
+            PlayHelper.areCardsOfEqualRank(cardsToCheck);
     }
 }

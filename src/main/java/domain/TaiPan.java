@@ -93,7 +93,7 @@ public class TaiPan
         }
 
         ArrayList<String> result = new ArrayList<String>();
-        for (Set set : Play.determineTypesOfSet(realCards))
+        for (Set set : PlayHelper.determineTypesOfSet(realCards))
         {
             result.add(set.toString());
         }

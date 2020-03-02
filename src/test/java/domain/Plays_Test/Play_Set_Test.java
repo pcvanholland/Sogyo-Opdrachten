@@ -17,7 +17,7 @@ public class Play_Set_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.PAIR);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -29,7 +29,7 @@ public class Play_Set_Test
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -43,7 +43,7 @@ public class Play_Set_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.TRIPLE);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class Play_Set_Test
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -69,7 +69,7 @@ public class Play_Set_Test
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -84,7 +84,7 @@ public class Play_Set_Test
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.BOMB);
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -98,7 +98,7 @@ public class Play_Set_Test
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -112,7 +112,7 @@ public class Play_Set_Test
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
     @Test
@@ -126,6 +126,6 @@ public class Play_Set_Test
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, Play.determineTypesOfSet(cards));
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 }

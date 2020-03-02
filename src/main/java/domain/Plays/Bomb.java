@@ -65,7 +65,7 @@ class Bomb extends Play
         //     }
         // }
         return cardsToCheck.size() == StandardSuit.values().length &&
-            areCardsOfEqualRank(cardsToCheck);
+            PlayHelper.areCardsOfEqualRank(cardsToCheck);
     }
 
     /**
@@ -76,6 +76,6 @@ class Bomb extends Play
     private static boolean isStraightBomb(final ArrayList<Card> cardsToCheck)
     {
         return Straight.isStraight(cardsToCheck) &&
-            areCardsOfEqualSuit(cardsToCheck);
+            PlayHelper.areCardsOfEqualSuit(cardsToCheck);
     }
 }

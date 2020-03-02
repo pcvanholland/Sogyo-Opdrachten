@@ -20,6 +20,7 @@ class Triple extends Play
      */
     protected static boolean isTriple(final ArrayList<Card> cardsToCheck)
     {
-        return cardsToCheck.size() == 3 && areCardsOfEqualRank(cardsToCheck);
+        return cardsToCheck.size() == 3 &&
+            PlayHelper.areCardsOfEqualRank(cardsToCheck);
     }
 }
