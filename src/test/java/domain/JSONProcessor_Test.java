@@ -75,4 +75,29 @@ public class JSONProcessor_Test
         Assert.assertEquals(expectedResult,
             JSONProcessor.createJSONGame(tp));
     }
+
+    @Test
+    public void test_emptyTableToJSON()
+    {
+        JSONObject expectedResult = new JSONObject();
+        expectedResult.put("trick", new JSONArray());
+
+        Assert.assertEquals(expectedResult,
+            JSONProcessor.createJSONTable(new Table())
+        );
+    }
+
+    @Test
+    public void test_nonEmptyTableToJSON() throws CantPlayTableException
+    {
+        Table table = new Table();
+        JSONObject notExpectedResult = new JSONObject();
+        notExpectedResult.put("trick", new JSONArray());
+
+        table.play(Play_Test_Helper.createSingle(2));
+
+        Assert.assertNotEquals(notExpectedResult,
+            JSONProcessor.createJSONTable(table)
+        );
+    }
 }

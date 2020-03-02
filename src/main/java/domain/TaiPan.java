@@ -111,4 +111,12 @@ public class TaiPan
     {
         return this.firstPlayer.getPlayerAtPositionCCW(playerNumber);
     }
+
+    /**
+     * @return {Table} - The Table at which the Players play.
+     */
+    protected Table getPlayingTable()
+    {
+        return this.playingTable;
+    }
 }

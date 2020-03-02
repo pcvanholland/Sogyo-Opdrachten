@@ -1,5 +1,7 @@
 package taipan.domain;
 
+import java.util.ArrayList;
+
 class Table
 {
     private Trick trick;
@@ -18,6 +20,18 @@ class Table
     protected Play getLastPlay()
     {
         return this.getCurrentTrick().getLastPlay();
+    }
+
+    /**
+     * @return {Play[]} - The current Plays that have been played.
+     */
+    protected ArrayList<Play> getCurrentPlays()
+    {
+        if (this.getCurrentTrick() == null)
+        {
+            return new ArrayList<Play>();
+        }
+        return this.getCurrentTrick().getPlays();
     }
 
     /**

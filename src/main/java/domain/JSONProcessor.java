@@ -17,6 +17,7 @@ final class JSONProcessor
     {
         JSONObject result = new JSONObject();
         result.put("players", createJSONPlayers(game));
+        //result.put("table", createJSONTable(game.getPlayingTable()));
         return result;
     }
 
@@ -49,6 +50,56 @@ final class JSONProcessor
         result.put("inTurn", player.isInTurn());
         result.put("canDraw", player.canDrawCards());
         result.put("id", player.getPlayerID());
+
+        return result;
+    }
+
+    /**
+     * Squashes a Table to a JSONArray.
+     *
+     * @param table {Table} - The Table to JSONify.
+     * @return {JSONObject} - The JSON representation of the Table.
+     */
+    protected static final JSONObject createJSONTable(final Table table)
+    {
+        JSONObject result = new JSONObject();
+        result.put("trick", createJSONPlays(
+            table.getCurrentPlays())
+        );
+
+        return result;
+    }
+
+    /**
+     * Squashes Plays to a JSONArray.
+     *
+     * @param plays {Play[]} - The Plays to JSONify.
+     * @return {JSONArray} - The JSON representation of the Plays.
+     */
+    private static final JSONArray createJSONPlays(
+        final ArrayList<Play> plays
+    )
+    {
+        JSONArray result = new JSONArray();
+        for (Play play : plays)
+        {
+            result.add(createJSONPlay(play));
+        }
+
+        return result;
+    }
+
+    /**
+     * Squashes a Play to a JSONObject.
+     *
+     * @param plays {Play} - The Play to JSONify.
+     * @return {JSONObject} - The JSON representation of the Play.
+     */
+    private static final JSONObject createJSONPlay(final Play play)
+    {
+        JSONObject result = new JSONObject();
+        result.put("cards", createJSONCards(play.getCards()));
+
         return result;
     }
 
@@ -81,6 +132,7 @@ final class JSONProcessor
         JSONObject result = new JSONObject();
         result.put("suit", card.getSuit().toString());
         result.put("rank", card.getRank().toString());
+
         return result;
     }
 

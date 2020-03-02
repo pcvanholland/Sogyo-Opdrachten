@@ -34,4 +34,17 @@ class Trick
     {
         plays.add(play);
     }
+
+    /**
+     * @return {Play[]} - The Plays that was played.
+     */
+    protected ArrayList<Play> getPlays()
+    {
+        ArrayList<Play> result = new ArrayList<Play>();
+        for (Play play : this.plays)
+        {
+            result.add(play);
+        }
+        return result;
+    }
 }

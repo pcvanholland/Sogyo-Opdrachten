@@ -22,6 +22,14 @@ public class Table_Test
     }
 
     @Test
+    public void test_tableStartsEmptyPlayed()
+    {
+        Table table = new Table();
+
+        Assert.assertEquals(new ArrayList<Play>(), table.getCurrentPlays());
+    }
+
+    @Test
     public void test_currentTrickReturnsATrick() throws CantPlayTableException
     {
         Play play = Play_Test_Helper.createSingle(2);
@@ -54,6 +62,20 @@ public class Table_Test
         table.play(secondPlay);
 
         Assert.assertEquals(secondPlay, table.getLastPlay());
+    }
+
+    @Test
+    public void test_currentPlaysReturnsAllPlays() throws
+        CantPlayTableException
+    {
+        Play firstPlay = Play_Test_Helper.createSingle(2);
+        Play secondPlay = Play_Test_Helper.createSingle(3);
+        Table table = new Table();
+        table.play(firstPlay);
+        table.play(secondPlay);
+
+        Assert.assertEquals(firstPlay, table.getCurrentPlays().get(0));
+        Assert.assertEquals(secondPlay, table.getCurrentPlays().get(1));
     }
 
     @Test
