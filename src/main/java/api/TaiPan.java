@@ -14,7 +14,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/")
+@Path("/game/")
 public class TaiPan
 {
     private static final int SUCCESS = 200;
@@ -50,6 +50,35 @@ System.out.println("Post on play: " +
                 play.getCards(),
                 play.getType()
             );
+            return this.returnGameState(taipan);
+        }
+        return Response.status(FAILURE).build();
+    }
+
+    /**
+     * This handles a pass request by a Player.
+     *
+     * @param request {HttpServletRequest} - A Request from the server.
+     * @param player {int} - The Player who wants to pass.
+     *
+     * @return {Response} - Whether the Play was successful.
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("passturn")
+    public Response passTurn(
+        final @Context HttpServletRequest request,
+        final int player
+    )
+    {
+System.out.println("Post on pass turn: " + player);
+        HttpSession session = request.getSession(false);
+        if (session != null)
+        {
+            taipan.domain.TaiPan taipan =
+                (taipan.domain.TaiPan) session.getAttribute("taipan");
+            taipan.pass(player);
             return this.returnGameState(taipan);
         }
         return Response.status(FAILURE).build();

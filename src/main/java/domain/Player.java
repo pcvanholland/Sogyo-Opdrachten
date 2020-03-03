@@ -228,7 +228,8 @@ public class Player
     /**
      * @param play {Play} - The Play to play.
      */
-    protected void play(final Play play) throws CantPlayException
+    protected void play(final Play play) throws
+        CantPlayException, CantPassTurnWhenNotInException
     {
         if (!this.canPlay(play))
         {
@@ -245,7 +246,7 @@ public class Player
     protected void play(
         final ArrayList<Card> cardsToPlay,
         final Set type
-    ) throws CantPlayException
+    ) throws CantPlayException, CantPassTurnWhenNotInException
     {
         if (!this.canPlay(PlayHelper.createPlay(cardsToPlay, type)))
         {
@@ -314,8 +315,12 @@ public class Player
     /**
      * Passes the turn from this Player to their neighbour.
      */
-    private void passTurn()
+    protected void passTurn() throws CantPassTurnWhenNotInException
     {
+        if (!this.isInTurn())
+        {
+            throw new CantPassTurnWhenNotInException();
+        }
         this.takeTurn();
         this.getNeighbour().giveTurn();
     }

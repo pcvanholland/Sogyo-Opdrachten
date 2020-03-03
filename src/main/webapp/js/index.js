@@ -138,6 +138,9 @@ Vue.component('game-screen', {
                 <div class="player-area"
                     v-for="player in gameState.players">
                     Player: {{ player.id }}
+                    <button v-on:click="passTurn(player.id)"
+                        :hidden="!player.inTurn"
+                    >Pass turn</button>
 
                     <div class="taipan-sets">
                         Play as:
@@ -183,6 +186,10 @@ Vue.component('game-screen', {
         chooseCard()
         {
             this.$emit('choose-card', this.checkedCards);
+        },
+        passTurn(player)
+        {
+            this.$emit('pass-turn', player);
         },
         playCards(type, player)
         {
@@ -308,7 +315,7 @@ const app = new Vue({
         },
         async getGameState()
         {
-            const response = await fetch('api/getgamestate', {
+            const response = await fetch('api/game/getgamestate', {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -321,7 +328,7 @@ const app = new Vue({
         },
         async drawCards(playerID)
         {
-            const response = await fetch('api/drawcards', {
+            const response = await fetch('api/game/drawcards', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -335,7 +342,7 @@ const app = new Vue({
         },
         async chooseCard(activeCards)
         {
-            const response = await fetch('api/getplaytypes', {
+            const response = await fetch('api/game/getplaytypes', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -347,10 +354,25 @@ const app = new Vue({
             console.log(result);
             this.playTypes = result.sets;
         },
+        async passTurn(playerID)
+        {
+console.log("Pass called by " + playerID);
+            const response = await fetch('api/game/passturn', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: playerID//this.playerID
+            });
+            const result = await response.json();
+            console.log(result);
+            this.gameState = result;
+        },
         async playCards(cards, type, playerID)
         {
 console.log("play called by " + playerID + " : " + cards + " as " + type);
-            const response = await fetch('api/playcards', {
+            const response = await fetch('api/game/playcards', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -365,6 +387,7 @@ console.log("play called by " + playerID + " : " + cards + " as " + type);
             const result = await response.json();
             console.log(result);
             this.gameState = result;
+            this.playTypes = [];
         }
     }
 });

@@ -60,6 +60,27 @@ public class TaiPan
         {
             e.printStackTrace();
         }
+        catch (CantPassTurnWhenNotInException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Lets the Player pass.
+     *
+     * @param playerNumber {int} - The Player that wants to pass.
+     */
+    public void pass(final int playerNumber)
+    {
+        try
+        {
+            this.getPlayer(playerNumber).passTurn();
+        }
+        catch (CantPassTurnWhenNotInException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /**
