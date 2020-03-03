@@ -127,7 +127,7 @@ Vue.component('game-screen', {
     data()
     {
         return {
-            checkedCards: [],
+            checkedCards: [[],[],[],[]],
         }
     },
     template: `
@@ -155,8 +155,8 @@ Vue.component('game-screen', {
                     <div v-for="card in player.cards">
                         <input type="checkbox"
                             :value="card.suit+','+card.rank"
-                            v-model="checkedCards"
-                            @change="chooseCard()">
+                            v-model="checkedCards[player.id]"
+                            @change="chooseCard(player.id)">
                             {{ card.suit }}, {{ card.rank }}
                         </input>
                     </div>
@@ -183,9 +183,9 @@ Vue.component('game-screen', {
         {
             this.$emit('draw-cards', player);
         },
-        chooseCard()
+        chooseCard(player)
         {
-            this.$emit('choose-card', this.checkedCards);
+            this.$emit('choose-card', this.checkedCards[player]);
         },
         passTurn(player)
         {
@@ -193,8 +193,8 @@ Vue.component('game-screen', {
         },
         playCards(type, player)
         {
-            this.$emit('play-cards', this.checkedCards, type, player);
-            this.checkedCards = [];
+            this.$emit('play-cards', this.checkedCards[player], type, player);
+            this.checkedCards[player] = [];
         }
     }
 });

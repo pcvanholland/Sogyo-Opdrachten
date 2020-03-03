@@ -146,7 +146,7 @@ final class JSONProcessor
     protected static ArrayList<Card> createCardsFromJSON(final String cards)
     {
         ArrayList<Card> realCards = new ArrayList<Card>();
-        if (cards.length() == 2)
+        if (cards.length() <= 5)
         {
             return realCards;
         }
