@@ -241,7 +241,6 @@ abstract class PlayHelper
         final Set set
     )
     {
-        ArrayList<Set> validSets = determineTypesOfSet(cards);
         if (set.equals(Set.SINGLE))
         {
             return new Single(cards);

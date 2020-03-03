@@ -92,12 +92,12 @@ public class TaiPan
     /**
      * Returns the types of Play this set of Cards can have.
      *
-     * @param JSONCards {String[]} - An ArrayList of Cards to check.
+     * @param cardsJSON {String} - An JSON-String of Cards to check.
      * @return {String[]} - An ArrayList of the types of Plays.
      */
-    public ArrayList<String> getTypesOfPlay(final String JSONCards)
+    public ArrayList<String> getTypesOfPlay(final String cardsJSON)
     {
-        ArrayList<Card> cards = JSONProcessor.createCardsFromJSON(JSONCards);
+        ArrayList<Card> cards = JSONProcessor.createCardsFromJSON(cardsJSON);
 
         ArrayList<String> result = new ArrayList<String>();
         for (Set set : PlayHelper.determineTypesOfSet(cards))

@@ -114,7 +114,7 @@ public class Play_FullHouse_Test extends Play_Test_Helper
         new FullHouse(cards);
     }
 
-    @Test(expected = InvalidPlayException.class)
+    @Test(expected = InvalidFullHouseException.class)
     public void test_initFailsWhenDifferentType()
     {
         ArrayList<Card> cards = new ArrayList<Card>();

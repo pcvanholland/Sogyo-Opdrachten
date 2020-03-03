@@ -15,6 +15,29 @@ public class TaiPan_Test
     }
 
     @Test
+    public void test_drawCards()
+    {
+        int playerID = 0;
+        TaiPan tp = new TaiPan();
+        tp.letPlayerDrawCards(playerID);
+        tp.letPlayerDrawCards(playerID);
+
+        Assert.assertEquals(14, tp.getPlayer(playerID).getCards().size());
+    }
+
+    @Test
+    public void test_drawTooMuchCards()
+    {
+        int playerID = 0;
+        TaiPan tp = new TaiPan();
+        tp.letPlayerDrawCards(playerID);
+        tp.letPlayerDrawCards(playerID);
+        tp.letPlayerDrawCards(playerID);
+
+        Assert.assertEquals(14, tp.getPlayer(playerID).getCards().size());
+    }
+
+    @Test
     public void test_play()
     {
         int playerID = 0;
@@ -24,5 +47,38 @@ public class TaiPan_Test
 
         tp.play(playerID, "[\"SPECIAL,MAHJONG\"]", "SINGLE");
         Assert.assertEquals(13, tp.getPlayer(playerID).getCards().size());
+    }
+
+    @Test
+    public void test_cantPlayNotInTurn()
+    {
+        int playerID = 0;
+        TaiPan tp = new TaiPan(Player_Test.SEED);
+        tp.letPlayerDrawCards(playerID);
+
+        tp.play(playerID, "[\"SPECIAL,MAHJONG\"]", "SINGLE");
+        Assert.assertEquals(6, tp.getPlayer(playerID).getCards().size());
+    }
+
+    @Test
+    public void test_cantPlayHasNoCards()
+    {
+        int playerID = 0;
+        TaiPan tp = new TaiPan();
+
+        tp.play(playerID, "[\"SPECIAL,MAHJONG\"]", "SINGLE");
+        Assert.assertEquals(0, tp.getPlayer(playerID).getCards().size());
+    }
+
+    @Test
+    public void test_cantPlayInvalidPlay()
+    {
+        int playerID = 0;
+        TaiPan tp = new TaiPan();
+        tp.letPlayerDrawCards(playerID);
+        tp.letPlayerDrawCards(playerID);
+
+        tp.play(playerID, "[\"SPECIAL,MAHJONG\"]", "PAIR");
+        Assert.assertEquals(14, tp.getPlayer(playerID).getCards().size());
     }
 }

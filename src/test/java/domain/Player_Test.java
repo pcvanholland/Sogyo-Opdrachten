@@ -198,6 +198,17 @@ public class Player_Test
     }
 
     @Test
+    public void test_canPlayBombWhenInTurn() throws
+        CantDrawTooManyTimesException
+    {
+        Player firstPlayer = this.createPlayerInTurn();
+
+        Assert.assertTrue(
+            firstPlayer.canPlay(Play_Test_Helper.createFOAKBomb(2))
+        );
+    }
+
+    @Test
     public void test_canPlayBombWhenOutOfTurn()
     {
         Player firstPlayer = new Player(new Table());

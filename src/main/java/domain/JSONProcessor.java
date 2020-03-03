@@ -13,7 +13,7 @@ final class JSONProcessor
      * @param game {TaiPan} - The Game to JSONify.
      * @return {JSONObject} - The JSON representation of the Game.
      */
-    protected static final JSONObject createJSONGame(final TaiPan game)
+    protected static JSONObject createJSONGame(final TaiPan game)
     {
         JSONObject result = new JSONObject();
         result.put("players", createJSONPlayers(game));
@@ -27,7 +27,7 @@ final class JSONProcessor
      * @param game {TaiPan} - The game to JSONify the Players of.
      * @return {JSONArray} - The JSON representation of the Players.
      */
-    protected static final JSONArray createJSONPlayers(final TaiPan game)
+    protected static JSONArray createJSONPlayers(final TaiPan game)
     {
         JSONArray result = new JSONArray();
         for (int i = 0; i < Player.NUM_PLAYERS; ++i)
@@ -43,7 +43,7 @@ final class JSONProcessor
      * @param player {Player} - The Player to JSONify.
      * @return {JSONObject} - The JSON representation of the Player.
      */
-    protected static final JSONObject createJSONPlayer(final Player player)
+    protected static JSONObject createJSONPlayer(final Player player)
     {
         JSONObject result = new JSONObject();
         result.put("cards", createJSONCards(player.getCards()));
@@ -60,7 +60,7 @@ final class JSONProcessor
      * @param table {Table} - The Table to JSONify.
      * @return {JSONObject} - The JSON representation of the Table.
      */
-    protected static final JSONObject createJSONTable(final Table table)
+    protected static JSONObject createJSONTable(final Table table)
     {
         JSONObject result = new JSONObject();
         result.put("trick", createJSONPlays(
@@ -76,7 +76,7 @@ final class JSONProcessor
      * @param plays {Play[]} - The Plays to JSONify.
      * @return {JSONArray} - The JSON representation of the Plays.
      */
-    private static final JSONArray createJSONPlays(
+    private static JSONArray createJSONPlays(
         final ArrayList<Play> plays
     )
     {
@@ -92,10 +92,10 @@ final class JSONProcessor
     /**
      * Squashes a Play to a JSONObject.
      *
-     * @param plays {Play} - The Play to JSONify.
+     * @param play {Play} - The Play to JSONify.
      * @return {JSONObject} - The JSON representation of the Play.
      */
-    private static final JSONObject createJSONPlay(final Play play)
+    private static JSONObject createJSONPlay(final Play play)
     {
         JSONObject result = new JSONObject();
         result.put("cards", createJSONCards(play.getCards()));
@@ -109,7 +109,7 @@ final class JSONProcessor
      * @param cards {Card[]} - The Cards to JSONify.
      * @return {JSONArray} - The JSON representation of the Cards.
      */
-    protected static final JSONArray createJSONCards(
+    protected static JSONArray createJSONCards(
         final ArrayList<Card> cards
     )
     {
@@ -127,7 +127,7 @@ final class JSONProcessor
      * @param card {Card} - The Card to JSONify.
      * @return {JSONObject} - The JSON representation of the Card.
      */
-    protected static final JSONObject createJSONCard(final Card card)
+    protected static JSONObject createJSONCard(final Card card)
     {
         JSONObject result = new JSONObject();
         result.put("suit", card.getSuit().toString());

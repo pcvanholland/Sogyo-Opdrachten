@@ -28,7 +28,7 @@ class Trick
     /**
      * Tries to play a Play.
      *
-     * @param newPlay {Play} - The Play to put on top of this Trick.
+     * @param play {Play} - The Play to put on top of this Trick.
      */
     protected void play(final Play play)
     {

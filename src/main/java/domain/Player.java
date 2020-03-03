@@ -221,7 +221,7 @@ public class Player
      */
     protected boolean canPlay(final Play play)
     {
-        return (this.inTurn || play instanceof Bomb) &&
+        return (this.isInTurn() || play instanceof Bomb) &&
             this.getTable().canPlay(play);
     }
 
@@ -239,6 +239,7 @@ public class Player
 
     /**
      * @param cardsToPlay {Card[]} - Cards to play.
+     * @param type {Set} - The type of combination to play the Cards as.
      */
     protected void play(
         final ArrayList<Card> cardsToPlay,

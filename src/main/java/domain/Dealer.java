@@ -24,6 +24,8 @@ class Dealer
 
     /**
      * Constructs a dealer with a predefined seed.
+     *
+     * @param seed {int} - The random seed to use for the Dealer.
      */
     Dealer(final int seed)
     {
@@ -32,6 +34,8 @@ class Dealer
 
     /**
      * Creates and shuffles a set of cards.
+     *
+     * @param rng {Random} - A Random instance for shuffeling the Cards.
      */
     private void createAndShuffleCards(final java.util.Random rng)
     {

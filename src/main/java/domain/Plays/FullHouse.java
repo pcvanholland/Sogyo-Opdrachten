@@ -9,7 +9,7 @@ class FullHouse extends Play
     /**
      * The default constructor for a FullHouse using a full set of Cards.
      *
-     * @param newCards {Card[]} - An ArrayList of Cards to make a FullHouse with.
+     * @param newCards {Card[]} - ArrayList of Cards to make a FullHouse with.
      */
     FullHouse(final ArrayList<Card> newCards)
     {
@@ -31,10 +31,6 @@ class FullHouse extends Play
         InvalidPlayException
     {
         super(getAllCards(newTriple, newPair));
-        if (!isFullHouse(getAllCards(newTriple, newPair)))
-        {
-            throw new InvalidFullHouseException();
-        }
         this.triple = newTriple;
     }
 
