@@ -8,10 +8,11 @@ class Stair extends Play
      * The constructor for a Stair.
      *
      * @param newCards {Card[]} - An ArrayList of Cards.
+     * @param newOwner {Player} - The Player who played this Stair.
      */
-    Stair(final ArrayList<Card> newCards)
+    Stair(final ArrayList<Card> newCards, final Player newOwner)
     {
-        super(newCards);
+        super(newCards, newOwner);
         if (!isStair(newCards))
         {
             throw new InvalidStairException();

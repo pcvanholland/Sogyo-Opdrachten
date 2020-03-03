@@ -5,19 +5,23 @@ import java.util.ArrayList;
 abstract class Play
 {
     private ArrayList<Card> cards;
+    private Player owner;
 
     /**
      * Constructor for a Play (a set of Cards played).
      *
      * @param newCards {Card[]} - An ArrayList of Cards bundled in this Play.
+     * @param newOwner {Player} - The Player who played this Play.
      */
-    Play(final ArrayList<Card> newCards) throws InvalidPlayException
+    Play(final ArrayList<Card> newCards, final Player newOwner) throws
+        InvalidPlayException
     {
         if (PlayHelper.determineTypesOfSet(newCards).size() < 1)
         {
             throw new InvalidPlayException();
         }
         this.cards = newCards;
+        this.owner = newOwner;
     }
 
     /**
@@ -77,5 +81,13 @@ abstract class Play
     final int getLength()
     {
         return this.getCards().size();
+    }
+
+    /**
+     * @return {Player} - The Player who played this Play.
+     */
+    final Player getOwner()
+    {
+        return this.owner;
     }
 }

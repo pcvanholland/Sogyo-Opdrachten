@@ -8,10 +8,11 @@ class Triple extends Play
      * The constructor for a Triple.
      *
      * @param newCards {Card[]} - An ArrayList of Cards.
+     * @param newOwner {Player} - The Player who played this Triple.
      */
-    Triple(final ArrayList<Card> newCards)
+    Triple(final ArrayList<Card> newCards, final Player newOwner)
     {
-        super(newCards);
+        super(newCards, newOwner);
         if (!isTriple(newCards))
         {
             throw new InvalidTripleException();

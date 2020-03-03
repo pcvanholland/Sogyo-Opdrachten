@@ -78,4 +78,17 @@ class Table
         return this.getCurrentTrick() == null ||
             play.beats(this.getLastPlay());
     }
+
+    /**
+     * Takes the current Trick and gives it to the asker.
+     *
+     * @return {Trick} - The current Trick.
+     */
+    protected Trick giveTrick()
+    {
+        Trick trickToGive = this.getCurrentTrick();
+        this.trick = null;
+
+        return trickToGive;
+    }
 }

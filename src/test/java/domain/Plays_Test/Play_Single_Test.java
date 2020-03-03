@@ -25,7 +25,7 @@ public class Play_Single_Test extends Play_Test_Helper
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
 
-        new Single(cards);
+        new Single(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidPlayException.class)
@@ -35,7 +35,7 @@ public class Play_Single_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
 
-        new Single(cards);
+        new Single(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidSingleException.class)
@@ -45,7 +45,7 @@ public class Play_Single_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
 
-        new Single(cards);
+        new Single(cards, TEST_PLAYER);
     }
 
     @Test

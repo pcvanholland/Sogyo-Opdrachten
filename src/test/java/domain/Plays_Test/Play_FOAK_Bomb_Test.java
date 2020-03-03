@@ -16,7 +16,7 @@ public class Play_FOAK_Bomb_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
 
-        new Bomb(cards);
+        new Bomb(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidPlayException.class)
@@ -28,7 +28,7 @@ public class Play_FOAK_Bomb_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
 
-        new Bomb(cards);
+        new Bomb(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidBombException.class)
@@ -38,7 +38,7 @@ public class Play_FOAK_Bomb_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
 
-        new Bomb(cards);
+        new Bomb(cards, TEST_PLAYER);
     }
 
     @Test

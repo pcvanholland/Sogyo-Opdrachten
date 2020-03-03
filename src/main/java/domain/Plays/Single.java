@@ -8,10 +8,11 @@ class Single extends Play
      * The constructor for a Single.
      *
      * @param newCards {Card[]} - ArrayList containing the Card of the Single.
+     * @param newOwner {Player} - The Player who played this Single.
      */
-    Single(final ArrayList<Card> newCards)
+    Single(final ArrayList<Card> newCards, final Player newOwner)
     {
-        super(newCards);
+        super(newCards, newOwner);
         if (!isSingle(newCards))
         {
             throw new InvalidSingleException();

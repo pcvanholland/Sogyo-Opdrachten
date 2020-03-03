@@ -8,10 +8,11 @@ class Bomb extends Play
      * Constructor for a Bomb.
      *
      * @param newCards {Card[]} - An ArrayList of Cards comprising the new Bomb.
+     * @param newOwner {Player} - The Player who played this Bomb.
      */
-    Bomb(final ArrayList<Card> newCards)
+    Bomb(final ArrayList<Card> newCards, final Player newOwner)
     {
-        super(newCards);
+        super(newCards, newOwner);
         if (!isBomb(newCards))
         {
             throw new InvalidBombException();

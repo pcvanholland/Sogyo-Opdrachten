@@ -232,42 +232,44 @@ abstract class PlayHelper
      * Creates a proper Play of the given Cards.
      *
      * @param cards {Card[]} - An ArrayList of Cards to convert.
+     * @param owner {Player} - The Player who wants to Play the Play.
      * @param set {Set} - The type of Play to use.
      *
      * @return {Play} - The Play the Cards have become.
      */
     protected static final Play createPlay(
         final ArrayList<Card> cards,
+        final Player owner,
         final Set set
     )
     {
         if (set.equals(Set.SINGLE))
         {
-            return new Single(cards);
+            return new Single(cards, owner);
         }
         if (set.equals(Set.PAIR))
         {
-            return new Pair(cards);
+            return new Pair(cards, owner);
         }
         if (set.equals(Set.TRIPLE))
         {
-            return new Triple(cards);
+            return new Triple(cards, owner);
         }
         if (set.equals(Set.STAIR))
         {
-            return new Stair(cards);
+            return new Stair(cards, owner);
         }
         if (set.equals(Set.FULLHOUSE))
         {
-            return new FullHouse(cards);
+            return new FullHouse(cards, owner);
         }
         if (set.equals(Set.STRAIGHT))
         {
-            return new Straight(cards);
+            return new Straight(cards, owner);
         }
         if (set.equals(Set.BOMB))
         {
-            return new Bomb(cards);
+            return new Bomb(cards, owner);
         }
         // We can't arrive here.
         throw new InvalidPlayException();

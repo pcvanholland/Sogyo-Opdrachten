@@ -8,10 +8,11 @@ class Pair extends Play
      * The constructor for a Pair.
      *
      * @param newCards {Card[]} - An ArrayList of Cards.
+     * @param newOwner {Player} - The Player who played this Pair.
      */
-    Pair(final ArrayList<Card> newCards)
+    Pair(final ArrayList<Card> newCards, final Player newOwner)
     {
-        super(newCards);
+        super(newCards, newOwner);
         if (!isPair(newCards))
         {
             throw new InvalidPairException();

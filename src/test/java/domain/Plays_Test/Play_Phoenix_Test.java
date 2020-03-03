@@ -13,7 +13,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new SpecialCard(SpecialRank.PHOENIX));
 
-        new Single(cards);
+        new Single(cards, TEST_PLAYER);
     }
 
     @Test

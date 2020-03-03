@@ -162,7 +162,7 @@ public class Play_Straight_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FIVE));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SIX));
 
-        new Straight(cards);
+        new Straight(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidPlayException.class)
@@ -174,7 +174,7 @@ public class Play_Straight_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
 
-        new Straight(cards);
+        new Straight(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidStraightException.class)
@@ -186,7 +186,7 @@ public class Play_Straight_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
 
-        new Straight(cards);
+        new Straight(cards, TEST_PLAYER);
     }
 
     @Test

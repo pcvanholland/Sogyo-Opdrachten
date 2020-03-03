@@ -218,7 +218,7 @@ public class Play_Stair_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.THREE));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
 
-        new Stair(cards);
+        new Stair(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidPlayException.class)
@@ -230,7 +230,7 @@ public class Play_Stair_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
 
-        new Stair(cards);
+        new Stair(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidStairException.class)
@@ -240,7 +240,7 @@ public class Play_Stair_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
 
-        new Stair(cards);
+        new Stair(cards, TEST_PLAYER);
     }
 
     @Test

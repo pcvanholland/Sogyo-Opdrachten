@@ -15,7 +15,7 @@ public class Play_Triple_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
 
-        new Triple(cards);
+        new Triple(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidPlayException.class)
@@ -27,7 +27,7 @@ public class Play_Triple_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
 
-        new Triple(cards);
+        new Triple(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidTripleException.class)
@@ -37,7 +37,7 @@ public class Play_Triple_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
-        new Triple(cards);
+        new Triple(cards, TEST_PLAYER);
     }
 
     @Test

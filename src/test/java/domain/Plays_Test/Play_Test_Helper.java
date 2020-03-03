@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public abstract class Play_Test_Helper
 {
-    private final static java.util.Random rng = new java.util.Random(0);
+    private final static java.util.Random rng = new java.util.Random();
+    final static Player TEST_PLAYER = new Player(new Table());
 
     /**
      * Creates a Single Card with a random Suit.
@@ -30,7 +31,7 @@ public abstract class Play_Test_Helper
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(value));
-        return new Single(cards);
+        return new Single(cards, TEST_PLAYER);
     }
 
     /**
@@ -44,7 +45,7 @@ public abstract class Play_Test_Helper
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(value));
         cards.add(createRandomCard(value));
-        return new Pair(cards);
+        return new Pair(cards, TEST_PLAYER);
     }
 
     /**
@@ -64,7 +65,7 @@ public abstract class Play_Test_Helper
             cards.add(createRandomCard(current));
         }
         java.util.Collections.shuffle(cards);
-        return new Stair(cards);
+        return new Stair(cards, TEST_PLAYER);
     }
 
     /**
@@ -79,7 +80,7 @@ public abstract class Play_Test_Helper
         cards.add(createRandomCard(value));
         cards.add(createRandomCard(value));
         cards.add(createRandomCard(value));
-        return new Triple(cards);
+        return new Triple(cards, TEST_PLAYER);
     }
 
     /**
@@ -94,7 +95,15 @@ public abstract class Play_Test_Helper
         final int tripleValue, final int pairValue
     )
     {
-        return new FullHouse(createTriple(tripleValue), createPair(pairValue));
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(createRandomCard(tripleValue));
+        cards.add(createRandomCard(tripleValue));
+        cards.add(createRandomCard(tripleValue));
+
+        cards.add(createRandomCard(pairValue));
+        cards.add(createRandomCard(pairValue));
+
+        return new FullHouse(cards, TEST_PLAYER);
     }
 
     /**
@@ -125,7 +134,7 @@ public abstract class Play_Test_Helper
             cards.add(createRandomCard(current++));
         }
         java.util.Collections.shuffle(cards);
-        return new Straight(cards);
+        return new Straight(cards, TEST_PLAYER);
     }
 
     /**
@@ -142,7 +151,7 @@ public abstract class Play_Test_Helper
             cards.add(new PlayingCard(suit, StandardRank.values()[value - 2]));
         }
         java.util.Collections.shuffle(cards);
-        return new Bomb(cards);
+        return new Bomb(cards, TEST_PLAYER);
     }
 
     /**
@@ -163,7 +172,7 @@ public abstract class Play_Test_Helper
             cards.add(new PlayingCard(suit, StandardRank.values()[current++]));
         }
         java.util.Collections.shuffle(cards);
-        return new Bomb(cards);
+        return new Bomb(cards, TEST_PLAYER);
     }
 
     /**
@@ -175,7 +184,7 @@ public abstract class Play_Test_Helper
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new SpecialCard(SpecialRank.DRAGON));
-        return new Single(cards);
+        return new Single(cards, TEST_PLAYER);
     }
 
     /**
@@ -187,7 +196,7 @@ public abstract class Play_Test_Helper
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new SpecialCard(SpecialRank.MAHJONG));
-        return new Single(cards);
+        return new Single(cards, TEST_PLAYER);
     }
 
     /**
@@ -199,6 +208,6 @@ public abstract class Play_Test_Helper
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new SpecialCard(SpecialRank.PHOENIX));
-        return new Single(cards);
+        return new Single(cards, TEST_PLAYER);
     }
 }

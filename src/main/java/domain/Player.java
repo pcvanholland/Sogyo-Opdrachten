@@ -12,6 +12,7 @@ public class Player
     private Player neighbour;
 
     private ArrayList<Card> cards = new ArrayList<Card>();
+    private ArrayList<Trick> wonTricks = new ArrayList<Trick>();
     private boolean inTurn = false;
     private int handsDrawn = 0;
 
@@ -248,16 +249,16 @@ public class Player
         final Set type
     ) throws CantPlayException, CantPassException
     {
-        if (!this.canPlay(PlayHelper.createPlay(cardsToPlay, type)))
-        {
-            throw new CantPlayException();
-        }
         if (!hasCards(cardsToPlay))
         {
             throw new PlayerDontHasCardException();
         }
+        if (!this.canPlay(PlayHelper.createPlay(cardsToPlay, this, type)))
+        {
+            throw new CantPlayException();
+        }
         ArrayList<Card> takenCards = this.takeCards(cardsToPlay);
-        this.play(PlayHelper.createPlay(takenCards, type));
+        this.play(PlayHelper.createPlay(takenCards, this, type));
     }
 
     /**
@@ -348,5 +349,17 @@ public class Player
     void giveTurn()
     {
         this.inTurn = true;
+        if (this.getTable().getLastPlay().getOwner() == this)
+        {
+            this.wonTricks.add(this.getTable().giveTrick());
+        }
+    }
+
+    /**
+     * @return {Trick[]} - The Tricks won by this Player.
+     */
+    protected ArrayList<Trick> getWonTricks()
+    {
+        return this.wonTricks;
     }
 }

@@ -10,10 +10,11 @@ class Straight extends Play
      * The default constructor for a Straight.
      *
      * @param newCards {Card[]} - An ArrayList of Cards.
+     * @param newOwner {Player} - The Player who played this Straight.
      */
-    Straight(final ArrayList<Card> newCards)
+    Straight(final ArrayList<Card> newCards, final Player newOwner)
     {
-        super(newCards);
+        super(newCards, newOwner);
         if (!isStraight(newCards))
         {
             throw new InvalidStraightException();

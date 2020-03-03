@@ -14,7 +14,7 @@ public class Play_Pair_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
-        new Pair(cards);
+        new Pair(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidPlayException.class)
@@ -26,7 +26,7 @@ public class Play_Pair_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
 
-        new Pair(cards);
+        new Pair(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidPairException.class)
@@ -35,7 +35,7 @@ public class Play_Pair_Test extends Play_Test_Helper
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
-        new Pair(cards);
+        new Pair(cards, TEST_PLAYER);
     }
 
     @Test

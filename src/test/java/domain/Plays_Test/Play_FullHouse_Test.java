@@ -83,13 +83,6 @@ public class Play_FullHouse_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_init()
-    {
-        new FullHouse(createTriple(2), createPair(3));
-        new FullHouse(createPair(2), createTriple(3));
-    }
-
-    @Test
     public void test_initFromArray()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
@@ -99,7 +92,7 @@ public class Play_FullHouse_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.FOUR));
 
-        new FullHouse(cards);
+        new FullHouse(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidPlayException.class)
@@ -111,7 +104,7 @@ public class Play_FullHouse_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
 
-        new FullHouse(cards);
+        new FullHouse(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidFullHouseException.class)
@@ -122,7 +115,7 @@ public class Play_FullHouse_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
 
-        new FullHouse(cards);
+        new FullHouse(cards, TEST_PLAYER);
     }
 
     @Test

@@ -94,6 +94,19 @@ public class Player_Test
     }
 
     @Test
+    public void test_playersStartWithoutWonTricks() throws
+        CantDrawTooManyTimesException, CantPlayException,
+        CantPassException
+    {
+        Player firstPlayer = new Player(new Table());
+
+        Assert.assertEquals(
+            new ArrayList<Trick>(),
+            firstPlayer.getWonTricks()
+        );
+    }
+
+    @Test
     public void test_zeroHandsDrawn()
     {
         Player firstPlayer = new Player(new Table());
@@ -417,5 +430,23 @@ public class Player_Test
         firstPlayer.play(cards, Set.SINGLE);
 
         Assert.assertTrue(firstPlayer.getPlayerAtPositionCCW(1).isInTurn());
+    }
+
+    @Test
+    public void test_allPassTakesTrick() throws
+        CantDrawTooManyTimesException, CantPlayException,
+        CantPassException
+    {
+        Player firstPlayer = this.createPlayerInTurn();
+        ArrayList<Card> cards = new ArrayList<Card>();
+
+        // A Card we are certain the Player in turn has.
+        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        firstPlayer.play(cards, Set.SINGLE);
+        firstPlayer.getPlayerAtPositionCCW(1).passTurn();
+        firstPlayer.getPlayerAtPositionCCW(2).passTurn();
+        firstPlayer.getPlayerAtPositionCCW(3).passTurn();
+
+        Assert.assertEquals(1, firstPlayer.getWonTricks().size());
     }
 }
