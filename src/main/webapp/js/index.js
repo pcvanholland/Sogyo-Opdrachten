@@ -165,6 +165,14 @@ Vue.component('game-screen', {
 
             </div>
 
+            <div class="game-table"
+                v-for="play in gameState.table.trick">
+                <div class="play"
+                    v-for="card in play.cards">
+                    {{ card.suit }}, {{ card.rank }}
+                </div>
+            </div>
+
         </div>
     `,
     methods: {

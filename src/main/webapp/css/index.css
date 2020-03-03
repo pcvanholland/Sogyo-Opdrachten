@@ -8,3 +8,8 @@
     float: left;
     border: 1px solid red;
 }
+.play {
+    display: inline-block;
+    float: left;
+    border: 1px solid green;
+}

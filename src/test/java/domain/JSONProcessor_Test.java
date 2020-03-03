@@ -3,6 +3,8 @@ package taipan.domain;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -70,6 +72,10 @@ public class JSONProcessor_Test
         }
         expectedResult.put("players", players);
 
+        JSONObject table = new JSONObject();
+        table.put("trick", new JSONArray());
+        expectedResult.put("table", table);
+
         TaiPan tp = new TaiPan();
 
         Assert.assertEquals(expectedResult,
@@ -98,6 +104,37 @@ public class JSONProcessor_Test
 
         Assert.assertNotEquals(notExpectedResult,
             JSONProcessor.createJSONTable(table)
+        );
+    }
+
+    @Test
+    public void test_createCardsFromJSON()
+    {
+        ArrayList<Card> expectedResult = new ArrayList<Card>();
+        expectedResult.add(
+            new PlayingCard(StandardSuit.JADE, StandardRank.TWO)
+        );
+        expectedResult.add(
+            new PlayingCard(StandardSuit.SWORD, StandardRank.TWO)
+        );
+
+        ArrayList<Card> result =
+            JSONProcessor.createCardsFromJSON("[\"JADE,TWO\",\"SWORD,TWO\"]");
+
+        for (int i = 0; i < result.size(); ++i)
+        {
+            Assert.assertTrue(
+                expectedResult.get(i).equals(result.get(i))
+            );
+        }
+    }
+
+    @Test
+    public void test_createCardsFromJSONEmptySet()
+    {
+        Assert.assertEquals(
+            new ArrayList<Card>(),
+            JSONProcessor.createCardsFromJSON("[]")
         );
     }
 }

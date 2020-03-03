@@ -36,8 +36,10 @@ public class JSONProcessor_Test
                         "\"id\":" +
                             i +
                     "}";
-            expectedResult += i < 3 ? "," : "]}";
+            expectedResult += i < 3 ? "," : "]";
         }
+        expectedResult += ",\"table\":{\"trick\":[]}";
+        expectedResult += "}";
         taipan.domain.TaiPan tp = new taipan.domain.TaiPan();
 
         String result = JSONProcessor.createJSONGameState(tp);
@@ -62,8 +64,10 @@ public class JSONProcessor_Test
                         "\"cards\":" +
                             "[]" +
                     "}";
-            notExpectedResult += i < 3 ? "," : "]}";
+            notExpectedResult += i < 3 ? "," : "]";
         }
+        notExpectedResult += ",\"table\":{\"trick\":[]}";
+        notExpectedResult += "}";
         taipan.domain.TaiPan tp = new taipan.domain.TaiPan();
         tp.letPlayerDrawCards(1);
 

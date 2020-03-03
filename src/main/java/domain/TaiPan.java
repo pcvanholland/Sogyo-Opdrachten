@@ -56,6 +56,10 @@ public class TaiPan
         {
             e.printStackTrace();
         }
+        catch (InvalidPlayException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /**

@@ -17,7 +17,7 @@ final class JSONProcessor
     {
         JSONObject result = new JSONObject();
         result.put("players", createJSONPlayers(game));
-        //result.put("table", createJSONTable(game.getPlayingTable()));
+        result.put("table", createJSONTable(game.getPlayingTable()));
         return result;
     }
 
@@ -145,6 +145,10 @@ final class JSONProcessor
     protected static ArrayList<Card> createCardsFromJSON(final String cards)
     {
         ArrayList<Card> realCards = new ArrayList<Card>();
+        if (cards.length() == 2)
+        {
+            return realCards;
+        }
         String process = cards.substring(2, cards.length() - 2);
         String[] splitCards = process.split("\",\"");
         for (String card : splitCards)
