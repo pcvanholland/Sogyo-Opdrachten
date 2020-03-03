@@ -109,12 +109,19 @@ Vue.component('lobby-screen', {
             Lobby screen.
             <button v-on:click="startGame""
             >Start!</button>
+            <button v-on:click="joinGame""
+                :hidden=true
+            >Join!</button>
         </div>
     `,
     methods: {
         startGame()
         {
             this.$emit('game-started');
+        },
+        joinGame()
+        {
+            this.$emit('game-joined');
         }
     }
 });
@@ -288,12 +295,13 @@ const app = new Vue({
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "gameID": gameID,
+                    //"gameID": gameID,
                     "playerID": this.playerID
                 })
             });
             const result = await response.json();
             console.log(result.result);
+            this.getGameState();
             this.gameID = result.result;
         },
         async startAGame()

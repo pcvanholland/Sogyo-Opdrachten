@@ -20,7 +20,7 @@ public class Lobby
     private static final int FAILURE = 500;
 
     // The currently active game(s).
-//    private Game game;
+    private taipan.domain.TaiPan game;
 
     /**
      * This handles a join request by a Player.
@@ -37,21 +37,25 @@ public class Lobby
     @Produces(MediaType.APPLICATION_JSON)
     @Path("join")
     public Response joinGame(
-        final @Context HttpServletRequest request,
-        final Player player
+        final @Context HttpServletRequest request
     )
     {
 System.out.println("Post on join.");
-        //HttpSession session = request.getSession(true);
-/*
-        //session.setAttribute("taipan", taipan);
-        if (game.isFull())
+        HttpSession session = request.getSession(true);
+        if (session != null)
         {
-            return Response.status(FAILURE).build();
+            session.setAttribute("taipan", this.game);
+/*
+            if (game.isFull())
+            {
+                return Response.status(FAILURE).build();
+            }
+            game.addPlayer(player.getName());
+*/
+            String output = JSONProcessor.createJSONResponse("GameID.");
+            return Response.status(SUCCESS).entity(output).build();
         }
-        game.addPlayer(player.getName());*/
-        String output = JSONProcessor.createJSONResponse("PlayerID.");
-        return Response.status(SUCCESS).entity(output).build();
+        return Response.status(FAILURE).build();
     }
 
     /**
@@ -76,7 +80,8 @@ System.out.println("Post on start.");
         //if (game.isFull())
         if (session != null)
         {
-            session.setAttribute("taipan", new taipan.domain.TaiPan());
+            this.game = new taipan.domain.TaiPan();
+            session.setAttribute("taipan", this.game);
             String output = JSONProcessor.createJSONResponse("GameID.");
 
             return Response.status(SUCCESS).entity(output).build();

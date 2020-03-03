@@ -21,7 +21,8 @@
             <lobby-screen
                 v-else-if="!gameJoined"
                 v-bind:lobby-state="lobby"
-                v-on:game-started="startAGame">
+                v-on:game-started="startAGame"
+                v-on:game-joined="joinGame">
             </lobby-screen>
 
             <game-screen
