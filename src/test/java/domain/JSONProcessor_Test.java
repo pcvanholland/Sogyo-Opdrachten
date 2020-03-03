@@ -30,6 +30,7 @@ public class JSONProcessor_Test
         JSONObject expectedResult = new JSONObject();
         expectedResult.put("cards", new JSONArray());
         expectedResult.put("inTurn", false);
+        expectedResult.put("mayPass", false);
         expectedResult.put("canDraw", true);
         expectedResult.put("id", 0);
 
@@ -46,6 +47,7 @@ public class JSONProcessor_Test
         JSONObject expectedResult = new JSONObject();
         expectedResult.put("cards", new JSONArray());
         expectedResult.put("inTurn", false);
+        expectedResult.put("mayPass", false);
         expectedResult.put("canDraw", true);
         expectedResult.put("id", 0);
 
@@ -66,6 +68,7 @@ public class JSONProcessor_Test
             JSONObject player = new JSONObject();
             player.put("cards", new JSONArray());
             player.put("inTurn", false);
+            player.put("mayPass", false);
             player.put("canDraw", true);
             player.put("id", i);
             players.add(player);

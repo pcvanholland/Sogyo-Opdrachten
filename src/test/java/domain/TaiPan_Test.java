@@ -101,11 +101,13 @@ public class TaiPan_Test
         TaiPan tp = new TaiPan(Player_Test.SEED);
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID);
+        tp.play(playerID, "[\"SPECIAL,MAHJONG\"]", "SINGLE");
 
-        tp.pass(playerID);
+        tp.pass(playerID + 1);
 
         Assert.assertFalse(tp.getPlayer(playerID).isInTurn());
-        Assert.assertTrue(tp.getPlayer(playerID + 1).isInTurn());
+        Assert.assertFalse(tp.getPlayer(playerID + 1).isInTurn());
+        Assert.assertTrue(tp.getPlayer(playerID + 2).isInTurn());
     }
 
     @Test

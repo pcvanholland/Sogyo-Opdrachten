@@ -48,6 +48,7 @@ final class JSONProcessor
         JSONObject result = new JSONObject();
         result.put("cards", createJSONCards(player.getCards()));
         result.put("inTurn", player.isInTurn());
+        result.put("mayPass", player.mayPass());
         result.put("canDraw", player.canDrawCards());
         result.put("id", player.getPlayerID());
 

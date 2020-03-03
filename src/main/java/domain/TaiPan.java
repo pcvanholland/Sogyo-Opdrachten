@@ -60,7 +60,7 @@ public class TaiPan
         {
             e.printStackTrace();
         }
-        catch (CantPassTurnWhenNotInException e)
+        catch (CantPassException e)
         {
             e.printStackTrace();
         }
@@ -77,7 +77,7 @@ public class TaiPan
         {
             this.getPlayer(playerNumber).passTurn();
         }
-        catch (CantPassTurnWhenNotInException e)
+        catch (CantPassException e)
         {
             e.printStackTrace();
         }

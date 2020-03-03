@@ -139,7 +139,7 @@ Vue.component('game-screen', {
                     v-for="player in gameState.players">
                     Player: {{ player.id }}
                     <button v-on:click="passTurn(player.id)"
-                        :hidden="!player.inTurn"
+                        :hidden="!player.mayPass"
                     >Pass turn</button>
 
                     <div class="taipan-sets">

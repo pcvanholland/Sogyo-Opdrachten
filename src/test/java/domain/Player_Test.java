@@ -221,7 +221,7 @@ public class Player_Test
     @Test
     public void test_playWithPlay() throws
         CantDrawTooManyTimesException, CantPlayException,
-        CantPassTurnWhenNotInException
+        CantPassException
     {
         Table playingTable = new Table();
         Player firstPlayer = new Player(playingTable, SEED);
@@ -239,7 +239,7 @@ public class Player_Test
     @Test
     public void test_playWithArrayListOfCards() throws
         CantDrawTooManyTimesException, CantPlayException,
-        CantPassTurnWhenNotInException
+        CantPassException
     {
         Table playingTable = new Table();
         Player firstPlayer = new Player(playingTable, SEED);
@@ -262,7 +262,7 @@ public class Player_Test
     @Test
     public void test_playRemovesCard() throws
         CantDrawTooManyTimesException, CantPlayException,
-        CantPassTurnWhenNotInException
+        CantPassException
     {
         Player firstPlayer = this.createPlayerInTurn();
 
@@ -298,7 +298,7 @@ public class Player_Test
             System.out.println("We know this error happens," +
                 " but we ought to test it.");
         }
-        catch (CantPassTurnWhenNotInException e)
+        catch (CantPassException e)
         {
             System.out.println("We know this error happens," +
                 " but we ought to test it.");
@@ -310,7 +310,7 @@ public class Player_Test
     @Test(expected = PlayerDontHasCardException.class)
     public void test_playCantTakeCardsAPlayerDoesntHave() throws
         CantDrawTooManyTimesException, CantPlayException,
-        CantPassTurnWhenNotInException
+        CantPassException
     {
         Player firstPlayer = this.createPlayerInTurn();
 
@@ -325,7 +325,7 @@ public class Player_Test
     @Test
     public void test_playCantTakeCardsAPlayerDoesntHaveAndLosesNoCards() throws
         CantDrawTooManyTimesException, CantPlayException,
-        CantPassTurnWhenNotInException
+        CantPassException
     {
         Player firstPlayer = this.createPlayerInTurn();
 
@@ -350,41 +350,47 @@ public class Player_Test
     @Test
     public void test_passTurnsPlayerOutOfTurn() throws
         CantDrawTooManyTimesException, CantPlayException,
-        CantPassTurnWhenNotInException
+        CantPassException
     {
         Player firstPlayer = this.createPlayerInTurn();
+        ArrayList<Card> cards = new ArrayList<Card>();
 
-        firstPlayer.passTurn();
+        // A Card we are certain the Player in turn has.
+        cards.add(new SpecialCard(SpecialRank.MAHJONG));
 
-        Assert.assertFalse(firstPlayer.isInTurn());
+        firstPlayer.play(cards, Set.SINGLE);
+
+        firstPlayer.getPlayerAtPositionCCW(1).passTurn();
+
+        Assert.assertFalse(
+            firstPlayer.getPlayerAtPositionCCW(1).isInTurn()
+        );
     }
 
-    @Test
-    public void test_passGivesTurnToNext() throws
-        CantDrawTooManyTimesException, CantPlayException,
-        CantPassTurnWhenNotInException
-    {
-        Player firstPlayer = this.createPlayerInTurn();
-
-        firstPlayer.passTurn();
-
-        Assert.assertTrue(firstPlayer.getPlayerAtPositionCCW(1).isInTurn());
-    }
-
-    @Test(expected = CantPassTurnWhenNotInException.class)
+    @Test(expected = CantPassException.class)
     public void test_cantPassWhenOutOfTurn() throws
         CantDrawTooManyTimesException, CantPlayException,
-        CantPassTurnWhenNotInException
+        CantPassException
     {
         Player firstPlayer = this.createPlayerInTurn();
 
         firstPlayer.getPlayerAtPositionCCW(1).passTurn();
     }
 
+    @Test(expected = CantPassException.class)
+    public void test_cantPassWhenLeading() throws
+        CantDrawTooManyTimesException, CantPlayException,
+        CantPassException
+    {
+        Player firstPlayer = this.createPlayerInTurn();
+
+        firstPlayer.passTurn();
+    }
+
     @Test
     public void test_playTurnsPlayerOutOfTurn() throws
         CantDrawTooManyTimesException, CantPlayException,
-        CantPassTurnWhenNotInException
+        CantPassException
     {
         Player firstPlayer = this.createPlayerInTurn();
         ArrayList<Card> cards = new ArrayList<Card>();
@@ -400,7 +406,7 @@ public class Player_Test
     @Test
     public void test_playGivesTurnToNext() throws
         CantDrawTooManyTimesException, CantPlayException,
-        CantPassTurnWhenNotInException
+        CantPassException
     {
         Player firstPlayer = this.createPlayerInTurn();
         ArrayList<Card> cards = new ArrayList<Card>();

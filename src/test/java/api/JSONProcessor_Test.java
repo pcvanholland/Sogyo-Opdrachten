@@ -33,6 +33,9 @@ public class JSONProcessor_Test
                         "\"canDraw\":" +
                             "true" +
                         "," +
+                        "\"mayPass\":" +
+                            "false" +
+                        "," +
                         "\"id\":" +
                             i +
                     "}";
@@ -63,6 +66,11 @@ public class JSONProcessor_Test
                         "," +
                         "\"cards\":" +
                             "[]" +
+                        "\"mayPass\":" +
+                            "false" +
+                        "," +
+                        "\"id\":" +
+                            i +
                     "}";
             notExpectedResult += i < 3 ? "," : "]";
         }
