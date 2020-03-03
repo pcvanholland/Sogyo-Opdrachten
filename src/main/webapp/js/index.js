@@ -166,7 +166,7 @@ Vue.component('game-screen', {
             </div>
 
             <div class="game-table"
-                v-for="play in gameState.table.trick">
+                v-for="play in gameState.table.trick.slice().reverse()">
                 <div class="play"
                     v-for="card in play.cards">
                     {{ card.suit }}, {{ card.rank }}
