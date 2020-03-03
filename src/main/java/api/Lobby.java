@@ -80,7 +80,7 @@ System.out.println("Post on start.");
         //if (game.isFull())
         if (session != null)
         {
-            this.game = new taipan.domain.TaiPan();
+            this.game = new taipan.domain.TaiPan(28774);
             session.setAttribute("taipan", this.game);
             String output = JSONProcessor.createJSONResponse("GameID.");
 

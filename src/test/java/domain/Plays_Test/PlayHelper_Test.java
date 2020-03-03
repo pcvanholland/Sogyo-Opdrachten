@@ -7,6 +7,40 @@ import java.util.ArrayList;
 
 public class PlayHelper_Test extends Play_Test_Helper
 {
+
+/*
+    @Test
+    public void test_() throws Exception
+    {
+        for (int i = 0; i < 100000000; ++i)
+        {
+            Table playingTable = new Table();
+            Player player = new Player(playingTable, i);
+            player.drawCards();
+            player.drawCards();
+
+            ArrayList<Card> cards = player.getCards();
+            int mji = -1;
+            for (int j = 0; j < cards.size(); ++j)
+            {
+                if (cards.get(j).getRank() == SpecialRank.MAHJONG)
+                {
+                    mji = j;
+                }
+            }
+            if (mji < 0)
+            {
+                continue;
+            }
+            cards.remove(mji);
+            if (PlayHelper.determineTypesOfSet(cards).contains(Set.BOMB))
+            {
+                Assert.assertNotEquals(i, i);
+                break;
+            }
+        }
+    }
+*/
     @Test
     public void test_single()
     {

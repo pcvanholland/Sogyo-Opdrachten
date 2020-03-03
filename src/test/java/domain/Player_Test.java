@@ -7,9 +7,13 @@ import java.util.ArrayList;
 
 public class Player_Test
 {
-    // Seed of three (3) ensures the first Player gets the Mah Jong and
-    // starts thus in turn.
+    // Seed of 3 ensures the first Player to draw Cards gets the turn.
+    // Seed of 10 ensures a FOAK Bomb in the first hand.
+    // Seed of 100813 is a Straight on the first two hands combined.
+    // Seed of 1661 is a Straight Bomb on the first hand.
+    // Seed of 28774 is a Straight Bomb on the first hand with MJ.
     protected static final int SEED = 3;
+    private static final int START_BOMB_SEED = 28774;
 
     /**
      * Helper function to create a Player who starts in turn.
@@ -18,8 +22,18 @@ public class Player_Test
      */
     private Player createPlayerInTurn() throws CantDrawTooManyTimesException
     {
-        Table playingTable = new Table();
-        Player player = new Player(playingTable, SEED);
+        return this.createSeededPlayer(SEED);
+    }
+
+    /**
+     * Helper function to create a Player who starts in turn.
+     *
+     * @return {Player} - A Player who is in turn.
+     */
+    private Player createSeededPlayer(final int seed) throws
+        CantDrawTooManyTimesException
+    {
+        Player player = new Player(new Table(), seed);
 
         // Draw Cards to get in turn.
         player.drawCards();
@@ -448,5 +462,32 @@ public class Player_Test
         firstPlayer.getPlayerAtPositionCCW(3).passTurn();
 
         Assert.assertEquals(1, firstPlayer.getWonTricks().size());
+    }
+
+    @Test
+    public void test_playBombGivesTurnToNeighbour() throws
+        CantDrawTooManyTimesException, CantPlayException,
+        CantPassException
+    {
+        Player firstPlayer = new Player(new Table(), START_BOMB_SEED);
+        firstPlayer.drawCards();
+        ArrayList<Card> bomb = new ArrayList<Card>();
+        for (Card card : firstPlayer.getCards())
+        {
+            if (card.getRank() != SpecialRank.MAHJONG)
+            {
+                bomb.add(card);
+            }
+        }
+        firstPlayer.drawCards();
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        firstPlayer.play(cards, Set.SINGLE);
+        firstPlayer.getPlayerAtPositionCCW(1).passTurn();
+
+        //firstPlayer.play(bomb, Set.BOMB);
+
+        //Assert.assertTrue(firstPlayer.getPlayerAtPositionCCW(1).isInTurn());
     }
 }
