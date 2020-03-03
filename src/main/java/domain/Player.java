@@ -176,6 +176,9 @@ public class Player
         return this.handsDrawn() < 2;
     }
 
+    /**
+     * @return {boolean} - Whether this Player currently has the Mah Jong.
+     */
     private boolean hasMahJong()
     {
         for (Card card : this.getCards())
@@ -246,6 +249,10 @@ public class Player
         {
             throw new CantPlayException();
         }
+        if (!hasCards(cardsToPlay))
+        {
+            throw new PlayerDontHasCardException();
+        }
         ArrayList<Card> takenCards = this.takeCards(cardsToPlay);
         this.play(PlayHelper.createPlay(takenCards, type));
     }
@@ -257,27 +264,48 @@ public class Player
      * @param cardsToTake {Card[]} - The type of Cards to take.
      * @return {Card[]} - The corresponding Cards taken from the Player's deck.
      */
-    private ArrayList<Card> takeCards(final ArrayList<Card> cardsToTake) throws
-        PlayerDontHasCardException
+    private ArrayList<Card> takeCards(final ArrayList<Card> cardsToTake)
     {
         ArrayList<Card> takenCards = new ArrayList<Card>();
         for (Card card : cardsToTake)
         {
-            boolean hadCard = false;
             for (int i = 0; i < this.cards.size(); ++i)
             {
                 if (this.cards.get(i).equals(card))
                 {
                     takenCards.add(this.cards.remove(i));
-                    hadCard = true;
                     break;
                 }
             }
-            if (!hadCard)
-            {
-                throw new PlayerDontHasCardException();
-            }
         }
         return takenCards;
+    }
+
+    /**
+     * This checks whether a Player has all the specified Cards from
+     * in their deck.
+     *
+     * @param cardsToCheck {Card[]} - The type of Cards to check.
+     * @return {boolean} - Whether all the Cards are in the Player's deck.
+     */
+    private boolean hasCards(final ArrayList<Card> cardsToCheck)
+    {
+        for (Card card : cardsToCheck)
+        {
+            boolean hasCard = false;
+            for (int i = 0; i < this.cards.size(); ++i)
+            {
+                if (this.cards.get(i).equals(card))
+                {
+                    hasCard = true;
+                    break;
+                }
+            }
+            if (!hasCard)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

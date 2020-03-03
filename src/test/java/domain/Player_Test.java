@@ -312,6 +312,33 @@ public class Player_Test
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.SEVEN));
 
         firstPlayer.play(cards, Set.PAIR);
+    }
+
+    @Test
+    public void test_playCantTakeCardsAPlayerDoesntHaveAndLosesNoCards() throws
+        CantDrawTooManyTimesException, CantPlayException
+    {
+        Table playingTable = new Table();
+        Player firstPlayer = new Player(playingTable, SEED);
+
+        // Draw Cards to get in turn.
+        firstPlayer.drawCards();
+        firstPlayer.drawCards();
+
+        // We don't have the SWORD SEVEN with seed 3.
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SEVEN));
+        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.SEVEN));
+
+        try
+        {
+            firstPlayer.play(cards, Set.PAIR);
+        }
+        catch (PlayerDontHasCardException e)
+        {
+            System.out.println("We know this error happens," +
+                " but we ought to test it.");
+        }
 
         Assert.assertEquals(14, firstPlayer.getCards().size());
     }
