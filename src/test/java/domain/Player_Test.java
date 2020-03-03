@@ -261,16 +261,11 @@ public class Player_Test
     public void test_playRemovesCard() throws
         CantDrawTooManyTimesException, CantPlayException
     {
-        Table playingTable = new Table();
-        Player firstPlayer = new Player(playingTable, SEED);
-
-        // Draw Cards to get in turn.
-        firstPlayer.drawCards();
-        firstPlayer.drawCards();
+        Player firstPlayer = this.createPlayerInTurn();
 
         ArrayList<Card> cards = new ArrayList<Card>();
 
-        // Only card we are certain the Player in turn has.
+        // A Card we are certain the Player in turn has.
         cards.add(new SpecialCard(SpecialRank.MAHJONG));
 
         firstPlayer.play(cards, Set.SINGLE);
@@ -285,12 +280,10 @@ public class Player_Test
         Table playingTable = new Table();
         Player firstPlayer = new Player(playingTable, SEED);
 
-        // Draw Cards to get in turn.
         firstPlayer.drawCards();
 
         ArrayList<Card> cards = new ArrayList<Card>();
 
-        // Only card we are certain the Player in turn has.
         cards.add(new SpecialCard(SpecialRank.MAHJONG));
 
         try
@@ -310,12 +303,7 @@ public class Player_Test
     public void test_playCantTakeCardsAPlayerDoesntHave() throws
         CantDrawTooManyTimesException, CantPlayException
     {
-        Table playingTable = new Table();
-        Player firstPlayer = new Player(playingTable, SEED);
-
-        // Draw Cards to get in turn.
-        firstPlayer.drawCards();
-        firstPlayer.drawCards();
+        Player firstPlayer = this.createPlayerInTurn();
 
         // We don't have the SWORD SEVEN with seed 3.
         ArrayList<Card> cards = new ArrayList<Card>();
@@ -329,12 +317,7 @@ public class Player_Test
     public void test_playCantTakeCardsAPlayerDoesntHaveAndLosesNoCards() throws
         CantDrawTooManyTimesException, CantPlayException
     {
-        Table playingTable = new Table();
-        Player firstPlayer = new Player(playingTable, SEED);
-
-        // Draw Cards to get in turn.
-        firstPlayer.drawCards();
-        firstPlayer.drawCards();
+        Player firstPlayer = this.createPlayerInTurn();
 
         // We don't have the SWORD SEVEN with seed 3.
         ArrayList<Card> cards = new ArrayList<Card>();
@@ -352,5 +335,35 @@ public class Player_Test
         }
 
         Assert.assertEquals(14, firstPlayer.getCards().size());
+    }
+
+    @Test
+    public void test_playTurnsPlayerOutOfTurn() throws
+        CantDrawTooManyTimesException, CantPlayException
+    {
+        Player firstPlayer = this.createPlayerInTurn();
+        ArrayList<Card> cards = new ArrayList<Card>();
+
+        // A Card we are certain the Player in turn has.
+        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+
+        firstPlayer.play(cards, Set.SINGLE);
+
+        Assert.assertFalse(firstPlayer.isInTurn());
+    }
+
+    @Test
+    public void test_playGivesTurnToNext() throws
+        CantDrawTooManyTimesException, CantPlayException
+    {
+        Player firstPlayer = this.createPlayerInTurn();
+        ArrayList<Card> cards = new ArrayList<Card>();
+
+        // A Card we are certain the Player in turn has.
+        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+
+        firstPlayer.play(cards, Set.SINGLE);
+
+        Assert.assertTrue(firstPlayer.getPlayerAtPositionCCW(1).isInTurn());
     }
 }

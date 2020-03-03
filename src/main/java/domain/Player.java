@@ -235,6 +235,7 @@ public class Player
             throw new CantPlayPlayerException();
         }
         this.getTable().play(play);
+        this.passTurn();
     }
 
     /**
@@ -308,5 +309,30 @@ public class Player
             }
         }
         return true;
+    }
+
+    /**
+     * Passes the turn from this Player to their neighbour.
+     */
+    private void passTurn()
+    {
+        this.takeTurn();
+        this.getNeighbour().giveTurn();
+    }
+
+    /**
+     * Takes the turn from this Player.
+     */
+    private void takeTurn()
+    {
+        this.inTurn = false;
+    }
+
+    /**
+     * Gives the turn to this Player.
+     */
+    void giveTurn()
+    {
+        this.inTurn = true;
     }
 }
