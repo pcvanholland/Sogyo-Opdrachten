@@ -108,10 +108,13 @@ Vue.component('lobby-screen', {
         <div>
             Lobby screen.
             <button v-on:click="startGame""
-            >Start!</button>
+            >Start a new game.</button>
             <button v-on:click="joinGame""
                 :hidden=true
             >Join!</button>
+            <button v-on:click="refresh""
+            >Refresh the game list.</button>
+            {{ lobby }}
         </div>
     `,
     methods: {
@@ -122,6 +125,10 @@ Vue.component('lobby-screen', {
         joinGame()
         {
             this.$emit('game-joined');
+        },
+        refresh()
+        {
+            this.$emit('refresh');
         }
     }
 });
@@ -175,6 +182,9 @@ Vue.component('game-screen', {
 
             </div>
 
+            <button v-on:click="refresh"
+            >Refresh</button>
+
             <div class="game-table"
                 v-for="play in gameState.table.trick.slice().reverse()">
                 <div class="play"
@@ -186,6 +196,10 @@ Vue.component('game-screen', {
         </div>
     `,
     methods: {
+        refresh()
+        {
+            this.$emit('refresh');
+        },
         drawCards(player)
         {
             this.$emit('draw-cards', player);
@@ -264,10 +278,7 @@ const app = new Vue({
             });
             const result = await response.json();
             console.log(result.result);
-            if (result.result && result.result == playerName)
-            {
-                this.playerID = playerName;
-            }
+            this.login(playerName, password);
         },
         async unregister(playerName, password)
         {
@@ -295,8 +306,8 @@ const app = new Vue({
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    //"gameID": gameID,
-                    "playerID": this.playerID
+                    "gameID": 0,//gameID,
+                    "playerName": this.playerID
                 })
             });
             const result = await response.json();
@@ -320,6 +331,19 @@ const app = new Vue({
             console.log(result.result);
             this.getGameState();
             this.gameID = result.result;
+        },
+        async refreshLobby()
+        {
+            const response = await fetch('api/lobby/listgames', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+            const result = await response.json();
+            console.log(result);
+            this.lobby = result;
         },
         async getGameState()
         {

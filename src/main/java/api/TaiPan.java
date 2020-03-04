@@ -43,9 +43,9 @@ System.out.println("Post on play: " +
         HttpSession session = request.getSession(false);
         if (session != null)
         {
-            taipan.domain.TaiPan taipan =
-                (taipan.domain.TaiPan) session.getAttribute("taipan");
-            taipan.play(
+            Game taipan =
+                (Game) session.getAttribute("game");
+            taipan.getImplementation().play(
                 Integer.parseInt(play.getPlayerID()),
                 play.getCards(),
                 play.getType()
@@ -76,9 +76,9 @@ System.out.println("Post on pass turn: " + player);
         HttpSession session = request.getSession(false);
         if (session != null)
         {
-            taipan.domain.TaiPan taipan =
-                (taipan.domain.TaiPan) session.getAttribute("taipan");
-            taipan.pass(player);
+            Game taipan =
+                (Game) session.getAttribute("game");
+            taipan.getImplementation().pass(player);
             return this.returnGameState(taipan);
         }
         return Response.status(FAILURE).build();
@@ -105,9 +105,12 @@ System.out.println("Post on getplaytypes: " + play);
         HttpSession session = request.getSession(false);
         if (session != null)
         {
-            taipan.domain.TaiPan taipan =
-                (taipan.domain.TaiPan) session.getAttribute("taipan");
-            String output = JSONProcessor.createJSONPlayTypes(taipan, play);
+            Game taipan =
+                (Game) session.getAttribute("game");
+            String output =
+                JSONProcessor.createJSONPlayTypes(
+                    taipan.getImplementation(), play
+                );
             return Response.status(SUCCESS).entity(output).build();
         }
 
@@ -132,8 +135,8 @@ System.out.println("Get on GGS.");
         HttpSession session = request.getSession(false);
         if (session != null)
         {
-            taipan.domain.TaiPan taipan =
-                (taipan.domain.TaiPan) session.getAttribute("taipan");
+            Game taipan =
+                (Game) session.getAttribute("game");
             return this.returnGameState(taipan);
         }
 
@@ -161,9 +164,9 @@ System.out.println("Post on drawCards: " + player);
         HttpSession session = request.getSession(false);
         if (session != null)
         {
-            taipan.domain.TaiPan taipan =
-                (taipan.domain.TaiPan) session.getAttribute("taipan");
-            taipan.letPlayerDrawCards(player);
+            Game taipan =
+                (Game) session.getAttribute("game");
+            taipan.getImplementation().letPlayerDrawCards(player);
             return this.returnGameState(taipan);
         }
 
@@ -176,9 +179,11 @@ System.out.println("Post on drawCards: " + player);
      * @param taipan {TaiPan} - The coupled instance of a TaiPan-game.
      * @return {Response} - The GameState of the provided game.
      */
-    private Response returnGameState(final taipan.domain.TaiPan taipan)
+    private Response returnGameState(final Game game)
     {
-        String output = JSONProcessor.createJSONGameState(taipan);
+        String output = JSONProcessor.createJSONGameState(
+            game.getImplementation()
+        );
         return Response.status(SUCCESS).entity(output).build();
     }
 }

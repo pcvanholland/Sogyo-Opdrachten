@@ -6,12 +6,15 @@ import javax.servlet.http.HttpSession;
 //import javax.ws.rs.PUT;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 //import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import java.util.ArrayList;
 
 @Path("/lobby/")
 public class Lobby
@@ -20,14 +23,15 @@ public class Lobby
     private static final int FAILURE = 500;
 
     // The currently active game(s).
-    private static taipan.domain.TaiPan GAME;
+    private static ArrayList<Game> ACTIVE_GAMES = new ArrayList<Game>();
 
     /**
      * This handles a join request by a Player.
      * It *should* contain a game to join.
      *
      * @param request {HttpServletRequest} - A Request from the server.
-     * @param player {Player} - A Player-instance.
+     * @param joinRequest {JoinRequest} - A Player's name and the GameID
+     *                                  of the Game to join.
      *
      * @return {Response} - Whether the join was successful.
      *                  If it was successful, it contains the Game's name.
@@ -37,21 +41,26 @@ public class Lobby
     @Produces(MediaType.APPLICATION_JSON)
     @Path("join")
     public Response joinGame(
-        final @Context HttpServletRequest request
+        final @Context HttpServletRequest request,
+        final JoinRequest joinRequest
     )
     {
-System.out.println("Post on join.");
+System.out.println("Post on join game " +
+    joinRequest.getGameID() + " by " + joinRequest.getPlayerName()
+);
         HttpSession session = request.getSession(true);
         if (session != null)
         {
-            session.setAttribute("taipan", GAME);
 /*
             if (game.isFull())
             {
                 return Response.status(FAILURE).build();
             }
-            game.addPlayer(player.getName());
+            game.addPlayer(joinRequest.getPlayerName());
 */
+            session.setAttribute("game",
+                ACTIVE_GAMES.get(joinRequest.getGameID())
+            );
             String output = JSONProcessor.createJSONResponse("GameID.");
             return Response.status(SUCCESS).entity(output).build();
         }
@@ -80,8 +89,37 @@ System.out.println("Post on start.");
         //if (game.isFull())
         if (session != null)
         {
-            GAME = new taipan.domain.TaiPan(28774);
-            session.setAttribute("taipan", GAME);
+            Game newGame = new Game();
+            ACTIVE_GAMES.add(newGame);
+            session.setAttribute("game", newGame);
+            String output = JSONProcessor.createJSONResponse("GameID.");
+
+            return Response.status(SUCCESS).entity(output).build();
+        }
+        return Response.status(FAILURE).build();
+    }
+
+    /**
+     * This handles a startGame request by a Player.
+     * It *should* contain a game to start.
+     *
+     * @param request {HttpServletRequest} - A Request from the server.
+     *
+     * @return {Response} - Whether the start was successful.
+     */
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("listgames")
+    public Response listGames(
+        final @Context HttpServletRequest request
+    )
+    {
+System.out.println("Get on list.");
+
+        HttpSession session = request.getSession();
+        //if (game.isFull())
+        if (session != null)
+        {
             String output = JSONProcessor.createJSONResponse("GameID.");
 
             return Response.status(SUCCESS).entity(output).build();

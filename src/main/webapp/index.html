@@ -22,13 +22,15 @@
                 v-else-if="!gameJoined"
                 v-bind:lobby-state="lobby"
                 v-on:game-started="startAGame"
-                v-on:game-joined="joinGame">
+                v-on:game-joined="joinGame"
+                v-on:refresh="refreshLobby">
             </lobby-screen>
 
             <game-screen
                 v-else
                 v-bind:game-state="gameState"
                 v-bind:play-types="playTypes"
+                v-on:refresh="getGameState"
                 v-on:draw-cards="drawCards"
                 v-on:choose-card="chooseCard"
                 v-on:pass-turn="passTurn"

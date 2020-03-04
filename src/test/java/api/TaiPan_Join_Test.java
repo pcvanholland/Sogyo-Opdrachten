@@ -23,11 +23,14 @@ public class TaiPan_Join_Test
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
         Lobby tp = new Lobby();
+        JoinRequest joinRequest = new JoinRequest();
+        joinRequest.setPlayerName("SecondPlayer");
+        joinRequest.setGameID(0);
 
         //Assert.assertEquals(200, tp.startGane(request).getStatus());
 
         // No session,,,
-        Assert.assertEquals(500, tp.joinGame(request).getStatus());
+        Assert.assertEquals(500, tp.joinGame(request, joinRequest).getStatus());
     }
 
     @Test
