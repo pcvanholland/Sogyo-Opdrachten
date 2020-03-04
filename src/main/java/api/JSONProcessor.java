@@ -41,6 +41,24 @@ public abstract class JSONProcessor
     }
 
     /**
+     * This creates a JSONified Game list.
+     *
+     * @param games {Game[]} - An ArrayList of active games.
+     * @return {String} - A JSON-String representing the active games.
+     */
+    public static String createJSONGameList(
+        final ArrayList<Game> games
+    )
+    {
+        JSONArray result = new JSONArray();
+        for (Game game : games)
+        {
+            result.add(game.getID());
+        }
+        return result.toJSONString();
+    }
+
+    /**
      * This converts a TaiPan GameState to a JSONString.
      *
      * @param game {TaiPan} - A TaiPan-game to get the GameState from.

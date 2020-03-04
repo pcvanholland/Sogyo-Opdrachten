@@ -85,7 +85,7 @@ System.out.println("Post on join game " +
 System.out.println("Post on start.");
 
         HttpSession session = request.getSession(true);
-        //if (game.isFull())
+        //if (!game.isFull())
         if (session != null)
         {
             Game newGame = new Game(hostID);
@@ -116,10 +116,9 @@ System.out.println("Post on start.");
 System.out.println("Get on list.");
 
         HttpSession session = request.getSession();
-        //if (game.isFull())
         if (session != null)
         {
-            String output = JSONProcessor.createJSONResponse("GameID.");
+            String output = JSONProcessor.createJSONGameList(ACTIVE_GAMES);
 
             return Response.status(SUCCESS).entity(output).build();
         }

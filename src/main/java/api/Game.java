@@ -5,14 +5,18 @@ package taipan.api;
  */
 public class Game
 {
+    private static int COUNTER = 0;
+
     private taipan.domain.TaiPan implementation;
     private PlayerData players;
+    private int gameID;
 
     Game(final String host)
     {
         this.players = new PlayerData();
         this.implementation = new taipan.domain.TaiPan(28774);
         this.players.addPlayer(host);
+        this.gameID = COUNTER++;
     }
 
     /**
@@ -39,5 +43,13 @@ public class Game
     protected boolean isFull()
     {
         return this.players.isGameFull();
+    }
+
+    /**
+     * @return {int} - The ID of this Game.
+     */
+    protected int getID()
+    {
+        return this.gameID;
     }
 }

@@ -104,17 +104,28 @@ Vue.component('start-screen', {
  */
 Vue.component('lobby-screen', {
     props: [ 'lobby' ],
+    data()
+    {
+        return {}
+    },
     template: `
         <div>
             Lobby screen.
-            <button v-on:click="startGame""
-            >Start a new game.</button>
-            <button v-on:click="joinGame""
-                :hidden=true
-            >Join!</button>
-            <button v-on:click="refresh""
-            >Refresh the game list.</button>
-            {{ lobby }}
+            <button v-on:click="startGame">
+                Start a new game.
+            </button>
+
+            <button v-on:click="refresh">
+                Refresh the game list.
+            </button>
+
+            <div class="game-list">
+                <div v-for="gameID in lobby">
+                    <button v-on:click="joinGame(gameID)">
+                        Join {{ gameID }}!
+                    </button>
+                </div>
+            </div>
         </div>
     `,
     methods: {
@@ -122,9 +133,9 @@ Vue.component('lobby-screen', {
         {
             this.$emit('game-started');
         },
-        joinGame()
+        joinGame(gameID)
         {
-            this.$emit('game-joined');
+            this.$emit('game-joined', gameID);
         },
         refresh()
         {
@@ -227,7 +238,7 @@ const app = new Vue({
         playerID: undefined,
         gameID: undefined,
         gameState: undefined,
-        lobby: undefined,
+        lobby: [],
         playTypes: [],
     },
 
@@ -306,7 +317,7 @@ const app = new Vue({
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "gameID": 0,//gameID,
+                    "gameID": gameID,
                     "playerName": this.playerID
                 })
             });
@@ -386,7 +397,6 @@ const app = new Vue({
         },
         async passTurn(playerID)
         {
-console.log("Pass called by " + playerID);
             const response = await fetch('api/game/passturn', {
                 method: 'POST',
                 headers: {
@@ -401,7 +411,6 @@ console.log("Pass called by " + playerID);
         },
         async playCards(cards, type, playerID)
         {
-console.log("play called by " + playerID + " : " + cards + " as " + type);
             const response = await fetch('api/game/playcards', {
                 method: 'POST',
                 headers: {
