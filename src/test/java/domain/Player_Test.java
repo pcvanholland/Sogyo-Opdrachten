@@ -14,6 +14,7 @@ public class Player_Test
     // Seed of 28774 is a Straight Bomb on the first hand with MJ.
     protected static final int SEED = 3;
     private static final int START_BOMB_SEED = 28774;
+    private static final int START_DOG_SEED = 3;
 
     /**
      * Helper function to create a Player who starts in turn.
@@ -28,6 +29,7 @@ public class Player_Test
     /**
      * Helper function to create a Player who starts in turn.
      *
+     * @param seed {int} - The seed to use for the Dealer.
      * @return {Player} - A Player who is in turn.
      */
     private Player createSeededPlayer(final int seed) throws
@@ -38,6 +40,26 @@ public class Player_Test
         // Draw Cards to get in turn.
         player.drawCards();
         player.drawCards();
+
+        return player;
+    }
+
+    /**
+     * Helper function to create a full game.
+     *
+     * @param seed {int} - The seed to use for the Dealer.
+     * @return {Player} - The first Player.
+     */
+    private Player createSeededGame(final int seed) throws
+        CantDrawTooManyTimesException
+    {
+        Player player = this.createSeededPlayer(seed);
+        player.getPlayerAtPositionCCW(1).drawCards();
+        player.getPlayerAtPositionCCW(1).drawCards();
+        player.getPlayerAtPositionCCW(2).drawCards();
+        player.getPlayerAtPositionCCW(2).drawCards();
+        player.getPlayerAtPositionCCW(3).drawCards();
+        player.getPlayerAtPositionCCW(3).drawCards();
 
         return player;
     }
@@ -275,6 +297,9 @@ public class Player_Test
         firstPlayer.drawCards();
         firstPlayer.drawCards();
 
+        // Give the next Player cards to prevent the turn from returning.
+        firstPlayer.getPlayerAtPositionCCW(1).drawCards();
+
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new SpecialCard(SpecialRank.MAHJONG));
 
@@ -379,12 +404,11 @@ public class Player_Test
         CantDrawTooManyTimesException, CantPlayException,
         CantPassException
     {
-        Player firstPlayer = this.createPlayerInTurn();
+        Player firstPlayer = this.createSeededGame(SEED);
         ArrayList<Card> cards = new ArrayList<Card>();
 
         // A Card we are certain the Player in turn has.
         cards.add(new SpecialCard(SpecialRank.MAHJONG));
-
         firstPlayer.play(cards, Set.SINGLE);
 
         firstPlayer.getPlayerAtPositionCCW(1).pass();
@@ -419,7 +443,7 @@ public class Player_Test
         CantDrawTooManyTimesException, CantPlayException,
         CantPassException
     {
-        Player firstPlayer = this.createPlayerInTurn();
+        Player firstPlayer = this.createSeededGame(SEED);
         ArrayList<Card> cards = new ArrayList<Card>();
 
         // A Card we are certain the Player in turn has.
@@ -435,7 +459,7 @@ public class Player_Test
         CantDrawTooManyTimesException, CantPlayException,
         CantPassException
     {
-        Player firstPlayer = this.createPlayerInTurn();
+        Player firstPlayer = this.createSeededGame(SEED);
         ArrayList<Card> cards = new ArrayList<Card>();
 
         // A Card we are certain the Player in turn has.
@@ -451,7 +475,7 @@ public class Player_Test
         CantDrawTooManyTimesException, CantPlayException,
         CantPassException
     {
-        Player firstPlayer = this.createPlayerInTurn();
+        Player firstPlayer = this.createSeededGame(SEED);
         ArrayList<Card> cards = new ArrayList<Card>();
 
         // A Card we are certain the Player in turn has.
@@ -480,6 +504,12 @@ public class Player_Test
             }
         }
         firstPlayer.drawCards();
+        firstPlayer.getPlayerAtPositionCCW(1).drawCards();
+        firstPlayer.getPlayerAtPositionCCW(1).drawCards();
+        firstPlayer.getPlayerAtPositionCCW(2).drawCards();
+        firstPlayer.getPlayerAtPositionCCW(2).drawCards();
+        firstPlayer.getPlayerAtPositionCCW(3).drawCards();
+        firstPlayer.getPlayerAtPositionCCW(3).drawCards();
 
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new SpecialCard(SpecialRank.MAHJONG));
@@ -489,5 +519,50 @@ public class Player_Test
         firstPlayer.play(bomb, Set.BOMB);
 
         Assert.assertTrue(firstPlayer.getPlayerAtPositionCCW(1).isInTurn());
+    }
+
+    @Test
+    public void test_playDogPassesTurnToOpposite() throws
+        CantDrawTooManyTimesException, CantPlayException,
+        CantPassException
+    {
+        Player firstPlayer = createSeededGame(START_DOG_SEED);
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new SpecialCard(SpecialRank.DOG));
+
+        firstPlayer.play(cards, Set.SINGLE);
+
+        Assert.assertTrue(firstPlayer.getPlayerAtPositionCCW(2).isInTurn());
+    }
+
+    @Test
+    public void test_emptyHandPassesTurnToNext() throws
+        CantDrawTooManyTimesException, CantPlayException,
+        CantPassException
+    {
+        Player firstPlayer = createSeededPlayer(SEED);
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+
+        firstPlayer.play(cards, Set.SINGLE);
+
+        Assert.assertTrue(firstPlayer.isInTurn());
+    }
+
+    @Test
+    public void test_emptyHandPassesTurnToNextWithDog() throws
+        CantDrawTooManyTimesException, CantPlayException,
+        CantPassException
+    {
+        Player firstPlayer = createSeededPlayer(START_DOG_SEED);
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new SpecialCard(SpecialRank.DOG));
+
+        firstPlayer.play(cards, Set.SINGLE);
+
+        Assert.assertTrue(firstPlayer.isInTurn());
     }
 }

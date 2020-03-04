@@ -101,6 +101,12 @@ public class TaiPan_Test
         TaiPan tp = new TaiPan(Player_Test.SEED);
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID);
+        tp.letPlayerDrawCards(playerID + 1);
+        tp.letPlayerDrawCards(playerID + 1);
+        tp.letPlayerDrawCards(playerID + 2);
+        tp.letPlayerDrawCards(playerID + 2);
+        tp.letPlayerDrawCards(playerID + 3);
+        tp.letPlayerDrawCards(playerID + 3);
         tp.play(playerID, "[\"SPECIAL,MAHJONG\"]", "SINGLE");
 
         tp.pass(playerID + 1);

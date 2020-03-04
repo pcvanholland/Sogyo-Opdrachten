@@ -322,7 +322,11 @@ public class Player
     {
         if (play instanceof Bomb)
         {
-            this.stealTurnAndPassToNeighbour();
+            this.handleBombing();
+        }
+        else if (play.getCards().get(0).getRank() == SpecialRank.DOG)
+        {
+            this.handleDogging();
         }
         else
         {
@@ -340,7 +344,7 @@ public class Player
         {
             throw new CantPassException();
         }
-        this.passTurnTo(this.getNeighbour());
+        this.passTurnToNeighbour();
     }
 
     /**
@@ -352,6 +356,14 @@ public class Player
     {
         this.takeTurn();
         player.giveTurn();
+    }
+
+    /**
+     * Passes the turn the the neighbouring Player.
+     */
+    private void passTurnToNeighbour()
+    {
+        this.passTurnTo(this.getNeighbour());
     }
 
     /**
@@ -373,8 +385,9 @@ public class Player
 
     /**
      * This steals the turn from whoever is currently in turn.
+     * And gives the turn to the neighbour.
      */
-    private void stealTurnAndPassToNeighbour()
+    private void handleBombing()
     {
         this.getNeighbour().stealsTurn(this.getNeighbour());
     }
@@ -403,6 +416,7 @@ public class Player
     {
         this.inTurn = true;
         this.checkWinTrick();
+        this.checkEmptyCarded();
     }
 
     /**
@@ -414,6 +428,26 @@ public class Player
         if (this.getTable().getLastPlay().getOwner() == this)
         {
             this.wonTricks.add(this.getTable().giveTrick());
+        }
+    }
+
+    /**
+     * Handles a Dog being played.
+     */
+    private void handleDogging()
+    {
+        this.passTurnTo(this.getPlayerAtPositionCCW(2));
+    }
+
+    /**
+     * Checks whether the Player has no more Cards left and thus needs to
+     * give the turn to its neighbour.
+     */
+    private void checkEmptyCarded()
+    {
+        if (this.getCards().size() == 0)
+        {
+            this.passTurnToNeighbour();
         }
     }
 
