@@ -237,7 +237,7 @@ public class Player
             throw new CantPlayPlayerException();
         }
         this.getTable().play(play);
-        this.passTurn();
+        this.handleTurnPassing(play);
     }
 
     /**
@@ -314,16 +314,44 @@ public class Player
     }
 
     /**
-     * Passes the turn from this Player to their neighbour.
+     * This handles the end of a Play, where the turn needs to be reset.
+     *
+     * @param play {Play} - The Play which was played.
      */
-    protected void passTurn() throws CantPassException
+    private void handleTurnPassing(final Play play)
+    {
+        if (play instanceof Bomb)
+        {
+            this.stealTurnAndPassToNeighbour();
+        }
+        else
+        {
+            this.passTurnTo(this.getNeighbour());
+        }
+    }
+
+    /**
+     * Passes the turn from this Player to their neighbour
+     * without playing any Card.
+     */
+    protected void pass() throws CantPassException
     {
         if (!this.mayPass())
         {
             throw new CantPassException();
         }
+        this.passTurnTo(this.getNeighbour());
+    }
+
+    /**
+     * Passes the turn from this Player to the specified Player.
+     *
+     * @param player {Player} - The Player to pass the turn to.
+     */
+    private void passTurnTo(final Player player)
+    {
         this.takeTurn();
-        this.getNeighbour().giveTurn();
+        player.giveTurn();
     }
 
     /**
@@ -344,11 +372,45 @@ public class Player
     }
 
     /**
+     * This steals the turn from whoever is currently in turn.
+     */
+    private void stealTurnAndPassToNeighbour()
+    {
+        this.getNeighbour().stealsTurn(this.getNeighbour());
+    }
+
+    /**
+     * This gives the turn to the specified Player when we were in turn.
+     *
+     * @param player {Player} - The Player to pass the turn to.
+     */
+    private void stealsTurn(final Player player)
+    {
+        if (this.isInTurn())
+        {
+            this.passTurnTo(player);
+        }
+        else
+        {
+            this.getNeighbour().stealsTurn(player);
+        }
+    }
+
+    /**
      * Gives the turn to this Player.
      */
-    void giveTurn()
+    private void giveTurn()
     {
         this.inTurn = true;
+        this.checkWinTrick();
+    }
+
+    /**
+     * Checks whether the passing has gone round and the trick thus needs
+     * to be won.
+     */
+    private void checkWinTrick()
+    {
         if (this.getTable().getLastPlay().getOwner() == this)
         {
             this.wonTricks.add(this.getTable().giveTrick());

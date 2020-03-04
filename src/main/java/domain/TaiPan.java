@@ -75,7 +75,7 @@ public class TaiPan
     {
         try
         {
-            this.getPlayer(playerNumber).passTurn();
+            this.getPlayer(playerNumber).pass();
         }
         catch (CantPassException e)
         {

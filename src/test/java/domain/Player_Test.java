@@ -387,7 +387,7 @@ public class Player_Test
 
         firstPlayer.play(cards, Set.SINGLE);
 
-        firstPlayer.getPlayerAtPositionCCW(1).passTurn();
+        firstPlayer.getPlayerAtPositionCCW(1).pass();
 
         Assert.assertFalse(
             firstPlayer.getPlayerAtPositionCCW(1).isInTurn()
@@ -401,7 +401,7 @@ public class Player_Test
     {
         Player firstPlayer = this.createPlayerInTurn();
 
-        firstPlayer.getPlayerAtPositionCCW(1).passTurn();
+        firstPlayer.getPlayerAtPositionCCW(1).pass();
     }
 
     @Test(expected = CantPassException.class)
@@ -411,7 +411,7 @@ public class Player_Test
     {
         Player firstPlayer = this.createPlayerInTurn();
 
-        firstPlayer.passTurn();
+        firstPlayer.pass();
     }
 
     @Test
@@ -457,9 +457,9 @@ public class Player_Test
         // A Card we are certain the Player in turn has.
         cards.add(new SpecialCard(SpecialRank.MAHJONG));
         firstPlayer.play(cards, Set.SINGLE);
-        firstPlayer.getPlayerAtPositionCCW(1).passTurn();
-        firstPlayer.getPlayerAtPositionCCW(2).passTurn();
-        firstPlayer.getPlayerAtPositionCCW(3).passTurn();
+        firstPlayer.getPlayerAtPositionCCW(1).pass();
+        firstPlayer.getPlayerAtPositionCCW(2).pass();
+        firstPlayer.getPlayerAtPositionCCW(3).pass();
 
         Assert.assertEquals(1, firstPlayer.getWonTricks().size());
     }
@@ -484,10 +484,10 @@ public class Player_Test
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new SpecialCard(SpecialRank.MAHJONG));
         firstPlayer.play(cards, Set.SINGLE);
-        firstPlayer.getPlayerAtPositionCCW(1).passTurn();
+        firstPlayer.getPlayerAtPositionCCW(1).pass();
 
-        //firstPlayer.play(bomb, Set.BOMB);
+        firstPlayer.play(bomb, Set.BOMB);
 
-        //Assert.assertTrue(firstPlayer.getPlayerAtPositionCCW(1).isInTurn());
+        Assert.assertTrue(firstPlayer.getPlayerAtPositionCCW(1).isInTurn());
     }
 }
