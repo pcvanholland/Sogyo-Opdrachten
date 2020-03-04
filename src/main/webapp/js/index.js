@@ -273,6 +273,7 @@ const app = new Vue({
             {
                 this.playerID = playerName;
             }
+            this.refreshLobby();
         },
         async register(playerName, password)
         {
