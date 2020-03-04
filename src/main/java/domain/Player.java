@@ -425,7 +425,8 @@ public class Player
      */
     private void checkWinTrick()
     {
-        if (this.getTable().getLastPlay().getOwner() == this)
+        if (this.getTable().getCurrentTrick() != null &&
+            this.getTable().getLastPlay().getOwner() == this)
         {
             this.wonTricks.add(this.getTable().giveTrick());
         }
@@ -436,6 +437,7 @@ public class Player
      */
     private void handleDogging()
     {
+        this.checkWinTrick();
         this.passTurnTo(this.getPlayerAtPositionCCW(2));
     }
 

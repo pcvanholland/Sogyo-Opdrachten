@@ -537,6 +537,21 @@ public class Player_Test
     }
 
     @Test
+    public void test_playDogLeavesTableEmpty() throws
+        CantDrawTooManyTimesException, CantPlayException,
+        CantPassException
+    {
+        Player firstPlayer = createSeededGame(START_DOG_SEED);
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new SpecialCard(SpecialRank.DOG));
+
+        firstPlayer.play(cards, Set.SINGLE);
+
+        Assert.assertFalse(firstPlayer.getPlayerAtPositionCCW(2).mayPass());
+    }
+
+    @Test
     public void test_emptyHandPassesTurnToNext() throws
         CantDrawTooManyTimesException, CantPlayException,
         CantPassException
