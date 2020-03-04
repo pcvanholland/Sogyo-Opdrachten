@@ -20,7 +20,7 @@ public class Lobby
     private static final int FAILURE = 500;
 
     // The currently active game(s).
-    private taipan.domain.TaiPan game;
+    private static taipan.domain.TaiPan GAME;
 
     /**
      * This handles a join request by a Player.
@@ -44,7 +44,7 @@ System.out.println("Post on join.");
         HttpSession session = request.getSession(true);
         if (session != null)
         {
-            session.setAttribute("taipan", this.game);
+            session.setAttribute("taipan", GAME);
 /*
             if (game.isFull())
             {
@@ -80,8 +80,8 @@ System.out.println("Post on start.");
         //if (game.isFull())
         if (session != null)
         {
-            this.game = new taipan.domain.TaiPan(28774);
-            session.setAttribute("taipan", this.game);
+            GAME = new taipan.domain.TaiPan(28774);
+            session.setAttribute("taipan", GAME);
             String output = JSONProcessor.createJSONResponse("GameID.");
 
             return Response.status(SUCCESS).entity(output).build();
