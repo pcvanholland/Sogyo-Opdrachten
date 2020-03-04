@@ -44,6 +44,9 @@ public class TaiPan_Join_Test
         //Assert.assertEquals(200, tp.startGane(request).getStatus());
 
         // No session,,,
-        Assert.assertEquals(500, tp.startGame(request).getStatus());
+        Assert.assertEquals(
+            500,
+            tp.startGame(request, "FirstPlayer").getStatus()
+        );
     }
 }

@@ -323,9 +323,7 @@ const app = new Vue({
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    "playerID": this.playerID
-                })
+                body: this.playerID
             });
             const result = await response.json();
             console.log(result.result);

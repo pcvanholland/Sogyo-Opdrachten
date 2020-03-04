@@ -51,16 +51,13 @@ System.out.println("Post on join game " +
         HttpSession session = request.getSession(true);
         if (session != null)
         {
-/*
+            Game game = ACTIVE_GAMES.get(joinRequest.getGameID());
             if (game.isFull())
             {
                 return Response.status(FAILURE).build();
             }
-            game.addPlayer(joinRequest.getPlayerName());
-*/
-            session.setAttribute("game",
-                ACTIVE_GAMES.get(joinRequest.getGameID())
-            );
+            game.joinGame(joinRequest.getPlayerName());
+            session.setAttribute("game", game);
             String output = JSONProcessor.createJSONResponse("GameID.");
             return Response.status(SUCCESS).entity(output).build();
         }
@@ -72,6 +69,7 @@ System.out.println("Post on join game " +
      * It *should* contain a game to start.
      *
      * @param request {HttpServletRequest} - A Request from the server.
+     * @param hostID {String} - The ID of the host.
      *
      * @return {Response} - Whether the start was successful.
      */
@@ -80,7 +78,8 @@ System.out.println("Post on join game " +
     @Produces(MediaType.APPLICATION_JSON)
     @Path("startgame")
     public Response startGame(
-        final @Context HttpServletRequest request
+        final @Context HttpServletRequest request,
+        final String hostID
     )
     {
 System.out.println("Post on start.");
@@ -89,7 +88,7 @@ System.out.println("Post on start.");
         //if (game.isFull())
         if (session != null)
         {
-            Game newGame = new Game();
+            Game newGame = new Game(hostID);
             ACTIVE_GAMES.add(newGame);
             session.setAttribute("game", newGame);
             String output = JSONProcessor.createJSONResponse("GameID.");
