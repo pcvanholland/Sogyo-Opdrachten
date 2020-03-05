@@ -69,15 +69,9 @@ abstract class PlayHelper
         final ArrayList<Card> cardsToCheck
     )
     {
-        Card referenceCard = cardsToCheck.get(0);
-        for (Card card : cardsToCheck)
-        {
-            if (!card.hasEqualRank(referenceCard))
-            {
-                return false;
-            }
-        }
-        return true;
+        return containsOnlyNumberOfEqualRanks(
+            cardsToCheck, cardsToCheck.size()
+        );
     }
 
     /**
@@ -223,7 +217,14 @@ abstract class PlayHelper
         ArrayList<Integer> ranks = new ArrayList<Integer>();
         for (Card card : cardsToCheck)
         {
-            ranks.add(card.getValue());
+            if (card.getRank() == SpecialRank.PHOENIX)
+            {
+                ranks.add(PhoenixHelper.determineValueInPlay(cardsToCheck));
+            }
+            else
+            {
+                ranks.add(card.getValue());
+            }
         }
         return ranks;
     }

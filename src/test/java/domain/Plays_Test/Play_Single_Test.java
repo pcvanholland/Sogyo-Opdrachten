@@ -23,7 +23,7 @@ public class Play_Single_Test extends Play_Test_Helper
     public void test_init()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
+        cards.add(createRandomCard(2));
 
         new Single(cards, TEST_PLAYER);
     }
@@ -32,8 +32,8 @@ public class Play_Single_Test extends Play_Test_Helper
     public void test_initFailsWhenWrong()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.THREE));
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(3));
 
         new Single(cards, TEST_PLAYER);
     }
@@ -42,8 +42,8 @@ public class Play_Single_Test extends Play_Test_Helper
     public void test_initFailsWhenTriedWithDifferentType()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(2));
 
         new Single(cards, TEST_PLAYER);
     }

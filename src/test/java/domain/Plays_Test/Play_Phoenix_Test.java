@@ -27,7 +27,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
-/*
+
     @Test
     public void test_phoenixCanBePartOfPair()
     {
@@ -37,6 +37,55 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.PAIR);
+
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+    }
+
+    @Test
+    public void test_phoenixCanBePartOfDifferentPair()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(createRandomCard(5));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+        result.add(Set.PAIR);
+
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+    }
+
+    @Test
+    public void test_phoenixCantPairedWithMahJong()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+    }
+
+    @Test
+    public void test_phoenixCantBePairedWithDog()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(new SpecialCard(SpecialRank.DOG));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+    }
+
+    @Test
+    public void test_phoenixCantBePairedWithDragon()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(new SpecialCard(SpecialRank.DRAGON));
+
+        ArrayList<Set> result = new ArrayList<Set>();
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
@@ -54,18 +103,6 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
 
-    @Test
-    public void test_playInvalidityNonSetPhoenixWithOtherSpecialCard()
-    {
-        ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
-        cards.add(new SpecialCard(SpecialRank.DRAGON));
-
-        ArrayList<Set> result = new ArrayList<Set>();
-
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
-    }
-/*
     @Test
     public void test_phoenixCanBePartOfTriple()
     {
@@ -108,6 +145,19 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
+    public void test_phoenixCantBePartOfInvalidTripleWithSpecialCard()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(createRandomCard(2));
+        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+    }
+
+    @Test
     public void test_phoenixCanBePartOfFullHouse()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
@@ -138,7 +188,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
-
+/*
     @Test
     public void test_phoenixCanBePartOfStair()
     {
@@ -176,7 +226,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
-
+/*
     @Test
     public void test_phoenixCanBePartOfStraight()
     {
@@ -238,7 +288,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
-
+*/
     @Test
     public void test_phoenixCantBomb()
     {
@@ -252,7 +302,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
-
+/*
     @Test
     public void test_phoenixCantBombStraight()
     {

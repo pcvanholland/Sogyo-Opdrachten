@@ -1,0 +1,110 @@
+package taipan.domain;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.ArrayList;
+
+public class Phoenix_FullHouse_Test extends Play_Test_Helper
+{
+    /**
+     * Helper function to create a FullHouse with a Phoenix.
+     * A value of 2 is used for the FullHouse, for it doens't matter.
+     *
+     * @param value {int} - The value of the Triple in the Full House.
+     * @return {Play} - The FullHouse.
+     *
+    private Play createFullHouseWithPhoenix(final int value)
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(createRandomCard(value));
+        cards.add(createRandomCard(value));
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(2));
+
+        return new FullHouse(cards, TEST_PLAYER);
+    }
+
+    @Test
+    public void test_init()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(2));
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(createRandomCard(3));
+        cards.add(createRandomCard(3));
+
+        new FullHouse(cards, TEST_PLAYER);
+    }
+
+    @Test(expected = InvalidPlayException.class)
+    public void test_initFailsWhenWrong()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(createRandomCard(2));
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(3));
+
+        new FullHouse(cards, TEST_PLAYER);
+    }
+
+    @Test
+    public void test_higherBeatsLowerPhoenix()
+    {
+        Play firstPlay = this.createFullHouseWithPhoenix(3);
+        Play secondPlay = createFullHouse(4, 2);
+
+        Assert.assertTrue(secondPlay.beats(firstPlay));
+    }
+
+    @Test
+    public void test_higherPhoenixBeatsLower()
+    {
+        Play firstPlay = createFullHouse(3, 2);
+        Play secondPlay = this.createFullHouseWithPhoenix(4);
+
+        Assert.assertTrue(secondPlay.beats(firstPlay));
+    }
+
+    @Test
+    // Impossible, I know!
+    public void test_equalsNotBeats()
+    {
+        Play firstPlay = this.createFullHouseWithPhoenix(3);
+        Play secondPlay = createFullHouse(3, 2);
+
+        Assert.assertFalse(secondPlay.beats(firstPlay));
+    }
+
+    @Test
+    // Impossible, I know!
+    public void test_equalsNotBeats2()
+    {
+        Play firstPlay = createFullHouse(3, 2);
+        Play secondPlay = this.createFullHouseWithPhoenix(3);
+
+        Assert.assertFalse(secondPlay.beats(firstPlay));
+    }
+
+    @Test
+    public void test_lowerPhoenixNotBeatsHigher()
+    {
+        Play firstPlay = createFullHouse(4, 2);
+        Play secondPlay = this.createFullHouseWithPhoenix(3);
+
+        Assert.assertFalse(secondPlay.beats(firstPlay));
+    }
+
+    @Test
+    public void test_lowerNotBeatsHigherPhoenix()
+    {
+        Play firstPlay = this.createFullHouseWithPhoenix(4);
+        Play secondPlay = createFullHouse(3, 2);
+
+        Assert.assertFalse(secondPlay.beats(firstPlay));
+    }*/
+}

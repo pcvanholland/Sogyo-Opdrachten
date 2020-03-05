@@ -5,14 +5,14 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Play_Set_Test
+public class Play_Set_Test extends Play_Test_Helper
 {
     @Test
     public void test_playValidityPair()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(2));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.PAIR);
@@ -24,8 +24,8 @@ public class Play_Set_Test
     public void test_playInvalidityNonSet()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(3));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -36,9 +36,9 @@ public class Play_Set_Test
     public void test_playValidityTriple()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
-        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(2));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.TRIPLE);
@@ -50,9 +50,9 @@ public class Play_Set_Test
     public void test_playInvalidityTriple()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(3));
+        cards.add(createRandomCard(4));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -63,9 +63,9 @@ public class Play_Set_Test
     public void test_playInvalidityTripleWithTwoEqual()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
-        cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(3));
+        cards.add(createRandomCard(2));
 
         ArrayList<Set> result = new ArrayList<Set>();
 

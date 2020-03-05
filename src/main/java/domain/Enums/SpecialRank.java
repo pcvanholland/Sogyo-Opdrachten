@@ -5,7 +5,7 @@ package taipan.domain;
  */
 public enum SpecialRank implements IRank
 {
-    DOG(-1, 0), MAHJONG(1, 0), PHOENIX(-1, -25), DRAGON(16, 25);
+    DOG(-2, 0), MAHJONG(1, 0), PHOENIX(-1, -25), DRAGON(16, 25);
 
     private int value;
     private int score;
