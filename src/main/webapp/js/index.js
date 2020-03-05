@@ -148,7 +148,7 @@ Vue.component('lobby-screen', {
  * Where all the cards are shown.
  */
 Vue.component('game-screen', {
-    props: [ 'gameState', 'playTypes' ],
+    props: [ 'gameState', 'playTypes', 'playerId', 'playerName' ],
     data()
     {
         return {
@@ -162,15 +162,19 @@ Vue.component('game-screen', {
 
                 <div class="player-area"
                     v-for="player in gameState.players">
-                    Player: {{ player.id }}
+                    {{ player.id == playerId ? playerName : "Player " + player.id }}
+                        {{ player.inTurn ? "In turn." : "" }}
                     <button v-on:click="passTurn(player.id)"
-                        :hidden="!player.mayPass"
-                    >Pass turn</button>
+                        :hidden="!maySee(player.id)"
+                        :disabled="!player.mayPass">
+                        Pass turn
+                    </button>
 
                     <div class="taipan-sets">
                         Play as:
                         <div v-for="type in playTypes">
-                            <button v-on:click="playCards(type,player.id)">
+                            <button v-on:click="playCards(type,player.id)"
+                                :hidden="!maySee(player.id)">
                                 {{ type }}
                             </button>
                         </div>
@@ -181,14 +185,18 @@ Vue.component('game-screen', {
                         <input type="checkbox"
                             :value="card.suit+','+card.rank"
                             v-model="checkedCards[player.id]"
-                            @change="chooseCard(player.id)">
-                            {{ card.suit }}, {{ card.rank }}
+                            @change="chooseCard(player.id)"
+                            :hidden="!maySee(player.id)">
+                            {{ maySee(player.id) ?
+                                card.suit + "," + card.rank :
+                                "<< Card >>" }}
                         </input>
                     </div>
 
                     <button v-on:click="drawCards(player.id)"
-                        :hidden="!player.canDraw"
-                    >Draw Cards</button>
+                        :hidden="!player.canDraw || !maySee(player.id)">
+                        Draw Cards
+                    </button>
                 </div>
 
             </div>
@@ -207,6 +215,10 @@ Vue.component('game-screen', {
         </div>
     `,
     methods: {
+        maySee(refID)
+        {
+            return refID == this.playerId || this.playerId == "0";
+        },
         refresh()
         {
             this.$emit('refresh');
@@ -235,7 +247,8 @@ const app = new Vue({
     el: '#app',
 
     data: {
-        playerID: undefined,
+        playerId: undefined,
+        playerName: undefined,
         gameID: undefined,
         gameState: undefined,
         lobby: [],
@@ -245,7 +258,7 @@ const app = new Vue({
     computed: {
         isLoggedIn()
         {
-            return this.playerID != undefined;
+            return this.playerName != undefined;
         },
         gameJoined()
         {
@@ -271,7 +284,7 @@ const app = new Vue({
             console.log(result.result);
             if (result.result && result.result == playerName)
             {
-                this.playerID = playerName;
+                this.playerName = playerName;
             }
             this.refreshLobby();
         },
@@ -307,7 +320,7 @@ const app = new Vue({
             });
             const result = await response.json();
             console.log(result.result);
-            this.playerID = undefined;
+            this.playerName = undefined;
         },
         async joinGame(gameID)
         {
@@ -319,13 +332,14 @@ const app = new Vue({
                 },
                 body: JSON.stringify({
                     "gameID": gameID,
-                    "playerName": this.playerID
+                    "playerName": this.playerName
                 })
             });
             const result = await response.json();
             console.log(result.result);
             this.getGameState();
-            this.gameID = result.result;
+            this.gameID = gameID;
+            this.playerId = result.result;
         },
         async startAGame()
         {
@@ -335,12 +349,15 @@ const app = new Vue({
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: this.playerID
+                body: this.playerName
             });
             const result = await response.json();
             console.log(result.result);
             this.getGameState();
             this.gameID = result.result;
+
+            // Host is always first Player (0).
+            this.playerId = 0;
         },
         async refreshLobby()
         {
@@ -368,7 +385,7 @@ const app = new Vue({
             console.log(result);
             this.gameState = result;
         },
-        async drawCards(playerID)
+        async drawCards()
         {
             const response = await fetch('api/game/drawcards', {
                 method: 'POST',
@@ -376,7 +393,7 @@ const app = new Vue({
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: playerID//this.playerID
+                body: this.playerId
             });
             const result = await response.json();
             console.log(result);
@@ -396,7 +413,7 @@ const app = new Vue({
             console.log(result);
             this.playTypes = result.sets;
         },
-        async passTurn(playerID)
+        async passTurn()
         {
             const response = await fetch('api/game/passturn', {
                 method: 'POST',
@@ -404,13 +421,13 @@ const app = new Vue({
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: playerID//this.playerID
+                body: this.playerId
             });
             const result = await response.json();
             console.log(result);
             this.gameState = result;
         },
-        async playCards(cards, type, playerID)
+        async playCards(cards, type)
         {
             const response = await fetch('api/game/playcards', {
                 method: 'POST',
@@ -419,7 +436,7 @@ const app = new Vue({
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "playerID": playerID,//this.playerID
+                    "playerID": this.playerId,
                     "cards": JSON.stringify(cards),
                     "type": type
                 })

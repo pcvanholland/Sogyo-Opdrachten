@@ -30,6 +30,8 @@
                 v-else
                 v-bind:game-state="gameState"
                 v-bind:play-types="playTypes"
+                v-bind:player-id="playerId"
+                v-bind:player-name="playerName"
                 v-on:refresh="getGameState"
                 v-on:draw-cards="drawCards"
                 v-on:choose-card="chooseCard"

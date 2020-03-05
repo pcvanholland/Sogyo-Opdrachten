@@ -31,10 +31,11 @@ public class Game
      * Adds a Player to this Game.
      *
      * @param newPlayer {String} - The Player to add.
+     * @return {int} - The playerID of the added Player.
      */
-    protected void joinGame(final String newPlayer)
+    protected int joinGame(final String newPlayer)
     {
-        this.players.addPlayer(newPlayer);
+        return this.players.addPlayer(newPlayer);
     }
 
     /**

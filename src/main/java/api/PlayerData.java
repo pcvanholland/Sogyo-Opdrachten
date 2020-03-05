@@ -12,17 +12,19 @@ public class PlayerData
      * Adds a new player to the game.
      *
      * @param name {String} - The name of the player to add.
+     * @return {int} - The playerID of the Player.
      */
-    protected void addPlayer(final String name)
+    protected int addPlayer(final String name)
     {
         for (int i = 0; i < playerNames.length; ++i)
         {
             if (playerNames[i] == null)
             {
                 playerNames[i] = name;
-                break;
+                return i;
             }
         }
+        return -1;
     }
 
     /**
@@ -30,15 +32,13 @@ public class PlayerData
      */
     protected boolean isGameFull()
     {
-        boolean full = true;
         for (String player : playerNames)
         {
             if (player == null)
             {
-                full = false;
-                break;
+                return false;
             }
         }
-        return full;
+        return true;
     }
 }

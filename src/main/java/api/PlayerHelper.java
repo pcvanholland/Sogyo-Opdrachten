@@ -38,12 +38,10 @@ public class PlayerHelper
     )
     {
 System.out.println("Post on login.");
-        //HttpSession session = request.getSession(true);
         DataBase db = new DataBase();
 
         if (db.verifyPassword(player.getName(), player.getPassword()))
         {
-            //session.setAttribute("taipan", taipan);
             String output = JSONProcessor.createJSONResponse(player.getName());
             return Response.status(SUCCESS).entity(output).build();
         }
@@ -69,12 +67,10 @@ System.out.println("Post on login.");
     )
     {
 System.out.println("Post on register.");
-        //HttpSession session = request.getSession(true);
         DataBase db = new DataBase();
 
         if (db.addPlayer(player.getName(), player.getPassword()))
         {
-            //session.setAttribute("taipan", taipan);
             String output = JSONProcessor.createJSONResponse(player.getName());
             return Response.status(SUCCESS).entity(output).build();
         }
@@ -100,12 +96,10 @@ System.out.println("Post on register.");
     )
     {
 System.out.println("Post on unregister.");
-        //HttpSession session = request.getSession(true);
         DataBase db = new DataBase();
 
         if (db.removePlayer(player.getName(), player.getPassword()))
         {
-            //session.setAttribute("taipan", taipan);
             String output = JSONProcessor.createJSONResponse(player.getName());
             return Response.status(SUCCESS).entity(output).build();
         }

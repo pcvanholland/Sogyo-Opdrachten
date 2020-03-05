@@ -43,8 +43,7 @@ System.out.println("Post on play: " +
         HttpSession session = request.getSession(false);
         if (session != null)
         {
-            Game taipan =
-                (Game) session.getAttribute("game");
+            Game taipan = (Game) session.getAttribute("game");
             taipan.getImplementation().play(
                 Integer.parseInt(play.getPlayerID()),
                 play.getCards(),
@@ -76,8 +75,7 @@ System.out.println("Post on pass turn: " + player);
         HttpSession session = request.getSession(false);
         if (session != null)
         {
-            Game taipan =
-                (Game) session.getAttribute("game");
+            Game taipan = (Game) session.getAttribute("game");
             taipan.getImplementation().pass(player);
             return this.returnGameState(taipan);
         }
@@ -105,8 +103,7 @@ System.out.println("Post on getplaytypes: " + play);
         HttpSession session = request.getSession(false);
         if (session != null)
         {
-            Game taipan =
-                (Game) session.getAttribute("game");
+            Game taipan = (Game) session.getAttribute("game");
             String output =
                 JSONProcessor.createJSONPlayTypes(
                     taipan.getImplementation(), play
@@ -135,8 +132,7 @@ System.out.println("Get on GGS.");
         HttpSession session = request.getSession(false);
         if (session != null)
         {
-            Game taipan =
-                (Game) session.getAttribute("game");
+            Game taipan = (Game) session.getAttribute("game");
             return this.returnGameState(taipan);
         }
 
@@ -164,8 +160,7 @@ System.out.println("Post on drawCards: " + player);
         HttpSession session = request.getSession(false);
         if (session != null)
         {
-            Game taipan =
-                (Game) session.getAttribute("game");
+            Game taipan = (Game) session.getAttribute("game");
             taipan.getImplementation().letPlayerDrawCards(player);
             return this.returnGameState(taipan);
         }

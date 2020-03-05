@@ -56,9 +56,10 @@ System.out.println("Post on join game " +
             {
                 return Response.status(FAILURE).build();
             }
-            game.joinGame(joinRequest.getPlayerName());
             session.setAttribute("game", game);
-            String output = JSONProcessor.createJSONResponse("GameID.");
+            String output = JSONProcessor.createJSONResponse(
+                Integer.toString(game.joinGame(joinRequest.getPlayerName()))
+            );
             return Response.status(SUCCESS).entity(output).build();
         }
         return Response.status(FAILURE).build();
@@ -91,7 +92,9 @@ System.out.println("Post on start.");
             Game newGame = new Game(hostID);
             ACTIVE_GAMES.add(newGame);
             session.setAttribute("game", newGame);
-            String output = JSONProcessor.createJSONResponse("GameID.");
+            String output = JSONProcessor.createJSONResponse(
+                Integer.toString(0)
+            );
 
             return Response.status(SUCCESS).entity(output).build();
         }
