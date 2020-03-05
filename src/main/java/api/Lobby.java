@@ -23,7 +23,7 @@ public class Lobby
     private static final int FAILURE = 500;
 
     // The currently active game(s).
-    private static ArrayList<Game> active_games = new ArrayList<Game>();
+    private static ArrayList<Game> activeGames = new ArrayList<Game>();
 
     /**
      * This handles a startGame request by a Player.
@@ -50,7 +50,7 @@ System.out.println("Post on start.");
         if (session != null)
         {
             Game newGame = new Game(hostName);
-            active_games.add(newGame);
+            activeGames.add(newGame);
             session.setAttribute("game", newGame);
             String output = JSONProcessor.createJSONResponse(
                 Integer.toString(0)
@@ -86,7 +86,7 @@ System.out.println("Post on join game " +
         HttpSession session = request.getSession(true);
         if (session != null)
         {
-            Game game = active_games.get(joinRequest.getGameID());
+            Game game = activeGames.get(joinRequest.getGameID());
             session.setAttribute("game", game);
             String output = JSONProcessor.createJSONResponse(
                 Integer.toString(game.joinGame(joinRequest.getPlayerName()))
@@ -115,7 +115,7 @@ System.out.println("Get on list.");
         HttpSession session = request.getSession();
         if (session != null)
         {
-            String output = JSONProcessor.createJSONGameList(active_games);
+            String output = JSONProcessor.createJSONGameList(activeGames);
 
             return Response.status(SUCCESS).entity(output).build();
         }

@@ -86,7 +86,7 @@ public class TaiPan_Test
     public void test_cantPlayInvalidPlay()
     {
         int playerID = 0;
-        TaiPan tp = new TaiPan();
+        TaiPan tp = new TaiPan(Player_Test.SEED);
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID);
 

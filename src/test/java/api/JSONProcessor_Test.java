@@ -130,13 +130,14 @@ public class JSONProcessor_Test
     @Test
     public void test_createGameListWithSingleGame()
     {
+        Game game = new Game("Hostname");
         String expectedResult = "[{" +
             "\"host\":\"Hostname\"," +
-            "\"id\":0," +
+            "\"id\":" + game.getID() + "," +
             "\"full\":false" +
         "}]";
         ArrayList<Game> games = new ArrayList<Game>();
-        games.add(new Game("Hostname"));
+        games.add(game);
 
         Assert.assertEquals(expectedResult,
             JSONProcessor.createJSONGameList(games));
@@ -145,18 +146,21 @@ public class JSONProcessor_Test
     @Test
     public void test_createGameListWithMultipleGames()
     {
+        String hostname = "Hostname";
+        Game game1 = new Game(hostname);
+        Game game2 = new Game(hostname);
         String expectedResult = "[" +
             "{\"host\":\"Hostname\"," +
-            "\"id\":1," +
+            "\"id\":" + game1.getID() + "," +
             "\"full\":false}" +
                 "," +
             "{\"host\":\"Hostname\"," +
-            "\"id\":2," +
+            "\"id\":" + game2.getID() + "," +
             "\"full\":false}" +
         "]";
         ArrayList<Game> games = new ArrayList<Game>();
-        games.add(new Game("Hostname"));
-        games.add(new Game("Hostname"));
+        games.add(game1);
+        games.add(game2);
 
         Assert.assertEquals(expectedResult,
             JSONProcessor.createJSONGameList(games));
