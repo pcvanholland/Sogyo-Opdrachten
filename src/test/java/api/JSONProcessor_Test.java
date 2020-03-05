@@ -3,6 +3,8 @@ package taipan.api;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class JSONProcessor_Test
 {
     @Test
@@ -123,5 +125,40 @@ public class JSONProcessor_Test
 
         Assert.assertEquals(expectedResult,
             JSONProcessor.createJSONPlayTypes(tp, play));
+    }
+
+    @Test
+    public void test_createGameListWithSingleGame()
+    {
+        String expectedResult = "[{" +
+            "\"host\":\"Hostname\"," +
+            "\"id\":0," +
+            "\"full\":false" +
+        "}]";
+        ArrayList<Game> games = new ArrayList<Game>();
+        games.add(new Game("Hostname"));
+
+        Assert.assertEquals(expectedResult,
+            JSONProcessor.createJSONGameList(games));
+    }
+
+    @Test
+    public void test_createGameListWithMultipleGames()
+    {
+        String expectedResult = "[" +
+            "{\"host\":\"Hostname\"," +
+            "\"id\":1," +
+            "\"full\":false}" +
+                "," +
+            "{\"host\":\"Hostname\"," +
+            "\"id\":2," +
+            "\"full\":false}" +
+        "]";
+        ArrayList<Game> games = new ArrayList<Game>();
+        games.add(new Game("Hostname"));
+        games.add(new Game("Hostname"));
+
+        Assert.assertEquals(expectedResult,
+            JSONProcessor.createJSONGameList(games));
     }
 }

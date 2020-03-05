@@ -229,13 +229,9 @@ public class Player
     /**
      * @param play {Play} - The Play to play.
      */
-    protected void play(final Play play) throws
-        CantPlayException, CantPassException
+    private void play(final Play play) throws
+        CantPlayTableException
     {
-        if (!this.canPlay(play))
-        {
-            throw new CantPlayPlayerException();
-        }
         this.getTable().play(play);
         this.handleTurnPassing(play);
     }
@@ -247,7 +243,7 @@ public class Player
     protected void play(
         final ArrayList<Card> cardsToPlay,
         final Set type
-    ) throws CantPlayException, CantPassException
+    ) throws CantPlayException
     {
         if (!hasCards(cardsToPlay))
         {
@@ -255,7 +251,7 @@ public class Player
         }
         if (!this.canPlay(PlayHelper.createPlay(cardsToPlay, this, type)))
         {
-            throw new CantPlayException();
+            throw new CantPlayPlayerException();
         }
         ArrayList<Card> takenCards = this.takeCards(cardsToPlay);
         this.play(PlayHelper.createPlay(takenCards, this, type));

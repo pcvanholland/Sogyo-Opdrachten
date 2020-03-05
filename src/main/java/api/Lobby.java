@@ -23,18 +23,53 @@ public class Lobby
     private static final int FAILURE = 500;
 
     // The currently active game(s).
-    private static ArrayList<Game> ACTIVE_GAMES = new ArrayList<Game>();
+    private static ArrayList<Game> active_games = new ArrayList<Game>();
+
+    /**
+     * This handles a startGame request by a Player.
+     * It *should* contain a game to start.
+     *
+     * @param request {HttpServletRequest} - A Request from the server.
+     * @param hostName {String} - The ID of the host.
+     *
+     * @return {Response} - Whether the start was successful.
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("startgame")
+    public Response startGame(
+        final @Context HttpServletRequest request,
+        final String hostName
+    )
+    {
+System.out.println("Post on start.");
+
+        HttpSession session = request.getSession(true);
+        //if (!game.isFull())
+        if (session != null)
+        {
+            Game newGame = new Game(hostName);
+            active_games.add(newGame);
+            session.setAttribute("game", newGame);
+            String output = JSONProcessor.createJSONResponse(
+                Integer.toString(0)
+            );
+
+            return Response.status(SUCCESS).entity(output).build();
+        }
+        return Response.status(FAILURE).build();
+    }
 
     /**
      * This handles a join request by a Player.
-     * It *should* contain a game to join.
      *
      * @param request {HttpServletRequest} - A Request from the server.
      * @param joinRequest {JoinRequest} - A Player's name and the GameID
      *                                  of the Game to join.
      *
      * @return {Response} - Whether the join was successful.
-     *                  If it was successful, it contains the Game's name.
+     *                  If it was successful, it contains the Player's ID.
      */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -51,11 +86,7 @@ System.out.println("Post on join game " +
         HttpSession session = request.getSession(true);
         if (session != null)
         {
-            Game game = ACTIVE_GAMES.get(joinRequest.getGameID());
-            if (game.isFull())
-            {
-                return Response.status(FAILURE).build();
-            }
+            Game game = active_games.get(joinRequest.getGameID());
             session.setAttribute("game", game);
             String output = JSONProcessor.createJSONResponse(
                 Integer.toString(game.joinGame(joinRequest.getPlayerName()))
@@ -66,48 +97,11 @@ System.out.println("Post on join game " +
     }
 
     /**
-     * This handles a startGame request by a Player.
-     * It *should* contain a game to start.
-     *
-     * @param request {HttpServletRequest} - A Request from the server.
-     * @param hostID {String} - The ID of the host.
-     *
-     * @return {Response} - Whether the start was successful.
-     */
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("startgame")
-    public Response startGame(
-        final @Context HttpServletRequest request,
-        final String hostID
-    )
-    {
-System.out.println("Post on start.");
-
-        HttpSession session = request.getSession(true);
-        //if (!game.isFull())
-        if (session != null)
-        {
-            Game newGame = new Game(hostID);
-            ACTIVE_GAMES.add(newGame);
-            session.setAttribute("game", newGame);
-            String output = JSONProcessor.createJSONResponse(
-                Integer.toString(0)
-            );
-
-            return Response.status(SUCCESS).entity(output).build();
-        }
-        return Response.status(FAILURE).build();
-    }
-
-    /**
-     * This handles a startGame request by a Player.
-     * It *should* contain a game to start.
+     * This creates a list of currently active Games.
      *
      * @param request {HttpServletRequest} - A Request from the server.
      *
-     * @return {Response} - Whether the start was successful.
+     * @return {Response} - A list of currently active Games.
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -121,7 +115,7 @@ System.out.println("Get on list.");
         HttpSession session = request.getSession();
         if (session != null)
         {
-            String output = JSONProcessor.createJSONGameList(ACTIVE_GAMES);
+            String output = JSONProcessor.createJSONGameList(active_games);
 
             return Response.status(SUCCESS).entity(output).build();
         }

@@ -18,25 +18,7 @@ public abstract class JSONProcessor
     {
         JSONObject result = new JSONObject();
         result.put("result", textfornow);
-/*
-        JSONObject jsonPlayer1 = this.createJSONPlayer(1, mancala, 1);
-        JSONObject jsonPlayer2 = this.createJSONPlayer(8, mancala, 2);
 
-        JSONArray players = new JSONArray();
-        players.add(jsonPlayer1);
-        players.add(jsonPlayer2);
-
-        result.put("players", players);
-
-        JSONObject gameStatus = new JSONObject();
-        if (mancala.isEndOfGame()) {
-            gameStatus.put("endOfGame", "true");
-            gameStatus.put("winner", mancala.getWinnersName());
-        } else {
-            gameStatus.put("endOfGame", "false");
-        }
-        result.put("gameStatus", gameStatus);
-*/
         return result.toJSONString();
     }
 
@@ -53,7 +35,11 @@ public abstract class JSONProcessor
         JSONArray result = new JSONArray();
         for (Game game : games)
         {
-            result.add(game.getID());
+            JSONObject gameJSON = new JSONObject();
+            gameJSON.put("id", game.getID());
+            gameJSON.put("host", game.getHostName());
+            gameJSON.put("full", game.isFull());
+            result.add(gameJSON);
         }
         return result.toJSONString();
     }

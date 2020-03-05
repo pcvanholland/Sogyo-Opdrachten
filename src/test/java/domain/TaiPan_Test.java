@@ -95,6 +95,18 @@ public class TaiPan_Test
     }
 
     @Test
+    public void test_cantPlayDontHasCards()
+    {
+        int playerID = 0;
+        TaiPan tp = new TaiPan(Player_Test.SEED);
+        tp.letPlayerDrawCards(playerID);
+        tp.letPlayerDrawCards(playerID);
+
+        tp.play(playerID, "[\"JADE,SIX\"]", "SINGLE");
+        Assert.assertEquals(14, tp.getPlayer(playerID).getCards().size());
+    }
+
+    @Test
     public void test_pass()
     {
         int playerID = 0;

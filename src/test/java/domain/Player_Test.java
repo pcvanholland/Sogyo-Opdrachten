@@ -131,8 +131,7 @@ public class Player_Test
 
     @Test
     public void test_playersStartWithoutWonTricks() throws
-        CantDrawTooManyTimesException, CantPlayException,
-        CantPassException
+        CantDrawTooManyTimesException, CantPlayException
     {
         Player firstPlayer = new Player(new Table());
 
@@ -268,27 +267,31 @@ public class Player_Test
     }
 
     @Test
-    public void test_playWithPlay() throws
-        CantDrawTooManyTimesException, CantPlayException,
-        CantPassException
+    public void test_cantPlayWrongType() throws
+        CantDrawTooManyTimesException, CantPlayException
     {
         Table playingTable = new Table();
         Player firstPlayer = new Player(playingTable, SEED);
+        for (int i = 0; i < Player.NUM_PLAYERS; ++i)
+        {
+            firstPlayer.getPlayerAtPositionCCW(i).drawCards();
+            firstPlayer.getPlayerAtPositionCCW(i).drawCards();
+        }
 
-        // Draw Cards to get in turn.
-        firstPlayer.drawCards();
-        firstPlayer.drawCards();
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new SpecialCard(SpecialRank.MAHJONG));
 
-        Play play = Play_Test_Helper.createSingle(2);
-        firstPlayer.play(play);
+        firstPlayer.play(cards, Set.SINGLE);
 
-        Assert.assertEquals(play, playingTable.getLastPlay());
+        Assert.assertFalse(
+            firstPlayer.getPlayerAtPositionCCW(1).
+                canPlay(Play_Test_Helper.createPair(2))
+        );
     }
 
     @Test
     public void test_playWithArrayListOfCards() throws
-        CantDrawTooManyTimesException, CantPlayException,
-        CantPassException
+        CantDrawTooManyTimesException, CantPlayException
     {
         Table playingTable = new Table();
         Player firstPlayer = new Player(playingTable, SEED);
@@ -313,8 +316,7 @@ public class Player_Test
 
     @Test
     public void test_playRemovesCard() throws
-        CantDrawTooManyTimesException, CantPlayException,
-        CantPassException
+        CantDrawTooManyTimesException, CantPlayException
     {
         Player firstPlayer = this.createPlayerInTurn();
 
@@ -350,19 +352,13 @@ public class Player_Test
             System.out.println("We know this error happens," +
                 " but we ought to test it.");
         }
-        catch (CantPassException e)
-        {
-            System.out.println("We know this error happens," +
-                " but we ought to test it.");
-        }
 
         Assert.assertEquals(6, firstPlayer.getCards().size());
     }
 
     @Test(expected = PlayerDontHasCardException.class)
     public void test_playCantTakeCardsAPlayerDoesntHave() throws
-        CantDrawTooManyTimesException, CantPlayException,
-        CantPassException
+        CantDrawTooManyTimesException, CantPlayException
     {
         Player firstPlayer = this.createPlayerInTurn();
 
@@ -376,8 +372,7 @@ public class Player_Test
 
     @Test
     public void test_playCantTakeCardsAPlayerDoesntHaveAndLosesNoCards() throws
-        CantDrawTooManyTimesException, CantPlayException,
-        CantPassException
+        CantDrawTooManyTimesException, CantPlayException
     {
         Player firstPlayer = this.createPlayerInTurn();
 
@@ -440,8 +435,7 @@ public class Player_Test
 
     @Test
     public void test_playTurnsPlayerOutOfTurn() throws
-        CantDrawTooManyTimesException, CantPlayException,
-        CantPassException
+        CantDrawTooManyTimesException, CantPlayException
     {
         Player firstPlayer = this.createSeededGame(SEED);
         ArrayList<Card> cards = new ArrayList<Card>();
@@ -456,8 +450,7 @@ public class Player_Test
 
     @Test
     public void test_playGivesTurnToNext() throws
-        CantDrawTooManyTimesException, CantPlayException,
-        CantPassException
+        CantDrawTooManyTimesException, CantPlayException
     {
         Player firstPlayer = this.createSeededGame(SEED);
         ArrayList<Card> cards = new ArrayList<Card>();
@@ -523,8 +516,7 @@ public class Player_Test
 
     @Test
     public void test_playDogPassesTurnToOpposite() throws
-        CantDrawTooManyTimesException, CantPlayException,
-        CantPassException
+        CantDrawTooManyTimesException, CantPlayException
     {
         Player firstPlayer = createSeededGame(START_DOG_SEED);
 
@@ -538,8 +530,7 @@ public class Player_Test
 
     @Test
     public void test_playDogLeavesTableEmpty() throws
-        CantDrawTooManyTimesException, CantPlayException,
-        CantPassException
+        CantDrawTooManyTimesException, CantPlayException
     {
         Player firstPlayer = createSeededGame(START_DOG_SEED);
 
@@ -553,8 +544,7 @@ public class Player_Test
 
     @Test
     public void test_emptyHandPassesTurnToNext() throws
-        CantDrawTooManyTimesException, CantPlayException,
-        CantPassException
+        CantDrawTooManyTimesException, CantPlayException
     {
         Player firstPlayer = createSeededPlayer(SEED);
 
@@ -568,8 +558,7 @@ public class Player_Test
 
     @Test
     public void test_emptyHandPassesTurnToNextWithDog() throws
-        CantDrawTooManyTimesException, CantPlayException,
-        CantPassException
+        CantDrawTooManyTimesException, CantPlayException
     {
         Player firstPlayer = createSeededPlayer(START_DOG_SEED);
 

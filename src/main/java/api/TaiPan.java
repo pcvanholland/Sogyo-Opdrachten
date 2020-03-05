@@ -171,7 +171,7 @@ System.out.println("Post on drawCards: " + player);
     /**
      * Returns the current GameState as success.
      *
-     * @param taipan {TaiPan} - The coupled instance of a TaiPan-game.
+     * @param game {Game} - The coupled instance of a TaiPan-game.
      * @return {Response} - The GameState of the provided game.
      */
     private Response returnGameState(final Game game)

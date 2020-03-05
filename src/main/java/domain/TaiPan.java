@@ -60,10 +60,6 @@ public class TaiPan
         {
             e.printStackTrace();
         }
-        catch (CantPassException e)
-        {
-            e.printStackTrace();
-        }
     }
 
     /**

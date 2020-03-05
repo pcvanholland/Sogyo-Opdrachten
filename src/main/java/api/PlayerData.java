@@ -41,4 +41,13 @@ public class PlayerData
         }
         return true;
     }
+
+    /**
+     * @param playerNumber {int} - The Player to get the name of.
+     * @return {int} - The name of the specified Player.
+     */
+    protected String getPlayerName(final int playerNumber)
+    {
+        return this.playerNames[playerNumber];
+    }
 }
