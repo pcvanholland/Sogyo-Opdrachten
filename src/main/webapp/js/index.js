@@ -12,7 +12,7 @@ Vue.component('start-screen', {
         }
     },
     template: `
-        <div>
+        <div class="start-screen-text">
             <p>This is the home page for a simple Tai-Pan application.</p>
             <p>Please enter your (nick)name to continue:</p>
             <input
