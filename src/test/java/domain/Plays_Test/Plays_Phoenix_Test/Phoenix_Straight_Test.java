@@ -121,6 +121,44 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         new Straight(cards, TEST_PLAYER);
     }
 
+    @Test
+    public void test_playValidityStraightMahjongAndPhoenix()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(3));
+        cards.add(createRandomCard(4));
+        cards.add(createRandomCard(5));
+        cards.add(createRandomCard(6));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+        result.add(Set.STRAIGHT);
+
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        new Straight(cards, TEST_PLAYER);
+    }
+
+    @Test
+    public void test_playValidityStraightPhoenixAfterMahjong()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
+        cards.add(createRandomCard(7));
+        cards.add(createRandomCard(3));
+        cards.add(createRandomCard(4));
+        cards.add(createRandomCard(5));
+        cards.add(createRandomCard(6));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+        result.add(Set.STRAIGHT);
+
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        new Straight(cards, TEST_PLAYER);
+    }
+
     @Test(expected = InvalidPlayException.class)
     public void test_playInvalidityBrokenStraight()
     {
