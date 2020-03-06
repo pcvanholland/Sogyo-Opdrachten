@@ -188,7 +188,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
-/*
+
     @Test
     public void test_phoenixCanBePartOfStair()
     {
@@ -226,7 +226,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
-/*
+
     @Test
     public void test_phoenixCanBePartOfStraight()
     {
@@ -258,7 +258,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
-
+/*
     @Test
     public void test_phoenixCantBePartOfLargestStraight()
     {
@@ -302,7 +302,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
-/*
+
     @Test
     public void test_phoenixCantBombStraight()
     {
@@ -319,7 +319,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
-
+/*
     @Test
     public void test_playValidityFullHouseOfFiveEquals()
     {
@@ -335,7 +335,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
     }
-
+*//*
     @Test
     public void test_phoenixBeatsAllStandardSingles()
     {
@@ -347,11 +347,11 @@ public class Play_Phoenix_Test extends Play_Test_Helper
             Assert.assertTrue(secondPlay.beats(firstPlay));
         }
     }
-
+*/
     @Test
     public void test_phoenixIsBeatenByAllStandardSingles()
     {
-        Play firstPlay = createDragon();
+        Play firstPlay = createPhoenix();
         Play secondPlay;
         for (int i = 2; i < StandardRank.values().length + 2; ++i)
         {
@@ -359,7 +359,18 @@ public class Play_Phoenix_Test extends Play_Test_Helper
             Assert.assertTrue(secondPlay.beats(firstPlay));
         }
     }
+/*
+    @Test
+    public void test_phoenixCantBeBeatenByAceOnAce()
+    {
+        Play firstPlay = createSingle(StandardRank.values().length + 1);
+        Play secondPlay = createPhoenix();
+        Trick trick = new Trick(firstPlay);
+        trick.play(secondPlay);
 
+        Assert.assertFalse(firstPlay.beats(trick.getLastPlay()));
+    }
+*/
     @Test
     public void test_phoenixCantBeatDragon()
     {
@@ -377,5 +388,4 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         Assert.assertTrue(secondPlay.beats(firstPlay));
     }
-*/
 }
