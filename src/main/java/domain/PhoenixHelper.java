@@ -41,6 +41,18 @@ abstract class PhoenixHelper
         {
             return getHighestValue(removeTripleFromCards(contextCards));
         }
+        // Enough Cards for a Straight.
+        else if (contextCards.size() >= 4 &&
+            PlayHelper.containsOnlyNumberOfEqualRanks(contextCards, 1)
+        )
+        {
+            // Already a sequential, just add the Phoenix to the end.
+            if (PlayHelper.areCardsSequential(contextCards))
+            {
+                return getHighestValue(contextCards) + 1;
+            }
+            return getLocationOfSingleGap(contextCards);
+        }
         return -1;
     }
 
@@ -99,5 +111,32 @@ abstract class PhoenixHelper
             }
         }
         return result;
+    }
+
+    /**
+     * A helper function to determine the location of a gap between the Ranks
+     * of the specified Cards of exactly one and it occurs exactly once.
+     *
+     * @param cardsToCheck {Card[]} - The Cards to get the max gap between.
+     * @return {int} - The location of the gap. -1 If it is not present or
+     *                  present multiple times.
+     */
+    private static int getLocationOfSingleGap(
+        final ArrayList<Card> cardsToCheck
+    )
+    {
+        ArrayList<Integer> gaps = new ArrayList<Integer>();
+        ArrayList<Integer> ranksToCheck = PlayHelper.getRanks(cardsToCheck);
+
+        java.util.Collections.sort(ranksToCheck);
+        for (int i = 0; i < ranksToCheck.size() - 1; ++i)
+        {
+            if (ranksToCheck.get(i + 1) - ranksToCheck.get(i) == 2)
+            {
+                gaps.add(ranksToCheck.get(i) + 1);
+            }
+        }
+
+        return gaps.size() == 1 ? gaps.get(0) : -1;
     }
 }

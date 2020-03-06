@@ -107,7 +107,7 @@ public abstract class Play_Test_Helper
     }
 
     /**
-     * Creates a straight with the specified start and end
+     * Creates a Straight with the specified start and end
      * values with semi-random suits.
      *
      * @param start {int} - The lowest value of the Straight.

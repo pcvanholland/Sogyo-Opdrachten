@@ -29,6 +29,11 @@ public class Phoenix_Pair_Test extends Play_Test_Helper
         cards.add(createRandomCard(2));
         cards.add(new SpecialCard(SpecialRank.PHOENIX));
 
+        ArrayList<Set> result = new ArrayList<Set>();
+        result.add(Set.PAIR);
+
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+
         new Pair(cards, TEST_PLAYER);
     }
 
@@ -40,6 +45,10 @@ public class Phoenix_Pair_Test extends Play_Test_Helper
         cards.add(new SpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+
+        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
 
         new Pair(cards, TEST_PLAYER);
     }
