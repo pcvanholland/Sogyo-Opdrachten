@@ -1,7 +1,9 @@
 .taipan-table {
+    text-align: left;
     display: inline-block;
     border: 1px solid blue;
     overflow: hidden;
+    background-color:white
 }
 .player-area {
     display: inline-block;
@@ -24,10 +26,15 @@
       -1px 1px 0 #000,
        1px 1px 0 #000;
 }
+.lobbyscreen {
+    text-align: center;
+}
+.gamescreen {
+    text-align: center;
+}
 body {
     background-image: url("../images/Background.gif");
     background-color:rgba(255, 253, 117, 0.411);
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: top;
 }
-

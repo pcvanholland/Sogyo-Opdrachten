@@ -109,8 +109,7 @@ Vue.component('lobby-screen', {
         return {}
     },
     template: `
-        <div>
-            Lobby screen.
+        <div class="lobbyscreen">
             <button v-on:click="startGame">
                 Start a new game.
             </button>
@@ -157,7 +156,7 @@ Vue.component('game-screen', {
         }
     },
     template: `
-        <div>
+        <div class="gamescreen">
 
             <div class="taipan-table">
 
@@ -183,15 +182,17 @@ Vue.component('game-screen', {
                     </div>
 
                     <div v-for="card in player.cards">
-                        <input type="checkbox"
-                            :value="card.suit+','+card.rank"
-                            v-model="checkedCards[player.id]"
-                            @change="chooseCard(player.id)"
-                            :hidden="!mayControl(player.id)">
+                        <label>
+                            <input type="checkbox"
+                                :value="card.suit+','+card.rank"
+                                v-model="checkedCards[player.id]"
+                                @change="chooseCard(player.id)"
+                                :hidden="!mayControl(player.id)">
+                            </input>
                             {{ maySee(player.id) ?
                                 card.suit + ", " + card.rank :
                                 "<< Card >>" }}
-                        </input>
+                        </label>
                     </div>
 
                     <button v-on:click="drawCards(player.id)"
