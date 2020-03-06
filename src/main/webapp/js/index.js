@@ -32,8 +32,6 @@ Vue.component('start-screen', {
                 v-model="password"
             />
 
-            {{ errorMessage }}
-
             <button v-on:click="confirmPlayer"
             >Login</button>
 
@@ -42,6 +40,10 @@ Vue.component('start-screen', {
 
             <button v-on:click="unregisterPlayer"
             >Unregister</button>
+
+            <p>
+            {{ errorMessage }}
+            </p>
         </div>
     `,
     methods: {
@@ -205,6 +207,8 @@ Vue.component('game-screen', {
 
             <button v-on:click="refresh"
             >Refresh</button>
+
+            <p/>
 
             <div class="game-table"
                 v-for="play in gameState.table.trick.slice().reverse()">

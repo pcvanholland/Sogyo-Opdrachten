@@ -63,7 +63,9 @@ class Stair extends Play
             new java.util.HashSet<Integer>();
         for (Card card : cardsToCheck)
         {
-            if (uniqueRanks.add(card.getValue()))
+            if (!(card instanceof Phoenix) &&
+                uniqueRanks.add(card.getValue())
+            )
             {
                 uniquelyRankedCards.add(card);
             }

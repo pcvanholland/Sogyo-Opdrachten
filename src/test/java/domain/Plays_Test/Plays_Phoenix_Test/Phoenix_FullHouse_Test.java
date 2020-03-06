@@ -87,7 +87,6 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
-        cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
 
         ArrayList<Set> result = new ArrayList<Set>();

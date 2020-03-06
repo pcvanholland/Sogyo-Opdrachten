@@ -3,7 +3,7 @@
     display: inline-block;
     border: 1px solid blue;
     overflow: hidden;
-    background-color:white
+    background-color:rgba(255, 255, 255, 0.6);
 }
 .player-area {
     display: inline-block;
@@ -14,9 +14,21 @@
     display: inline-block;
     border: 1px solid green;
 }
+div{
+    font-family: cursive;
+}
+button{
+    border-radius: 12px;
+    background-color: rgb(255, 166, 0);
+    border-color: rgb(255, 166, 0);
+}
+input{
+    border-radius: 12px;
+    background-color: rgb(255, 166, 0);
+    border-color: rgb(255, 166, 0);
+}
 .start-screen-text {
     text-align: center;
-    -webkit-text-stroke: 1xp black;
     color: rgb(255, 166, 0);
     font-size: 200%;
     text-shadow:
@@ -31,6 +43,9 @@
 }
 .gamescreen {
     text-align: center;
+}
+.game-table {
+    background-color:rgba(255, 255, 255, 0.6);
 }
 body {
     background-image: url("../images/Background.gif");

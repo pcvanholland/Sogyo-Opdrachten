@@ -20,6 +20,7 @@ abstract class PlayHelper
     )
     {
         ArrayList<Set> validSets = new ArrayList<Set>();
+        PhoenixHelper.convertPhoenixInSet(cardsToCheck);
 
         if (Single.isSingle(cardsToCheck))
         {
@@ -105,7 +106,7 @@ abstract class PlayHelper
         final ArrayList<Card> cardsToCheck
     )
     {
-         return containsNumberOfEqualRanks(cardsToCheck, 2);
+        return containsNumberOfEqualRanks(cardsToCheck, 2);
     }
 
     /**
@@ -118,7 +119,7 @@ abstract class PlayHelper
         final ArrayList<Card> cardsToCheck
     )
     {
-         return containsNumberOfEqualRanks(cardsToCheck, 3);
+        return containsNumberOfEqualRanks(cardsToCheck, 3);
     }
 
     /**
@@ -134,15 +135,15 @@ abstract class PlayHelper
         final ArrayList<Card> cardsToCheck, final int amount
     )
     {
-         ArrayList<Integer> ranks = getRanks(cardsToCheck);
-         for (Integer rank : ranks)
-         {
-             if (java.util.Collections.frequency(ranks, rank) == amount)
-             {
-                 return true;
-             }
-         }
-         return false;
+        ArrayList<Integer> ranks = getRanks(cardsToCheck);
+        for (Integer rank : ranks)
+        {
+            if (java.util.Collections.frequency(ranks, rank) == amount)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -158,15 +159,15 @@ abstract class PlayHelper
         final ArrayList<Card> cardsToCheck, final int amount
     )
     {
-         ArrayList<Integer> ranks = getRanks(cardsToCheck);
-         for (Integer rank : ranks)
-         {
-             if (java.util.Collections.frequency(ranks, rank) != amount)
-             {
-                 return false;
-             }
-         }
-         return true;
+        ArrayList<Integer> ranks = getRanks(cardsToCheck);
+        for (Integer rank : ranks)
+        {
+            if (java.util.Collections.frequency(ranks, rank) != amount)
+            {
+                return false;
+            }
+        }
+        return cardsToCheck.size() > 0;
     }
 
      /**
@@ -179,7 +180,7 @@ abstract class PlayHelper
          final ArrayList<Card> cardsToCheck
      )
      {
-         return areRanksSequential(getRanks(cardsToCheck));
+        return areRanksSequential(getRanks(cardsToCheck));
      }
 
     /**
@@ -217,7 +218,7 @@ abstract class PlayHelper
         ArrayList<Integer> ranks = new ArrayList<Integer>();
         for (Card card : cardsToCheck)
         {
-            if (card.getRank() == SpecialRank.PHOENIX)
+            if (card instanceof Phoenix)
             {
                 ranks.add(PhoenixHelper.determineValueInPlay(cardsToCheck));
             }

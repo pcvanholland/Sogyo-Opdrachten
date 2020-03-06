@@ -23,26 +23,26 @@ abstract class PhoenixHelper
             return getHighestValue(contextCards);
         }
         // A Pair is left, make a Triple.
-        else if (Pair.isPair(contextCards))
+        if (Pair.isPair(contextCards))
         {
             return getHighestValue(contextCards);
         }
         // Two of equal rank left, make a FullHouse with the Phoenix as highest.
-        else if (contextCards.size() == 4 &&
+        if (contextCards.size() == 4 &&
             PlayHelper.containsOnlyNumberOfEqualRanks(contextCards, 2)
         )
         {
             return getHighestValue(contextCards);
         }
         // A Triple and a Single left, make a FullHouse with the Phoenix paired.
-        else if (contextCards.size() == 4 &&
+        if (contextCards.size() == 4 &&
             PlayHelper.containsNumberOfEqualRanks(contextCards, 3)
         )
         {
             return getHighestValue(removeTripleFromCards(contextCards));
         }
         // Enough Cards for a Straight.
-        else if (contextCards.size() >= 4 &&
+        if (contextCards.size() >= 4 &&
             PlayHelper.containsOnlyNumberOfEqualRanks(contextCards, 1)
         )
         {
@@ -52,6 +52,17 @@ abstract class PhoenixHelper
                 return getHighestValue(contextCards) + 1;
             }
             return getLocationOfSingleGap(contextCards);
+        }
+        // If there are only pairs (minus one) left, and we can match the
+        // single we might be a Stair.
+        if (contextCards.size() % 2 != 0)
+        {
+            if (containsOnlyOneSingle(contextCards) &&
+                restIsPairs(contextCards)
+            )
+            {
+                return getSingleValue(contextCards);
+            }
         }
         return -1;
     }
@@ -101,16 +112,7 @@ abstract class PhoenixHelper
         final ArrayList<Card> cards
     )
     {
-        ArrayList<Card> result = new ArrayList<Card>();
-        ArrayList<Integer> ranks = PlayHelper.getRanks(cards);
-        for (Card card : cards)
-        {
-            if (java.util.Collections.frequency(ranks, card.getValue()) != 3)
-            {
-                result.add(card);
-            }
-        }
-        return result;
+        return removeSetsFromCards(cards, 3);
     }
 
     /**
@@ -138,6 +140,108 @@ abstract class PhoenixHelper
         }
 
         return gaps.size() == 1 ? gaps.get(0) : -1;
+    }
+
+    /**
+     * Whether the given set of Cards only contains Pairs except for one Single.
+     *
+     * @param cardsToCheck {Card[]} - The Cards to check.
+     * @return {boolean} - Whether the given set of Cards only contains Pairs
+     *                  except for the one Single.
+     */
+    private static boolean restIsPairs(final ArrayList<Card> cardsToCheck)
+    {
+        ArrayList<Card> cardsWithoutSingle =
+            removeSinglesFromCards(cardsToCheck);
+        return PlayHelper.containsOnlyNumberOfEqualRanks(cardsWithoutSingle, 2);
+    }
+
+    /**
+     * Whether the given list of Cards contains only one Single.
+     *
+     * @param cardsToCheck {Card[]} - The Cards to check.
+     * @return {boolean} - Whether there is exactly one Single in the list.
+     */
+    private static boolean containsOnlyOneSingle(
+        final ArrayList<Card> cardsToCheck
+    )
+    {
+        boolean single = false;
+        ArrayList<Integer> ranks = PlayHelper.getRanks(cardsToCheck);
+        for (int i = 0; i < ranks.size(); ++i)
+        {
+            if (java.util.Collections.frequency(ranks, ranks.get(i)) == 1)
+            {
+                if (single)
+                {
+                    return false;
+                }
+                single = true;
+            }
+        }
+        return single;
+    }
+
+    /**
+     * Finds the value of the Single present in the given set of Cards.
+     *
+     * @param cardsToCheck {Card[]} - The Cards to check.
+     * @return {int} - The value of the Single.
+     */
+    private static int getSingleValue(
+        final ArrayList<Card> cardsToCheck
+    )
+    {
+        ArrayList<Integer> ranks = PlayHelper.getRanks(cardsToCheck);
+        for (int i = 0; i < ranks.size(); ++i)
+        {
+            if (java.util.Collections.frequency(ranks, ranks.get(i)) == 1)
+            {
+                return ranks.get(i);
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Removes the Singles provided in the set of Cards.
+     *
+     * @param cards {Card[]} - The Cards to remove the singular Cards from.
+     * @return {Card[]} - An ArrayList of Cards without the single ones.
+     */
+    private static ArrayList<Card> removeSinglesFromCards(
+        final ArrayList<Card> cards
+    )
+    {
+        return removeSetsFromCards(cards, 1);
+    }
+
+    /**
+     * Removes the Cards occuring the specified amount of times
+     * provided in the set of Cards.
+     *
+     * @param cards {Card[]} - The Cards to remove the triplicated Cards from.
+     * @param amount {Card[]} - The multiplicity the Cards may not occur.
+     *
+     * @return {Card[]} - An ArrayList of Cards without the multiplicated ones.
+     */
+    private static ArrayList<Card> removeSetsFromCards(
+        final ArrayList<Card> cards, final int amount
+    )
+    {
+        ArrayList<Card> result = new ArrayList<Card>();
+        ArrayList<Integer> ranks = PlayHelper.getRanks(cards);
+        for (Card card : cards)
+        {
+            if (java.util.Collections.frequency(
+                    ranks, card.getValue()
+                ) != amount
+            )
+            {
+                result.add(card);
+            }
+        }
+        return result;
     }
 
     /**
