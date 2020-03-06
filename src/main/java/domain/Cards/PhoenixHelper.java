@@ -67,7 +67,7 @@ abstract class PhoenixHelper
         ArrayList<Card> result = new ArrayList<Card>();
         for (Card card : cards)
         {
-            if (card.getRank() != SpecialRank.PHOENIX)
+            if (!(card instanceof Phoenix))
             {
                 result.add(card);
             }
@@ -138,5 +138,25 @@ abstract class PhoenixHelper
         }
 
         return gaps.size() == 1 ? gaps.get(0) : -1;
+    }
+
+    /**
+     * Sets the value of the Phoenix in the given
+     * set of Cards to the right value.
+     *
+     * @param cardsToConvert {Card[]} - An ArrayList of Cards to convert.
+     * @return {Card[]} - An ArrayList of Cards with the Phoenix corrected.
+     */
+    protected static void convertPhoenixInSet(
+        final ArrayList<Card> cardsToConvert
+    )
+    {
+        for (Card card : cardsToConvert)
+        {
+            if (card instanceof Phoenix)
+            {
+                ((Phoenix) card).setValue(determineValueInPlay(cardsToConvert));
+            }
+        }
     }
 }

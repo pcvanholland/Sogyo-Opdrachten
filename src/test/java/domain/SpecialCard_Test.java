@@ -10,7 +10,7 @@ public class SpecialCard_Test
     {
         for (SpecialRank r : SpecialRank.values())
         {
-            new SpecialCard(r);
+            SpecialCard.createSpecialCard(r);
         }
     }
 
@@ -19,7 +19,7 @@ public class SpecialCard_Test
     {
         for (SpecialRank r : SpecialRank.values())
         {
-            SpecialCard card = new SpecialCard(r);
+            SpecialCard card = SpecialCard.createSpecialCard(r);
             Assert.assertEquals(r, card.getRank());
         }
     }
@@ -29,7 +29,7 @@ public class SpecialCard_Test
     {
         for (SpecialRank r : SpecialRank.values())
         {
-            SpecialCard card = new SpecialCard(r);
+            SpecialCard card = SpecialCard.createSpecialCard(r);
             Assert.assertEquals(SpecialSuit.SPECIAL, card.getSuit());
         }
     }
@@ -39,7 +39,7 @@ public class SpecialCard_Test
     {
         for (SpecialRank r : SpecialRank.values())
         {
-            SpecialCard card = new SpecialCard(r);
+            SpecialCard card = SpecialCard.createSpecialCard(r);
             Assert.assertEquals(r.getScore(), card.getScore());
         }
     }

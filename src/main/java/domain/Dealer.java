@@ -74,7 +74,7 @@ class Dealer
     {
         for (SpecialRank rank : SpecialRank.values())
         {
-            this.cards.add(new SpecialCard(rank));
+            this.cards.add(SpecialCard.createSpecialCard(rank));
         }
     }
 

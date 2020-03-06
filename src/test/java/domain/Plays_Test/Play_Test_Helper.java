@@ -183,7 +183,7 @@ public abstract class Play_Test_Helper
     final static Single createDragon()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.DRAGON));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.DRAGON));
         return new Single(cards, TEST_PLAYER);
     }
 
@@ -195,7 +195,7 @@ public abstract class Play_Test_Helper
     final static Single createMahjong()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
         return new Single(cards, TEST_PLAYER);
     }
 
@@ -207,7 +207,7 @@ public abstract class Play_Test_Helper
     final static Single createPhoenix()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         return new Single(cards, TEST_PLAYER);
     }
 }

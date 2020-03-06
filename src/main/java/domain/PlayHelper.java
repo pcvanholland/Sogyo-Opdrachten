@@ -244,6 +244,7 @@ abstract class PlayHelper
         final Set set
     )
     {
+        PhoenixHelper.convertPhoenixInSet(cards);
         if (set.equals(Set.SINGLE))
         {
             return new Single(cards, owner);

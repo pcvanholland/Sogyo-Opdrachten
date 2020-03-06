@@ -11,7 +11,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     public void test_init()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         new Single(cards, TEST_PLAYER);
     }
@@ -20,7 +20,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     public void test_playValiditySingle()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.SINGLE);
@@ -32,7 +32,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     public void test_phoenixCanBePartOfPair()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
 
         ArrayList<Set> result = new ArrayList<Set>();
@@ -45,7 +45,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     public void test_phoenixCanBePartOfDifferentPair()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(5));
 
         ArrayList<Set> result = new ArrayList<Set>();
@@ -58,8 +58,8 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     public void test_phoenixCantPairedWithMahJong()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -70,8 +70,8 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     public void test_phoenixCantBePairedWithDog()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
-        cards.add(new SpecialCard(SpecialRank.DOG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.DOG));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -82,8 +82,8 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     public void test_phoenixCantBePairedWithDragon()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
-        cards.add(new SpecialCard(SpecialRank.DRAGON));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.DRAGON));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -95,7 +95,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.PAIR);
@@ -107,7 +107,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     public void test_phoenixCanBePartOfTriple()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
 
@@ -122,7 +122,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
 
         ArrayList<Set> result = new ArrayList<Set>();
@@ -137,7 +137,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -149,8 +149,8 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -161,7 +161,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     public void test_phoenixCanBePartOfFullHouse()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -179,7 +179,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(3));
 
@@ -193,7 +193,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     public void test_phoenixCanBePartOfStair()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -216,7 +216,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(3));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(5));
@@ -231,7 +231,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     public void test_phoenixCanBePartOfStraight()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -249,7 +249,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(5));
 
@@ -263,7 +263,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     public void test_phoenixCantBePartOfLargestStraight()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         for (int i = 2; i < StandardRank.values().length + 2; ++i)
         {
             cards.add(createRandomCard(i));
@@ -282,7 +282,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         {
             cards.add(createRandomCard(i));
         }
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -293,7 +293,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     public void test_phoenixCantBomb()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
@@ -307,7 +307,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     public void test_phoenixCantBombStraight()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
@@ -324,7 +324,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     public void test_playValidityFullHouseOfFiveEquals()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));

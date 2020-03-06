@@ -158,7 +158,9 @@ final class JSONProcessor
             String[] cardProps = card.split(",");
             if (cardProps[0].equals("SPECIAL"))
             {
-                realCard = new SpecialCard(SpecialRank.valueOf(cardProps[1]));
+                realCard = SpecialCard.createSpecialCard(
+                    SpecialRank.valueOf(cardProps[1])
+                );
             }
             else
             {

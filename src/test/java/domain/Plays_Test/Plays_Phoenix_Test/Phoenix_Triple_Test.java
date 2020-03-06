@@ -18,7 +18,7 @@ public class Phoenix_Triple_Test extends Play_Test_Helper
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(value));
         cards.add(createRandomCard(value));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         return new Triple(cards, TEST_PLAYER);
     }
@@ -29,7 +29,7 @@ public class Phoenix_Triple_Test extends Play_Test_Helper
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.TRIPLE);
@@ -44,7 +44,7 @@ public class Phoenix_Triple_Test extends Play_Test_Helper
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
 

@@ -45,18 +45,14 @@ class FullHouse extends Play
         ArrayList<Integer> ranks = PlayHelper.getRanks(cardsToCheck);
         for (Card card : cardsToCheck)
         {
-            if (java.util.Collections.frequency(
-                ranks,
-                card.getRank() == SpecialRank.PHOENIX ?
-                    PhoenixHelper.determineValueInPlay(cardsToCheck) :
-                    card.getValue()
-                ) == 3
-            )
+            if (java.util.Collections.frequency(ranks, card.getValue()) == 3)
             {
                 result.add(card);
             }
         }
-        return new Triple(result, super.getOwner());
+        return (Triple) PlayHelper.createPlay(
+            result, super.getOwner(), Set.TRIPLE
+        );
     }
 
     /**

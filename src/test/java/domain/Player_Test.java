@@ -279,7 +279,7 @@ public class Player_Test
         }
 
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         firstPlayer.play(cards, Set.SINGLE);
 
@@ -304,7 +304,7 @@ public class Player_Test
         firstPlayer.getPlayerAtPositionCCW(1).drawCards();
 
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         firstPlayer.play(cards, Set.SINGLE);
 
@@ -323,7 +323,7 @@ public class Player_Test
         ArrayList<Card> cards = new ArrayList<Card>();
 
         // A Card we are certain the Player in turn has.
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         firstPlayer.play(cards, Set.SINGLE);
 
@@ -341,7 +341,7 @@ public class Player_Test
 
         ArrayList<Card> cards = new ArrayList<Card>();
 
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         try
         {
@@ -403,7 +403,7 @@ public class Player_Test
         ArrayList<Card> cards = new ArrayList<Card>();
 
         // A Card we are certain the Player in turn has.
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
         firstPlayer.play(cards, Set.SINGLE);
 
         firstPlayer.getPlayerAtPositionCCW(1).pass();
@@ -441,7 +441,7 @@ public class Player_Test
         ArrayList<Card> cards = new ArrayList<Card>();
 
         // A Card we are certain the Player in turn has.
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         firstPlayer.play(cards, Set.SINGLE);
 
@@ -456,7 +456,7 @@ public class Player_Test
         ArrayList<Card> cards = new ArrayList<Card>();
 
         // A Card we are certain the Player in turn has.
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         firstPlayer.play(cards, Set.SINGLE);
 
@@ -472,7 +472,7 @@ public class Player_Test
         ArrayList<Card> cards = new ArrayList<Card>();
 
         // A Card we are certain the Player in turn has.
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
         firstPlayer.play(cards, Set.SINGLE);
         firstPlayer.getPlayerAtPositionCCW(1).pass();
         firstPlayer.getPlayerAtPositionCCW(2).pass();
@@ -505,7 +505,7 @@ public class Player_Test
         firstPlayer.getPlayerAtPositionCCW(3).drawCards();
 
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
         firstPlayer.play(cards, Set.SINGLE);
         firstPlayer.getPlayerAtPositionCCW(1).pass();
 
@@ -521,7 +521,7 @@ public class Player_Test
         Player firstPlayer = createSeededGame(START_DOG_SEED);
 
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.DOG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.DOG));
 
         firstPlayer.play(cards, Set.SINGLE);
 
@@ -535,7 +535,7 @@ public class Player_Test
         Player firstPlayer = createSeededGame(START_DOG_SEED);
 
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.DOG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.DOG));
 
         firstPlayer.play(cards, Set.SINGLE);
 
@@ -549,7 +549,7 @@ public class Player_Test
         Player firstPlayer = createSeededPlayer(SEED);
 
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         firstPlayer.play(cards, Set.SINGLE);
 
@@ -563,7 +563,7 @@ public class Player_Test
         Player firstPlayer = createSeededPlayer(START_DOG_SEED);
 
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.DOG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.DOG));
 
         firstPlayer.play(cards, Set.SINGLE);
 

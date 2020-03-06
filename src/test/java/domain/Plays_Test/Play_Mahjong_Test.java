@@ -11,7 +11,7 @@ public class Play_Mahjong_Test extends Play_Test_Helper
     public void test_init()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         new Single(cards, TEST_PLAYER);
     }
@@ -20,7 +20,7 @@ public class Play_Mahjong_Test extends Play_Test_Helper
     public void test_playValiditySingle()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.SINGLE);
@@ -56,7 +56,7 @@ public class Play_Mahjong_Test extends Play_Test_Helper
     public void test_mahjongFitsInStraight()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -72,7 +72,7 @@ public class Play_Mahjong_Test extends Play_Test_Helper
     public void test_mahjongDoesntFitInHigherStraight()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
         cards.add(createRandomCard(6));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -87,7 +87,7 @@ public class Play_Mahjong_Test extends Play_Test_Helper
     public void test_mahjongCantBomb()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.MAHJONG));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));

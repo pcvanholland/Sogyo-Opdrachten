@@ -26,7 +26,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         {
             if (current == phoenix)
             {
-                cards.add(new SpecialCard(SpecialRank.PHOENIX));
+                cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
             }
             else
             {
@@ -44,7 +44,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -60,7 +60,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(5));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
@@ -73,7 +73,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
     public void test_playValidityStraightPhoenixOnBegin()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(5));
@@ -92,7 +92,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(5));
         cards.add(createRandomCard(6));
 
@@ -112,7 +112,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(5));
         cards.add(createRandomCard(6));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
@@ -128,7 +128,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(7));
 
         ArrayList<Set> result = new ArrayList<Set>();
@@ -143,7 +143,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(6));
         cards.add(createRandomCard(7));
 
@@ -158,7 +158,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(5));
         cards.add(createRandomCard(6));
         cards.add(createRandomCard(7));
@@ -178,7 +178,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(5));
         cards.add(createRandomCard(6));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(9));
 
         ArrayList<Set> result = new ArrayList<Set>();
@@ -195,7 +195,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(5));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(4));
 
         ArrayList<Set> result = new ArrayList<Set>();
@@ -213,7 +213,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
@@ -234,7 +234,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         cards.add(createRandomCard(5));
         cards.add(createRandomCard(5));
         cards.add(createRandomCard(6));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
@@ -251,7 +251,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
 
         Assert.assertTrue(secondPlay.beats(firstPlay));
     }
-/*
+
     @Test
     public void test_higherPhoenixBeatsLower()
     {
@@ -260,7 +260,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
 
         Assert.assertTrue(secondPlay.beats(firstPlay));
     }
-*/
+
     @Test
     public void test_equalsNotBeats()
     {

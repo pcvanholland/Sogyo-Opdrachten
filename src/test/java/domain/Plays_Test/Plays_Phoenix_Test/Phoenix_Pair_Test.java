@@ -17,7 +17,7 @@ public class Phoenix_Pair_Test extends Play_Test_Helper
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(value));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         return new Pair(cards, TEST_PLAYER);
     }
@@ -27,7 +27,7 @@ public class Phoenix_Pair_Test extends Play_Test_Helper
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.PAIR);
@@ -42,7 +42,7 @@ public class Phoenix_Pair_Test extends Play_Test_Helper
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
 

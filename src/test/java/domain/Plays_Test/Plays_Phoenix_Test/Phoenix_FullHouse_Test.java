@@ -19,12 +19,12 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(value));
         cards.add(createRandomCard(value));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
 
-        return new FullHouse(cards, TEST_PLAYER);
+        return PlayHelper.createPlay(cards, TEST_PLAYER, Set.FULLHOUSE);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(3));
 
@@ -42,7 +42,7 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
 
-        new FullHouse(cards, TEST_PLAYER);
+        PlayHelper.createPlay(cards, TEST_PLAYER, Set.FULLHOUSE);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(3));
 
         ArrayList<Set> result = new ArrayList<Set>();
@@ -60,7 +60,7 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
 
-        new FullHouse(cards, TEST_PLAYER);
+        PlayHelper.createPlay(cards, TEST_PLAYER, Set.FULLHOUSE);
     }
 
     @Test
@@ -68,7 +68,7 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(3));
@@ -78,7 +78,7 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
 
-        new FullHouse(cards, TEST_PLAYER);
+        PlayHelper.createPlay(cards, TEST_PLAYER, Set.FULLHOUSE);
     }
 
     @Test(expected = InvalidPlayException.class)
@@ -86,7 +86,7 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
 
@@ -94,7 +94,7 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
 
-        new FullHouse(cards, TEST_PLAYER);
+        PlayHelper.createPlay(cards, TEST_PLAYER, Set.FULLHOUSE);
     }
 
     @Test(expected = InvalidPlayException.class)
@@ -103,7 +103,7 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
-        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(3));
@@ -112,7 +112,7 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
 
-        new FullHouse(cards, TEST_PLAYER);
+        PlayHelper.createPlay(cards, TEST_PLAYER, Set.FULLHOUSE);
     }
 
     @Test
