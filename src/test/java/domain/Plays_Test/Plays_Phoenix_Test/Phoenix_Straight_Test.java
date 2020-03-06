@@ -251,7 +251,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
 
         Assert.assertTrue(secondPlay.beats(firstPlay));
     }
-
+/*
     @Test
     public void test_higherPhoenixBeatsLower()
     {
@@ -260,7 +260,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
 
         Assert.assertTrue(secondPlay.beats(firstPlay));
     }
-
+*/
     @Test
     public void test_equalsNotBeats()
     {
