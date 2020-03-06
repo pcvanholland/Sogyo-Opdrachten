@@ -130,7 +130,7 @@ abstract class PlayHelper
      *
      * @return {boolean} - Whether the list contains the specified multiplicity.
      */
-    private static boolean containsNumberOfEqualRanks(
+    protected static boolean containsNumberOfEqualRanks(
         final ArrayList<Card> cardsToCheck, final int amount
     )
     {

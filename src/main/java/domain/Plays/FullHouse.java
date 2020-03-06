@@ -42,11 +42,16 @@ class FullHouse extends Play
     private Triple getTripleFromCards(final ArrayList<Card> cardsToCheck)
     {
         ArrayList<Card> result = new ArrayList<Card>();
+        ArrayList<Integer> ranks = PlayHelper.getRanks(cardsToCheck);
         for (Card card : cardsToCheck)
         {
             if (java.util.Collections.frequency(
-                    PlayHelper.getRanks(cardsToCheck), card.getValue()
-                ) == 3)
+                ranks,
+                card.getRank() == SpecialRank.PHOENIX ?
+                    PhoenixHelper.determineValueInPlay(cardsToCheck) :
+                    card.getValue()
+                ) == 3
+            )
             {
                 result.add(card);
             }

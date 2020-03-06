@@ -15,23 +15,31 @@ abstract class PhoenixHelper
     )
     {
         ArrayList<Card> contextCards = removePhoenix(cardsToCheck);
+        // Together they're a Pair.
         if (contextCards.size() == 1 &&
             contextCards.get(0) instanceof PlayingCard
         )
         {
-            return contextCards.get(0).getValue();
+            return getHighestValue(contextCards);
         }
-        else if (contextCards.size() == 2 &&
-            PlayHelper.containsPair(contextCards)
-        )
+        // A Pair is left, make a Triple.
+        else if (Pair.isPair(contextCards))
         {
-            return contextCards.get(0).getValue();
+            return getHighestValue(contextCards);
         }
+        // Two of equal rank left, make a FullHouse with the Phoenix as highest.
         else if (contextCards.size() == 4 &&
             PlayHelper.containsOnlyNumberOfEqualRanks(contextCards, 2)
         )
         {
             return getHighestValue(contextCards);
+        }
+        // A Triple and a Single left, make a FullHouse with the Phoenix paired.
+        else if (contextCards.size() == 4 &&
+            PlayHelper.containsNumberOfEqualRanks(contextCards, 3)
+        )
+        {
+            return getHighestValue(removeTripleFromCards(contextCards));
         }
         return -1;
     }
@@ -67,6 +75,28 @@ abstract class PhoenixHelper
         for (Card card : cardsToCheck)
         {
             result = Math.max(card.getValue(), result);
+        }
+        return result;
+    }
+
+    /**
+     * Removes the Triple provided in the set of Cards.
+     *
+     * @param cards {Card[]} - The Cards to remove the triplicated Cards from.
+     * @return {Card[]} - An ArrayList of Cards without the triplicated ones.
+     */
+    private static ArrayList<Card> removeTripleFromCards(
+        final ArrayList<Card> cards
+    )
+    {
+        ArrayList<Card> result = new ArrayList<Card>();
+        ArrayList<Integer> ranks = PlayHelper.getRanks(cards);
+        for (Card card : cards)
+        {
+            if (java.util.Collections.frequency(ranks, card.getValue()) != 3)
+            {
+                result.add(card);
+            }
         }
         return result;
     }

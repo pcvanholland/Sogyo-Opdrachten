@@ -13,7 +13,7 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
      *
      * @param value {int} - The value of the Triple in the Full House.
      * @return {Play} - The FullHouse.
-     *
+     */
     private Play createFullHouseWithPhoenix(final int value)
     {
         ArrayList<Card> cards = new ArrayList<Card>();
@@ -28,12 +28,38 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_init()
+    public void test_initAsPartOfTriple()
     {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(createRandomCard(3));
+        cards.add(createRandomCard(3));
+
+        new FullHouse(cards, TEST_PLAYER);
+    }
+
+    @Test
+    public void test_initAsPartOfHighPair()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(2));
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(createRandomCard(3));
+
+        new FullHouse(cards, TEST_PLAYER);
+    }
+
+    @Test
+    public void test_initAsPartOfLowPair()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(createRandomCard(2));
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(createRandomCard(3));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(3));
 
@@ -47,6 +73,20 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
         cards.add(createRandomCard(2));
         cards.add(new SpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
+        cards.add(createRandomCard(3));
+
+        new FullHouse(cards, TEST_PLAYER);
+    }
+
+    @Test(expected = InvalidPlayException.class)
+    public void test_initFailsWhenPhoenixIsExcess()
+    {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(2));
+        cards.add(new SpecialCard(SpecialRank.PHOENIX));
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(3));
         cards.add(createRandomCard(3));
 
         new FullHouse(cards, TEST_PLAYER);
@@ -106,5 +146,5 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
         Play secondPlay = createFullHouse(3, 2);
 
         Assert.assertFalse(secondPlay.beats(firstPlay));
-    }*/
+    }
 }
