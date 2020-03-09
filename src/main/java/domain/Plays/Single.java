@@ -25,4 +25,23 @@ class Single extends Play
     {
         return cardsToCheck.size() == 1;
     }
+
+    /**
+     * Whether this Single beats the given one.
+     *
+     * @param playToBeat {Play} - The Play to beat.
+     * @return {boolean} - Whether this Play beats the provided one.
+     */
+    protected boolean beats(final Play playToBeat)
+    {
+        if (!this.isSameSetAs(playToBeat))
+        {
+            return false;
+        }
+        if (this.getCards().get(0) instanceof Phoenix)
+        {
+            return !(playToBeat.getCards().get(0) instanceof Dragon);
+        }
+        return this.getValue() > playToBeat.getValue();
+    }
 }

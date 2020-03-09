@@ -326,7 +326,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
-        cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
 
@@ -335,7 +335,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         Assert.assertEquals(result, cards.determineTypesOfSet());
     }
-*//*
+*/
     @Test
     public void test_phoenixBeatsAllStandardSingles()
     {
@@ -347,7 +347,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
             Assert.assertTrue(secondPlay.beats(firstPlay));
         }
     }
-*/
+
     @Test
     public void test_phoenixIsBeatenByAllStandardSingles()
     {

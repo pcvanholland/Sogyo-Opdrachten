@@ -69,7 +69,7 @@ abstract class Play extends CardCollection
      * @param play {Play} - The Play to check against.
      * @return {boolean} - Whether the two Plays are equal.
      */
-    private boolean isSameSetAs(final Play play)
+    boolean isSameSetAs(final Play play)
     {
         return this.getClass() == play.getClass() &&
             this.getLength() == play.getLength();
