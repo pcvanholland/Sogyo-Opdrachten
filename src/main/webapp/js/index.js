@@ -172,17 +172,6 @@ Vue.component('game-screen', {
                         Pass turn
                     </button>
 
-                    <div class="taipan-sets">
-                        Play as:
-                        <div v-for="type in playTypes">
-                            <button v-on:click="playCards(type,player.id)"
-                                :hidden="!mayControl(player.id)">
-                                {{ type }}
-                            </button>
-                        </div>
-
-                    </div>
-
                     <div v-for="card in player.cards">
                         <label>
                             <input type="checkbox"
@@ -195,6 +184,16 @@ Vue.component('game-screen', {
                                 card.suit + ", " + card.rank :
                                 "<< Card >>" }}
                         </label>
+                    </div>
+
+                    <div class="taipan-sets" :hidden="!mayControl(player.id)">
+                        Play as:
+                        <div v-for="type in playTypes">
+                            <button v-on:click="playCards(type,player.id)">
+                                {{ type }}
+                            </button>
+                        </div>
+
                     </div>
 
                     <button v-on:click="drawCards(player.id)"
