@@ -10,7 +10,7 @@ public class Play_Stair_Test extends Play_Test_Helper
     @Test
     public void test_playInValidityOddSizedArray()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
 
@@ -18,13 +18,13 @@ public class Play_Stair_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playValidityDoubleSet()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
 
@@ -34,13 +34,13 @@ public class Play_Stair_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playValidityDoubleSetAddedOrderDoesNotMatter()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(3));
 
@@ -50,13 +50,13 @@ public class Play_Stair_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInvalidityDoubleSetNotInOrder()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
 
@@ -65,13 +65,13 @@ public class Play_Stair_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInvalidityDoubleTriple()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
@@ -82,13 +82,13 @@ public class Play_Stair_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInvalidityDoubleWithTwoSingles()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
 
@@ -97,13 +97,13 @@ public class Play_Stair_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playValidityTripleSet()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
 
@@ -116,13 +116,13 @@ public class Play_Stair_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playValidityTripleSetAddedOrderDoesNotMatter()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(4));
 
@@ -135,13 +135,13 @@ public class Play_Stair_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInvalidityDoubleSetWithTwoSingles()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
 
@@ -153,13 +153,13 @@ public class Play_Stair_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInvalidityTripleSetSlightlyNotInOrder()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
 
@@ -171,13 +171,13 @@ public class Play_Stair_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInvalidityTripleSetNotInOrder()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
 
@@ -189,13 +189,13 @@ public class Play_Stair_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playValidityLongSet()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         for (StandardRank rank : StandardRank.values())
         {
             cards.add(createRandomCard(rank.getValue()));
@@ -205,13 +205,13 @@ public class Play_Stair_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_init()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
 
@@ -224,7 +224,7 @@ public class Play_Stair_Test extends Play_Test_Helper
     @Test(expected = InvalidPlayException.class)
     public void test_initFailsWhenWrong()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
@@ -236,7 +236,7 @@ public class Play_Stair_Test extends Play_Test_Helper
     @Test(expected = InvalidStairException.class)
     public void test_initFailsWhenTriedWithDifferentType()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
 

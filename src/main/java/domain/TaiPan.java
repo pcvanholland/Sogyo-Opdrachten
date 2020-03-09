@@ -114,10 +114,10 @@ public class TaiPan
      */
     public ArrayList<String> getTypesOfPlay(final String cardsJSON)
     {
-        ArrayList<Card> cards = JSONProcessor.createCardsFromJSON(cardsJSON);
+        CardCollection cards = JSONProcessor.createCardsFromJSON(cardsJSON);
 
         ArrayList<String> result = new ArrayList<String>();
-        for (Set set : PlayHelper.determineTypesOfSet(cards))
+        for (Set set : cards.determineTypesOfSet())
         {
             result.add(set.toString());
         }

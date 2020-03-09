@@ -10,7 +10,7 @@ public class Play_Mahjong_Test extends Play_Test_Helper
     @Test
     public void test_init()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         new Single(cards, TEST_PLAYER);
@@ -19,13 +19,13 @@ public class Play_Mahjong_Test extends Play_Test_Helper
     @Test
     public void test_playValiditySingle()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.SINGLE);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
@@ -55,7 +55,7 @@ public class Play_Mahjong_Test extends Play_Test_Helper
     @Test
     public void test_mahjongFitsInStraight()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -65,13 +65,13 @@ public class Play_Mahjong_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_mahjongDoesntFitInHigherStraight()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
         cards.add(createRandomCard(6));
         cards.add(createRandomCard(3));
@@ -80,13 +80,13 @@ public class Play_Mahjong_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_mahjongCantBomb()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
@@ -97,6 +97,6 @@ public class Play_Mahjong_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 }

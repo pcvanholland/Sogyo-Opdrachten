@@ -11,10 +11,10 @@ abstract class PhoenixHelper
      * @return {int} - The value of the Phoenix.
      */
     protected static int determineValueInPlay(
-        final ArrayList<Card> cardsToCheck
+        final CardCollection cardsToCheck
     )
     {
-        ArrayList<Card> contextCards = removePhoenix(cardsToCheck);
+        CardCollection contextCards = removePhoenix(cardsToCheck);
         // Together they're a Pair.
         if (contextCards.size() == 1 &&
             contextCards.get(0) instanceof PlayingCard
@@ -29,25 +29,25 @@ abstract class PhoenixHelper
         }
         // Two of equal rank left, make a FullHouse with the Phoenix as highest.
         if (contextCards.size() == 4 &&
-            PlayHelper.containsOnlyNumberOfEqualRanks(contextCards, 2)
+            contextCards.containsOnlyNumberOfEqualRanks(2)
         )
         {
             return getHighestValue(contextCards);
         }
         // A Triple and a Single left, make a FullHouse with the Phoenix paired.
         if (contextCards.size() == 4 &&
-            PlayHelper.containsNumberOfEqualRanks(contextCards, 3)
+            contextCards.containsNumberOfEqualRanks(3)
         )
         {
             return getHighestValue(removeTripleFromCards(contextCards));
         }
         // Enough Cards for a Straight.
         if (contextCards.size() >= 4 &&
-            PlayHelper.containsOnlyNumberOfEqualRanks(contextCards, 1)
+            contextCards.containsOnlyNumberOfEqualRanks(1)
         )
         {
             // Already a sequential, just add the Phoenix to the end.
-            if (PlayHelper.areCardsSequential(contextCards))
+            if (contextCards.areCardsSequential())
             {
                 return getHighestValue(contextCards) + 1;
             }
@@ -73,10 +73,10 @@ abstract class PhoenixHelper
      * @param cards {Card[]} - The context in which the Phoenix exists.
      * @return {Card[]} - The context whithout the Phoenix.
      */
-    private static ArrayList<Card> removePhoenix(final ArrayList<Card> cards)
+    private static CardCollection removePhoenix(final CardCollection cards)
     {
-        ArrayList<Card> result = new ArrayList<Card>();
-        for (Card card : cards)
+        CardCollection result = new CardCollection();
+        for (Card card : cards.getCards())
         {
             if (!(card instanceof Phoenix))
             {
@@ -92,10 +92,10 @@ abstract class PhoenixHelper
      * @param cardsToCheck {Card[]} - An ArrayList of Cards to check.
      * @return {int} - The highest value present in this set.
      */
-    private static int getHighestValue(final ArrayList<Card> cardsToCheck)
+    private static int getHighestValue(final CardCollection cardsToCheck)
     {
         int result = -1;
-        for (Card card : cardsToCheck)
+        for (Card card : cardsToCheck.getCards())
         {
             result = Math.max(card.getValue(), result);
         }
@@ -108,8 +108,8 @@ abstract class PhoenixHelper
      * @param cards {Card[]} - The Cards to remove the triplicated Cards from.
      * @return {Card[]} - An ArrayList of Cards without the triplicated ones.
      */
-    private static ArrayList<Card> removeTripleFromCards(
-        final ArrayList<Card> cards
+    private static CardCollection removeTripleFromCards(
+        final CardCollection cards
     )
     {
         return removeSetsFromCards(cards, 3);
@@ -124,11 +124,11 @@ abstract class PhoenixHelper
      *                  present multiple times.
      */
     private static int getLocationOfSingleGap(
-        final ArrayList<Card> cardsToCheck
+        final CardCollection cardsToCheck
     )
     {
         ArrayList<Integer> gaps = new ArrayList<Integer>();
-        ArrayList<Integer> ranksToCheck = PlayHelper.getRanks(cardsToCheck);
+        ArrayList<Integer> ranksToCheck = cardsToCheck.getRanks();
 
         java.util.Collections.sort(ranksToCheck);
         for (int i = 0; i < ranksToCheck.size() - 1; ++i)
@@ -144,16 +144,17 @@ abstract class PhoenixHelper
 
     /**
      * Whether the given set of Cards only contains Pairs except for one Single.
+     * Used to chech whether a Stair can be made.
      *
      * @param cardsToCheck {Card[]} - The Cards to check.
      * @return {boolean} - Whether the given set of Cards only contains Pairs
      *                  except for the one Single.
      */
-    private static boolean restIsPairs(final ArrayList<Card> cardsToCheck)
+    private static boolean restIsPairs(final CardCollection cardsToCheck)
     {
-        ArrayList<Card> cardsWithoutSingle =
+        CardCollection cardsWithoutSingle =
             removeSinglesFromCards(cardsToCheck);
-        return PlayHelper.containsOnlyNumberOfEqualRanks(cardsWithoutSingle, 2);
+        return cardsWithoutSingle.containsOnlyNumberOfEqualRanks(2);
     }
 
     /**
@@ -163,11 +164,11 @@ abstract class PhoenixHelper
      * @return {boolean} - Whether there is exactly one Single in the list.
      */
     private static boolean containsOnlyOneSingle(
-        final ArrayList<Card> cardsToCheck
+        final CardCollection cardsToCheck
     )
     {
         boolean single = false;
-        ArrayList<Integer> ranks = PlayHelper.getRanks(cardsToCheck);
+        ArrayList<Integer> ranks = cardsToCheck.getRanks();
         for (int i = 0; i < ranks.size(); ++i)
         {
             if (java.util.Collections.frequency(ranks, ranks.get(i)) == 1)
@@ -189,10 +190,10 @@ abstract class PhoenixHelper
      * @return {int} - The value of the Single.
      */
     private static int getSingleValue(
-        final ArrayList<Card> cardsToCheck
+        final CardCollection cardsToCheck
     )
     {
-        ArrayList<Integer> ranks = PlayHelper.getRanks(cardsToCheck);
+        ArrayList<Integer> ranks = cardsToCheck.getRanks();
         for (int i = 0; i < ranks.size(); ++i)
         {
             if (java.util.Collections.frequency(ranks, ranks.get(i)) == 1)
@@ -209,8 +210,8 @@ abstract class PhoenixHelper
      * @param cards {Card[]} - The Cards to remove the singular Cards from.
      * @return {Card[]} - An ArrayList of Cards without the single ones.
      */
-    private static ArrayList<Card> removeSinglesFromCards(
-        final ArrayList<Card> cards
+    private static CardCollection removeSinglesFromCards(
+        final CardCollection cards
     )
     {
         return removeSetsFromCards(cards, 1);
@@ -225,13 +226,13 @@ abstract class PhoenixHelper
      *
      * @return {Card[]} - An ArrayList of Cards without the multiplicated ones.
      */
-    private static ArrayList<Card> removeSetsFromCards(
-        final ArrayList<Card> cards, final int amount
+    private static CardCollection removeSetsFromCards(
+        final CardCollection cards, final int amount
     )
     {
-        ArrayList<Card> result = new ArrayList<Card>();
-        ArrayList<Integer> ranks = PlayHelper.getRanks(cards);
-        for (Card card : cards)
+        CardCollection result = new CardCollection();
+        ArrayList<Integer> ranks = cards.getRanks();
+        for (Card card : cards.getCards())
         {
             if (java.util.Collections.frequency(
                     ranks, card.getValue()
@@ -252,10 +253,10 @@ abstract class PhoenixHelper
      * @return {Card[]} - An ArrayList of Cards with the Phoenix corrected.
      */
     protected static void convertPhoenixInSet(
-        final ArrayList<Card> cardsToConvert
+        final CardCollection cardsToConvert
     )
     {
-        for (Card card : cardsToConvert)
+        for (Card card : cardsToConvert.getCards())
         {
             if (card instanceof Phoenix)
             {

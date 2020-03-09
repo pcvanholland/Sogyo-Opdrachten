@@ -1,7 +1,5 @@
 package taipan.domain;
 
-import java.util.ArrayList;
-
 class Bomb extends Play
 {
     /**
@@ -10,7 +8,7 @@ class Bomb extends Play
      * @param newCards {Card[]} - An ArrayList of Cards comprising the new Bomb.
      * @param newOwner {Player} - The Player who played this Bomb.
      */
-    Bomb(final ArrayList<Card> newCards, final Player newOwner)
+    Bomb(final CardCollection newCards, final Player newOwner)
     {
         super(newCards, newOwner);
         if (!isBomb(newCards))
@@ -50,7 +48,7 @@ class Bomb extends Play
      * @return {boolean} - Whether this collection of Cards
       *                     can be played as a Bomb.
      */
-    protected static boolean isBomb(final ArrayList<Card> cardsToCheck)
+    protected static boolean isBomb(final CardCollection cardsToCheck)
     {
         return isFOAKBomb(cardsToCheck) ||
             isStraightBomb(cardsToCheck);
@@ -60,17 +58,10 @@ class Bomb extends Play
      * @param cardsToCheck - An ArrayList of Cards to check.
      * @return {boolean} - Whether this collection of Cards is a FOAK bomb.
      */
-    private static boolean isFOAKBomb(final ArrayList<Card> cardsToCheck)
+    private static boolean isFOAKBomb(final CardCollection cardsToCheck)
     {
-        // for (Card card : cardsToCheck)
-        // {
-        //     if (card.getRank() instanceof SpecialRank)
-        //     {
-        //         return false;
-        //     }
-        // }
         return cardsToCheck.size() == StandardSuit.values().length &&
-            PlayHelper.areCardsOfEqualRank(cardsToCheck);
+            cardsToCheck.areCardsOfEqualRank();
     }
 
     /**
@@ -78,9 +69,9 @@ class Bomb extends Play
      * @return {boolean} - Whether this collection of Cards can be
      *      played as a Straight bomb.
      */
-    private static boolean isStraightBomb(final ArrayList<Card> cardsToCheck)
+    private static boolean isStraightBomb(final CardCollection cardsToCheck)
     {
         return Straight.isStraight(cardsToCheck) &&
-            PlayHelper.areCardsOfEqualSuit(cardsToCheck);
+            cardsToCheck.areCardsOfEqualSuit();
     }
 }

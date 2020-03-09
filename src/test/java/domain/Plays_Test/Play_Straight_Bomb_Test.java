@@ -10,7 +10,7 @@ public class Play_Straight_Bomb_Test extends Play_Test_Helper
     @Test
     public void test_playInValidityTooShortArray()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
@@ -18,13 +18,13 @@ public class Play_Straight_Bomb_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playValidityStraightBomb()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
@@ -35,13 +35,13 @@ public class Play_Straight_Bomb_Test extends Play_Test_Helper
         result.add(Set.STRAIGHT);
         result.add(Set.BOMB);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInValidityBrokenStraightBomb()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
@@ -50,13 +50,13 @@ public class Play_Straight_Bomb_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInValidityStraightBombWithExtra()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
@@ -66,13 +66,13 @@ public class Play_Straight_Bomb_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInValidityStraightWithPair()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
@@ -82,13 +82,13 @@ public class Play_Straight_Bomb_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInValidityStraightWithOnlyPairs()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
@@ -103,13 +103,13 @@ public class Play_Straight_Bomb_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_initStraightBomb()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
@@ -122,7 +122,7 @@ public class Play_Straight_Bomb_Test extends Play_Test_Helper
     @Test(expected = InvalidPlayException.class)
     public void test_initFailsWhenWrong()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
@@ -134,7 +134,7 @@ public class Play_Straight_Bomb_Test extends Play_Test_Helper
     @Test(expected = InvalidBombException.class)
     public void test_initFailsWhenTriedWithDifferentType()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.FOUR));

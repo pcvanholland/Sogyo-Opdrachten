@@ -10,7 +10,7 @@ public class Play_Pair_Test extends Play_Test_Helper
     @Test
     public void test_init()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
 
@@ -20,7 +20,7 @@ public class Play_Pair_Test extends Play_Test_Helper
     @Test(expected = InvalidPlayException.class)
     public void test_initFailsWhenWrong()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
@@ -32,7 +32,7 @@ public class Play_Pair_Test extends Play_Test_Helper
     @Test(expected = InvalidPairException.class)
     public void test_initFailsWhenTriedWithDifferentType()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
 
         new Pair(cards, TEST_PLAYER);

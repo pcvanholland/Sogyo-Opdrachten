@@ -278,7 +278,7 @@ public class Player_Test
             firstPlayer.getPlayerAtPositionCCW(i).drawCards();
         }
 
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         firstPlayer.play(cards, Set.SINGLE);
@@ -303,7 +303,7 @@ public class Player_Test
         // Give the next Player cards to prevent the turn from returning.
         firstPlayer.getPlayerAtPositionCCW(1).drawCards();
 
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         firstPlayer.play(cards, Set.SINGLE);
@@ -320,7 +320,7 @@ public class Player_Test
     {
         Player firstPlayer = this.createPlayerInTurn();
 
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
 
         // A Card we are certain the Player in turn has.
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
@@ -336,11 +336,8 @@ public class Player_Test
     {
         Table playingTable = new Table();
         Player firstPlayer = new Player(playingTable, SEED);
-
         firstPlayer.drawCards();
-
-        ArrayList<Card> cards = new ArrayList<Card>();
-
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         try
@@ -363,7 +360,7 @@ public class Player_Test
         Player firstPlayer = this.createPlayerInTurn();
 
         // We don't have the SWORD SEVEN with seed 3.
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SEVEN));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.SEVEN));
 
@@ -377,7 +374,7 @@ public class Player_Test
         Player firstPlayer = this.createPlayerInTurn();
 
         // We don't have the SWORD SEVEN with seed 3.
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SEVEN));
         cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.SEVEN));
 
@@ -400,7 +397,7 @@ public class Player_Test
         CantPassException
     {
         Player firstPlayer = this.createSeededGame(SEED);
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
 
         // A Card we are certain the Player in turn has.
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
@@ -438,7 +435,7 @@ public class Player_Test
         CantDrawTooManyTimesException, CantPlayException
     {
         Player firstPlayer = this.createSeededGame(SEED);
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
 
         // A Card we are certain the Player in turn has.
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
@@ -453,7 +450,7 @@ public class Player_Test
         CantDrawTooManyTimesException, CantPlayException
     {
         Player firstPlayer = this.createSeededGame(SEED);
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
 
         // A Card we are certain the Player in turn has.
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
@@ -469,7 +466,7 @@ public class Player_Test
         CantPassException
     {
         Player firstPlayer = this.createSeededGame(SEED);
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
 
         // A Card we are certain the Player in turn has.
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
@@ -488,7 +485,7 @@ public class Player_Test
     {
         Player firstPlayer = new Player(new Table(), START_BOMB_SEED);
         firstPlayer.drawCards();
-        ArrayList<Card> bomb = new ArrayList<Card>();
+        CardCollection bomb = new CardCollection();
         for (Card card : firstPlayer.getCards())
         {
             if (card.getRank() != SpecialRank.MAHJONG)
@@ -504,7 +501,7 @@ public class Player_Test
         firstPlayer.getPlayerAtPositionCCW(3).drawCards();
         firstPlayer.getPlayerAtPositionCCW(3).drawCards();
 
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
         firstPlayer.play(cards, Set.SINGLE);
         firstPlayer.getPlayerAtPositionCCW(1).pass();
@@ -520,7 +517,7 @@ public class Player_Test
     {
         Player firstPlayer = createSeededGame(START_DOG_SEED);
 
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.DOG));
 
         firstPlayer.play(cards, Set.SINGLE);
@@ -534,7 +531,7 @@ public class Player_Test
     {
         Player firstPlayer = createSeededGame(START_DOG_SEED);
 
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.DOG));
 
         firstPlayer.play(cards, Set.SINGLE);
@@ -548,7 +545,7 @@ public class Player_Test
     {
         Player firstPlayer = createSeededPlayer(SEED);
 
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         firstPlayer.play(cards, Set.SINGLE);
@@ -562,7 +559,7 @@ public class Player_Test
     {
         Player firstPlayer = createSeededPlayer(START_DOG_SEED);
 
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.DOG));
 
         firstPlayer.play(cards, Set.SINGLE);

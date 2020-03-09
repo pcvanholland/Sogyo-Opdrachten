@@ -10,7 +10,7 @@ public class Play_Dragon_Test extends Play_Test_Helper
     @Test
     public void test_init()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.DRAGON));
 
         new Single(cards, TEST_PLAYER);
@@ -19,13 +19,13 @@ public class Play_Dragon_Test extends Play_Test_Helper
     @Test
     public void test_playValiditySingle()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.DRAGON));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.SINGLE);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test

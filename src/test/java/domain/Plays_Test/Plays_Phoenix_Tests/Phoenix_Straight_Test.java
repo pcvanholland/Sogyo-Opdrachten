@@ -21,7 +21,7 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         final int start, final int end, final int phoenix
     )
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         for (int current = start; current < end + 1; ++current)
         {
             if (current == phoenix)
@@ -33,14 +33,13 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
                 cards.add(createRandomCard(current));
             }
         }
-        java.util.Collections.shuffle(cards);
-        return PlayHelper.createPlay(cards, TEST_PLAYER, Set.STRAIGHT);
+        return cards.createPlay(TEST_PLAYER, Set.STRAIGHT);
     }
 
     @Test(expected = InvalidPlayException.class)
     public void test_playInValidityTooShortArray()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -48,14 +47,14 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
         new Straight(cards, TEST_PLAYER);
     }
 
     @Test
     public void test_playValidityStraightPhoenixOnEnd()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -65,14 +64,14 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
         new Straight(cards, TEST_PLAYER);
     }
 
     @Test
     public void test_playValidityStraightPhoenixOnBegin()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -82,14 +81,14 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
         new Straight(cards, TEST_PLAYER);
     }
 
     @Test
     public void test_playValidityStraightPhoenixWithin()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -99,14 +98,14 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
         new Straight(cards, TEST_PLAYER);
     }
 
     @Test
     public void test_playValidityStraightPhoenixAsExtra()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -117,14 +116,14 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
         new Straight(cards, TEST_PLAYER);
     }
 
     @Test
     public void test_playValidityStraightMahjongAndPhoenix()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -136,14 +135,14 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
         new Straight(cards, TEST_PLAYER);
     }
 
     @Test
     public void test_playValidityStraightPhoenixAfterMahjong()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
         cards.add(createRandomCard(7));
         cards.add(createRandomCard(3));
@@ -155,14 +154,14 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
         new Straight(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidPlayException.class)
     public void test_playInvalidityBrokenStraight()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -171,14 +170,14 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
         new Straight(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidPlayException.class)
     public void test_playInvalidityBrokenStraight2()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -187,14 +186,14 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
         new Straight(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidPlayException.class)
     public void test_playInvalidityBrokenStraight3()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(5));
@@ -203,14 +202,14 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
         new Straight(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidPlayException.class)
     public void test_playInvalidityStraightWithExtra()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -221,14 +220,14 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
         new Straight(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidPlayException.class)
     public void test_playInvalidityStraightWithPair()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -238,14 +237,14 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
         new Straight(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidPlayException.class)
     public void test_playInvalidityTripleWithTwoSingles()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(4));
@@ -255,14 +254,14 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
         new Straight(cards, TEST_PLAYER);
     }
 /*
     @Test(expected = InvalidPlayException.class)
     public void test_playInvaliditySuperLongStraight()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         for (StandardRank rank : StandardRank.values())
         {
             cards.add(createRandomCard(rank.getValue()));
@@ -271,14 +270,14 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
-        PlayHelper.createPlay(cards, TEST_PLAYER, Set.STRAIGHT);
+        Assert.assertEquals(result, cards.determineTypesOfSet());
+        cards.createPlay(TEST_PLAYER, Set.STRAIGHT);
     }
 */
     @Test(expected = InvalidPlayException.class)
     public void test_playInvalidityStraightWithOnlyPairs()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -293,8 +292,8 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
-        PlayHelper.createPlay(cards, TEST_PLAYER, Set.STRAIGHT);
+        Assert.assertEquals(result, cards.determineTypesOfSet());
+        cards.createPlay(TEST_PLAYER, Set.STRAIGHT);
     }
 
     @Test

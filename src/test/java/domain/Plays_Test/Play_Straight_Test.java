@@ -10,7 +10,7 @@ public class Play_Straight_Test extends Play_Test_Helper
     @Test
     public void test_playInValidityTooShortArray()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -18,13 +18,13 @@ public class Play_Straight_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playValidityStraight()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -34,13 +34,13 @@ public class Play_Straight_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInValidityBrokenStraight()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -49,13 +49,13 @@ public class Play_Straight_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInValidityBrokenStraight2()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -64,13 +64,13 @@ public class Play_Straight_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInValidityBrokenStraight3()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(5));
@@ -79,13 +79,13 @@ public class Play_Straight_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInValidityStraightWithExtra()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -95,13 +95,13 @@ public class Play_Straight_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInValidityStraightWithPair()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -111,13 +111,13 @@ public class Play_Straight_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInValidityTripleWithTwoSingles()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(4));
@@ -126,13 +126,13 @@ public class Play_Straight_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInValidityStraightWithTriple()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(4));
@@ -143,13 +143,13 @@ public class Play_Straight_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInValidityStraightWithOnlyPairs()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -164,13 +164,13 @@ public class Play_Straight_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_init()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -183,7 +183,7 @@ public class Play_Straight_Test extends Play_Test_Helper
     @Test(expected = InvalidPlayException.class)
     public void test_initFailsWhenWrong()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
@@ -195,7 +195,7 @@ public class Play_Straight_Test extends Play_Test_Helper
     @Test(expected = InvalidStraightException.class)
     public void test_initFailsWhenTriedWithDifferentType()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));

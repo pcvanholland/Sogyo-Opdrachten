@@ -29,7 +29,7 @@ public abstract class Play_Test_Helper
      */
     final static Single createSingle(final int value)
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(value));
         return new Single(cards, TEST_PLAYER);
     }
@@ -42,7 +42,7 @@ public abstract class Play_Test_Helper
      */
     final static Pair createPair(final int value)
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(value));
         cards.add(createRandomCard(value));
         return new Pair(cards, TEST_PLAYER);
@@ -58,13 +58,12 @@ public abstract class Play_Test_Helper
      */
     final static Stair createStair(final int start, final int end)
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         for (int current = start; current < end + 1; ++current)
         {
             cards.add(createRandomCard(current));
             cards.add(createRandomCard(current));
         }
-        java.util.Collections.shuffle(cards);
         return new Stair(cards, TEST_PLAYER);
     }
 
@@ -76,7 +75,7 @@ public abstract class Play_Test_Helper
      */
     final static Triple createTriple(final int value)
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(value));
         cards.add(createRandomCard(value));
         cards.add(createRandomCard(value));
@@ -95,7 +94,7 @@ public abstract class Play_Test_Helper
         final int tripleValue, final int pairValue
     )
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(tripleValue));
         cards.add(createRandomCard(tripleValue));
         cards.add(createRandomCard(tripleValue));
@@ -117,7 +116,7 @@ public abstract class Play_Test_Helper
      */
     final static Straight createStraight(final int start, final int end)
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
 
         // First two cards ought to be different to prevent an accidental bomb.
         int current = start - 2;
@@ -133,7 +132,6 @@ public abstract class Play_Test_Helper
         {
             cards.add(createRandomCard(current++));
         }
-        java.util.Collections.shuffle(cards);
         return new Straight(cards, TEST_PLAYER);
     }
 
@@ -145,12 +143,11 @@ public abstract class Play_Test_Helper
      */
     final static Bomb createFOAKBomb(final int value)
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         for (StandardSuit suit : StandardSuit.values())
         {
             cards.add(new PlayingCard(suit, StandardRank.values()[value - 2]));
         }
-        java.util.Collections.shuffle(cards);
         return new Bomb(cards, TEST_PLAYER);
     }
 
@@ -164,14 +161,13 @@ public abstract class Play_Test_Helper
      */
     final static Bomb createStraightBomb(final int start, final int end)
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         StandardSuit suit = StandardSuit.values()[rng.nextInt(3)];
         int current = start - 2;
         while (current < end - 1)
         {
             cards.add(new PlayingCard(suit, StandardRank.values()[current++]));
         }
-        java.util.Collections.shuffle(cards);
         return new Bomb(cards, TEST_PLAYER);
     }
 
@@ -182,7 +178,7 @@ public abstract class Play_Test_Helper
      */
     final static Single createDragon()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.DRAGON));
         return new Single(cards, TEST_PLAYER);
     }
@@ -194,7 +190,7 @@ public abstract class Play_Test_Helper
      */
     final static Single createMahjong()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
         return new Single(cards, TEST_PLAYER);
     }
@@ -206,7 +202,7 @@ public abstract class Play_Test_Helper
      */
     final static Single createPhoenix()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         return new Single(cards, TEST_PLAYER);
     }

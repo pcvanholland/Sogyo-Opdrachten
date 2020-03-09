@@ -12,7 +12,7 @@ class FullHouse extends Play
      * @param newCards {Card[]} - ArrayList of Cards to make a FullHouse with.
      * @param newOwner {Player} - The Player who played this FullHouse.
      */
-    FullHouse(final ArrayList<Card> newCards, final Player newOwner)
+    FullHouse(final CardCollection newCards, final Player newOwner)
     {
         super(newCards, newOwner);
         if (!isFullHouse(newCards))
@@ -39,33 +39,31 @@ class FullHouse extends Play
      * @param cardsToCheck {Card[]} - The Cards to check.
      * @return {Triple} - The Triple filtered from the Cards.
      */
-    private Triple getTripleFromCards(final ArrayList<Card> cardsToCheck)
+    private Triple getTripleFromCards(final CardCollection cardsToCheck)
     {
-        ArrayList<Card> result = new ArrayList<Card>();
-        ArrayList<Integer> ranks = PlayHelper.getRanks(cardsToCheck);
-        for (Card card : cardsToCheck)
+        CardCollection result = new CardCollection();
+        ArrayList<Integer> ranks = cardsToCheck.getRanks();
+        for (Card card : cardsToCheck.getCards())
         {
             if (java.util.Collections.frequency(ranks, card.getValue()) == 3)
             {
                 result.add(card);
             }
         }
-        return (Triple) PlayHelper.createPlay(
-            result, super.getOwner(), Set.TRIPLE
-        );
+        return (Triple) result.createPlay(super.getOwner(), Set.TRIPLE);
     }
 
     /**
      * @param cardsToCheck - An ArrayList of Cards to check.
      * @return {boolean} - Whether the collection of Cards is a FullHouse.
      */
-    protected static boolean isFullHouse(final ArrayList<Card> cardsToCheck)
+    protected static boolean isFullHouse(final CardCollection cardsToCheck)
     {
         if (cardsToCheck.size() != 5)
         {
             return false;
         }
-        return PlayHelper.containsTriple(cardsToCheck) &&
-            PlayHelper.containsPair(cardsToCheck);
+        return cardsToCheck.containsTriple() &&
+            cardsToCheck.containsPair();
     }
 }

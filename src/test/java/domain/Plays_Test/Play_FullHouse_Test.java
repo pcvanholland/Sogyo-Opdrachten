@@ -10,7 +10,7 @@ public class Play_FullHouse_Test extends Play_Test_Helper
     @Test
     public void test_playInValidityTooShortArray()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(4));
@@ -18,13 +18,13 @@ public class Play_FullHouse_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playValidityFullHouse()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(4));
@@ -34,13 +34,13 @@ public class Play_FullHouse_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.FULLHOUSE);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInValidityTripleWithTwoSingles()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -49,13 +49,13 @@ public class Play_FullHouse_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInValidityTwoPairWithSingle()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(2));
@@ -64,13 +64,13 @@ public class Play_FullHouse_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_playInValidityPairWithThreeSingles()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(2));
@@ -79,13 +79,13 @@ public class Play_FullHouse_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_initFromArray()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(4));
@@ -98,7 +98,7 @@ public class Play_FullHouse_Test extends Play_Test_Helper
     @Test(expected = InvalidPlayException.class)
     public void test_initFailsWhenWrong()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(4));
@@ -110,7 +110,7 @@ public class Play_FullHouse_Test extends Play_Test_Helper
     @Test(expected = InvalidFullHouseException.class)
     public void test_initFailsWhenDifferentType()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));

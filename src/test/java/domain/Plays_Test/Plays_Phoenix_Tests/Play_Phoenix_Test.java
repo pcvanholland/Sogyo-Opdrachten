@@ -10,7 +10,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     @Test
     public void test_init()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         new Single(cards, TEST_PLAYER);
@@ -19,94 +19,94 @@ public class Play_Phoenix_Test extends Play_Test_Helper
     @Test
     public void test_playValiditySingle()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.SINGLE);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCanBePartOfPair()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.PAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCanBePartOfDifferentPair()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(5));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.PAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCantPairedWithMahJong()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCantBePairedWithDog()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.DOG));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCantBePairedWithDragon()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.DRAGON));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCanBePartOfPairOrderDoesntMatter()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.PAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCanBePartOfTriple()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
@@ -114,13 +114,13 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.TRIPLE);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCanBePartOfTripleOrderDoesntMatter()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
@@ -128,39 +128,39 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.TRIPLE);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCantBePartOfInvalidTriple()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCantBePartOfInvalidTripleWithSpecialCard()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCanBePartOfFullHouse()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
@@ -170,13 +170,13 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.FULLHOUSE);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCanBePartOfFullHouseOrderDoesntMatter()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -186,13 +186,13 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.FULLHOUSE);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCanBePartOfStair()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
@@ -205,13 +205,13 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCanBePartOfStairOrderDoesntMatter()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -224,13 +224,13 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCanBePartOfStraight()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -240,13 +240,13 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCanBePartOfStraightOrderDoesntMatter()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -256,13 +256,13 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 /*
     @Test
     public void test_phoenixCantBePartOfLargestStraight()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         for (int i = 2; i < StandardRank.values().length + 2; ++i)
         {
@@ -271,13 +271,13 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCantBePartOfLargestStraightOrderDoesntMatter()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         for (int i = 2; i < StandardRank.values().length + 2; ++i)
         {
             cards.add(createRandomCard(i));
@@ -286,13 +286,13 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 */
     @Test
     public void test_phoenixCantBomb()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
@@ -300,13 +300,13 @@ public class Play_Phoenix_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 
     @Test
     public void test_phoenixCantBombStraight()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
@@ -317,13 +317,13 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STRAIGHT);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 /*
     @Test
     public void test_playValidityFullHouseOfFiveEquals()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
@@ -333,7 +333,7 @@ public class Play_Phoenix_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.FULLHOUSE);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
     }
 *//*
     @Test

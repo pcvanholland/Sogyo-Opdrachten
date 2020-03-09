@@ -2,9 +2,9 @@ package taipan.domain;
 
 import java.util.ArrayList;
 
-abstract class Play
+abstract class Play extends CardCollection
 {
-    private ArrayList<Card> cards;
+    private CardCollection cards;
     private Player owner;
 
     /**
@@ -13,10 +13,10 @@ abstract class Play
      * @param newCards {Card[]} - An ArrayList of Cards bundled in this Play.
      * @param newOwner {Player} - The Player who played this Play.
      */
-    Play(final ArrayList<Card> newCards, final Player newOwner) throws
+    Play(final CardCollection newCards, final Player newOwner) throws
         InvalidPlayException
     {
-        if (PlayHelper.determineTypesOfSet(newCards).size() < 1)
+        if (newCards.determineTypesOfSet().size() < 1)
         {
             throw new InvalidPlayException();
         }
@@ -59,7 +59,7 @@ abstract class Play
      */
     final ArrayList<Card> getCards()
     {
-        return this.cards;
+        return this.cards.getCards();
     }
 
     /**
@@ -80,7 +80,7 @@ abstract class Play
      */
     final int getLength()
     {
-        return this.getCards().size();
+        return this.cards.size();
     }
 
     /**

@@ -3,14 +3,12 @@ package taipan.domain;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 public class Play_FOAK_Bomb_Test extends Play_Test_Helper
 {
     @Test
     public void test_initFourOfAKind()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
@@ -22,7 +20,7 @@ public class Play_FOAK_Bomb_Test extends Play_Test_Helper
     @Test(expected = InvalidPlayException.class)
     public void test_initFourOfAKindFailsWhenWrong()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.PAGODA, StandardRank.TWO));
@@ -34,7 +32,7 @@ public class Play_FOAK_Bomb_Test extends Play_Test_Helper
     @Test(expected = InvalidBombException.class)
     public void test_initFourOfAKindFailsWhenTriedWithDifferentType()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.STAR, StandardRank.TWO));
 

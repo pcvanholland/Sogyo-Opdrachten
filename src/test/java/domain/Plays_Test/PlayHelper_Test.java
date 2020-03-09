@@ -19,7 +19,7 @@ public class PlayHelper_Test extends Play_Test_Helper
             player.drawCards();
             player.drawCards();
 
-            ArrayList<Card> cards = player.getCards();
+            CardCollection cards = player.getCards();
             int mji = -1;
             for (int j = 0; j < cards.size(); ++j)
             {
@@ -33,7 +33,7 @@ public class PlayHelper_Test extends Play_Test_Helper
                 continue;
             }
             cards.remove(mji);
-            if (PlayHelper.determineTypesOfSet(cards).contains(Set.BOMB))
+            if (cards.determineTypesOfSet().contains(Set.BOMB))
             {
                 Assert.assertNotEquals(i, i);
                 break;
@@ -44,11 +44,11 @@ public class PlayHelper_Test extends Play_Test_Helper
     @Test
     public void test_single()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
 
         Assert.assertTrue(
-            PlayHelper.createPlay(cards, TEST_PLAYER, Set.SINGLE)
+            cards.createPlay(TEST_PLAYER, Set.SINGLE)
                 instanceof Single
         );
     }
@@ -56,12 +56,12 @@ public class PlayHelper_Test extends Play_Test_Helper
     @Test
     public void test_pair()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
 
         Assert.assertTrue(
-            PlayHelper.createPlay(cards, TEST_PLAYER, Set.PAIR)
+            cards.createPlay(TEST_PLAYER, Set.PAIR)
                 instanceof Pair
         );
     }
@@ -69,13 +69,13 @@ public class PlayHelper_Test extends Play_Test_Helper
     @Test
     public void test_triple()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
 
         Assert.assertTrue(
-            PlayHelper.createPlay(cards, TEST_PLAYER, Set.TRIPLE)
+            cards.createPlay(TEST_PLAYER, Set.TRIPLE)
                 instanceof Triple
         );
     }
@@ -83,14 +83,14 @@ public class PlayHelper_Test extends Play_Test_Helper
     @Test
     public void test_stair()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(3));
 
         Assert.assertTrue(
-            PlayHelper.createPlay(cards, TEST_PLAYER, Set.STAIR)
+            cards.createPlay(TEST_PLAYER, Set.STAIR)
                 instanceof Stair
         );
     }
@@ -98,7 +98,7 @@ public class PlayHelper_Test extends Play_Test_Helper
     @Test
     public void test_straight()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
@@ -106,7 +106,7 @@ public class PlayHelper_Test extends Play_Test_Helper
         cards.add(createRandomCard(6));
 
         Assert.assertTrue(
-            PlayHelper.createPlay(cards, TEST_PLAYER, Set.STRAIGHT)
+            cards.createPlay(TEST_PLAYER, Set.STRAIGHT)
                 instanceof Straight
         );
     }
@@ -114,7 +114,7 @@ public class PlayHelper_Test extends Play_Test_Helper
     @Test
     public void test_fullHouse()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(4));
@@ -122,7 +122,7 @@ public class PlayHelper_Test extends Play_Test_Helper
         cards.add(createRandomCard(4));
 
         Assert.assertTrue(
-            PlayHelper.createPlay(cards,TEST_PLAYER, Set.FULLHOUSE)
+            cards.createPlay(TEST_PLAYER, Set.FULLHOUSE)
                 instanceof FullHouse
         );
     }
@@ -130,14 +130,14 @@ public class PlayHelper_Test extends Play_Test_Helper
     @Test
     public void test_FOAKBomb()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
 
         Assert.assertTrue(
-            PlayHelper.createPlay(cards, TEST_PLAYER, Set.BOMB)
+            cards.createPlay(TEST_PLAYER, Set.BOMB)
                 instanceof Bomb
         );
     }
@@ -145,7 +145,7 @@ public class PlayHelper_Test extends Play_Test_Helper
     @Test
     public void test_straightBombNotBomb()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
@@ -153,7 +153,7 @@ public class PlayHelper_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SIX));
 
         Assert.assertTrue(
-            PlayHelper.createPlay(cards, TEST_PLAYER, Set.STRAIGHT)
+            cards.createPlay(TEST_PLAYER, Set.STRAIGHT)
                 instanceof Straight
         );
     }
@@ -161,7 +161,7 @@ public class PlayHelper_Test extends Play_Test_Helper
     @Test
     public void test_straightBomb()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.THREE));
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.FOUR));
@@ -169,7 +169,7 @@ public class PlayHelper_Test extends Play_Test_Helper
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SIX));
 
         Assert.assertTrue(
-            PlayHelper.createPlay(cards, TEST_PLAYER, Set.BOMB)
+            cards.createPlay(TEST_PLAYER, Set.BOMB)
                 instanceof Bomb
         );
     }

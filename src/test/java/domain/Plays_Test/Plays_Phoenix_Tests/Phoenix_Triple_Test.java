@@ -15,7 +15,7 @@ public class Phoenix_Triple_Test extends Play_Test_Helper
      */
     private Play createTripleWithPhoenix(final int value)
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(value));
         cards.add(createRandomCard(value));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -26,7 +26,7 @@ public class Phoenix_Triple_Test extends Play_Test_Helper
     @Test
     public void test_init()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -34,7 +34,7 @@ public class Phoenix_Triple_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.TRIPLE);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
 
         new Triple(cards, TEST_PLAYER);
     }
@@ -42,14 +42,14 @@ public class Phoenix_Triple_Test extends Play_Test_Helper
     @Test(expected = InvalidPlayException.class)
     public void test_initFailsWhenWrong()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(3));
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
+        Assert.assertEquals(result, cards.determineTypesOfSet());
 
         new Triple(cards, TEST_PLAYER);
     }

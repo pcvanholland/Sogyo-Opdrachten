@@ -241,20 +241,20 @@ public class Player
      * @param type {Set} - The type of combination to play the Cards as.
      */
     protected void play(
-        final ArrayList<Card> cardsToPlay,
+        final CardCollection cardsToPlay,
         final Set type
     ) throws CantPlayException
     {
-        if (!hasCards(cardsToPlay))
+        if (!this.hasCards(cardsToPlay))
         {
             throw new PlayerDontHasCardException();
         }
-        if (!this.canPlay(PlayHelper.createPlay(cardsToPlay, this, type)))
+        if (!this.canPlay(cardsToPlay.createPlay(this, type)))
         {
             throw new CantPlayPlayerException();
         }
-        ArrayList<Card> takenCards = this.takeCards(cardsToPlay);
-        this.play(PlayHelper.createPlay(takenCards, this, type));
+        CardCollection takenCards = this.takeCards(cardsToPlay);
+        this.play(takenCards.createPlay(this, type));
     }
 
     /**
@@ -264,10 +264,10 @@ public class Player
      * @param cardsToTake {Card[]} - The type of Cards to take.
      * @return {Card[]} - The corresponding Cards taken from the Player's deck.
      */
-    private ArrayList<Card> takeCards(final ArrayList<Card> cardsToTake)
+    private CardCollection takeCards(final CardCollection cardsToTake)
     {
-        ArrayList<Card> takenCards = new ArrayList<Card>();
-        for (Card card : cardsToTake)
+        CardCollection takenCards = new CardCollection();
+        for (Card card : cardsToTake.getCards())
         {
             for (int i = 0; i < this.cards.size(); ++i)
             {
@@ -288,9 +288,9 @@ public class Player
      * @param cardsToCheck {Card[]} - The type of Cards to check.
      * @return {boolean} - Whether all the Cards are in the Player's deck.
      */
-    private boolean hasCards(final ArrayList<Card> cardsToCheck)
+    private boolean hasCards(final CardCollection cardsToCheck)
     {
-        for (Card card : cardsToCheck)
+        for (Card card : cardsToCheck.getCards())
         {
             boolean hasCard = false;
             for (int i = 0; i < this.cards.size(); ++i)

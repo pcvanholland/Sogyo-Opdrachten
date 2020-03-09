@@ -143,9 +143,9 @@ final class JSONProcessor
      * @param cards {String} - A JSONified String of Cards.
      * @return {Card[]} - An ArrayList of the Cards.
      */
-    protected static ArrayList<Card> createCardsFromJSON(final String cards)
+    protected static CardCollection createCardsFromJSON(final String cards)
     {
-        ArrayList<Card> realCards = new ArrayList<Card>();
+        CardCollection realCards = new CardCollection();
         if (cards.length() <= 5)
         {
             return realCards;

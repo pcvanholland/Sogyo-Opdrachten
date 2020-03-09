@@ -21,7 +21,7 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
         final int start, final int end, final int phoenix
     )
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         for (int current = start; current < end + 1; ++current)
         {
             if (current == phoenix)
@@ -35,14 +35,13 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
                 cards.add(createRandomCard(current));
             }
         }
-        java.util.Collections.shuffle(cards);
-        return PlayHelper.createPlay(cards, TEST_PLAYER, Set.STAIR);
+        return cards.createPlay(TEST_PLAYER, Set.STAIR);
     }
 
     @Test(expected = InvalidPlayException.class)
     public void test_playInValidityTooShortArray()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -50,14 +49,14 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.TRIPLE);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
-        PlayHelper.createPlay(cards, TEST_PLAYER, Set.STAIR);
+        Assert.assertEquals(result, cards.determineTypesOfSet());
+        cards.createPlay(TEST_PLAYER, Set.STAIR);
     }
 
     @Test
     public void test_playValidityStairPhoenixOnEnd()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -66,14 +65,14 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
-        PlayHelper.createPlay(cards, TEST_PLAYER, Set.STAIR);
+        Assert.assertEquals(result, cards.determineTypesOfSet());
+        cards.createPlay(TEST_PLAYER, Set.STAIR);
     }
 
     @Test
     public void test_playValidityStairPhoenixOnBegin()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -84,14 +83,14 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
-        PlayHelper.createPlay(cards, TEST_PLAYER, Set.STAIR);
+        Assert.assertEquals(result, cards.determineTypesOfSet());
+        cards.createPlay(TEST_PLAYER, Set.STAIR);
     }
 
     @Test
     public void test_playValidityStairPhoenixWithin()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -102,14 +101,14 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
-        PlayHelper.createPlay(cards, TEST_PLAYER, Set.STAIR);
+        Assert.assertEquals(result, cards.determineTypesOfSet());
+        cards.createPlay(TEST_PLAYER, Set.STAIR);
     }
 
     @Test
     public void test_playValidityStairPhoenixAsExtra()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -120,14 +119,14 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
         ArrayList<Set> result = new ArrayList<Set>();
         result.add(Set.STAIR);
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
-        PlayHelper.createPlay(cards, TEST_PLAYER, Set.STAIR);
+        Assert.assertEquals(result, cards.determineTypesOfSet());
+        cards.createPlay(TEST_PLAYER, Set.STAIR);
     }
 
     @Test(expected = InvalidPlayException.class)
     public void test_playInvalidityBrokenStair()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -137,14 +136,14 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
-        PlayHelper.createPlay(cards, TEST_PLAYER, Set.STAIR);
+        Assert.assertEquals(result, cards.determineTypesOfSet());
+        cards.createPlay(TEST_PLAYER, Set.STAIR);
     }
 
     @Test(expected = InvalidPlayException.class)
     public void test_playInvalidityBrokenStair2()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -154,14 +153,14 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
-        PlayHelper.createPlay(cards, TEST_PLAYER, Set.STAIR);
+        Assert.assertEquals(result, cards.determineTypesOfSet());
+        cards.createPlay(TEST_PLAYER, Set.STAIR);
     }
 
     @Test(expected = InvalidPlayException.class)
     public void test_playInvalidityBrokenStair3()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(4));
@@ -171,14 +170,14 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
-        PlayHelper.createPlay(cards, TEST_PLAYER, Set.STAIR);
+        Assert.assertEquals(result, cards.determineTypesOfSet());
+        cards.createPlay(TEST_PLAYER, Set.STAIR);
     }
 
     @Test(expected = InvalidPlayException.class)
     public void test_playInvalidityStairWithExtra()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -190,14 +189,14 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
-        PlayHelper.createPlay(cards, TEST_PLAYER, Set.STAIR);
+        Assert.assertEquals(result, cards.determineTypesOfSet());
+        cards.createPlay(TEST_PLAYER, Set.STAIR);
     }
 
     @Test(expected = InvalidPlayException.class)
     public void test_playInvalidityStairWithTriple()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -208,14 +207,14 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
-        PlayHelper.createPlay(cards, TEST_PLAYER, Set.STAIR);
+        Assert.assertEquals(result, cards.determineTypesOfSet());
+        cards.createPlay(TEST_PLAYER, Set.STAIR);
     }
 
     @Test(expected = InvalidPlayException.class)
     public void test_playInvalidityStairWithPhoenixExtra()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
@@ -226,14 +225,14 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
-        PlayHelper.createPlay(cards, TEST_PLAYER, Set.STAIR);
+        Assert.assertEquals(result, cards.determineTypesOfSet());
+        cards.createPlay(TEST_PLAYER, Set.STAIR);
     }
 
     @Test(expected = InvalidPlayException.class)
     public void test_playInvalidityTripleWithTwoSingles()
     {
-        ArrayList<Card> cards = new ArrayList<Card>();
+        CardCollection cards = new CardCollection();
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(4));
         cards.add(createRandomCard(4));
@@ -243,8 +242,8 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
 
         ArrayList<Set> result = new ArrayList<Set>();
 
-        Assert.assertEquals(result, PlayHelper.determineTypesOfSet(cards));
-        PlayHelper.createPlay(cards, TEST_PLAYER, Set.STAIR);
+        Assert.assertEquals(result, cards.determineTypesOfSet());
+        cards.createPlay(TEST_PLAYER, Set.STAIR);
     }
 
     @Test

@@ -3,8 +3,6 @@ package taipan.domain;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -113,7 +111,7 @@ public class JSONProcessor_Test
     @Test
     public void test_createCardsFromJSON()
     {
-        ArrayList<Card> expectedResult = new ArrayList<Card>();
+        CardCollection expectedResult = new CardCollection();
         expectedResult.add(
             new PlayingCard(StandardSuit.JADE, StandardRank.TWO)
         );
@@ -121,7 +119,7 @@ public class JSONProcessor_Test
             new PlayingCard(StandardSuit.SWORD, StandardRank.TWO)
         );
 
-        ArrayList<Card> result =
+        CardCollection result =
             JSONProcessor.createCardsFromJSON("[\"JADE,TWO\",\"SWORD,TWO\"]");
 
         for (int i = 0; i < result.size(); ++i)
@@ -136,8 +134,8 @@ public class JSONProcessor_Test
     public void test_createCardsFromJSONEmptySet()
     {
         Assert.assertEquals(
-            new ArrayList<Card>(),
-            JSONProcessor.createCardsFromJSON("[]")
+            new CardCollection().getCards(),
+            JSONProcessor.createCardsFromJSON("[]").getCards()
         );
     }
 }

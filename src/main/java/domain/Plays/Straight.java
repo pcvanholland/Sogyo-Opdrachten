@@ -1,7 +1,5 @@
 package taipan.domain;
 
-import java.util.ArrayList;
-
 class Straight extends Play
 {
     private static final int MIN_STRAIGHT_LENGTH = 5;
@@ -12,7 +10,7 @@ class Straight extends Play
      * @param newCards {Card[]} - An ArrayList of Cards.
      * @param newOwner {Player} - The Player who played this Straight.
      */
-    Straight(final ArrayList<Card> newCards, final Player newOwner)
+    Straight(final CardCollection newCards, final Player newOwner)
     {
         super(newCards, newOwner);
         if (!isStraight(newCards))
@@ -25,9 +23,9 @@ class Straight extends Play
      * @param cardsToCheck - An ArrayList of Cards to check.
      * @return {boolean} - Whether this collection of Cards is a Straight.
      */
-    protected static boolean isStraight(final ArrayList<Card> cardsToCheck)
+    protected static boolean isStraight(final CardCollection cardsToCheck)
     {
         return cardsToCheck.size() >= MIN_STRAIGHT_LENGTH &&
-            PlayHelper.areCardsSequential(cardsToCheck);
+            cardsToCheck.areCardsSequential();
     }
 }
