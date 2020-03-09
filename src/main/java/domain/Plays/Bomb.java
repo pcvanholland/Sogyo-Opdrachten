@@ -24,7 +24,7 @@ class Bomb extends Play
      * @return {boolean} - Whether this Play is higher in rank than the given.
      */
     @Override
-    protected boolean beats(final Play playToBeat)
+    boolean beats(final Play playToBeat)
     {
         return this.getClass() != playToBeat.getClass() ||
             this.beatsBomb((Bomb) playToBeat);
@@ -48,7 +48,7 @@ class Bomb extends Play
      * @return {boolean} - Whether this collection of Cards
       *                     can be played as a Bomb.
      */
-    protected static boolean isBomb(final CardCollection cardsToCheck)
+    static boolean isBomb(final CardCollection cardsToCheck)
     {
         return isFOAKBomb(cardsToCheck) ||
             isStraightBomb(cardsToCheck);

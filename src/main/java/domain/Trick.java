@@ -20,7 +20,7 @@ class Trick
     /**
      * @return {Play} - The last Play that was played.
      */
-    protected Play getLastPlay()
+    Play getLastPlay()
     {
         return plays.get(plays.size() - 1);
     }
@@ -30,7 +30,7 @@ class Trick
      *
      * @param play {Play} - The Play to put on top of this Trick.
      */
-    protected void play(final Play play)
+    void play(final Play play)
     {
         plays.add(play);
     }
@@ -38,7 +38,7 @@ class Trick
     /**
      * @return {Play[]} - The Plays that was played.
      */
-    protected ArrayList<Play> getPlays()
+    ArrayList<Play> getPlays()
     {
         ArrayList<Play> result = new ArrayList<Play>();
         for (Play play : this.plays)

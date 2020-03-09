@@ -21,7 +21,7 @@ class Stair extends Play
      * @param cardsToCheck - An ArrayList of Cards to check.
      * @return {boolean} - Whether this collection of Cards is a Triple.
      */
-    protected static boolean isStair(final CardCollection cardsToCheck)
+    static boolean isStair(final CardCollection cardsToCheck)
     {
         // An odd-sized array is never a valid Stair.
         if (cardsToCheck.size() % 2 != 0)

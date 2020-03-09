@@ -83,7 +83,7 @@ class Dealer
      *
      * @return {Card[]} - An ArrayList of cards taken from the stack.
      */
-    protected final ArrayList<Card> drawFirstHand()
+    final ArrayList<Card> drawFirstHand()
     {
         return drawCards(this.FIRST_HAND_SIZE);
     }
@@ -93,7 +93,7 @@ class Dealer
      *
      * @return {Card[]} - An ArrayList of cards taken from the stack.
      */
-    protected final ArrayList<Card> drawSecondHand()
+    final ArrayList<Card> drawSecondHand()
     {
         return drawCards(this.SECOND_HAND_SIZE);
     }

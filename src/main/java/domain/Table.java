@@ -9,7 +9,7 @@ class Table
     /**
      * @return {Trick} - The current Trick that is being played.
      */
-    protected Trick getCurrentTrick()
+    Trick getCurrentTrick()
     {
         return this.trick;
     }
@@ -17,7 +17,7 @@ class Table
     /**
      * @return {Play} - The last Play on the Table.
      */
-    protected Play getLastPlay()
+    Play getLastPlay()
     {
         return this.getCurrentTrick().getLastPlay();
     }
@@ -25,7 +25,7 @@ class Table
     /**
      * @return {Play[]} - The current Plays that have been played.
      */
-    protected ArrayList<Play> getCurrentPlays()
+    ArrayList<Play> getCurrentPlays()
     {
         if (this.getCurrentTrick() == null)
         {
@@ -40,7 +40,7 @@ class Table
      *
      * @param play {Play} - The Play to put on the Table.
      */
-    protected void play(final Play play) throws CantPlayTableException
+    void play(final Play play) throws CantPlayTableException
     {
         if (!this.canPlay(play))
         {
@@ -73,7 +73,7 @@ class Table
      * @param play {Play} - The Play to check.
      * @return {Boolean} - Whether the provided Play can be played.
      */
-    protected boolean canPlay(final Play play)
+    boolean canPlay(final Play play)
     {
         return this.getCurrentTrick() == null ||
             play.beats(this.getLastPlay());
@@ -84,7 +84,7 @@ class Table
      *
      * @return {Trick} - The current Trick.
      */
-    protected Trick giveTrick()
+    Trick giveTrick()
     {
         Trick trickToGive = this.getCurrentTrick();
         this.trick = null;

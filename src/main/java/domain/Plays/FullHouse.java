@@ -30,7 +30,7 @@ class FullHouse extends Play
      * @return {int} - The value of this Play.
      */
     @Override
-    protected int getValue()
+    int getValue()
     {
         return this.triple.getValue();
     }
@@ -61,7 +61,7 @@ class FullHouse extends Play
      * @param cardsToCheck - An ArrayList of Cards to check.
      * @return {boolean} - Whether the collection of Cards is a FullHouse.
      */
-    protected static boolean isFullHouse(final CardCollection cardsToCheck)
+    static boolean isFullHouse(final CardCollection cardsToCheck)
     {
         if (cardsToCheck.size() != FULL_HOUSE_SIZE)
         {

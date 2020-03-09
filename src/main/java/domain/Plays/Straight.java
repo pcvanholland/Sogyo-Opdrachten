@@ -23,7 +23,7 @@ class Straight extends Play
      * @param cardsToCheck - An ArrayList of Cards to check.
      * @return {boolean} - Whether this collection of Cards is a Straight.
      */
-    protected static boolean isStraight(final CardCollection cardsToCheck)
+    static boolean isStraight(final CardCollection cardsToCheck)
     {
         return cardsToCheck.size() >= MIN_STRAIGHT_LENGTH &&
             cardsToCheck.areCardsSequential();

@@ -18,7 +18,7 @@ abstract class SpecialCard extends Card
      * @param rank {SpecialRank} - The Rank the new Card ought to have.
      * @return {SpecialCard} - The constructed Card.
      */
-    protected static SpecialCard createSpecialCard(final SpecialRank rank)
+    static SpecialCard createSpecialCard(final SpecialRank rank)
         throws InvalidRankException
     {
         if (rank == SpecialRank.DOG)

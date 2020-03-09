@@ -13,7 +13,7 @@ final class JSONProcessor
      * @param game {TaiPan} - The Game to JSONify.
      * @return {JSONObject} - The JSON representation of the Game.
      */
-    protected static JSONObject createJSONGame(final TaiPan game)
+    static JSONObject createJSONGame(final TaiPan game)
     {
         JSONObject result = new JSONObject();
         result.put("players", createJSONPlayers(game));
@@ -27,7 +27,7 @@ final class JSONProcessor
      * @param game {TaiPan} - The game to JSONify the Players of.
      * @return {JSONArray} - The JSON representation of the Players.
      */
-    protected static JSONArray createJSONPlayers(final TaiPan game)
+    static JSONArray createJSONPlayers(final TaiPan game)
     {
         JSONArray result = new JSONArray();
         for (int i = 0; i < Player.NUM_PLAYERS; ++i)
@@ -45,7 +45,7 @@ final class JSONProcessor
      * @param player {Player} - The Player to JSONify.
      * @return {JSONObject} - The JSON representation of the Player.
      */
-    protected static JSONObject createJSONPlayer(final Player player)
+    static JSONObject createJSONPlayer(final Player player)
     {
         JSONObject result = new JSONObject();
         result.put("cards", createJSONCards(player.getCards()));
@@ -62,7 +62,7 @@ final class JSONProcessor
      * @param table {Table} - The Table to JSONify.
      * @return {JSONObject} - The JSON representation of the Table.
      */
-    protected static JSONObject createJSONTable(final Table table)
+    static JSONObject createJSONTable(final Table table)
     {
         JSONObject result = new JSONObject();
         result.put("trick", createJSONPlays(
@@ -111,7 +111,7 @@ final class JSONProcessor
      * @param cards {Card[]} - The Cards to JSONify.
      * @return {JSONArray} - The JSON representation of the Cards.
      */
-    protected static JSONArray createJSONCards(
+    static JSONArray createJSONCards(
         final ArrayList<Card> cards
     )
     {
@@ -129,7 +129,7 @@ final class JSONProcessor
      * @param card {Card} - The Card to JSONify.
      * @return {JSONObject} - The JSON representation of the Card.
      */
-    protected static JSONObject createJSONCard(final Card card)
+    static JSONObject createJSONCard(final Card card)
     {
         JSONObject result = new JSONObject();
         result.put("suit", card.getSuit().toString());
@@ -144,7 +144,7 @@ final class JSONProcessor
      * @param cards {String} - A JSONified String of Cards.
      * @return {Card[]} - An ArrayList of the Cards.
      */
-    protected static CardCollection createCardsFromJSON(final String cards)
+    static CardCollection createCardsFromJSON(final String cards)
     {
         CardCollection realCards = new CardCollection();
         if (cards.length() <= 5)

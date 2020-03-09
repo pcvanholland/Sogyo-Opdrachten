@@ -21,7 +21,7 @@ class Pair extends Play
      * @param cardsToCheck - An ArrayList of Cards to check.
      * @return {boolean} - Whether this collection of Cards is a Pair.
      */
-    protected static boolean isPair(final CardCollection cardsToCheck)
+    static boolean isPair(final CardCollection cardsToCheck)
     {
         return cardsToCheck.size() == 2 &&
             cardsToCheck.areCardsOfEqualRank();

@@ -10,7 +10,7 @@ abstract class PhoenixHelper
      * @param cardsToCheck {Card[]} - The context in which the Phoenix exists.
      * @return {int} - The value of the Phoenix.
      */
-    protected static int determineValueInPlay(
+    static int determineValueInPlay(
         final CardCollection cardsToCheck
     )
     {
@@ -258,7 +258,7 @@ abstract class PhoenixHelper
      *
      * @param cardsToConvert {Card[]} - An ArrayList of Cards to convert.
      */
-    protected static void convertPhoenixInSet(
+    static void convertPhoenixInSet(
         final CardCollection cardsToConvert
     )
     {

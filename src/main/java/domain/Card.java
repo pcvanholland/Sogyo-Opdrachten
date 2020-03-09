@@ -23,7 +23,7 @@ abstract class Card
     /**
      * @return {ISuit} - The Suit of this Card.
      */
-    protected final ISuit getSuit()
+    final ISuit getSuit()
     {
         return this.suit;
     }
@@ -31,7 +31,7 @@ abstract class Card
     /**
      * @return {IRank} - The Rank of this Card.
      */
-    protected final IRank getRank()
+    final IRank getRank()
     {
         return this.rank;
     }
@@ -39,7 +39,7 @@ abstract class Card
     /**
      * @return {int} - The scoring value of this Card.
      */
-    protected final int getScore()
+    final int getScore()
     {
         return this.getRank().getScore();
     }
@@ -50,7 +50,7 @@ abstract class Card
      *
      * @return {int} - The value of this Card.
      */
-    protected int getValue()
+    int getValue()
     {
         return this.getRank().getValue();
     }
@@ -60,7 +60,7 @@ abstract class Card
      * @return {boolean} - Whether this Card has a Rank
      *                  equal to the reference Card.
      */
-    protected final boolean equals(final Card card)
+    final boolean equals(final Card card)
     {
         return this.getRank() == card.getRank() &&
             this.getSuit() == card.getSuit();

@@ -21,7 +21,7 @@ class Single extends Play
      * @param cardsToCheck - An ArrayList of Cards to check.
      * @return {boolean} - Whether this collection of Cards is a Single.
      */
-    protected static boolean isSingle(final CardCollection cardsToCheck)
+    static boolean isSingle(final CardCollection cardsToCheck)
     {
         return cardsToCheck.size() == 1;
     }
@@ -32,7 +32,7 @@ class Single extends Play
      * @param playToBeat {Play} - The Play to beat.
      * @return {boolean} - Whether this Play beats the provided one.
      */
-    protected boolean beats(final Play playToBeat)
+    boolean beats(final Play playToBeat)
     {
         if (!this.isSameSetAs(playToBeat))
         {

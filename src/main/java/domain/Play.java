@@ -30,7 +30,7 @@ abstract class Play extends CardCollection
      * @param playToBeat {Play} - The Play to beat.
      * @return {boolean} - Whether this Play beats the provided one.
      */
-    protected boolean beats(final Play playToBeat)
+    boolean beats(final Play playToBeat)
     {
         return this.isSameSetAs(playToBeat) &&
             this.getValue() > playToBeat.getValue();
@@ -42,7 +42,7 @@ abstract class Play extends CardCollection
      *
      * @return {int} - The value of this Play.
      */
-     protected int getValue()
+     int getValue()
      {
          int highest = -1;
          for (Card card : this.getCards())

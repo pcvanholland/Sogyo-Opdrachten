@@ -17,7 +17,7 @@ class Phoenix extends SpecialCard
      * @return {int} - The value of this Phoenix.
      */
     @Override
-    protected int getValue()
+    int getValue()
     {
         return this.value;
     }
@@ -27,7 +27,7 @@ class Phoenix extends SpecialCard
      *
      * @param newValue {int} - The new value this Phoenix ought to have.
      */
-    protected void setValue(final int newValue)
+    void setValue(final int newValue)
     {
         this.value = newValue;
     }

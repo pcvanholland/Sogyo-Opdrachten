@@ -2,9 +2,9 @@ package taipan.domain;
 
 import java.util.ArrayList;
 
-public class Player
+class Player
 {
-    protected static final int NUM_PLAYERS = 4;
+    static final int NUM_PLAYERS = 4;
 
     private Table table;
     private Dealer dealer;
@@ -95,7 +95,7 @@ public class Player
      * @param position {int} - The position which ought to be returned.
      * @return {Player} - The Player at the specified position.
      */
-    protected final Player getPlayerAtPositionCCW(int position) throws
+    final Player getPlayerAtPositionCCW(int position) throws
         InvalidPositionException
     {
         if (position < 0 || position > NUM_PLAYERS)
@@ -130,7 +130,7 @@ public class Player
     /**
      * @return {Card[]} - The Cards held by this Player.
      */
-    protected ArrayList<Card> getCards()
+    ArrayList<Card> getCards()
     {
         return this.cards;
     }
@@ -138,7 +138,7 @@ public class Player
     /**
      * Ask a hand of Cards from the Dealer.
      */
-    protected void drawCards() throws CantDrawTooManyTimesException
+    void drawCards() throws CantDrawTooManyTimesException
     {
         if (this.handsDrawn() == 0)
         {
@@ -169,7 +169,7 @@ public class Player
     /**
      * @return {boolean} - Whether this Player can draw a hand from the Dealer.
      */
-    protected boolean canDrawCards()
+    boolean canDrawCards()
     {
         return this.handsDrawn() < 2;
     }
@@ -192,7 +192,7 @@ public class Player
     /**
      * @return {boolean} - Whether this Player is in turn.
      */
-    protected boolean isInTurn()
+    boolean isInTurn()
     {
         return this.inTurn;
     }
@@ -209,7 +209,7 @@ public class Player
      * @param play {Play} - The Play to verify.
      * @return {boolean} - Whether this Player can play the specified Play.
      */
-    protected boolean canPlay(final Play play)
+    boolean canPlay(final Play play)
     {
         return (this.isInTurn() || play instanceof Bomb) &&
             this.getTable().canPlay(play);
@@ -229,7 +229,7 @@ public class Player
      * @param cardsToPlay {Card[]} - Cards to play.
      * @param type {Set} - The type of combination to play the Cards as.
      */
-    protected void play(
+    void play(
         final CardCollection cardsToPlay,
         final Set type
     ) throws CantPlayException
@@ -323,7 +323,7 @@ public class Player
      * Passes the turn from this Player to their neighbour
      * without playing any Card.
      */
-    protected void pass() throws CantPassException
+    void pass() throws CantPassException
     {
         if (!this.mayPass())
         {
@@ -354,7 +354,7 @@ public class Player
     /**
      * @return {boolean} - Whether this Player may pass.
      */
-    protected boolean mayPass()
+    boolean mayPass()
     {
         return this.isInTurn() &&
             this.getTable().getCurrentPlays().size() > 0;
@@ -441,7 +441,7 @@ public class Player
     /**
      * @return {Trick[]} - The Tricks won by this Player.
      */
-    protected ArrayList<Trick> getWonTricks()
+    ArrayList<Trick> getWonTricks()
     {
         return this.wonTricks;
     }

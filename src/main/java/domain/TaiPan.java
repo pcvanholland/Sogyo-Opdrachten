@@ -128,7 +128,7 @@ public class TaiPan
      * @param playerNumber {int} - The Player to query.
      * @return {Player} - The Player at the specified location.
      */
-    protected Player getPlayer(final int playerNumber)
+    Player getPlayer(final int playerNumber)
     {
         return this.firstPlayer.getPlayerAtPositionCCW(playerNumber);
     }
@@ -136,7 +136,7 @@ public class TaiPan
     /**
      * @return {Table} - The Table at which the Players play.
      */
-    protected Table getPlayingTable()
+    Table getPlayingTable()
     {
         return this.playingTable;
     }
