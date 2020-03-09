@@ -32,7 +32,9 @@ final class JSONProcessor
         JSONArray result = new JSONArray();
         for (int i = 0; i < Player.NUM_PLAYERS; ++i)
         {
-            result.add(createJSONPlayer(game.getPlayer(i)));
+            JSONObject player = createJSONPlayer(game.getPlayer(i));
+            player.put("id", i);
+            result.add(player);
         }
         return result;
     }
@@ -50,7 +52,6 @@ final class JSONProcessor
         result.put("inTurn", player.isInTurn());
         result.put("mayPass", player.mayPass());
         result.put("canDraw", player.canDrawCards());
-        result.put("id", player.getPlayerID());
 
         return result;
     }

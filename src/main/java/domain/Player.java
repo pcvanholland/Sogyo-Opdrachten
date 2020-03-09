@@ -6,7 +6,6 @@ public class Player
 {
     protected static final int NUM_PLAYERS = 4;
 
-    private int id;
     private Table table;
     private Dealer dealer;
     private Player neighbour;
@@ -52,10 +51,9 @@ public class Player
 
         this.table = sharedTable;
         this.dealer = sharedDealer;
-        this.id = numberOfPlayersCreated++;
 
         this.neighbour = new Player(this, sharedTable,
-            sharedDealer, numberOfPlayersCreated
+            sharedDealer, ++numberOfPlayersCreated
         );
     }
 
@@ -76,9 +74,8 @@ public class Player
     {
         this.table = sharedTable;
         this.dealer = sharedDealer;
-        this.id = numberOfPlayersCreated++;
 
-        if (numberOfPlayersCreated < NUM_PLAYERS)
+        if (++numberOfPlayersCreated < NUM_PLAYERS)
         {
             this.neighbour = new Player(firstPlayer,
                 sharedTable,
@@ -198,14 +195,6 @@ public class Player
     protected boolean isInTurn()
     {
         return this.inTurn;
-    }
-
-    /**
-     * @return {int} - The playerID associated with this Player.
-     */
-    protected int getPlayerID()
-    {
-        return this.id;
     }
 
     /**
