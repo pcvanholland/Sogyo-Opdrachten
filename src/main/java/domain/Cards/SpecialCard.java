@@ -37,6 +37,7 @@ abstract class SpecialCard extends Card
         {
             return new Phoenix();
         }
+        // We can't arrive here.
         throw new InvalidRankException();
     }
 }

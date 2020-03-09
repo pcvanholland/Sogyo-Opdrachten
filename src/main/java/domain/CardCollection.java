@@ -148,7 +148,7 @@ class CardCollection
      */
     final boolean containsTriple()
     {
-        return this.containsNumberOfEqualRanks(3);
+        return this.containsNumberOfEqualRanks(Triple.TRIPLE_SIZE);
     }
 
     /**
@@ -159,7 +159,7 @@ class CardCollection
      *
      * @return {boolean} - Whether the list contains the specified multiplicity.
      */
-    final boolean containsNumberOfEqualRanks(final int amount)
+    private final boolean containsNumberOfEqualRanks(final int amount)
     {
         ArrayList<Integer> ranks = this.getRanks();
         for (Integer rank : ranks)
@@ -193,15 +193,15 @@ class CardCollection
         return this.size() > 0;
     }
 
-     /**
-      * This tests whether the list of Cards is sequential.
-      *
-      * @return {boolean} - Whether the Cards are consecutive.
-      */
-     final boolean areCardsSequential()
-     {
+    /**
+     * This tests whether the list of Cards is sequential.
+     *
+     * @return {boolean} - Whether the Cards are consecutive.
+     */
+    final boolean areCardsSequential()
+    {
         return this.areRanksSequential(this.getRanks());
-     }
+    }
 
     /**
      * This tests whether the given array of Ranks is sequential.
@@ -209,7 +209,7 @@ class CardCollection
      * @param ranksToCheck {IRank[]} - An ArrayList of Ranks to verify.
      * @return {boolean} - Whether all the Ranks are consecutive.
      */
-    private final boolean areRanksSequential(
+    private boolean areRanksSequential(
         final ArrayList<Integer> ranksToCheck
     )
     {

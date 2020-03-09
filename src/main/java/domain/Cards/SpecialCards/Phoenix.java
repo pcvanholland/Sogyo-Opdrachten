@@ -2,7 +2,7 @@ package taipan.domain;
 
 class Phoenix extends SpecialCard
 {
-    private int value ;
+    private int value;
 
     /**
      * Constructor for a Phoenix.

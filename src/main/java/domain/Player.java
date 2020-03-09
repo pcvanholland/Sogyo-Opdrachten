@@ -143,10 +143,6 @@ public class Player
      */
     protected void drawCards() throws CantDrawTooManyTimesException
     {
-        if (!this.canDrawCards())
-        {
-            throw new CantDrawTooManyTimesException();
-        }
         if (this.handsDrawn() == 0)
         {
             this.cards.addAll(this.getDealer().drawFirstHand());
@@ -157,6 +153,10 @@ public class Player
             this.cards.addAll(this.getDealer().drawSecondHand());
             this.handsDrawn++;
             this.inTurn = this.hasMahJong();
+        }
+        else
+        {
+            throw new CantDrawTooManyTimesException();
         }
     }
 

@@ -2,6 +2,7 @@ package taipan.domain;
 
 class Triple extends Play
 {
+    static final int TRIPLE_SIZE = 3;
     /**
      * The constructor for a Triple.
      *
@@ -23,7 +24,7 @@ class Triple extends Play
      */
     protected static boolean isTriple(final CardCollection cardsToCheck)
     {
-        return cardsToCheck.size() == 3 &&
+        return cardsToCheck.size() == TRIPLE_SIZE &&
             cardsToCheck.areCardsOfEqualRank();
     }
 }

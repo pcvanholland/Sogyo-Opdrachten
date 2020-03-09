@@ -2,7 +2,7 @@ package taipan.domain;
 
 class Straight extends Play
 {
-    private static final int MIN_STRAIGHT_LENGTH = 5;
+    static final int MIN_STRAIGHT_LENGTH = 5;
 
     /**
      * The default constructor for a Straight.

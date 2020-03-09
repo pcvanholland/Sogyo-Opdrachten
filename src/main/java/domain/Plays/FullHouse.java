@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 class FullHouse extends Play
 {
+    static final int FULL_HOUSE_SIZE = 5;
+
     private Triple triple;
 
     /**
@@ -45,7 +47,9 @@ class FullHouse extends Play
         ArrayList<Integer> ranks = cardsToCheck.getRanks();
         for (Card card : cardsToCheck.getCards())
         {
-            if (java.util.Collections.frequency(ranks, card.getValue()) == 3)
+            if (java.util.Collections.frequency(ranks, card.getValue()) ==
+                Triple.TRIPLE_SIZE
+            )
             {
                 result.add(card);
             }
@@ -59,7 +63,7 @@ class FullHouse extends Play
      */
     protected static boolean isFullHouse(final CardCollection cardsToCheck)
     {
-        if (cardsToCheck.size() != 5)
+        if (cardsToCheck.size() != FULL_HOUSE_SIZE)
         {
             return false;
         }

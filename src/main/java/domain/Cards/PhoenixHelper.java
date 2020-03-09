@@ -28,21 +28,21 @@ abstract class PhoenixHelper
             return getHighestValue(contextCards);
         }
         // Two of equal rank left, make a FullHouse with the Phoenix as highest.
-        if (contextCards.size() == 4 &&
+        if (contextCards.size() == FullHouse.FULL_HOUSE_SIZE - 1 &&
             contextCards.containsOnlyNumberOfEqualRanks(2)
         )
         {
             return getHighestValue(contextCards);
         }
         // A Triple and a Single left, make a FullHouse with the Phoenix paired.
-        if (contextCards.size() == 4 &&
-            contextCards.containsNumberOfEqualRanks(3)
+        if (contextCards.size() == FullHouse.FULL_HOUSE_SIZE - 1 &&
+            contextCards.containsTriple()
         )
         {
             return getHighestValue(removeTripleFromCards(contextCards));
         }
         // Enough Cards for a Straight.
-        if (contextCards.size() >= 4 &&
+        if (contextCards.size() >= Straight.MIN_STRAIGHT_LENGTH - 1 &&
             contextCards.containsOnlyNumberOfEqualRanks(1)
         )
         {
@@ -55,14 +55,9 @@ abstract class PhoenixHelper
         }
         // If there are only pairs (minus one) left, and we can match the
         // single we might be a Stair.
-        if (contextCards.size() % 2 != 0)
+        if (contextCards.size() % 2 != 0 && mightBeStair(contextCards))
         {
-            if (containsOnlyOneSingle(contextCards) &&
-                restIsPairs(contextCards)
-            )
-            {
-                return getSingleValue(contextCards);
-            }
+            return getSingleValue(contextCards);
         }
         return -1;
     }
@@ -112,7 +107,7 @@ abstract class PhoenixHelper
         final CardCollection cards
     )
     {
-        return removeSetsFromCards(cards, 3);
+        return removeSetsFromCards(cards, Triple.TRIPLE_SIZE);
     }
 
     /**
@@ -143,8 +138,20 @@ abstract class PhoenixHelper
     }
 
     /**
+     * Whether the given set of Cards might be a Stair.
+     *
+     * @param cardsToCheck {Card{}} - The Cards to check.
+     * @return {boolean} - Whether the given set of Cards might be a Stair.
+     */
+    private static boolean mightBeStair(final CardCollection cardsToCheck)
+    {
+        return containsOnlyOneSingle(cardsToCheck) &&
+            restIsPairs(cardsToCheck);
+    }
+
+    /**
      * Whether the given set of Cards only contains Pairs except for one Single.
-     * Used to chech whether a Stair can be made.
+     * Used to check whether a Stair can be made.
      *
      * @param cardsToCheck {Card[]} - The Cards to check.
      * @return {boolean} - Whether the given set of Cards only contains Pairs
@@ -250,7 +257,6 @@ abstract class PhoenixHelper
      * set of Cards to the right value.
      *
      * @param cardsToConvert {Card[]} - An ArrayList of Cards to convert.
-     * @return {Card[]} - An ArrayList of Cards with the Phoenix corrected.
      */
     protected static void convertPhoenixInSet(
         final CardCollection cardsToConvert
