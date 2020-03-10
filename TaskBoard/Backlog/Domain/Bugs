@@ -1,3 +1,3 @@
-Player can play MahJong when no one else has drawn Cards yet.
+Player can play MahJong when no one else has drawn Cards yet. (Only allow playing Cards when Cards have been given away.)
 Do not let a Player steal a lead with a Bomb.
-If one Player with Cards is left the round should end.
+Mahjong shouldn't beat Phoenix.

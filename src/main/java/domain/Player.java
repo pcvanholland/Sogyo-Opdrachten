@@ -2,7 +2,7 @@ package taipan.domain;
 
 import java.util.ArrayList;
 
-class Player
+final class Player
 {
     static final int NUM_PLAYERS = 4;
 
@@ -128,6 +128,14 @@ class Player
     }
 
     /**
+     * @return {Table} - The Table associated with the Players.
+     */
+    private Table getTable()
+    {
+        return this.table;
+    }
+
+    /**
      * @return {Card[]} - The Cards held by this Player.
      */
     ArrayList<Card> getCards()
@@ -195,14 +203,6 @@ class Player
     boolean isInTurn()
     {
         return this.inTurn;
-    }
-
-    /**
-     * @return {Table} - The Table associated with the Players.
-     */
-    private Table getTable()
-    {
-        return this.table;
     }
 
     /**
@@ -400,8 +400,20 @@ class Player
     private void giveTurn()
     {
         this.inTurn = true;
+        this.handleTurnRecieve();
+    }
+
+    /**
+     * Handles the receiving of a turn.
+     */
+    private void handleTurnRecieve()
+    {
         this.checkWinTrick();
         this.checkEmptyCarded();
+        if (this.isLastPlayerWithCards())
+        {
+            this.handleRoundEnd();
+        }
     }
 
     /**
@@ -415,15 +427,6 @@ class Player
         {
             this.wonTricks.add(this.getTable().giveTrick());
         }
-    }
-
-    /**
-     * Handles a Dog being played.
-     */
-    private void handleDogging()
-    {
-        this.checkWinTrick();
-        this.passTurnTo(this.getPlayerAtPositionCCW(2));
     }
 
     /**
@@ -444,5 +447,72 @@ class Player
     ArrayList<Trick> getWonTricks()
     {
         return this.wonTricks;
+    }
+
+    /**
+     * Handles a Dog being played.
+     */
+    private void handleDogging()
+    {
+        this.checkWinTrick();
+        this.passTurnTo(this.getPlayerAtPositionCCW(2));
+    }
+
+    /**
+     * Checks whether this is the last Player with Cards left.
+     * This initiates a questioning circle.
+     *
+     * @return {boolean} - Whether this is the only Player with Cards left.
+     */
+    private boolean isLastPlayerWithCards()
+    {
+        return this.getNeighbour().isLastPlayerWithCards(this);
+    }
+
+    /**
+     * Checks whether this is the last Player with Cards left.
+     *
+     * @param player {Player} - The Player that asked first.
+     * @return {boolean} - Whether there is only one Player with Cards left.
+     */
+    private boolean isLastPlayerWithCards(final Player player)
+    {
+        if (player == this)
+        {
+            return true;
+        }
+        if (this.getCards().size() > 0)
+        {
+            return false;
+        }
+        return this.getNeighbour().isLastPlayerWithCards(player);
+    }
+
+    /**
+     * Handle the end of a round.
+     */
+    private void handleRoundEnd()
+    {
+        this.inTurn = false;
+        this.getTable().clear();
+        this.getNeighbour().handleRoundEnd(this);
+    }
+
+    /**
+     * Handles the ending of the round started by the specified Player.
+     *
+     * @param player {Player} - The Player who initiated the chain.
+     */
+    private void handleRoundEnd(final Player player)
+    {
+        this.getDealer().reset();
+        this.getCards().clear();
+        this.handsDrawn = 0;
+
+        if (player == this)
+        {
+            return;
+        }
+        this.getNeighbour().handleRoundEnd(player);
     }
 }

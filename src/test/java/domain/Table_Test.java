@@ -121,4 +121,21 @@ public class Table_Test
 
         table.play(lowPlay);
     }
+
+    @Test
+    public void test_roundEndClearsTable() throws
+        CantDrawTooManyTimesException, CantPlayException
+    {
+        Table table = new Table();
+        Player firstPlayer = new Player(table, Player_Test.SEED);
+        firstPlayer.drawCards();
+        firstPlayer.drawCards();
+
+        CardCollection cards = new CardCollection();
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
+
+        firstPlayer.play(cards, Set.SINGLE);
+
+        Assert.assertNull(table.getCurrentTrick());
+    }
 }

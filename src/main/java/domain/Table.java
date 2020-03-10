@@ -87,8 +87,16 @@ class Table
     Trick giveTrick()
     {
         Trick trickToGive = this.getCurrentTrick();
-        this.trick = null;
+        this.clear();
 
         return trickToGive;
+    }
+
+    /**
+     * Clears the Table from its Trick.
+     */
+    void clear()
+    {
+        this.trick = null;
     }
 }

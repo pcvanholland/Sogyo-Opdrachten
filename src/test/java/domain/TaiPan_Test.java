@@ -44,6 +44,7 @@ public class TaiPan_Test
         TaiPan tp = new TaiPan(Player_Test.SEED);
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID);
+        tp.letPlayerDrawCards(playerID + 1);
 
         tp.play(playerID, "[\"SPECIAL,MAHJONG\"]", "SINGLE");
         Assert.assertEquals(13, tp.getPlayer(playerID).getCards().size());

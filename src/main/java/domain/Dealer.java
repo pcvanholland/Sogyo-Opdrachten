@@ -79,6 +79,14 @@ class Dealer
     }
 
     /**
+     * Recreates Cards.
+     */
+    final void reset()
+    {
+        createAndShuffleCards(new java.util.Random());
+    }
+
+    /**
      * This lets a Player draw the first six cards.
      *
      * @return {Card[]} - An ArrayList of cards taken from the stack.
