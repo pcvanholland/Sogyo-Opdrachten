@@ -46,10 +46,11 @@ input{
 }
 .game-table {
     background-color:rgba(255, 255, 255, 0.6);
-}
+}/*
 body {
     background-image: url("../images/Background.gif");
     background-color:rgba(255, 253, 117, 0.411);
     background-repeat: no-repeat;
     background-position: top;
 }
+*/
