@@ -90,4 +90,14 @@ abstract class Play extends CardCollection
     {
         return this.owner;
     }
+
+    final int getScore()
+    {
+        int result = 0;
+        for (Card card : this.getCards())
+        {
+            result += card.getScore();
+        }
+        return result;
+    }
 }

@@ -77,9 +77,26 @@ public class Init_Test extends Player_Test_Helper
     {
         Player firstPlayer = new Player(new Table());
 
-        Assert.assertEquals(
-            new ArrayList<Trick>(),
-            firstPlayer.getWonTricks()
-        );
+        for (int i = 0; i < 4; ++i)
+        {
+            Assert.assertEquals(
+                new ArrayList<Trick>(),
+                firstPlayer.getPlayerAtPositionCCW(i).getWonTricks()
+            );
+        }
+    }
+
+    @Test
+    public void test_playersBeginWithZeroPoints()
+    {
+        Player firstPlayer = new Player(new Table());
+
+        for (int i = 0; i < 4; ++i)
+        {
+            Assert.assertEquals(
+                0,
+                firstPlayer.getPlayerAtPositionCCW(i).getScore()
+            );
+        }
     }
 }

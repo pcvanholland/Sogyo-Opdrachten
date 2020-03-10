@@ -14,7 +14,7 @@ final class Trick
     Trick(final Play play)
     {
         plays = new ArrayList<Play>();
-        plays.add(play);
+        this.play(play);
     }
 
     /**
@@ -36,7 +36,7 @@ final class Trick
     }
 
     /**
-     * @return {Play[]} - The Plays that was played.
+     * @return {Play[]} - The Plays that were played.
      */
     ArrayList<Play> getPlays()
     {
@@ -44,6 +44,16 @@ final class Trick
         for (Play play : this.plays)
         {
             result.add(play);
+        }
+        return result;
+    }
+
+    int getScore()
+    {
+        int result = 0;
+        for (Play play : this.getPlays())
+        {
+            result += play.getScore();
         }
         return result;
     }

@@ -495,6 +495,8 @@ final class Player
     {
         this.takeTurn();
         this.getTable().clear();
+        this.getDealer().reset();
+
         this.getNeighbour().handleRoundEnd(this);
     }
 
@@ -505,7 +507,6 @@ final class Player
      */
     private void handleRoundEnd(final Player player)
     {
-        this.getDealer().reset();
         this.getCards().clear();
         this.handsDrawn = 0;
 
@@ -514,5 +515,15 @@ final class Player
             return;
         }
         this.getNeighbour().handleRoundEnd(player);
+    }
+
+    int getScore()
+    {
+        int result = 0;
+        for (Trick trick : this.getWonTricks())
+        {
+            result += trick.getScore();
+        }
+        return result;
     }
 }

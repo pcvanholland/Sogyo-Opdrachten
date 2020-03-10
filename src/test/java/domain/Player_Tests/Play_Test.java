@@ -99,7 +99,6 @@ public class Play_Test extends Player_Test_Helper
     public void test_playRemovesCard() throws CantPlayException
     {
         Player firstPlayer = this.createSeededGame(START_SEED);
-
         CardCollection cards = new CardCollection();
 
         // A Card we are certain the Player in turn has.
@@ -230,7 +229,6 @@ public class Play_Test extends Player_Test_Helper
     public void test_playDogPassesTurnToOpposite() throws CantPlayException
     {
         Player firstPlayer = createSeededGame(START_DOG_SEED);
-
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.DOG));
 
@@ -244,7 +242,6 @@ public class Play_Test extends Player_Test_Helper
         CantDrawTooManyTimesException, CantPlayException
     {
         Player firstPlayer = createSeededGame(START_DOG_SEED);
-
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.DOG));
 
@@ -287,7 +284,6 @@ public class Play_Test extends Player_Test_Helper
     public void test_lastPlayerStopsRound() throws CantPlayException
     {
         Player firstPlayer = createPlayerInTurn();
-
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
@@ -319,7 +315,6 @@ public class Play_Test extends Player_Test_Helper
         CantDrawTooManyTimesException, CantPlayException
     {
         Player firstPlayer = createPlayerInTurn();
-
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 

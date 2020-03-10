@@ -188,7 +188,7 @@ Vue.component('game-screen', {
                         </label>
                     </div>
 
-                    <div class="taipan-sets" :hidden="!mayControl(player.id)">
+                    <div class="taipan-sets" :hidden="!mayControl(player.id) || player.canDraw">
                         Play as:
                         <div v-for="type in playTypes">
                             <button v-on:click="playCards(type,player.id)">

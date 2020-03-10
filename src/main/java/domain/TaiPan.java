@@ -52,7 +52,8 @@ public class TaiPan
         {
             //e.printStackTrace();
             System.out.println(
-                "Player " + playerNumber + " has tried to play out of turn."
+                "Player " + playerNumber + " has tried to play out of turn " +
+                "or an unallowed Play."
             );
         }
         catch (PlayerDontHasCardException e)
