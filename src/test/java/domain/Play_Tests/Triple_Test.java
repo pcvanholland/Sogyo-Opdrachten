@@ -5,16 +5,17 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Play_Pair_Test extends Play_Test_Helper
+public class Triple_Test extends Play_Test_Helper
 {
     @Test
     public void test_init()
     {
         CardCollection cards = new CardCollection();
-        cards.add(new PlayingCard(StandardSuit.SWORD, StandardRank.TWO));
-        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(2));
 
-        new Pair(cards, TEST_PLAYER);
+        new Triple(cards, TEST_PLAYER);
     }
 
     @Test(expected = InvalidPlayException.class)
@@ -26,32 +27,34 @@ public class Play_Pair_Test extends Play_Test_Helper
         cards.add(createRandomCard(2));
         cards.add(createRandomCard(3));
 
-        new Pair(cards, TEST_PLAYER);
+        new Triple(cards, TEST_PLAYER);
     }
 
-    @Test(expected = InvalidPairException.class)
+    @Test(expected = InvalidTripleException.class)
     public void test_initFailsWhenTriedWithDifferentType()
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
+        cards.add(createRandomCard(2));
 
-        new Pair(cards, TEST_PLAYER);
+        new Triple(cards, TEST_PLAYER);
     }
 
     @Test
     public void test_higherBeatsLower()
     {
-        Play firstPlay = createPair(2);
-        Play secondPlay = createPair(3);
+        Play firstPlay = createTriple(2);
+        Play secondPlay = createTriple(3);
 
         Assert.assertTrue(secondPlay.beats(firstPlay));
     }
 
     @Test
+    // Yes, yes, impossible, I know!
     public void test_equalsNotBeats()
     {
-        Play firstPlay = createPair(2);
-        Play secondPlay = createPair(2);
+        Play firstPlay = createTriple(2);
+        Play secondPlay = createTriple(2);
 
         Assert.assertFalse(secondPlay.beats(firstPlay));
     }
@@ -59,16 +62,16 @@ public class Play_Pair_Test extends Play_Test_Helper
     @Test
     public void test_lowerNotBeatsHigher()
     {
-        Play firstPlay = createPair(3);
-        Play secondPlay = createPair(2);
+        Play firstPlay = createTriple(3);
+        Play secondPlay = createTriple(2);
 
         Assert.assertFalse(secondPlay.beats(firstPlay));
     }
 
     @Test
-    public void test_pairNotBeatSingle()
+    public void test_TripleNotBeatSingle()
     {
-        Play firstPlay = createPair(3);
+        Play firstPlay = createTriple(3);
         Play secondPlay = createSingle(2);
 
         Assert.assertFalse(firstPlay.beats(secondPlay));

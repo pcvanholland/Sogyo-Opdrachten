@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Play_Straight_Bomb_Test extends Play_Test_Helper
+public class Straight_Bomb_Test extends Play_Test_Helper
 {
     @Test
     public void test_playInValidityTooShortArray()

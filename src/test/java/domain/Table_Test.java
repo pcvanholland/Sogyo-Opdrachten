@@ -127,7 +127,7 @@ public class Table_Test
         CantDrawTooManyTimesException, CantPlayException
     {
         Table table = new Table();
-        Player firstPlayer = new Player(table, Player_Test.SEED);
+        Player firstPlayer = new Player(table, Player_Test_Helper.START_SEED);
         firstPlayer.drawCards();
         firstPlayer.drawCards();
 

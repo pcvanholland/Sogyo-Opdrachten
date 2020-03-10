@@ -5,237 +5,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Player_Test
+public class Play_Test extends Player_Test_Helper
 {
-    // Seed of 3 ensures the first Player to draw Cards gets the turn.
-    // Seed of 10 ensures a FOAK Bomb in the first hand.
-    // Seed of 100813 is a Straight on the first two hands combined.
-    // Seed of 1661 is a Straight Bomb on the first hand.
-    // Seed of 28774 is a Straight Bomb on the first hand with MJ.
-    static final int SEED = 3;
-    private static final int START_BOMB_SEED = 28774;
-    private static final int START_DOG_SEED = 3;
-
-    /**
-     * Helper function to create a Player who starts in turn.
-     *
-     * @return {Player} - A Player who is in turn.
-     */
-    private Player createPlayerInTurn()
-    {
-        return this.createSeededPlayer(SEED);
-    }
-
-    /**
-     * Helper function to create a Player who starts in turn.
-     *
-     * @param seed {int} - The seed to use for the Dealer.
-     * @return {Player} - A Player who is in turn.
-     */
-    private Player createSeededPlayer(final int seed)
-    {
-        Player player = new Player(new Table(), seed);
-
-        // Draw Cards to get in turn.
-        try
-        {
-            player.drawCards();
-            player.drawCards();
-        }
-        catch (CantDrawTooManyTimesException e)
-        {
-            e.printStackTrace();
-        }
-
-        return player;
-    }
-
-    /**
-     * Helper function to create a full game.
-     *
-     * @param seed {int} - The seed to use for the Dealer.
-     * @return {Player} - The first Player.
-     */
-    private Player createSeededGame(final int seed)
-    {
-        Player player = this.createSeededPlayer(seed);
-        try
-        {
-            player.getPlayerAtPositionCCW(1).drawCards();
-            player.getPlayerAtPositionCCW(1).drawCards();
-            player.getPlayerAtPositionCCW(2).drawCards();
-            player.getPlayerAtPositionCCW(2).drawCards();
-            player.getPlayerAtPositionCCW(3).drawCards();
-            player.getPlayerAtPositionCCW(3).drawCards();
-        }
-        catch (CantDrawTooManyTimesException e)
-        {
-            e.printStackTrace();
-        }
-
-        return player;
-    }
-
-    @Test
-    public void test_init()
-    {
-        new Player(new Table());
-    }
-
-    @Test
-    public void test_neighboursAreNotSelf() throws InvalidPositionException
-    {
-        Player firstPlayer = new Player(new Table());
-
-        Assert.assertNotEquals(firstPlayer,
-            firstPlayer.getPlayerAtPositionCCW(1));
-        Assert.assertNotEquals(firstPlayer,
-            firstPlayer.getPlayerAtPositionCCW(2));
-        Assert.assertNotEquals(firstPlayer,
-            firstPlayer.getPlayerAtPositionCCW(3));
-    }
-
-    @Test
-    public void test_circleIsRound() throws InvalidPositionException
-    {
-        Player firstPlayer = new Player(new Table());
-
-        Assert.assertEquals(firstPlayer, firstPlayer.getPlayerAtPositionCCW(4));
-    }
-
-    @Test(expected = InvalidPositionException.class)
-    public void test_cantAskNegativePos() throws InvalidPositionException
-    {
-        Player firstPlayer = new Player(new Table());
-
-        firstPlayer.getPlayerAtPositionCCW(-1);
-    }
-
-    @Test(expected = InvalidPositionException.class)
-    public void test_cantAskTooLargePos() throws InvalidPositionException
-    {
-        Player firstPlayer = new Player(new Table());
-
-        firstPlayer.getPlayerAtPositionCCW(5);
-    }
-
-    @Test
-    public void test_playersStartsEmptyHanded() throws InvalidPositionException
-    {
-        Player firstPlayer = new Player(new Table());
-        for (int i = 0; i < 4; ++i)
-        {
-            Assert.assertEquals(0, firstPlayer.getPlayerAtPositionCCW(i).
-                getCards().size());
-        }
-    }
-
-    @Test
-    public void test_playersStartNotInTurn() throws InvalidPositionException
-    {
-        Player firstPlayer = new Player(new Table());
-        for (int i = 0; i < 4; ++i)
-        {
-            Assert.assertFalse(firstPlayer.getPlayerAtPositionCCW(i).
-                isInTurn());
-        }
-    }
-
-    @Test
-    public void test_playersStartWithoutWonTricks()
-    {
-        Player firstPlayer = new Player(new Table());
-
-        Assert.assertEquals(
-            new ArrayList<Trick>(),
-            firstPlayer.getWonTricks()
-        );
-    }
-
-    @Test
-    public void test_zeroHandsDrawn()
-    {
-        Player firstPlayer = new Player(new Table());
-
-        Assert.assertTrue(firstPlayer.canDrawCards());
-    }
-
-    @Test
-    public void test_drawFirstCards() throws CantDrawTooManyTimesException
-    {
-        Player firstPlayer = new Player(new Table());
-
-        firstPlayer.drawCards();
-
-        Assert.assertEquals(8, firstPlayer.getCards().size());
-    }
-
-    @Test
-    public void test_drawFirstCardsAreSeeded() throws
-        CantDrawTooManyTimesException
-    {
-        Dealer refDealer = new Dealer(SEED);
-        Player firstPlayer = new Player(new Table(), SEED);
-
-        firstPlayer.drawCards();
-
-        int i = 0;
-        for (Card card : refDealer.drawFirstHand())
-        {
-            Assert.assertTrue(
-                card.getSuit() == firstPlayer.getCards().get(i).getSuit() &&
-                card.getRank() == firstPlayer.getCards().get(i).getRank()
-            );
-            i++;
-        }
-    }
-
-    @Test
-    public void test_canDrawSecondHandOfCards() throws
-        CantDrawTooManyTimesException
-    {
-        Player firstPlayer = new Player(new Table());
-
-        firstPlayer.drawCards();
-
-        Assert.assertTrue(firstPlayer.canDrawCards());
-    }
-
-    @Test
-    public void test_drawSecondCards() throws CantDrawTooManyTimesException
-    {
-        Player firstPlayer = new Player(new Table());
-
-        firstPlayer.drawCards();
-        firstPlayer.drawCards();
-
-        Assert.assertEquals(14, firstPlayer.getCards().size());
-    }
-
-    @Test
-    public void test_cantDrawThirdHandOfCards() throws
-        CantDrawTooManyTimesException
-    {
-        Player firstPlayer = new Player(new Table());
-
-        firstPlayer.drawCards();
-        firstPlayer.drawCards();
-
-        Assert.assertFalse(firstPlayer.canDrawCards());
-    }
-
-    @Test(expected = CantDrawTooManyTimesException.class)
-    public void test_cantDrawToManyCards() throws CantDrawTooManyTimesException
-    {
-        Player firstPlayer = new Player(new Table());
-
-        firstPlayer.drawCards();
-        firstPlayer.drawCards();
-        firstPlayer.drawCards();
-
-        Assert.assertEquals(14, firstPlayer.getCards().size());
-    }
-
     @Test
     public void test_canPlayWhenInTurn()
     {
@@ -281,7 +52,7 @@ public class Player_Test
         CantDrawTooManyTimesException, CantPlayException
     {
         Table playingTable = new Table();
-        Player firstPlayer = new Player(playingTable, SEED);
+        Player firstPlayer = new Player(playingTable, START_SEED);
         for (int i = 0; i < Player.NUM_PLAYERS; ++i)
         {
             firstPlayer.getPlayerAtPositionCCW(i).drawCards();
@@ -304,7 +75,7 @@ public class Player_Test
         CantDrawTooManyTimesException, CantPlayException
     {
         Table playingTable = new Table();
-        Player firstPlayer = new Player(playingTable, SEED);
+        Player firstPlayer = new Player(playingTable, START_SEED);
 
         // Draw Cards to get in turn.
         firstPlayer.drawCards();
@@ -327,7 +98,7 @@ public class Player_Test
     @Test
     public void test_playRemovesCard() throws CantPlayException
     {
-        Player firstPlayer = this.createSeededGame(SEED);
+        Player firstPlayer = this.createSeededGame(START_SEED);
 
         CardCollection cards = new CardCollection();
 
@@ -344,7 +115,7 @@ public class Player_Test
         CantDrawTooManyTimesException, CantPlayException
     {
         Table playingTable = new Table();
-        Player firstPlayer = new Player(playingTable, SEED);
+        Player firstPlayer = new Player(playingTable, START_SEED);
         firstPlayer.drawCards();
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
@@ -401,45 +172,9 @@ public class Player_Test
     }
 
     @Test
-    public void test_passTurnsPlayerOutOfTurn() throws
-        CantPlayException, CantPassException
-    {
-        Player firstPlayer = this.createSeededGame(SEED);
-        CardCollection cards = new CardCollection();
-
-        // A Card we are certain the Player in turn has.
-        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
-        firstPlayer.play(cards, Set.SINGLE);
-
-        firstPlayer.getPlayerAtPositionCCW(1).pass();
-
-        Assert.assertFalse(
-            firstPlayer.getPlayerAtPositionCCW(1).isInTurn()
-        );
-    }
-
-    @Test(expected = CantPassException.class)
-    public void test_cantPassWhenOutOfTurn() throws
-        CantPlayException, CantPassException
-    {
-        Player firstPlayer = this.createPlayerInTurn();
-
-        firstPlayer.getPlayerAtPositionCCW(1).pass();
-    }
-
-    @Test(expected = CantPassException.class)
-    public void test_cantPassWhenLeading() throws
-        CantPlayException, CantPassException
-    {
-        Player firstPlayer = this.createPlayerInTurn();
-
-        firstPlayer.pass();
-    }
-
-    @Test
     public void test_playTurnsPlayerOutOfTurn() throws CantPlayException
     {
-        Player firstPlayer = this.createSeededGame(SEED);
+        Player firstPlayer = this.createSeededGame(START_SEED);
         CardCollection cards = new CardCollection();
 
         // A Card we are certain the Player in turn has.
@@ -453,7 +188,7 @@ public class Player_Test
     @Test
     public void test_playGivesTurnToNext() throws CantPlayException
     {
-        Player firstPlayer = this.createSeededGame(SEED);
+        Player firstPlayer = this.createSeededGame(START_SEED);
         CardCollection cards = new CardCollection();
 
         // A Card we are certain the Player in turn has.
@@ -462,23 +197,6 @@ public class Player_Test
         firstPlayer.play(cards, Set.SINGLE);
 
         Assert.assertTrue(firstPlayer.getPlayerAtPositionCCW(1).isInTurn());
-    }
-
-    @Test
-    public void test_allPassTakesTrick() throws
-        CantPlayException, CantPassException
-    {
-        Player firstPlayer = this.createSeededGame(SEED);
-        CardCollection cards = new CardCollection();
-
-        // A Card we are certain the Player in turn has.
-        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
-        firstPlayer.play(cards, Set.SINGLE);
-        firstPlayer.getPlayerAtPositionCCW(1).pass();
-        firstPlayer.getPlayerAtPositionCCW(2).pass();
-        firstPlayer.getPlayerAtPositionCCW(3).pass();
-
-        Assert.assertEquals(1, firstPlayer.getWonTricks().size());
     }
 
     @Test
@@ -539,7 +257,7 @@ public class Player_Test
     public void test_emptyHandPassesTurnToNext() throws
         CantDrawTooManyTimesException, CantPlayException
     {
-        Player firstPlayer = createSeededPlayer(SEED);
+        Player firstPlayer = createSeededPlayer(START_SEED);
         firstPlayer.getPlayerAtPositionCCW(2).drawCards();
 
         CardCollection cards = new CardCollection();

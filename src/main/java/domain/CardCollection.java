@@ -120,7 +120,7 @@ class CardCollection
      */
     final boolean areCardsOfEqualSuit()
     {
-        ISuit firstSuit = this.cards.get(0).getSuit();
+        ISuit firstSuit = this.get(0).getSuit();
         for (Card card : this.cards)
         {
             if (card.getSuit() != firstSuit)
@@ -288,7 +288,7 @@ class CardCollection
     /**
      * Updates the value of the Phoenix according to its current context.
      */
-    final void updatePhoenixValue()
+    private void updatePhoenixValue()
     {
         for (Card card : this.getCards())
         {

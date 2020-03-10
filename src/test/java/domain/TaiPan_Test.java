@@ -11,7 +11,7 @@ public class TaiPan_Test
     public void test_init()
     {
         new TaiPan();
-        new TaiPan(Player_Test.SEED);
+        new TaiPan(Player_Test_Helper.START_SEED);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class TaiPan_Test
     public void test_play()
     {
         int playerID = 0;
-        TaiPan tp = new TaiPan(Player_Test.SEED);
+        TaiPan tp = new TaiPan(Player_Test_Helper.START_SEED);
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID + 1);
@@ -54,7 +54,7 @@ public class TaiPan_Test
     public void test_cantPlayNotInTurn()
     {
         int playerID = 0;
-        TaiPan tp = new TaiPan(Player_Test.SEED);
+        TaiPan tp = new TaiPan(Player_Test_Helper.START_SEED);
         tp.letPlayerDrawCards(playerID);
         int amount = tp.getPlayer(playerID).getCards().size();
 
@@ -66,7 +66,7 @@ public class TaiPan_Test
     public void test_cantPlayNotInTurnOtherPlayer()
     {
         int playerID = 0;
-        TaiPan tp = new TaiPan(Player_Test.SEED);
+        TaiPan tp = new TaiPan(Player_Test_Helper.START_SEED);
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID);
 
@@ -88,7 +88,7 @@ public class TaiPan_Test
     public void test_cantPlayInvalidPlay()
     {
         int playerID = 0;
-        TaiPan tp = new TaiPan(Player_Test.SEED);
+        TaiPan tp = new TaiPan(Player_Test_Helper.START_SEED);
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID);
 
@@ -100,7 +100,7 @@ public class TaiPan_Test
     public void test_cantPlayDontHasCards()
     {
         int playerID = 0;
-        TaiPan tp = new TaiPan(Player_Test.SEED);
+        TaiPan tp = new TaiPan(Player_Test_Helper.START_SEED);
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID);
 
@@ -112,7 +112,7 @@ public class TaiPan_Test
     public void test_pass()
     {
         int playerID = 0;
-        TaiPan tp = new TaiPan(Player_Test.SEED);
+        TaiPan tp = new TaiPan(Player_Test_Helper.START_SEED);
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID + 1);
@@ -134,7 +134,7 @@ public class TaiPan_Test
     public void test_cantPassWhenNotInTurn()
     {
         int playerID = 0;
-        TaiPan tp = new TaiPan(Player_Test.SEED);
+        TaiPan tp = new TaiPan(Player_Test_Helper.START_SEED);
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID);
 

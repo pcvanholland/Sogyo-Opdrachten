@@ -3,7 +3,7 @@ package taipan.domain;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class Play_FOAK_Bomb_Test extends Play_Test_Helper
+public class FOAK_Bomb_Test extends Play_Test_Helper
 {
     @Test
     public void test_initFourOfAKind()
