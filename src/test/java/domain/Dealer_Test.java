@@ -19,10 +19,10 @@ public class Dealer_Test
     }
 
     @Test
-    public void test_drawFirstHandGivesSixCards()
+    public void test_drawFirstHandGivesEightCards()
     {
         Dealer dealer = new Dealer();
-        Assert.assertEquals(6, dealer.drawFirstHand().size());
+        Assert.assertEquals(8, dealer.drawFirstHand().size());
     }
 
     @Test
@@ -33,10 +33,10 @@ public class Dealer_Test
     }
 
     @Test
-    public void test_drawSecondHandGivesEightCards()
+    public void test_drawSecondHandGivesSixCards()
     {
         Dealer dealer = new Dealer();
-        Assert.assertEquals(8, dealer.drawSecondHand().size());
+        Assert.assertEquals(6, dealer.drawSecondHand().size());
     }
 
     @Test

@@ -56,9 +56,10 @@ public class TaiPan_Test
         int playerID = 0;
         TaiPan tp = new TaiPan(Player_Test.SEED);
         tp.letPlayerDrawCards(playerID);
+        int amount = tp.getPlayer(playerID).getCards().size();
 
         tp.play(playerID, "[\"SPECIAL,MAHJONG\"]", "SINGLE");
-        Assert.assertEquals(6, tp.getPlayer(playerID).getCards().size());
+        Assert.assertEquals(amount, tp.getPlayer(playerID).getCards().size());
     }
 
     @Test
@@ -69,7 +70,7 @@ public class TaiPan_Test
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID);
 
-        tp.play(1, "[\"SPECIAL,MAHJONG\"]", "SINGLE");
+        tp.play(playerID + 1, "[\"SPECIAL,MAHJONG\"]", "SINGLE");
         Assert.assertEquals(14, tp.getPlayer(playerID).getCards().size());
     }
 

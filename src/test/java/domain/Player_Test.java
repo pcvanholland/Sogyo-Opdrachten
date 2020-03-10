@@ -167,7 +167,7 @@ public class Player_Test
 
         firstPlayer.drawCards();
 
-        Assert.assertEquals(6, firstPlayer.getCards().size());
+        Assert.assertEquals(8, firstPlayer.getCards().size());
     }
 
     @Test
@@ -359,7 +359,7 @@ public class Player_Test
                 " but we ought to test it.");
         }
 
-        Assert.assertEquals(6, firstPlayer.getCards().size());
+        Assert.assertEquals(8, firstPlayer.getCards().size());
     }
 
     @Test(expected = PlayerDontHasCardException.class)
@@ -486,23 +486,17 @@ public class Player_Test
         CantDrawTooManyTimesException, CantPlayException,
         CantPassException
     {
-        Player firstPlayer = new Player(new Table(), START_BOMB_SEED);
-        firstPlayer.drawCards();
+        Player firstPlayer = createSeededGame(START_BOMB_SEED);
         CardCollection bomb = new CardCollection();
-        for (Card card : firstPlayer.getCards())
+        ArrayList<Card> playerCards = firstPlayer.getCards();
+        for (int i = 0; i < 6; ++i)
         {
+            Card card = playerCards.get(i);
             if (card.getRank() != SpecialRank.MAHJONG)
             {
                 bomb.add(card);
             }
         }
-        firstPlayer.drawCards();
-        firstPlayer.getPlayerAtPositionCCW(1).drawCards();
-        firstPlayer.getPlayerAtPositionCCW(1).drawCards();
-        firstPlayer.getPlayerAtPositionCCW(2).drawCards();
-        firstPlayer.getPlayerAtPositionCCW(2).drawCards();
-        firstPlayer.getPlayerAtPositionCCW(3).drawCards();
-        firstPlayer.getPlayerAtPositionCCW(3).drawCards();
 
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
