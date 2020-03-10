@@ -601,4 +601,26 @@ public class Player_Test
             );
         }
     }
+
+    @Test
+    public void test_roundEndRedrawFillsPlayers() throws
+        CantDrawTooManyTimesException, CantPlayException
+    {
+        Player firstPlayer = createPlayerInTurn();
+
+        CardCollection cards = new CardCollection();
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
+
+        firstPlayer.play(cards, Set.SINGLE);
+
+        for (int i = 0; i < Player.NUM_PLAYERS; ++i)
+        {
+            firstPlayer.getPlayerAtPositionCCW(i).drawCards();
+            firstPlayer.getPlayerAtPositionCCW(i).drawCards();
+            Assert.assertEquals(
+                14,
+                firstPlayer.getPlayerAtPositionCCW(i).getCards().size()
+            );
+        }
+    }
 }
