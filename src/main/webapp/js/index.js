@@ -112,6 +112,8 @@ Vue.component('lobby-screen', {
     },
     template: `
         <div class="lobbyscreen">
+            <p>This is the lobby page.</p>
+
             <button v-on:click="startGame">
                 Start a new game.
             </button>
