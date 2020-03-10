@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class Straight extends Play
+final class Straight extends Play
 {
     static final int MIN_STRAIGHT_LENGTH = 5;
 

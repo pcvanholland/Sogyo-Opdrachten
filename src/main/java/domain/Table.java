@@ -2,7 +2,7 @@ package taipan.domain;
 
 import java.util.ArrayList;
 
-class Table
+final class Table
 {
     private Trick trick;
 

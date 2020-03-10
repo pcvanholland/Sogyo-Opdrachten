@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class Dog extends SpecialCard
+final class Dog extends SpecialCard
 {
     /**
      * Constructor for a Dog.

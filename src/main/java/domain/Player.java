@@ -95,7 +95,7 @@ final class Player
      * @param position {int} - The position which ought to be returned.
      * @return {Player} - The Player at the specified position.
      */
-    final Player getPlayerAtPositionCCW(int position) throws
+    Player getPlayerAtPositionCCW(int position) throws
         InvalidPositionException
     {
         if (position < 0 || position > NUM_PLAYERS)
@@ -493,7 +493,7 @@ final class Player
      */
     private void handleRoundEnd()
     {
-        this.inTurn = false;
+        this.takeTurn();
         this.getTable().clear();
         this.getNeighbour().handleRoundEnd(this);
     }

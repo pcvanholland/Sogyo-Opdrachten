@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class Stair extends Play
+final class Stair extends Play
 {
     /**
      * The constructor for a Stair.

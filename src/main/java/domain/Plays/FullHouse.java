@@ -2,7 +2,7 @@ package taipan.domain;
 
 import java.util.ArrayList;
 
-class FullHouse extends Play
+final class FullHouse extends Play
 {
     static final int FULL_HOUSE_SIZE = 5;
 

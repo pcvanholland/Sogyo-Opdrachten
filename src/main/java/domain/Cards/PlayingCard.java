@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class PlayingCard extends Card
+final class PlayingCard extends Card
 {
     /**
      * Constructor.

@@ -2,7 +2,7 @@ package taipan.domain;
 
 import java.util.ArrayList;
 
-class Trick
+final class Trick
 {
     private ArrayList<Play> plays;
 

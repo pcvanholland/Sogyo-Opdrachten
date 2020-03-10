@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class Triple extends Play
+final class Triple extends Play
 {
     static final int TRIPLE_SIZE = 3;
     /**

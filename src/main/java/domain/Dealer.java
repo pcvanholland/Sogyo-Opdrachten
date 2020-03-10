@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * This class represents a Card dealer.
  * Players can ask them for a hand of Cards.
  */
-class Dealer
+final class Dealer
 {
     // Sum *MUST* be 14.
     private static final int FIRST_HAND_SIZE = 8;
@@ -81,7 +81,7 @@ class Dealer
     /**
      * Recreates Cards.
      */
-    final void reset()
+    void reset()
     {
         createAndShuffleCards(new java.util.Random());
     }
@@ -91,7 +91,7 @@ class Dealer
      *
      * @return {Card[]} - An ArrayList of cards taken from the stack.
      */
-    final ArrayList<Card> drawFirstHand()
+    ArrayList<Card> drawFirstHand()
     {
         return drawCards(this.FIRST_HAND_SIZE);
     }
@@ -101,7 +101,7 @@ class Dealer
      *
      * @return {Card[]} - An ArrayList of cards taken from the stack.
      */
-    final ArrayList<Card> drawSecondHand()
+    ArrayList<Card> drawSecondHand()
     {
         return drawCards(this.SECOND_HAND_SIZE);
     }

@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class Phoenix extends SpecialCard
+final class Phoenix extends SpecialCard
 {
     private int value;
 

@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class Bomb extends Play
+final class Bomb extends Play
 {
     /**
      * Constructor for a Bomb.

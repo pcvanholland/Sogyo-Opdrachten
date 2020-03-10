@@ -159,7 +159,7 @@ class CardCollection
      *
      * @return {boolean} - Whether the list contains the specified multiplicity.
      */
-    private final boolean containsNumberOfEqualRanks(final int amount)
+    private boolean containsNumberOfEqualRanks(final int amount)
     {
         ArrayList<Integer> ranks = this.getRanks();
         for (Integer rank : ranks)

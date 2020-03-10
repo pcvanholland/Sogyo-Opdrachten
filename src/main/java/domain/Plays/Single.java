@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class Single extends Play
+final class Single extends Play
 {
     /**
      * The constructor for a Single.

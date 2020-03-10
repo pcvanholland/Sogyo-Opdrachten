@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class Dragon extends SpecialCard
+final class Dragon extends SpecialCard
 {
     /**
      * Constructor for a Dragon.

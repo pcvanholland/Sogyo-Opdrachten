@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class Pair extends Play
+final class Pair extends Play
 {
     /**
      * The constructor for a Pair.
