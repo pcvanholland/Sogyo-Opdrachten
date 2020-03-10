@@ -29,7 +29,7 @@ class CardCollection
     final void add(final Card card)
     {
         this.cards.add(card);
-        PhoenixHelper.convertPhoenixInSet(this);
+        this.updatePhoenixValue();
     }
 
     /**
@@ -283,5 +283,19 @@ class CardCollection
         }
         // We can't arrive here.
         throw new InvalidPlayException();
+    }
+
+    /**
+     * Updates the value of the Phoenix according to its current context.
+     */
+    final void updatePhoenixValue()
+    {
+        for (Card card : this.getCards())
+        {
+            if (card instanceof Phoenix)
+            {
+                ((Phoenix) card).updateValueInSet(this);
+            }
+        }
     }
 }
