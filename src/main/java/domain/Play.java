@@ -2,7 +2,7 @@ package taipan.domain;
 
 import java.util.ArrayList;
 
-abstract class Play extends CardCollection
+public abstract class Play extends CardCollection implements IPlay
 {
     private CardCollection cards;
     private Player owner;
@@ -57,7 +57,8 @@ abstract class Play extends CardCollection
      *
      * @return {Card[]} - An ArrayList of Cards in this Play.
      */
-    final ArrayList<Card> getCards()
+    @Override
+    public final ArrayList<Card> getCards()
     {
         return this.cards.getCards();
     }

@@ -1,6 +1,6 @@
 package taipan.domain;
 
-abstract class SpecialCard extends Card
+public abstract class SpecialCard extends Card
 {
     /**
      * Constructor of a Special Card.
@@ -18,7 +18,7 @@ abstract class SpecialCard extends Card
      * @param rank {SpecialRank} - The Rank the new Card ought to have.
      * @return {SpecialCard} - The constructed Card.
      */
-    static SpecialCard createSpecialCard(final SpecialRank rank)
+    public static SpecialCard createSpecialCard(final SpecialRank rank)
         throws InvalidRankException
     {
         if (rank == SpecialRank.DOG)

@@ -1,6 +1,6 @@
 package taipan.domain;
 
-final class PlayingCard extends Card
+public final class PlayingCard extends Card
 {
     /**
      * Constructor.
@@ -8,7 +8,7 @@ final class PlayingCard extends Card
      * @param newSuit {StandardSuit} - The Suit this Card ought to have.
      * @param newRank {StandardRank} - The Rank this Card ought to have.
      */
-    PlayingCard(final StandardSuit newSuit, final StandardRank newRank)
+    public PlayingCard(final StandardSuit newSuit, final StandardRank newRank)
     {
         super(newSuit, newRank);
     }

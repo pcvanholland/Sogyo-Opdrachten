@@ -2,7 +2,7 @@ package taipan.domain;
 
 import java.util.ArrayList;
 
-final class Player
+public final class Player implements IPlayer
 {
     static final int NUM_PLAYERS = 4;
 
@@ -138,7 +138,8 @@ final class Player
     /**
      * @return {Card[]} - The Cards held by this Player.
      */
-    ArrayList<Card> getCards()
+    @Override
+    public ArrayList<Card> getCards()
     {
         return this.cards;
     }
@@ -177,7 +178,8 @@ final class Player
     /**
      * @return {boolean} - Whether this Player can draw a hand from the Dealer.
      */
-    boolean canDrawCards()
+    @Override
+    public boolean canDrawCards()
     {
         return this.handsDrawn() < 2;
     }
@@ -200,7 +202,8 @@ final class Player
     /**
      * @return {boolean} - Whether this Player is in turn.
      */
-    boolean isInTurn()
+    @Override
+    public boolean isInTurn()
     {
         return this.inTurn;
     }
@@ -354,7 +357,8 @@ final class Player
     /**
      * @return {boolean} - Whether this Player may pass.
      */
-    boolean mayPass()
+    @Override
+    public boolean mayPass()
     {
         return this.isInTurn() &&
             this.getTable().getCurrentPlays().size() > 0;
@@ -517,7 +521,8 @@ final class Player
         this.getNeighbour().handleRoundEnd(player);
     }
 
-    int getScore()
+    @Override
+    public int getScore()
     {
         int result = 0;
         for (Trick trick : this.getWonTricks())

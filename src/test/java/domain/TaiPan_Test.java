@@ -46,7 +46,11 @@ public class TaiPan_Test
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID + 1);
 
-        tp.play(playerID, "[\"SPECIAL,MAHJONG\"]", "SINGLE");
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
+
+        tp.play(playerID, cards, Set.SINGLE);
+
         Assert.assertEquals(13, tp.getPlayer(playerID).getCards().size());
     }
 
@@ -58,7 +62,11 @@ public class TaiPan_Test
         tp.letPlayerDrawCards(playerID);
         int amount = tp.getPlayer(playerID).getCards().size();
 
-        tp.play(playerID, "[\"SPECIAL,MAHJONG\"]", "SINGLE");
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
+
+        tp.play(playerID, cards, Set.SINGLE);
+
         Assert.assertEquals(amount, tp.getPlayer(playerID).getCards().size());
     }
 
@@ -70,7 +78,11 @@ public class TaiPan_Test
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID);
 
-        tp.play(playerID + 1, "[\"SPECIAL,MAHJONG\"]", "SINGLE");
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
+
+        tp.play(playerID + 1, cards, Set.SINGLE);
+
         Assert.assertEquals(14, tp.getPlayer(playerID).getCards().size());
     }
 
@@ -80,7 +92,11 @@ public class TaiPan_Test
         int playerID = 0;
         TaiPan tp = new TaiPan();
 
-        tp.play(playerID, "[\"SPECIAL,MAHJONG\"]", "SINGLE");
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
+
+        tp.play(playerID, cards, Set.SINGLE);
+
         Assert.assertEquals(0, tp.getPlayer(playerID).getCards().size());
     }
 
@@ -92,7 +108,11 @@ public class TaiPan_Test
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID);
 
-        tp.play(playerID, "[\"SPECIAL,MAHJONG\"]", "PAIR");
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
+
+        tp.play(playerID, cards, Set.PAIR);
+
         Assert.assertEquals(14, tp.getPlayer(playerID).getCards().size());
     }
 
@@ -104,7 +124,11 @@ public class TaiPan_Test
         tp.letPlayerDrawCards(playerID);
         tp.letPlayerDrawCards(playerID);
 
-        tp.play(playerID, "[\"JADE,SIX\"]", "SINGLE");
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.SIX));
+
+        tp.play(playerID, cards, Set.SINGLE);
+
         Assert.assertEquals(14, tp.getPlayer(playerID).getCards().size());
     }
 
@@ -121,7 +145,11 @@ public class TaiPan_Test
         tp.letPlayerDrawCards(playerID + 2);
         tp.letPlayerDrawCards(playerID + 3);
         tp.letPlayerDrawCards(playerID + 3);
-        tp.play(playerID, "[\"SPECIAL,MAHJONG\"]", "SINGLE");
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
+
+        tp.play(playerID, cards, Set.SINGLE);
 
         tp.pass(playerID + 1);
 

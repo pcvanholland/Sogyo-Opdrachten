@@ -3,7 +3,7 @@ package taipan.domain;
 /**
  * This is the abstract class representing all Cards.
  */
-abstract class Card
+public abstract class Card implements ICard
 {
     private ISuit suit;
     private IRank rank;
@@ -23,7 +23,8 @@ abstract class Card
     /**
      * @return {ISuit} - The Suit of this Card.
      */
-    final ISuit getSuit()
+    @Override
+    public final ISuit getSuit()
     {
         return this.suit;
     }
@@ -31,7 +32,8 @@ abstract class Card
     /**
      * @return {IRank} - The Rank of this Card.
      */
-    final IRank getRank()
+    @Override
+    public final IRank getRank()
     {
         return this.rank;
     }
@@ -60,7 +62,7 @@ abstract class Card
      * @return {boolean} - Whether this Card has a Rank
      *                  equal to the reference Card.
      */
-    final boolean equals(final Card card)
+    public final boolean equals(final Card card)
     {
         return this.getRank() == card.getRank() &&
             this.getSuit() == card.getSuit();

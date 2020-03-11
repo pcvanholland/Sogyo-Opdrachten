@@ -4,7 +4,7 @@ import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 
-public class TaiPan
+public class TaiPan implements ITaiPan
 {
     private Player firstPlayer;
     private Table playingTable;
@@ -33,19 +33,20 @@ public class TaiPan
      * Lets the specified Player play a Play.
      *
      * @param playerNumber {int} - The Player that wants to play Cards.
-     * @param cards {String} - An array of the Cards to play.
-     * @param type {String} - How the Play should be performed.
+     * @param cards {Card[]} - An array of the Cards to play.
+     * @param type {Set} - How the Play should be performed.
      */
+    @Override
     public void play(final int playerNumber,
-        final String cards,
-        final String type
+        final ArrayList<Card> cards,
+        final Set type
     )
     {
         try
         {
             this.getPlayer(playerNumber).play(
-                JSONProcessor.createCardsFromJSON(cards),
-                Set.valueOf(type)
+                new CardCollection(cards),
+                type
             );
         }
         catch (CantPlayPlayerException e)
@@ -81,6 +82,7 @@ public class TaiPan
      *
      * @param playerNumber {int} - The Player that wants to pass.
      */
+    @Override
     public void pass(final int playerNumber)
     {
         try
@@ -97,20 +99,11 @@ public class TaiPan
     }
 
     /**
-     * Gets the current state of the game.
-     *
-     * @return {JSONObject} - An JSONObject of the GameState.
-     */
-    public JSONObject getJSONGameState()
-    {
-        return JSONProcessor.createJSONGame(this);
-    }
-
-    /**
      * Lets the specified Player draw Cards.
      *
      * @param playerNumber {int} - The Player that wants to draw Cards.
      */
+    @Override
     public void letPlayerDrawCards(final int playerNumber)
     {
         try
@@ -129,26 +122,23 @@ public class TaiPan
     /**
      * Returns the types of Play this set of Cards can have.
      *
-     * @param cardsJSON {String} - An JSON-String of Cards to check.
-     * @return {String[]} - An ArrayList of the types of Plays.
+     * @param cardsToCheck {Card[]} - An ArrayList of Cards to check.
+     * @return {Set[]} - An ArrayList of the types of Plays.
      */
-    public ArrayList<String> getTypesOfPlay(final String cardsJSON)
+    @Override
+    public ArrayList<Set> getTypesOfPlay(final ArrayList<Card> cardsToCheck)
     {
-        CardCollection cards = JSONProcessor.createCardsFromJSON(cardsJSON);
+        CardCollection cards = new CardCollection(cardsToCheck);
 
-        ArrayList<String> result = new ArrayList<String>();
-        for (Set set : cards.determineTypesOfSet())
-        {
-            result.add(set.toString());
-        }
-        return result;
+        return cards.determineTypesOfSet();
     }
 
     /**
      * @param playerNumber {int} - The Player to query.
      * @return {Player} - The Player at the specified location.
      */
-    Player getPlayer(final int playerNumber)
+    @Override
+    public Player getPlayer(final int playerNumber)
     {
         return this.firstPlayer.getPlayerAtPositionCCW(playerNumber);
     }
@@ -156,7 +146,8 @@ public class TaiPan
     /**
      * @return {Table} - The Table at which the Players play.
      */
-    Table getPlayingTable()
+    @Override
+    public Table getPlayingTable()
     {
         return this.playingTable;
     }

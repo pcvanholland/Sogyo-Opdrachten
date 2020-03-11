@@ -11,11 +11,19 @@ class CardCollection
     private ArrayList<Card> cards;
 
     /**
-     * Default constructor for a collection of Cards.
+     * Constructor for an empty collection of Cards.
      */
     CardCollection()
     {
         this.cards = new ArrayList<Card>();
+    }
+
+    /**
+     * Constructor for a collection of Cards from an array of Cards.
+     */
+    CardCollection(final ArrayList<Card> newCards)
+    {
+        this.cards = newCards;
     }
 
     /**

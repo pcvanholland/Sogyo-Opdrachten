@@ -2,7 +2,7 @@ package taipan.domain;
 
 import java.util.ArrayList;
 
-final class Table
+public final class Table implements ITable
 {
     private Trick trick;
 
@@ -25,7 +25,8 @@ final class Table
     /**
      * @return {Play[]} - The current Plays that have been played.
      */
-    ArrayList<Play> getCurrentPlays()
+    @Override
+    public ArrayList<Play> getCurrentPlays()
     {
         if (this.getCurrentTrick() == null)
         {

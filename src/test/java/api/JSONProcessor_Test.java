@@ -5,6 +5,9 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 public class JSONProcessor_Test
 {
     @Test
@@ -50,7 +53,7 @@ public class JSONProcessor_Test
         expectedResult += "}";
         taipan.domain.TaiPan tp = new taipan.domain.TaiPan();
 
-        String result = JSONProcessor.createJSONGameState(tp);
+        String result = JSONProcessor.createJSONGameState(tp).toJSONString();
 
         Assert.assertEquals(expectedResult, result);
     }
@@ -90,7 +93,7 @@ public class JSONProcessor_Test
         taipan.domain.TaiPan tp = new taipan.domain.TaiPan();
         tp.letPlayerDrawCards(1);
 
-        String result = JSONProcessor.createJSONGameState(tp);
+        String result = JSONProcessor.createJSONGameState(tp).toJSONString();
 
         Assert.assertNotEquals(notExpectedResult, result);
     }
@@ -158,20 +161,112 @@ public class JSONProcessor_Test
         String hostname = "Hostname";
         Game game1 = new Game(hostname);
         Game game2 = new Game(hostname);
-        String expectedResult = "[" +
-            "{\"host\":\"Hostname\"," +
-            "\"id\":" + game1.getID() + "," +
-            "\"full\":false}" +
-                "," +
-            "{\"host\":\"Hostname\"," +
-            "\"id\":" + game2.getID() + "," +
-            "\"full\":false}" +
-        "]";
+        JSONArray expectedResult = new JSONArray();
+        JSONObject game1result = new JSONObject();
+        game1result.put("host", hostname);
+        game1result.put("id", game1.getID());
+        game1result.put("full", false);
+        expectedResult.add(game1result);
+
+        JSONObject game2result = new JSONObject();
+        game2result.put("host", hostname);
+        game2result.put("id", game2.getID());
+        game2result.put("full", false);
+        expectedResult.add(game2result);
+
         ArrayList<Game> games = new ArrayList<Game>();
         games.add(game1);
         games.add(game2);
 
-        Assert.assertEquals(expectedResult,
-            JSONProcessor.createJSONGameList(games));
+        Assert.assertEquals(
+            expectedResult.toJSONString(),
+            JSONProcessor.createJSONGameList(games)
+        );
+    }
+
+    @Test
+    public void test_cardToJSON()
+    {
+        taipan.domain.StandardSuit suit = taipan.domain.StandardSuit.JADE;
+        taipan.domain.StandardRank rank = taipan.domain.StandardRank.FOUR;
+        JSONObject expectedResult = new JSONObject();
+        expectedResult.put("suit", suit.toString());
+        expectedResult.put("rank", rank.toString());
+
+        taipan.domain.Card card = new taipan.domain.PlayingCard(suit, rank);
+
+        Assert.assertEquals(expectedResult, JSONProcessor.createJSONCard(card));
+    }
+
+    @Test
+    public void test_gameToJSON()
+    {
+        JSONObject expectedResult = new JSONObject();
+        JSONArray players = new JSONArray();
+        for (int i = 0; i < PlayerData.MAX_NUMBER_OF_PLAYERS; ++i)
+        {
+            JSONObject player = new JSONObject();
+            player.put("cards", new JSONArray());
+            player.put("inTurn", false);
+            player.put("mayPass", false);
+            player.put("canDraw", true);
+            player.put("score", 0);
+            player.put("id", i);
+            players.add(player);
+        }
+        expectedResult.put("players", players);
+
+        JSONObject table = new JSONObject();
+        table.put("trick", new JSONArray());
+        expectedResult.put("table", table);
+
+        taipan.domain.TaiPan tp = new taipan.domain.TaiPan();
+
+        Assert.assertEquals(
+            expectedResult,
+            JSONProcessor.createJSONGameState(tp)
+        );
+    }
+
+    @Test
+    public void test_createCardsFromJSON()
+    {
+        ArrayList<taipan.domain.Card> expectedResult =
+            new ArrayList<taipan.domain.Card>();
+        expectedResult.add(
+            new taipan.domain.PlayingCard(
+                taipan.domain.StandardSuit.JADE,
+                taipan.domain.StandardRank.TWO
+            )
+        );
+        expectedResult.add(
+            new taipan.domain.PlayingCard(
+                taipan.domain.StandardSuit.SWORD,
+                taipan.domain.StandardRank.TWO
+            )
+        );
+
+        JSONArray cards = new JSONArray();
+        cards.add("JADE,TWO");
+        cards.add("SWORD,TWO");
+
+        ArrayList<taipan.domain.Card> result =
+            JSONProcessor.createCardsFromJSON(cards.toJSONString());
+
+        for (int i = 0; i < result.size(); ++i)
+        {
+            Assert.assertTrue(
+                expectedResult.get(i).equals(result.get(i))
+            );
+        }
+    }
+
+    @Test
+    public void test_createCardsFromJSONEmptySet()
+    {
+        Assert.assertEquals(
+            new ArrayList<taipan.domain.Card>(),
+            JSONProcessor.createCardsFromJSON("[]")
+        );
     }
 }

@@ -46,8 +46,8 @@ System.out.println("Post on play: " +
             Game taipan = (Game) session.getAttribute("game");
             taipan.getImplementation().play(
                 Integer.parseInt(play.getPlayerID()),
-                play.getCards(),
-                play.getType()
+                JSONProcessor.createCardsFromJSON(play.getCards()),
+                JSONProcessor.createSetFromJSON(play.getType())
             );
             return this.returnGameState(taipan);
         }
@@ -178,7 +178,7 @@ System.out.println("Post on drawCards: " + player);
     {
         String output = JSONProcessor.createJSONGameState(
             game.getImplementation()
-        );
+        ).toJSONString();
         return Response.status(SUCCESS).entity(output).build();
     }
 }
