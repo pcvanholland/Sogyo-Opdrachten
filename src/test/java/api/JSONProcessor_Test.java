@@ -29,6 +29,9 @@ public class JSONProcessor_Test
                         "\"inTurn\":" +
                             "false" +
                         "," +
+                        "\"score\":" +
+                            "0" +
+                        "," +
                         "\"cards\":" +
                             "[]" +
                         "," +
@@ -66,8 +69,14 @@ public class JSONProcessor_Test
                         "\"inTurn\":" +
                             "false" +
                         "," +
+                        "\"score\":" +
+                            "0" +
+                        "," +
                         "\"cards\":" +
                             "[]" +
+                        "\"canDraw\":" +
+                            "true" +
+                        "," +
                         "\"mayPass\":" +
                             "false" +
                         "," +

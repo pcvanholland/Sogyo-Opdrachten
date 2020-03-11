@@ -52,6 +52,7 @@ final class JSONProcessor
         result.put("inTurn", player.isInTurn());
         result.put("mayPass", player.mayPass());
         result.put("canDraw", player.canDrawCards());
+        result.put("score", player.getScore());
 
         return result;
     }
