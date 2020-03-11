@@ -48,12 +48,11 @@ public class TaiPan
                 Set.valueOf(type)
             );
         }
-        catch (CantPlayException e)
+        catch (CantPlayPlayerException e)
         {
             //e.printStackTrace();
             System.out.println(
-                "Player " + playerNumber + " has tried to play out of turn " +
-                "or an unallowed Play."
+                "Player " + playerNumber + " has tried to play out of turn."
             );
         }
         catch (PlayerDontHasCardException e)
@@ -70,6 +69,10 @@ public class TaiPan
             System.out.println(
                 "Player " + playerNumber + " has tried to play an invalid Play."
             );
+        }
+        catch (CantPlayException e)
+        {
+            e.printStackTrace();
         }
     }
 
@@ -118,7 +121,7 @@ public class TaiPan
         {
             //e.printStackTrace();
             System.out.println(
-                "Player " + playerNumber + " has tried draw too many Cards."
+                "Player " + playerNumber + " has tried to draw too many Cards."
             );
         }
     }

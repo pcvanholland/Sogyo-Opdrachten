@@ -147,7 +147,7 @@ final class JSONProcessor
     static CardCollection createCardsFromJSON(final String cards)
     {
         CardCollection realCards = new CardCollection();
-        if (cards.length() <= 5)
+        if (cards.equals("[]"))
         {
             return realCards;
         }
