@@ -1,0 +1,11 @@
+API and domain really ought to be separated,,,
+As should the DataBase.
+JSON Processor makes little sense inside the domain. The domain ought to work with classes only.
+Possibility: Make functions that are generally okay to access from other classes public, to make it clear to fellow programmers that they are accessable.
+Database: Make a connection per API-call, not per function.
+API-Classes can be much better described and defined.
+How about logging? Logging in CLI seems to be okay, but one could implement a framework.
+Exceptions are communication to the outside world, thus don't catch them in the domain. Domain may be aggressive.
+
+"OO" Seems properly implemented.
+Flow of progam can be followed.
