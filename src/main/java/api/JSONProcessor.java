@@ -86,6 +86,7 @@ public abstract class JSONProcessor
         JSONObject result = new JSONObject();
         result.put("players", createJSONPlayers(game));
         result.put("table", createJSONTable(game.getPlayingTable()));
+        result.put("score", createJSONScore(game));
         return result;
     }
 
@@ -98,7 +99,7 @@ public abstract class JSONProcessor
     static JSONArray createJSONPlayers(final taipan.domain.TaiPan game)
     {
         JSONArray result = new JSONArray();
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < PlayerData.MAX_NUMBER_OF_PLAYERS; ++i)
         {
             JSONObject player = createJSONPlayer(game.getPlayer(i));
             player.put("id", i);
@@ -120,7 +121,6 @@ public abstract class JSONProcessor
         result.put("inTurn", player.isInTurn());
         result.put("mayPass", player.mayPass());
         result.put("canDraw", player.canDrawCards());
-        result.put("score", player.getScore());
 
         return result;
     }
@@ -204,6 +204,22 @@ public abstract class JSONProcessor
         result.put("suit", card.getSuit().toString());
         result.put("rank", card.getRank().toString());
 
+        return result;
+    }
+
+    /**
+     * Squashes the score to a JSONArray.
+     *
+     * @param game {TaiPan} - The TaiPan-Game to get the score for.
+     * @return {JSONArray} - The JSON representation of the current score.
+     */
+    static JSONArray createJSONScore(final taipan.domain.TaiPan game)
+    {
+        JSONArray result = new JSONArray();
+        for (int score : game.getScore())
+        {
+            result.add(score);
+        }
         return result;
     }
 

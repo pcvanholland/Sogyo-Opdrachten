@@ -20,6 +20,8 @@ class CardCollection
 
     /**
      * Constructor for a collection of Cards from an array of Cards.
+     *
+     * @param newCards {Card[]} - The Cards this collection ought to exist from.
      */
     CardCollection(final ArrayList<Card> newCards)
     {

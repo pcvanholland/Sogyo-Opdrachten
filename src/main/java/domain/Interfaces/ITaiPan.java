@@ -45,4 +45,9 @@ public interface ITaiPan
      * @return {Player} - The Player at the specified location.
      */
     Player getPlayer(int playerNumber);
+
+    /**
+     * @return {int[]} - The score of the two teams.
+     */
+    int[] getScore();
 }

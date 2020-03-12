@@ -23,6 +23,4 @@ public interface IPlayer
      * @return {boolean} - Whether this Player may pass.
      */
     boolean mayPass();
-
-    int getScore();
 }

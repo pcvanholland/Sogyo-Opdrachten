@@ -1,7 +1,5 @@
 package taipan.domain;
 
-import org.json.simple.JSONObject;
-
 import java.util.ArrayList;
 
 public class TaiPan implements ITaiPan
@@ -150,5 +148,19 @@ public class TaiPan implements ITaiPan
     public Table getPlayingTable()
     {
         return this.playingTable;
+    }
+
+    /**
+     * @return {int[]} - The score of the two teams.
+     */
+    @Override
+    public int[] getScore()
+    {
+        int[] score = {0, 0};
+        score[0] = this.getPlayer(0).getScore() +
+            this.getPlayer(2).getScore();
+        score[1] = this.getPlayer(1).getScore() +
+            this.getPlayer(3).getScore();
+        return score;
     }
 }

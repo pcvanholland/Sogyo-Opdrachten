@@ -10,6 +10,7 @@ abstract class Player_Test_Helper
     static final int START_SEED = 3;
     static final int START_BOMB_SEED = 28774;
     static final int START_DOG_SEED = 3;
+    static final int START_STREET_SEED = 100813;
 
     /**
      * Helper function to create a Player who starts in turn.

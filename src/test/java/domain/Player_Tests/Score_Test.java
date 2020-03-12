@@ -24,7 +24,7 @@ public class Score_Test extends Player_Test_Helper
     public void test_winningScoredCardChangesPoints() throws
         CantPlayException, CantPassException
     {
-        Player firstPlayer = createSeededGame(100813);
+        Player firstPlayer = createSeededGame(START_STREET_SEED);
         CardCollection cards = new CardCollection();
         for (Card card : firstPlayer.getCards())
         {

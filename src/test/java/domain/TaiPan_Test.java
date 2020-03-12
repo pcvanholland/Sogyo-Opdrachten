@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class TaiPan_Test
+public class TaiPan_Test extends TaiPan_Test_Helper
 {
     @Test
     public void test_init()
@@ -136,15 +136,7 @@ public class TaiPan_Test
     public void test_pass()
     {
         int playerID = 0;
-        TaiPan tp = new TaiPan(Player_Test_Helper.START_SEED);
-        tp.letPlayerDrawCards(playerID);
-        tp.letPlayerDrawCards(playerID);
-        tp.letPlayerDrawCards(playerID + 1);
-        tp.letPlayerDrawCards(playerID + 1);
-        tp.letPlayerDrawCards(playerID + 2);
-        tp.letPlayerDrawCards(playerID + 2);
-        tp.letPlayerDrawCards(playerID + 3);
-        tp.letPlayerDrawCards(playerID + 3);
+        TaiPan tp = createSeededGame(Player_Test_Helper.START_SEED);
 
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
@@ -170,5 +162,49 @@ public class TaiPan_Test
 
         Assert.assertTrue(tp.getPlayer(playerID).isInTurn());
         Assert.assertFalse(tp.getPlayer(playerID + 1).isInTurn());
+    }
+
+    @Test
+    public void test_emptyScore()
+    {
+        int playerID = 0;
+        int[] expectedResult = new int[] {0, 0};
+        TaiPan tp = createSeededGame(Player_Test_Helper.START_SEED);
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
+
+        tp.play(playerID, cards, Set.SINGLE);
+        tp.pass(playerID + 1);
+        tp.pass(playerID + 2);
+        tp.pass(playerID + 3);
+
+        for (int i = 0; i < tp.getScore().length; ++i)
+        {
+            Assert.assertEquals(expectedResult[i], tp.getScore()[i]);
+        }
+    }
+
+    @Test
+    public void test_nonEmptyScore()
+    {
+        int playerID = 0;
+        int[] expectedResult = new int[] {25, 0};
+        TaiPan tp = createSeededGame(Player_Test_Helper.START_STREET_SEED);
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        for (Card card : tp.getPlayer(playerID).getCards())
+        {
+            cards.add(card);
+        }
+
+        tp.play(playerID, cards, Set.STRAIGHT);
+        tp.pass(playerID + 1);
+        tp.pass(playerID + 2);
+        tp.pass(playerID + 3);
+
+        for (int i = 0; i < tp.getScore().length; ++i)
+        {
+            Assert.assertEquals(expectedResult[i], tp.getScore()[i]);
+        }
     }
 }

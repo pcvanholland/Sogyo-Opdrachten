@@ -162,12 +162,16 @@ Vue.component('game-screen', {
     template: `
         <div class="gamescreen">
 
+            <div class="scores">
+                Score team 1: {{ gameState.score[0] }}<br>
+                Score team 2: {{ gameState.score[1] }}
+            </div>
+
             <div class="taipan-table">
 
                 <div class="player-area"
                     v-for="player in gameState.players">
                     {{ player.id == playerId ? playerName : "Player " + player.id }}
-                     ({{ player.score }})
                         {{ player.inTurn ? "In turn." : "" }}
                     <button v-on:click="passTurn(player.id)"
                         :hidden="!mayControl(player.id)"

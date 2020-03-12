@@ -521,8 +521,7 @@ public final class Player implements IPlayer
         this.getNeighbour().handleRoundEnd(player);
     }
 
-    @Override
-    public int getScore()
+    int getScore()
     {
         int result = 0;
         for (Trick trick : this.getWonTricks())

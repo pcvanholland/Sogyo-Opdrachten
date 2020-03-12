@@ -24,16 +24,15 @@ public class JSONProcessor_Test
     @Test
     public void test_createEmptyJSONGameState()
     {
-        String expectedResult = "{\"players\":[";
+        String expectedResult = "{";
+        expectedResult += "\"score\":[0,0]";
+        expectedResult += ",\"players\":[";
         for (int i = 0; i < PlayerData.MAX_NUMBER_OF_PLAYERS; ++i)
         {
             expectedResult +=
                     "{" +
                         "\"inTurn\":" +
                             "false" +
-                        "," +
-                        "\"score\":" +
-                            "0" +
                         "," +
                         "\"cards\":" +
                             "[]" +
@@ -64,16 +63,15 @@ public class JSONProcessor_Test
     @Test
     public void test_createNonEmptyJSONGameState()
     {
-        String notExpectedResult = "{\"players\":[";
+        String notExpectedResult = "{}";
+        notExpectedResult += "\"score\":[0,0]";
+        notExpectedResult += ",\"players\":[";
         for (int i = 0; i < PlayerData.MAX_NUMBER_OF_PLAYERS; ++i)
         {
             notExpectedResult +=
                     "{" +
                         "\"inTurn\":" +
                             "false" +
-                        "," +
-                        "\"score\":" +
-                            "0" +
                         "," +
                         "\"cards\":" +
                             "[]" +
@@ -210,7 +208,6 @@ public class JSONProcessor_Test
             player.put("inTurn", false);
             player.put("mayPass", false);
             player.put("canDraw", true);
-            player.put("score", 0);
             player.put("id", i);
             players.add(player);
         }
@@ -218,7 +215,12 @@ public class JSONProcessor_Test
 
         JSONObject table = new JSONObject();
         table.put("trick", new JSONArray());
-        expectedResult.put("table", table);
+        expectedResult.put("table", table);;
+
+        JSONArray score = new JSONArray();
+        score.add(0);
+        score.add(0);
+        expectedResult.put("score", score);
 
         taipan.domain.TaiPan tp = new taipan.domain.TaiPan();
 
