@@ -54,6 +54,26 @@ public class TaiPan_Test extends TaiPan_Test_Helper
         Assert.assertEquals(13, tp.getPlayer(playerID).getCards().size());
     }
 
+    @Test
+    public void test_playWithPhoenix() throws TaiPanException
+    {
+        int playerID = 0;
+        TaiPan tp = new TaiPan(Player_Test_Helper.START_STREET_PHOENIX_SEED);
+        tp.letPlayerDrawCards(playerID);
+        tp.letPlayerDrawCards(playerID);
+        tp.letPlayerDrawCards(playerID + 1);
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        for (Card card : tp.getPlayer(playerID).getCards())
+        {
+            cards.add(card);
+        }
+
+        tp.play(playerID, cards, Set.STRAIGHT);
+
+        Assert.assertEquals(0, tp.getPlayer(playerID).getCards().size());
+    }
+
     @Test(expected = CantPlayPlayerException.class)
     public void test_cantPlayNotInTurn() throws TaiPanException
     {

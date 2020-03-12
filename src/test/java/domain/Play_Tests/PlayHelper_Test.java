@@ -19,28 +19,33 @@ public class PlayHelper_Test extends Play_Test_Helper
             player.drawCards();
             player.drawCards();
 
-            CardCollection cards = player.getCards();
-            int mji = -1;
-            for (int j = 0; j < cards.size(); ++j)
+            CardCollection cards = new CardCollection();
+            boolean mj = false;
+            boolean phnx = false;
+            for (Card card : player.getCards())
             {
-                if (cards.get(j).getRank() == SpecialRank.MAHJONG)
+                if (card.getRank() == SpecialRank.MAHJONG)
                 {
-                    mji = j;
+                    mj = true;
                 }
+                if (card.getRank() == SpecialRank.PHOENIX)
+                {
+                    phnx = true;
+                }
+                cards.add(card);
             }
-            if (mji < 0)
+            if (!mj || !phnx)
             {
                 continue;
             }
-            cards.remove(mji);
-            if (cards.determineTypesOfSet().contains(Set.BOMB))
+            if (cards.determineTypesOfSet().contains(Set.STRAIGHT))
             {
                 Assert.assertNotEquals(i, i);
                 break;
             }
         }
     }
-*/
+//*/
     @Test
     public void test_single() throws TaiPanException
     {

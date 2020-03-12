@@ -121,9 +121,9 @@ System.out.println("Post on getplaytypes: " + play);
             {
                 TaiPan taipan = (TaiPan) session.getAttribute("game");
                 String output =
-                JSONProcessor.createJSONPlayTypes(
-                taipan.getImplementation(), play
-                );
+                    JSONProcessor.createJSONPlayTypes(
+                        taipan.getImplementation(), play
+                    );
                 return Response.status(SUCCESS).entity(output).build();
             }
             catch (taipan.domain.TaiPanException e)

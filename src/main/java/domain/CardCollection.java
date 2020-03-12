@@ -26,6 +26,7 @@ class CardCollection
     CardCollection(final ArrayList<Card> newCards)
     {
         this.cards = newCards;
+        this.updatePhoenixValue();
     }
 
     /**

@@ -7,10 +7,12 @@ abstract class Player_Test_Helper
     // Seed of 100813 is a Straight on the first two hands combined.
     // Seed of 1661 is a Straight Bomb on the first hand.
     // Seed of 28774 is a Straight Bomb on the first hand with MJ.
+    // Seed of 49527 is a Straight with MJ and Phoenix.
     static final int START_SEED = 3;
     static final int START_BOMB_SEED = 28774;
     static final int START_DOG_SEED = 3;
     static final int START_STREET_SEED = 100813;
+    static final int START_STREET_PHOENIX_SEED = 49527;
 
     /**
      * Helper function to create a Player who starts in turn.
