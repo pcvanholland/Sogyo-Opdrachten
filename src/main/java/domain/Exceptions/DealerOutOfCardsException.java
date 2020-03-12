@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class DealerOutOfCardsException extends IndexOutOfBoundsException
+class DealerOutOfCardsException extends TaiPanException
 {
     DealerOutOfCardsException()
     {

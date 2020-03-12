@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class InvalidPlayException extends IllegalArgumentException
+class InvalidPlayException extends TaiPanException
 {
     InvalidPlayException()
     {

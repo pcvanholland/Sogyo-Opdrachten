@@ -10,7 +10,8 @@ final class Straight extends Play
      * @param newCards {Card[]} - An ArrayList of Cards.
      * @param newOwner {Player} - The Player who played this Straight.
      */
-    Straight(final CardCollection newCards, final Player newOwner)
+    Straight(final CardCollection newCards, final Player newOwner) throws
+        InvalidPlayException
     {
         super(newCards, newOwner);
         if (!isStraight(newCards))

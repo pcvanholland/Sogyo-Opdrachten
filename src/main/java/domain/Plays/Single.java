@@ -8,7 +8,8 @@ final class Single extends Play
      * @param newCards {Card[]} - ArrayList containing the Card of the Single.
      * @param newOwner {Player} - The Player who played this Single.
      */
-    Single(final CardCollection newCards, final Player newOwner)
+    Single(final CardCollection newCards, final Player newOwner) throws
+        InvalidPlayException
     {
         super(newCards, newOwner);
         if (!isSingle(newCards))

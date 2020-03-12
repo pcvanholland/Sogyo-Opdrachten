@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class CantPassException extends Exception
+class CantPassException extends TaiPanException
 {
     CantPassException()
     {

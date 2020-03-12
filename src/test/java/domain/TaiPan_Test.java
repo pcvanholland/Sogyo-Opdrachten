@@ -8,14 +8,14 @@ import java.util.ArrayList;
 public class TaiPan_Test extends TaiPan_Test_Helper
 {
     @Test
-    public void test_init()
+    public void test_init() throws TaiPanException
     {
         new TaiPan();
         new TaiPan(Player_Test_Helper.START_SEED);
     }
 
     @Test
-    public void test_drawCards()
+    public void test_drawCards() throws TaiPanException
     {
         int playerID = 0;
         TaiPan tp = new TaiPan();
@@ -25,8 +25,8 @@ public class TaiPan_Test extends TaiPan_Test_Helper
         Assert.assertEquals(14, tp.getPlayer(playerID).getCards().size());
     }
 
-    @Test
-    public void test_drawTooMuchCards()
+    @Test(expected = CantDrawTooManyTimesException.class)
+    public void test_drawTooMuchCards() throws TaiPanException
     {
         int playerID = 0;
         TaiPan tp = new TaiPan();
@@ -38,7 +38,7 @@ public class TaiPan_Test extends TaiPan_Test_Helper
     }
 
     @Test
-    public void test_play()
+    public void test_play() throws TaiPanException
     {
         int playerID = 0;
         TaiPan tp = new TaiPan(Player_Test_Helper.START_SEED);
@@ -54,8 +54,8 @@ public class TaiPan_Test extends TaiPan_Test_Helper
         Assert.assertEquals(13, tp.getPlayer(playerID).getCards().size());
     }
 
-    @Test
-    public void test_cantPlayNotInTurn()
+    @Test(expected = CantPlayPlayerException.class)
+    public void test_cantPlayNotInTurn() throws TaiPanException
     {
         int playerID = 0;
         TaiPan tp = new TaiPan(Player_Test_Helper.START_SEED);
@@ -70,8 +70,8 @@ public class TaiPan_Test extends TaiPan_Test_Helper
         Assert.assertEquals(amount, tp.getPlayer(playerID).getCards().size());
     }
 
-    @Test
-    public void test_cantPlayNotInTurnOtherPlayer()
+    @Test(expected = PlayerDontHasCardException.class)
+    public void test_cantPlayNotInTurnOtherPlayer() throws TaiPanException
     {
         int playerID = 0;
         TaiPan tp = new TaiPan(Player_Test_Helper.START_SEED);
@@ -86,8 +86,8 @@ public class TaiPan_Test extends TaiPan_Test_Helper
         Assert.assertEquals(14, tp.getPlayer(playerID).getCards().size());
     }
 
-    @Test
-    public void test_cantPlayHasNoCards()
+    @Test(expected = PlayerDontHasCardException.class)
+    public void test_cantPlayHasNoCards() throws TaiPanException
     {
         int playerID = 0;
         TaiPan tp = new TaiPan();
@@ -100,8 +100,8 @@ public class TaiPan_Test extends TaiPan_Test_Helper
         Assert.assertEquals(0, tp.getPlayer(playerID).getCards().size());
     }
 
-    @Test
-    public void test_cantPlayInvalidPlay()
+    @Test(expected = InvalidPlayException.class)
+    public void test_cantPlayInvalidPlay() throws TaiPanException
     {
         int playerID = 0;
         TaiPan tp = new TaiPan(Player_Test_Helper.START_SEED);
@@ -116,8 +116,8 @@ public class TaiPan_Test extends TaiPan_Test_Helper
         Assert.assertEquals(14, tp.getPlayer(playerID).getCards().size());
     }
 
-    @Test
-    public void test_cantPlayDontHasCards()
+    @Test(expected = PlayerDontHasCardException.class)
+    public void test_cantPlayDontHasCards() throws TaiPanException
     {
         int playerID = 0;
         TaiPan tp = new TaiPan(Player_Test_Helper.START_SEED);
@@ -133,7 +133,7 @@ public class TaiPan_Test extends TaiPan_Test_Helper
     }
 
     @Test
-    public void test_pass()
+    public void test_pass() throws TaiPanException
     {
         int playerID = 0;
         TaiPan tp = createSeededGame(Player_Test_Helper.START_SEED);
@@ -150,8 +150,8 @@ public class TaiPan_Test extends TaiPan_Test_Helper
         Assert.assertTrue(tp.getPlayer(playerID + 2).isInTurn());
     }
 
-    @Test
-    public void test_cantPassWhenNotInTurn()
+    @Test(expected = CantPassException.class)
+    public void test_cantPassWhenNotInTurn() throws TaiPanException
     {
         int playerID = 0;
         TaiPan tp = new TaiPan(Player_Test_Helper.START_SEED);
@@ -165,7 +165,7 @@ public class TaiPan_Test extends TaiPan_Test_Helper
     }
 
     @Test
-    public void test_emptyScore()
+    public void test_emptyScore() throws TaiPanException
     {
         int playerID = 0;
         int[] expectedResult = new int[] {0, 0};
@@ -185,7 +185,7 @@ public class TaiPan_Test extends TaiPan_Test_Helper
     }
 
     @Test
-    public void test_nonEmptyScore()
+    public void test_nonEmptyScore() throws TaiPanException
     {
         int playerID = 0;
         int[] expectedResult = new int[] {25, 0};

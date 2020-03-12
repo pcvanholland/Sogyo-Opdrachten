@@ -6,7 +6,7 @@ import org.junit.Test;
 public class Draw_Test extends Player_Test_Helper
 {
     @Test
-    public void test_zeroHandsDrawn()
+    public void test_zeroHandsDrawn() throws InvalidRankException
     {
         Player firstPlayer = new Player(new Table());
 
@@ -14,7 +14,7 @@ public class Draw_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_drawFirstCards() throws CantDrawTooManyTimesException
+    public void test_drawFirstCards() throws TaiPanException
     {
         Player firstPlayer = new Player(new Table());
 
@@ -24,8 +24,7 @@ public class Draw_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_drawFirstCardsAreSeeded() throws
-        CantDrawTooManyTimesException
+    public void test_drawFirstCardsAreSeeded() throws TaiPanException
     {
         Dealer refDealer = new Dealer(START_SEED);
         Player firstPlayer = new Player(new Table(), START_SEED);
@@ -44,8 +43,7 @@ public class Draw_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_canDrawSecondHandOfCards() throws
-        CantDrawTooManyTimesException
+    public void test_canDrawSecondHandOfCards() throws TaiPanException
     {
         Player firstPlayer = new Player(new Table());
 
@@ -55,7 +53,7 @@ public class Draw_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_drawSecondCards() throws CantDrawTooManyTimesException
+    public void test_drawSecondCards() throws TaiPanException
     {
         Player firstPlayer = new Player(new Table());
 
@@ -66,8 +64,7 @@ public class Draw_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_cantDrawThirdHandOfCards() throws
-        CantDrawTooManyTimesException
+    public void test_cantDrawThirdHandOfCards() throws TaiPanException
     {
         Player firstPlayer = new Player(new Table());
 
@@ -78,7 +75,7 @@ public class Draw_Test extends Player_Test_Helper
     }
 
     @Test(expected = CantDrawTooManyTimesException.class)
-    public void test_cantDrawToManyCards() throws CantDrawTooManyTimesException
+    public void test_cantDrawToManyCards() throws TaiPanException
     {
         Player firstPlayer = new Player(new Table());
 

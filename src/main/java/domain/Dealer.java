@@ -17,7 +17,7 @@ final class Dealer
     /**
      * Constructs a dealer.
      */
-    Dealer()
+    Dealer() throws InvalidRankException
     {
         createAndShuffleCards(new java.util.Random());
     }
@@ -27,7 +27,7 @@ final class Dealer
      *
      * @param seed {int} - The random seed to use for the Dealer.
      */
-    Dealer(final int seed)
+    Dealer(final int seed) throws InvalidRankException
     {
         createAndShuffleCards(new java.util.Random(seed));
     }
@@ -37,7 +37,8 @@ final class Dealer
      *
      * @param rng {Random} - A Random instance for shuffeling the Cards.
      */
-    private void createAndShuffleCards(final java.util.Random rng)
+    private void createAndShuffleCards(final java.util.Random rng) throws
+        InvalidRankException
     {
         createCards();
         java.util.Collections.shuffle(this.cards, rng);
@@ -46,7 +47,7 @@ final class Dealer
     /**
      * Creates a set of cards.
      */
-    private void createCards()
+    private void createCards() throws InvalidRankException
     {
         this.cards = new ArrayList<Card>();
         addStandardCards();
@@ -70,7 +71,7 @@ final class Dealer
     /**
      * Adds the standard cards to the card array.
      */
-    private void addSpecialCards()
+    private void addSpecialCards() throws InvalidRankException
     {
         for (SpecialRank rank : SpecialRank.values())
         {
@@ -81,7 +82,7 @@ final class Dealer
     /**
      * Recreates Cards.
      */
-    void reset()
+    void reset() throws InvalidRankException
     {
         createAndShuffleCards(new java.util.Random());
     }
@@ -91,7 +92,7 @@ final class Dealer
      *
      * @return {Card[]} - An ArrayList of cards taken from the stack.
      */
-    ArrayList<Card> drawFirstHand()
+    ArrayList<Card> drawFirstHand() throws DealerOutOfCardsException
     {
         return drawCards(this.FIRST_HAND_SIZE);
     }
@@ -101,7 +102,7 @@ final class Dealer
      *
      * @return {Card[]} - An ArrayList of cards taken from the stack.
      */
-    ArrayList<Card> drawSecondHand()
+    ArrayList<Card> drawSecondHand() throws DealerOutOfCardsException
     {
         return drawCards(this.SECOND_HAND_SIZE);
     }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Play_Test extends Player_Test_Helper
 {
     @Test
-    public void test_canPlayWhenInTurn()
+    public void test_canPlayWhenInTurn() throws TaiPanException
     {
         Player firstPlayer = this.createPlayerInTurn();
 
@@ -18,7 +18,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_cantPlayWhenOutOfTurn()
+    public void test_cantPlayWhenOutOfTurn() throws TaiPanException
     {
         Player firstPlayer = new Player(new Table());
 
@@ -28,7 +28,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_canPlayBombWhenInTurn()
+    public void test_canPlayBombWhenInTurn() throws TaiPanException
     {
         Player firstPlayer = this.createPlayerInTurn();
 
@@ -38,7 +38,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_canPlayBombWhenOutOfTurn()
+    public void test_canPlayBombWhenOutOfTurn() throws TaiPanException
     {
         Player firstPlayer = new Player(new Table());
 
@@ -48,8 +48,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_cantPlayWrongType() throws
-        CantDrawTooManyTimesException, CantPlayException
+    public void test_cantPlayWrongType() throws TaiPanException
     {
         Table playingTable = new Table();
         Player firstPlayer = new Player(playingTable, START_SEED);
@@ -71,8 +70,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_playWithArrayListOfCards() throws
-        CantDrawTooManyTimesException, CantPlayException
+    public void test_playWithArrayListOfCards() throws TaiPanException
     {
         Table playingTable = new Table();
         Player firstPlayer = new Player(playingTable, START_SEED);
@@ -96,7 +94,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_playRemovesCard() throws CantPlayException
+    public void test_playRemovesCard() throws TaiPanException
     {
         Player firstPlayer = this.createSeededGame(START_SEED);
         CardCollection cards = new CardCollection();
@@ -110,8 +108,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_playNotRemovesCardWhenOutOfTurn() throws
-        CantDrawTooManyTimesException, CantPlayException
+    public void test_playNotRemovesCardWhenOutOfTurn() throws TaiPanException
     {
         Table playingTable = new Table();
         Player firstPlayer = new Player(playingTable, START_SEED);
@@ -133,8 +130,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test(expected = PlayerDontHasCardException.class)
-    public void test_playCantTakeCardsAPlayerDoesntHave() throws
-        CantPlayException
+    public void test_playCantTakeCardsAPlayerDoesntHave() throws TaiPanException
     {
         Player firstPlayer = this.createPlayerInTurn();
 
@@ -148,7 +144,7 @@ public class Play_Test extends Player_Test_Helper
 
     @Test
     public void test_playCantTakeCardsAPlayerDoesntHaveAndLosesNoCards() throws
-        CantPlayException
+        TaiPanException
     {
         Player firstPlayer = this.createPlayerInTurn();
 
@@ -171,7 +167,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_playTurnsPlayerOutOfTurn() throws CantPlayException
+    public void test_playTurnsPlayerOutOfTurn() throws TaiPanException
     {
         Player firstPlayer = this.createSeededGame(START_SEED);
         CardCollection cards = new CardCollection();
@@ -185,7 +181,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_playGivesTurnToNext() throws CantPlayException
+    public void test_playGivesTurnToNext() throws TaiPanException
     {
         Player firstPlayer = this.createSeededGame(START_SEED);
         CardCollection cards = new CardCollection();
@@ -199,9 +195,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_playBombGivesTurnToNeighbour() throws
-        CantDrawTooManyTimesException, CantPlayException,
-        CantPassException
+    public void test_playBombGivesTurnToNeighbour() throws TaiPanException
     {
         Player firstPlayer = createSeededGame(START_BOMB_SEED);
         CardCollection bomb = new CardCollection();
@@ -226,7 +220,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_playDogPassesTurnToOpposite() throws CantPlayException
+    public void test_playDogPassesTurnToOpposite() throws TaiPanException
     {
         Player firstPlayer = createSeededGame(START_DOG_SEED);
         CardCollection cards = new CardCollection();
@@ -238,8 +232,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_playDogLeavesTableEmpty() throws
-        CantDrawTooManyTimesException, CantPlayException
+    public void test_playDogLeavesTableEmpty() throws TaiPanException
     {
         Player firstPlayer = createSeededGame(START_DOG_SEED);
         CardCollection cards = new CardCollection();
@@ -251,8 +244,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_emptyHandPassesTurnToNext() throws
-        CantDrawTooManyTimesException, CantPlayException
+    public void test_emptyHandPassesTurnToNext() throws TaiPanException
     {
         Player firstPlayer = createSeededPlayer(START_SEED);
         firstPlayer.getPlayerAtPositionCCW(2).drawCards();
@@ -266,8 +258,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_emptyHandPassesTurnToNextWithDog() throws
-        CantDrawTooManyTimesException, CantPlayException
+    public void test_emptyHandPassesTurnToNextWithDog() throws TaiPanException
     {
         Player firstPlayer = createSeededPlayer(START_DOG_SEED);
         firstPlayer.getPlayerAtPositionCCW(3).drawCards();
@@ -281,7 +272,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_lastPlayerStopsRound() throws CantPlayException
+    public void test_lastPlayerStopsRound() throws TaiPanException
     {
         Player firstPlayer = createPlayerInTurn();
         CardCollection cards = new CardCollection();
@@ -293,7 +284,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_roundEndCanRedraw() throws CantPlayException
+    public void test_roundEndCanRedraw() throws TaiPanException
     {
         Player firstPlayer = createPlayerInTurn();
 
@@ -311,8 +302,7 @@ public class Play_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_roundEndRedrawFillsPlayers() throws
-        CantDrawTooManyTimesException, CantPlayException
+    public void test_roundEndRedrawFillsPlayers() throws TaiPanException
     {
         Player firstPlayer = createPlayerInTurn();
         CardCollection cards = new CardCollection();

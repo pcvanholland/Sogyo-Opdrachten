@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class PlayerDontHasCardException extends IllegalArgumentException
+class PlayerDontHasCardException extends TaiPanException
 {
     PlayerDontHasCardException()
     {

@@ -10,12 +10,20 @@ abstract class TaiPan_Test_Helper
      */
     TaiPan createSeededGame(final int seed)
     {
-        TaiPan taipan = new TaiPan(seed);
-        for (int i = 0; i < Player.NUM_PLAYERS; ++i)
+        try
         {
-            taipan.letPlayerDrawCards(i);
-            taipan.letPlayerDrawCards(i);
+            TaiPan taipan = new TaiPan(seed);
+            for (int i = 0; i < Player.NUM_PLAYERS; ++i)
+            {
+                taipan.letPlayerDrawCards(i);
+                taipan.letPlayerDrawCards(i);
+            }
+            return taipan;
         }
-        return taipan;
+        catch (TaiPanException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

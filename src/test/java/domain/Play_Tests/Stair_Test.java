@@ -209,7 +209,7 @@ public class Stair_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_init()
+    public void test_init() throws InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -222,7 +222,7 @@ public class Stair_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_initFailsWhenWrong()
+    public void test_initFailsWhenWrong() throws InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -234,7 +234,8 @@ public class Stair_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidStairException.class)
-    public void test_initFailsWhenTriedWithDifferentType()
+    public void test_initFailsWhenTriedWithDifferentType() throws
+        InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));

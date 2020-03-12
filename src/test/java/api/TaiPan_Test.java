@@ -6,13 +6,13 @@ import org.junit.Test;
 public class TaiPan_Test
 {
     @Test
-    public void test_init()
+    public void test_init() throws taipan.domain.TaiPanException
     {
         TaiPan tp = new TaiPan("");
     }
 
     @Test
-    public void test_newGameMakesTaiPan()
+    public void test_newGameMakesTaiPan() throws taipan.domain.TaiPanException
     {
         TaiPan tp = new TaiPan("");
 
@@ -22,7 +22,7 @@ public class TaiPan_Test
     }
 
     @Test
-    public void test_getHostName()
+    public void test_getHostName() throws taipan.domain.TaiPanException
     {
         String hostname = "HostName";
         TaiPan tp = new TaiPan(hostname);
@@ -31,7 +31,7 @@ public class TaiPan_Test
     }
 
     @Test
-    public void test_joinGame()
+    public void test_joinGame() throws taipan.domain.TaiPanException
     {
         TaiPan tp = new TaiPan("");
 
@@ -39,7 +39,7 @@ public class TaiPan_Test
     }
 
     @Test
-    public void test_gameStartsNotFull()
+    public void test_gameStartsNotFull() throws taipan.domain.TaiPanException
     {
         TaiPan tp = new TaiPan("");
 
@@ -47,7 +47,7 @@ public class TaiPan_Test
     }
 
     @Test
-    public void test_gameGetsFull()
+    public void test_gameGetsFull() throws taipan.domain.TaiPanException
     {
         TaiPan tp = new TaiPan("");
         tp.joinGame("");
@@ -58,7 +58,7 @@ public class TaiPan_Test
     }
 
     @Test
-    public void test_fullGameJoinBecomesObserver()
+    public void test_fullGameJoinBecomesObserver() throws taipan.domain.TaiPanException
     {
         TaiPan tp = new TaiPan("");
         tp.joinGame("");

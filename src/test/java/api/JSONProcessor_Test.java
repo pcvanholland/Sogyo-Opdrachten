@@ -11,7 +11,7 @@ import org.json.simple.JSONObject;
 public class JSONProcessor_Test
 {
     @Test
-    public void test_createJSONResponse()
+    public void test_createJSONResponse() throws taipan.domain.TaiPanException
     {
         String text = "sampleText";
         String expectedResult = "{\"result\":\"" + text + "\"}";
@@ -22,7 +22,8 @@ public class JSONProcessor_Test
     }
 
     @Test
-    public void test_createEmptyJSONGameState()
+    public void test_createEmptyJSONGameState() throws
+        taipan.domain.TaiPanException
     {
         String expectedResult = "{";
         expectedResult += "\"score\":[0,0]";
@@ -61,7 +62,8 @@ public class JSONProcessor_Test
      * Difficult to properly test with random Cards,,,
      */
     @Test
-    public void test_createNonEmptyJSONGameState()
+    public void test_createNonEmptyJSONGameState() throws
+        taipan.domain.TaiPanException
     {
         String notExpectedResult = "{}";
         notExpectedResult += "\"score\":[0,0]";
@@ -97,7 +99,8 @@ public class JSONProcessor_Test
     }
 
     @Test
-    public void test_createSingleJSONPlayTypes()
+    public void test_createSingleJSONPlayTypes() throws
+        taipan.domain.TaiPanException
     {
         String play = "[\"PAGODA,FIVE\"]";
         String expectedResult = "{\"sets\":[" +
@@ -111,7 +114,8 @@ public class JSONProcessor_Test
     }
 
     @Test
-    public void test_createPairJSONPlayTypes()
+    public void test_createPairJSONPlayTypes() throws
+        taipan.domain.TaiPanException
     {
         String play = "[\"PAGODA,FIVE\",\"JADE,FIVE\"]";
         String expectedResult = "{\"sets\":[" +
@@ -125,7 +129,8 @@ public class JSONProcessor_Test
     }
 
     @Test
-    public void test_dontCrashOnEmptyString()
+    public void test_dontCrashOnEmptyString() throws
+        taipan.domain.TaiPanException
     {
         String play = "[]";
         String expectedResult = "{\"sets\":[" +
@@ -138,7 +143,8 @@ public class JSONProcessor_Test
     }
 
     @Test
-    public void test_createGameListWithSingleGame()
+    public void test_createGameListWithSingleGame() throws
+        taipan.domain.TaiPanException
     {
         TaiPan game = new TaiPan("Hostname");
         String expectedResult = "[{" +
@@ -154,7 +160,8 @@ public class JSONProcessor_Test
     }
 
     @Test
-    public void test_createGameListWithMultipleGames()
+    public void test_createGameListWithMultipleGames() throws
+        taipan.domain.TaiPanException
     {
         String hostname = "Hostname";
         TaiPan game1 = new TaiPan(hostname);
@@ -197,7 +204,7 @@ public class JSONProcessor_Test
     }
 
     @Test
-    public void test_gameToJSON()
+    public void test_gameToJSON() throws taipan.domain.TaiPanException
     {
         JSONObject expectedResult = new JSONObject();
         JSONArray players = new JSONArray();
@@ -231,7 +238,7 @@ public class JSONProcessor_Test
     }
 
     @Test
-    public void test_createCardsFromJSON()
+    public void test_createCardsFromJSON() throws taipan.domain.TaiPanException
     {
         ArrayList<taipan.domain.Card> expectedResult =
             new ArrayList<taipan.domain.Card>();
@@ -264,7 +271,8 @@ public class JSONProcessor_Test
     }
 
     @Test
-    public void test_createCardsFromJSONEmptySet()
+    public void test_createCardsFromJSONEmptySet() throws
+        taipan.domain.TaiPanException
     {
         Assert.assertEquals(
             new ArrayList<taipan.domain.Card>(),

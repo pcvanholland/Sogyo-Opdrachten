@@ -8,7 +8,8 @@ import java.util.ArrayList;
 public class Dragon_Test extends Play_Test_Helper
 {
     @Test
-    public void test_init()
+    public void test_init() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.DRAGON));
@@ -17,7 +18,8 @@ public class Dragon_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_playValiditySingle()
+    public void test_playValiditySingle() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.DRAGON));

@@ -9,14 +9,14 @@ public interface ITaiPan
     *
     * @param playerNumber {int} - The Player that wants to draw Cards.
     */
-    void letPlayerDrawCards(int playerNumber);
+    void letPlayerDrawCards(int playerNumber) throws TaiPanException;
 
     /**
     * Lets the Player pass.
     *
     * @param playerNumber {int} - The Player that wants to pass.
     */
-    void pass(int playerNumber);
+    void pass(int playerNumber) throws TaiPanException;
 
     /**
      * Returns the types of Play this set of Cards can have.
@@ -33,7 +33,8 @@ public interface ITaiPan
      * @param cards {Card[]} - An array of the Cards to play.
      * @param type {Set} - What type the Play should be.
      */
-    void play(int playerNumber, ArrayList<Card> cards, Set type);
+    void play(int playerNumber, ArrayList<Card> cards, Set type) throws
+        TaiPanException;
 
     /**
      * @return {Table} - The Table at which the Players play.
@@ -44,10 +45,10 @@ public interface ITaiPan
      * @param playerNumber {int} - The Player to query.
      * @return {Player} - The Player at the specified location.
      */
-    Player getPlayer(int playerNumber);
+    Player getPlayer(int playerNumber) throws InvalidPositionException;
 
     /**
      * @return {int[]} - The score of the two teams.
      */
-    int[] getScore();
+    int[] getScore() throws InvalidPositionException;
 }

@@ -83,7 +83,7 @@ public class FullHouse_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_initFromArray()
+    public void test_initFromArray() throws InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -96,7 +96,7 @@ public class FullHouse_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_initFailsWhenWrong()
+    public void test_initFailsWhenWrong() throws InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -108,7 +108,7 @@ public class FullHouse_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidFullHouseException.class)
-    public void test_initFailsWhenDifferentType()
+    public void test_initFailsWhenDifferentType() throws InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));

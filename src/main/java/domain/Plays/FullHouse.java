@@ -14,7 +14,8 @@ final class FullHouse extends Play
      * @param newCards {Card[]} - ArrayList of Cards to make a FullHouse with.
      * @param newOwner {Player} - The Player who played this FullHouse.
      */
-    FullHouse(final CardCollection newCards, final Player newOwner)
+    FullHouse(final CardCollection newCards, final Player newOwner) throws
+        InvalidPlayException
     {
         super(newCards, newOwner);
         if (!isFullHouse(newCards))
@@ -41,7 +42,8 @@ final class FullHouse extends Play
      * @param cardsToCheck {Card[]} - The Cards to check.
      * @return {Triple} - The Triple filtered from the Cards.
      */
-    private Triple getTripleFromCards(final CardCollection cardsToCheck)
+    private Triple getTripleFromCards(final CardCollection cardsToCheck) throws
+        InvalidPlayException
     {
         CardCollection result = new CardCollection();
         ArrayList<Integer> ranks = cardsToCheck.getRanks();

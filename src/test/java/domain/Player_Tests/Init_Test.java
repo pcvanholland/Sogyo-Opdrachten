@@ -8,13 +8,13 @@ import java.util.ArrayList;
 public class Init_Test extends Player_Test_Helper
 {
     @Test
-    public void test_init()
+    public void test_init() throws TaiPanException
     {
         new Player(new Table());
     }
 
     @Test
-    public void test_neighboursAreNotSelf() throws InvalidPositionException
+    public void test_neighboursAreNotSelf() throws TaiPanException
     {
         Player firstPlayer = new Player(new Table());
 
@@ -27,7 +27,7 @@ public class Init_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_circleIsRound() throws InvalidPositionException
+    public void test_circleIsRound() throws TaiPanException
     {
         Player firstPlayer = new Player(new Table());
 
@@ -35,23 +35,15 @@ public class Init_Test extends Player_Test_Helper
     }
 
     @Test(expected = InvalidPositionException.class)
-    public void test_cantAskNegativePos() throws InvalidPositionException
+    public void test_cantAskNegativePos() throws TaiPanException
     {
         Player firstPlayer = new Player(new Table());
 
         firstPlayer.getPlayerAtPositionCCW(-1);
     }
 
-    @Test(expected = InvalidPositionException.class)
-    public void test_cantAskTooLargePos() throws InvalidPositionException
-    {
-        Player firstPlayer = new Player(new Table());
-
-        firstPlayer.getPlayerAtPositionCCW(5);
-    }
-
     @Test
-    public void test_playersStartsEmptyHanded() throws InvalidPositionException
+    public void test_playersStartsEmptyHanded() throws TaiPanException
     {
         Player firstPlayer = new Player(new Table());
         for (int i = 0; i < 4; ++i)
@@ -62,7 +54,7 @@ public class Init_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_playersStartNotInTurn() throws InvalidPositionException
+    public void test_playersStartNotInTurn() throws TaiPanException
     {
         Player firstPlayer = new Player(new Table());
         for (int i = 0; i < 4; ++i)
@@ -73,7 +65,7 @@ public class Init_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_playersStartWithoutWonTricks()
+    public void test_playersStartWithoutWonTricks() throws TaiPanException
     {
         Player firstPlayer = new Player(new Table());
 
@@ -87,7 +79,7 @@ public class Init_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_playersBeginWithZeroPoints()
+    public void test_playersBeginWithZeroPoints() throws TaiPanException
     {
         Player firstPlayer = new Player(new Table());
 

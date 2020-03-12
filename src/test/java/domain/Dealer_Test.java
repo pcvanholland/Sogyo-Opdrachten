@@ -6,41 +6,41 @@ import org.junit.Test;
 public class Dealer_Test
 {
     @Test
-    public void test_init()
+    public void test_init() throws InvalidRankException
     {
         Dealer dealer = new Dealer();
     }
 
     @Test
-    public void test_drawFirstHandGivesCards()
+    public void test_drawFirstHandGivesCards() throws TaiPanException
     {
         Dealer dealer = new Dealer();
         Assert.assertTrue(dealer.drawFirstHand().get(0) instanceof Card);
     }
 
     @Test
-    public void test_drawFirstHandGivesEightCards()
+    public void test_drawFirstHandGivesEightCards() throws TaiPanException
     {
         Dealer dealer = new Dealer();
         Assert.assertEquals(8, dealer.drawFirstHand().size());
     }
 
     @Test
-    public void test_drawSecondHandGivesCards()
+    public void test_drawSecondHandGivesCards() throws TaiPanException
     {
         Dealer dealer = new Dealer();
         Assert.assertTrue(dealer.drawSecondHand().get(0) instanceof Card);
     }
 
     @Test
-    public void test_drawSecondHandGivesSixCards()
+    public void test_drawSecondHandGivesSixCards() throws TaiPanException
     {
         Dealer dealer = new Dealer();
         Assert.assertEquals(6, dealer.drawSecondHand().size());
     }
 
     @Test
-    public void test_canTakeEnoughCards()
+    public void test_canTakeEnoughCards() throws TaiPanException
     {
         Dealer dealer = new Dealer();
         for (int i = 0; i < 4; ++i)
@@ -51,7 +51,7 @@ public class Dealer_Test
     }
 
     @Test(expected = DealerOutOfCardsException.class)
-    public void test_cantTakeTooManyCards()
+    public void test_cantTakeTooManyCards() throws TaiPanException
     {
         Dealer dealer = new Dealer();
         for (int i = 0; i < 4; ++i)
@@ -63,7 +63,7 @@ public class Dealer_Test
     }
 
     @Test
-    public void test_noDuplicatesInDrawnCards()
+    public void test_noDuplicatesInDrawnCards() throws TaiPanException
     {
         java.util.ArrayList<Card> cards = new java.util.ArrayList<Card>();
         Dealer dealer = new Dealer();

@@ -49,14 +49,21 @@ System.out.println("Post on start.");
         //if (!game.isFull())
         if (session != null)
         {
-            TaiPan newGame = new TaiPan(hostName);
-            activeGames.add(newGame);
-            session.setAttribute("game", newGame);
-            String output = JSONProcessor.createJSONResponse(
+            try
+            {
+                TaiPan newGame = new TaiPan(hostName);
+                activeGames.add(newGame);
+                session.setAttribute("game", newGame);
+                String output = JSONProcessor.createJSONResponse(
                 Integer.toString(0)
-            );
+                );
 
-            return Response.status(SUCCESS).entity(output).build();
+                return Response.status(SUCCESS).entity(output).build();
+            }
+            catch (taipan.domain.TaiPanException e)
+            {
+                e.printStackTrace();
+            }
         }
         return Response.status(FAILURE).build();
     }

@@ -8,7 +8,8 @@ import java.util.ArrayList;
 public class Phoenix_Test extends Play_Test_Helper
 {
     @Test
-    public void test_init()
+    public void test_init() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -17,7 +18,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_playValiditySingle()
+    public void test_playValiditySingle() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -29,7 +31,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCanBePartOfPair()
+    public void test_phoenixCanBePartOfPair() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -42,7 +45,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCanBePartOfDifferentPair()
+    public void test_phoenixCanBePartOfDifferentPair() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -55,7 +59,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCantPairedWithMahJong()
+    public void test_phoenixCantPairedWithMahJong() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -67,7 +72,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCantBePairedWithDog()
+    public void test_phoenixCantBePairedWithDog() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -79,7 +85,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCantBePairedWithDragon()
+    public void test_phoenixCantBePairedWithDragon() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -91,7 +98,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCanBePartOfPairOrderDoesntMatter()
+    public void test_phoenixCanBePartOfPairOrderDoesntMatter() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -104,7 +112,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCanBePartOfTriple()
+    public void test_phoenixCanBePartOfTriple() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -118,7 +127,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCanBePartOfTripleOrderDoesntMatter()
+    public void test_phoenixCanBePartOfTripleOrderDoesntMatter() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -132,7 +142,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCantBePartOfInvalidTriple()
+    public void test_phoenixCantBePartOfInvalidTriple() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -145,7 +156,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCantBePartOfInvalidTripleWithSpecialCard()
+    public void test_phoenixCantBePartOfInvalidTripleWithSpecialCard() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -158,7 +170,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCanBePartOfFullHouse()
+    public void test_phoenixCanBePartOfFullHouse() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -174,7 +187,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCanBePartOfFullHouseOrderDoesntMatter()
+    public void test_phoenixCanBePartOfFullHouseOrderDoesntMatter() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -190,7 +204,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCanBePartOfStair()
+    public void test_phoenixCanBePartOfStair() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -209,7 +224,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCanBePartOfStairOrderDoesntMatter()
+    public void test_phoenixCanBePartOfStairOrderDoesntMatter() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -228,7 +244,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCanBePartOfStraight()
+    public void test_phoenixCanBePartOfStraight() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -244,7 +261,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCanBePartOfStraightOrderDoesntMatter()
+    public void test_phoenixCanBePartOfStraightOrderDoesntMatter() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -260,7 +278,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 /*
     @Test
-    public void test_phoenixCantBePartOfLargestStraight()
+    public void test_phoenixCantBePartOfLargestStraight() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -275,7 +294,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCantBePartOfLargestStraightOrderDoesntMatter()
+    public void test_phoenixCantBePartOfLargestStraightOrderDoesntMatter() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         for (int i = 2; i < StandardRank.values().length + 2; ++i)
@@ -290,7 +310,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 */
     @Test
-    public void test_phoenixCantBomb()
+    public void test_phoenixCantBomb() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -304,7 +325,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_phoenixCantBombStraight()
+    public void test_phoenixCantBombStraight() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -321,7 +343,8 @@ public class Phoenix_Test extends Play_Test_Helper
     }
 /*
     @Test
-    public void test_playValidityFullHouseOfFiveEquals()
+    public void test_playValidityFullHouseOfFiveEquals() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));

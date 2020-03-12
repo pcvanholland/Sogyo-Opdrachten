@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class InvalidCardException extends IllegalArgumentException
+class InvalidCardException extends TaiPanException
 {
     InvalidCardException()
     {

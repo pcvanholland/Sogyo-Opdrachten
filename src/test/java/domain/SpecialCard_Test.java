@@ -6,7 +6,7 @@ import org.junit.Test;
 public class SpecialCard_Test
 {
     @Test
-    public void test_init()
+    public void test_init() throws InvalidRankException
     {
         for (SpecialRank r : SpecialRank.values())
         {
@@ -15,7 +15,7 @@ public class SpecialCard_Test
     }
 
     @Test
-    public void test_getRank()
+    public void test_getRank() throws InvalidRankException
     {
         for (SpecialRank r : SpecialRank.values())
         {
@@ -25,7 +25,7 @@ public class SpecialCard_Test
     }
 
     @Test
-    public void test_getSuit()
+    public void test_getSuit() throws InvalidRankException
     {
         for (SpecialRank r : SpecialRank.values())
         {
@@ -35,7 +35,7 @@ public class SpecialCard_Test
     }
 
     @Test
-    public void test_getScore()
+    public void test_getScore() throws InvalidRankException
     {
         for (SpecialRank r : SpecialRank.values())
         {

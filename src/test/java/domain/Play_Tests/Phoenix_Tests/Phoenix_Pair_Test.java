@@ -15,15 +15,24 @@ public class Phoenix_Pair_Test extends Play_Test_Helper
      */
     private Play createPairWithPhoenix(final int value)
     {
-        CardCollection cards = new CardCollection();
-        cards.add(createRandomCard(value));
-        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
+        try
+        {
+            CardCollection cards = new CardCollection();
+            cards.add(createRandomCard(value));
+            cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
-        return new Pair(cards, TEST_PLAYER);
+            return new Pair(cards, TEST_PLAYER);
+        }
+        catch (TaiPanException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Test
-    public void test_init()
+    public void test_init() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -38,7 +47,8 @@ public class Phoenix_Pair_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_initFailsWhenWrong()
+    public void test_initFailsWhenWrong() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));

@@ -107,7 +107,7 @@ public class Straight_Bomb_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_initStraightBomb()
+    public void test_initStraightBomb() throws InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
@@ -120,7 +120,7 @@ public class Straight_Bomb_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_initFailsWhenWrong()
+    public void test_initFailsWhenWrong() throws InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
@@ -132,7 +132,8 @@ public class Straight_Bomb_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidBombException.class)
-    public void test_initFailsWhenTriedWithDifferentType()
+    public void test_initFailsWhenTriedWithDifferentType() throws
+        InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));

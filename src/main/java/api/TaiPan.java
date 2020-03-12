@@ -12,7 +12,7 @@ class TaiPan
     private PlayerData players;
     private int gameID;
 
-    TaiPan(final String host)
+    TaiPan(final String host) throws taipan.domain.TaiPanException
     {
         this.players = new PlayerData();
         this.implementation = new taipan.domain.TaiPan();

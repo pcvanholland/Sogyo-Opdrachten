@@ -123,8 +123,7 @@ public class Table_Test
     }
 
     @Test
-    public void test_roundEndClearsTable() throws
-        CantDrawTooManyTimesException, CantPlayException
+    public void test_roundEndClearsTable() throws TaiPanException
     {
         Table table = new Table();
         Player firstPlayer = new Player(table, Player_Test_Helper.START_SEED);

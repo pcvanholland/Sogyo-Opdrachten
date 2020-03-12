@@ -16,19 +16,28 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
      */
     private Play createFullHouseWithPhoenix(final int value)
     {
-        CardCollection cards = new CardCollection();
-        cards.add(createRandomCard(value));
-        cards.add(createRandomCard(value));
-        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
+        try
+        {
+            CardCollection cards = new CardCollection();
+            cards.add(createRandomCard(value));
+            cards.add(createRandomCard(value));
+            cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
 
-        cards.add(createRandomCard(2));
-        cards.add(createRandomCard(2));
+            cards.add(createRandomCard(2));
+            cards.add(createRandomCard(2));
 
-        return cards.createPlay(TEST_PLAYER, Set.FULLHOUSE);
+            return cards.createPlay(TEST_PLAYER, Set.FULLHOUSE);
+        }
+        catch (TaiPanException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Test
-    public void test_initAsPartOfTriple()
+    public void test_initAsPartOfTriple() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -46,7 +55,8 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_initAsPartOfHighPair()
+    public void test_initAsPartOfHighPair() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -64,7 +74,8 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_initAsPartOfLowPair()
+    public void test_initAsPartOfLowPair() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -82,7 +93,8 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_initFailsWhenWrong()
+    public void test_initFailsWhenWrong() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -97,7 +109,8 @@ public class Phoenix_FullHouse_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_initFailsWhenPhoenixIsExcess()
+    public void test_initFailsWhenPhoenixIsExcess() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));

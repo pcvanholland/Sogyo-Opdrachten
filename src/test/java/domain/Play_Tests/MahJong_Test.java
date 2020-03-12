@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class MahJong_Test extends Play_Test_Helper
 {
     @Test
-    public void test_init()
+    public void test_init() throws InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
@@ -17,7 +17,7 @@ public class MahJong_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_playValiditySingle()
+    public void test_playValiditySingle() throws InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
@@ -53,7 +53,7 @@ public class MahJong_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_mahjongFitsInStraight()
+    public void test_mahjongFitsInStraight() throws InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
@@ -69,7 +69,8 @@ public class MahJong_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_mahjongDoesntFitInHigherStraight()
+    public void test_mahjongDoesntFitInHigherStraight() throws
+        InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
@@ -84,7 +85,7 @@ public class MahJong_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_mahjongCantBomb()
+    public void test_mahjongCantBomb() throws InvalidRankException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));

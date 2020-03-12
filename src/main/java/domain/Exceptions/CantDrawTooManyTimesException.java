@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class CantDrawTooManyTimesException extends Exception
+class CantDrawTooManyTimesException extends TaiPanException
 {
     CantDrawTooManyTimesException()
     {

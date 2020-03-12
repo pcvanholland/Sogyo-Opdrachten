@@ -21,25 +21,34 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
         final int start, final int end, final int phoenix
     )
     {
-        CardCollection cards = new CardCollection();
-        for (int current = start; current < end + 1; ++current)
+        try
         {
-            if (current == phoenix)
+            CardCollection cards = new CardCollection();
+            for (int current = start; current < end + 1; ++current)
             {
-                cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
-                cards.add(createRandomCard(current));
+                if (current == phoenix)
+                {
+                    cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
+                    cards.add(createRandomCard(current));
+                }
+                else
+                {
+                    cards.add(createRandomCard(current));
+                    cards.add(createRandomCard(current));
+                }
             }
-            else
-            {
-                cards.add(createRandomCard(current));
-                cards.add(createRandomCard(current));
-            }
+            return cards.createPlay(TEST_PLAYER, Set.STAIR);
         }
-        return cards.createPlay(TEST_PLAYER, Set.STAIR);
+        catch (TaiPanException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_playInValidityTooShortArray()
+    public void test_playInValidityTooShortArray() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -54,7 +63,8 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_playValidityStairPhoenixOnEnd()
+    public void test_playValidityStairPhoenixOnEnd() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -70,7 +80,8 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_playValidityStairPhoenixOnBegin()
+    public void test_playValidityStairPhoenixOnBegin() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
@@ -88,7 +99,8 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_playValidityStairPhoenixWithin()
+    public void test_playValidityStairPhoenixWithin() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -106,7 +118,8 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_playValidityStairPhoenixAsExtra()
+    public void test_playValidityStairPhoenixAsExtra() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -124,7 +137,8 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_playInvalidityBrokenStair()
+    public void test_playInvalidityBrokenStair() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -141,7 +155,8 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_playInvalidityBrokenStair2()
+    public void test_playInvalidityBrokenStair2() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -158,7 +173,8 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_playInvalidityBrokenStair3()
+    public void test_playInvalidityBrokenStair3() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -175,7 +191,8 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_playInvalidityStairWithExtra()
+    public void test_playInvalidityStairWithExtra() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -194,7 +211,8 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_playInvalidityStairWithTriple()
+    public void test_playInvalidityStairWithTriple() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -212,7 +230,8 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_playInvalidityStairWithPhoenixExtra()
+    public void test_playInvalidityStairWithPhoenixExtra() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -230,7 +249,8 @@ public class Phoenix_Stair_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_playInvalidityTripleWithTwoSingles()
+    public void test_playInvalidityTripleWithTwoSingles() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(4));

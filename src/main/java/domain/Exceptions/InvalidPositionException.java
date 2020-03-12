@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class InvalidPositionException extends IllegalArgumentException
+class InvalidPositionException extends TaiPanException
 {
     InvalidPositionException()
     {

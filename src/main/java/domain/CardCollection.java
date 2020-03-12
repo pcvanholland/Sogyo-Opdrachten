@@ -261,7 +261,7 @@ class CardCollection
     final Play createPlay(
         final Player owner,
         final Set set
-    )
+    ) throws InvalidPlayException
     {
         if (set.equals(Set.SINGLE))
         {

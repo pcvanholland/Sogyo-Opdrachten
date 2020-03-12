@@ -5,7 +5,23 @@ import java.util.ArrayList;
 abstract class Play_Test_Helper
 {
     private final static java.util.Random rng = new java.util.Random();
-    final static Player TEST_PLAYER = new Player(new Table());
+    final static Player TEST_PLAYER = newPlayer();
+
+    /**
+     * Function to catch the making of a new Player.
+     * @return {Player} - A newly created Player.
+     */
+    private static Player newPlayer()
+    {
+        try
+        {
+            return new Player(new Table());
+        }
+        catch (InvalidRankException e)
+        {
+            throw new RuntimeException();
+        }
+    }
 
     /**
      * Creates a Single Card with a random Suit.
@@ -31,7 +47,15 @@ abstract class Play_Test_Helper
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(value));
-        return new Single(cards, TEST_PLAYER);
+        try
+        {
+            return new Single(cards, TEST_PLAYER);
+        }
+        catch (InvalidPlayException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -45,7 +69,15 @@ abstract class Play_Test_Helper
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(value));
         cards.add(createRandomCard(value));
-        return new Pair(cards, TEST_PLAYER);
+        try
+        {
+            return new Pair(cards, TEST_PLAYER);
+        }
+        catch (InvalidPlayException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -64,7 +96,15 @@ abstract class Play_Test_Helper
             cards.add(createRandomCard(current));
             cards.add(createRandomCard(current));
         }
-        return new Stair(cards, TEST_PLAYER);
+        try
+        {
+            return new Stair(cards, TEST_PLAYER);
+        }
+        catch (InvalidPlayException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -79,7 +119,15 @@ abstract class Play_Test_Helper
         cards.add(createRandomCard(value));
         cards.add(createRandomCard(value));
         cards.add(createRandomCard(value));
-        return new Triple(cards, TEST_PLAYER);
+        try
+        {
+            return new Triple(cards, TEST_PLAYER);
+        }
+        catch (InvalidPlayException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -102,7 +150,15 @@ abstract class Play_Test_Helper
         cards.add(createRandomCard(pairValue));
         cards.add(createRandomCard(pairValue));
 
-        return new FullHouse(cards, TEST_PLAYER);
+        try
+        {
+            return new FullHouse(cards, TEST_PLAYER);
+        }
+        catch (InvalidPlayException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -132,7 +188,15 @@ abstract class Play_Test_Helper
         {
             cards.add(createRandomCard(current++));
         }
-        return new Straight(cards, TEST_PLAYER);
+        try
+        {
+            return new Straight(cards, TEST_PLAYER);
+        }
+        catch (InvalidPlayException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -148,7 +212,15 @@ abstract class Play_Test_Helper
         {
             cards.add(new PlayingCard(suit, StandardRank.values()[value - 2]));
         }
-        return new Bomb(cards, TEST_PLAYER);
+        try
+        {
+            return new Bomb(cards, TEST_PLAYER);
+        }
+        catch (InvalidPlayException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -168,7 +240,15 @@ abstract class Play_Test_Helper
         {
             cards.add(new PlayingCard(suit, StandardRank.values()[current++]));
         }
-        return new Bomb(cards, TEST_PLAYER);
+        try
+        {
+            return new Bomb(cards, TEST_PLAYER);
+        }
+        catch (InvalidPlayException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -179,8 +259,20 @@ abstract class Play_Test_Helper
     final static Single createDragon()
     {
         CardCollection cards = new CardCollection();
-        cards.add(SpecialCard.createSpecialCard(SpecialRank.DRAGON));
-        return new Single(cards, TEST_PLAYER);
+        try
+        {
+            cards.add(SpecialCard.createSpecialCard(SpecialRank.DRAGON));
+            return new Single(cards, TEST_PLAYER);
+        }
+        catch (InvalidRankException e)
+        {
+            e.printStackTrace();
+        }
+        catch (InvalidPlayException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -191,8 +283,20 @@ abstract class Play_Test_Helper
     final static Single createMahjong()
     {
         CardCollection cards = new CardCollection();
-        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
-        return new Single(cards, TEST_PLAYER);
+        try
+        {
+            cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
+            return new Single(cards, TEST_PLAYER);
+        }
+        catch (InvalidRankException e)
+        {
+            e.printStackTrace();
+        }
+        catch (InvalidPlayException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -203,7 +307,19 @@ abstract class Play_Test_Helper
     final static Single createPhoenix()
     {
         CardCollection cards = new CardCollection();
-        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
-        return new Single(cards, TEST_PLAYER);
+        try
+        {
+            cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
+            return new Single(cards, TEST_PLAYER);
+        }
+        catch (InvalidRankException e)
+        {
+            e.printStackTrace();
+        }
+        catch (InvalidPlayException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

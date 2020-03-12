@@ -55,7 +55,7 @@ abstract class JSONProcessor
     static String createJSONPlayTypes(
         final taipan.domain.TaiPan game,
         final String play
-    )
+    ) throws taipan.domain.TaiPanException
     {
         JSONObject result = new JSONObject();
         JSONArray sets = new JSONArray();
@@ -81,7 +81,8 @@ abstract class JSONProcessor
      * @param game {TaiPan} - The Game to JSONify.
      * @return {JSONObject} - The JSON representation of the Game.
      */
-    static JSONObject createJSONGameState(final taipan.domain.TaiPan game)
+    static JSONObject createJSONGameState(final taipan.domain.TaiPan game) throws
+        taipan.domain.TaiPanException
     {
         JSONObject result = new JSONObject();
         result.put("players", createJSONPlayers(game));
@@ -96,7 +97,8 @@ abstract class JSONProcessor
      * @param game {TaiPan} - The game to JSONify the Players of.
      * @return {JSONArray} - The JSON representation of the Players.
      */
-    static JSONArray createJSONPlayers(final taipan.domain.TaiPan game)
+    static JSONArray createJSONPlayers(final taipan.domain.TaiPan game) throws
+        taipan.domain.TaiPanException
     {
         JSONArray result = new JSONArray();
         for (int i = 0; i < PlayerData.MAX_NUMBER_OF_PLAYERS; ++i)
@@ -213,7 +215,8 @@ abstract class JSONProcessor
      * @param game {TaiPan} - The TaiPan-Game to get the score for.
      * @return {JSONArray} - The JSON representation of the current score.
      */
-    static JSONArray createJSONScore(final taipan.domain.TaiPan game)
+    static JSONArray createJSONScore(final taipan.domain.TaiPan game) throws
+        taipan.domain.TaiPanException
     {
         JSONArray result = new JSONArray();
         for (int score : game.getScore())
@@ -231,7 +234,7 @@ abstract class JSONProcessor
      */
     static ArrayList<taipan.domain.Card> createCardsFromJSON(
         final String cards
-    )
+    ) throws taipan.domain.TaiPanException
     {
         ArrayList<taipan.domain.Card> realCards =
             new ArrayList<taipan.domain.Card>();

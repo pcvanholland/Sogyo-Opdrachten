@@ -42,7 +42,7 @@ public class PlayHelper_Test extends Play_Test_Helper
     }
 */
     @Test
-    public void test_single()
+    public void test_single() throws TaiPanException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -54,7 +54,7 @@ public class PlayHelper_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_pair()
+    public void test_pair() throws TaiPanException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -67,7 +67,7 @@ public class PlayHelper_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_triple()
+    public void test_triple() throws TaiPanException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -81,7 +81,7 @@ public class PlayHelper_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_stair()
+    public void test_stair() throws TaiPanException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -96,7 +96,7 @@ public class PlayHelper_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_straight()
+    public void test_straight() throws TaiPanException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -112,7 +112,7 @@ public class PlayHelper_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_fullHouse()
+    public void test_fullHouse() throws TaiPanException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -128,7 +128,7 @@ public class PlayHelper_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_FOAKBomb()
+    public void test_FOAKBomb() throws TaiPanException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -143,7 +143,7 @@ public class PlayHelper_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_straightBombNotBomb()
+    public void test_straightBombNotBomb() throws TaiPanException
     {
         CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
@@ -159,7 +159,7 @@ public class PlayHelper_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_straightBomb()
+    public void test_straightBomb() throws TaiPanException
     {
         CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));

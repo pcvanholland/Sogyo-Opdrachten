@@ -1,6 +1,6 @@
 package taipan.domain;
 
-class CantPlayException extends Exception
+class CantPlayException extends TaiPanException
 {
     CantPlayException()
     {

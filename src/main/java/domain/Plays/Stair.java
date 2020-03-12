@@ -8,7 +8,8 @@ final class Stair extends Play
      * @param newCards {Card[]} - An ArrayList of Cards.
      * @param newOwner {Player} - The Player who played this Stair.
      */
-    Stair(final CardCollection newCards, final Player newOwner)
+    Stair(final CardCollection newCards, final Player newOwner) throws
+        InvalidPlayException
     {
         super(newCards, newOwner);
         if (!isStair(newCards))

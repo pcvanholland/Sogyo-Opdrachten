@@ -7,7 +7,7 @@ public class Score_Test extends Player_Test_Helper
 {
     @Test
     public void test_winningUnscoredCardKeepsPointsAtZero() throws
-        CantPlayException
+        TaiPanException
     {
         Player firstPlayer = createPlayerInTurn();
         CardCollection cards = new CardCollection();
@@ -22,7 +22,7 @@ public class Score_Test extends Player_Test_Helper
 
     @Test
     public void test_winningScoredCardChangesPoints() throws
-        CantPlayException, CantPassException
+        TaiPanException
     {
         Player firstPlayer = createSeededGame(START_STREET_SEED);
         CardCollection cards = new CardCollection();

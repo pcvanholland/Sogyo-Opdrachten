@@ -21,7 +21,7 @@ public final class Player implements IPlayer
      *
      * @param sharedTable {Table} - The Table these Players exist around.
      */
-    Player(final Table sharedTable)
+    Player(final Table sharedTable) throws InvalidRankException
     {
         this(sharedTable, new Dealer());
     }
@@ -33,7 +33,7 @@ public final class Player implements IPlayer
      * @param sharedTable {Table} - The Table these Players exist around.
      * @param seed {int} - The seed to use for the Dealer.
      */
-    Player(final Table sharedTable, final int seed)
+    Player(final Table sharedTable, final int seed) throws InvalidRankException
     {
         this(sharedTable, new Dealer(seed));
     }
@@ -98,7 +98,7 @@ public final class Player implements IPlayer
     Player getPlayerAtPositionCCW(int position) throws
         InvalidPositionException
     {
-        if (position < 0 || position > NUM_PLAYERS)
+        if (position < 0)
         {
             throw new InvalidPositionException();
         }
@@ -147,7 +147,8 @@ public final class Player implements IPlayer
     /**
      * Ask a hand of Cards from the Dealer.
      */
-    void drawCards() throws CantDrawTooManyTimesException
+    void drawCards() throws
+        CantDrawTooManyTimesException, DealerOutOfCardsException
     {
         if (this.handsDrawn() == 0)
         {
@@ -222,7 +223,7 @@ public final class Player implements IPlayer
      * @param play {Play} - The Play to play.
      */
     private void play(final Play play) throws
-        CantPlayTableException
+        CantPlayTableException, InvalidPositionException, InvalidRankException
     {
         this.getTable().play(play);
         this.handleTurnPassing(play);
@@ -235,7 +236,8 @@ public final class Player implements IPlayer
     void play(
         final CardCollection cardsToPlay,
         final Set type
-    ) throws CantPlayException
+    ) throws CantPlayException, PlayerDontHasCardException,
+        InvalidPlayException, InvalidPositionException, InvalidRankException
     {
         if (!this.hasCards(cardsToPlay))
         {
@@ -306,7 +308,8 @@ public final class Player implements IPlayer
      *
      * @param play {Play} - The Play which was played.
      */
-    private void handleTurnPassing(final Play play)
+    private void handleTurnPassing(final Play play) throws
+        InvalidPositionException, InvalidRankException
     {
         if (play instanceof Bomb)
         {
@@ -318,7 +321,7 @@ public final class Player implements IPlayer
         }
         else
         {
-            this.passTurnTo(this.getNeighbour());
+            this.passTurnToNeighbour();
         }
     }
 
@@ -326,7 +329,8 @@ public final class Player implements IPlayer
      * Passes the turn from this Player to their neighbour
      * without playing any Card.
      */
-    void pass() throws CantPassException
+    void pass() throws
+        CantPassException, InvalidPositionException, InvalidRankException
     {
         if (!this.mayPass())
         {
@@ -340,7 +344,8 @@ public final class Player implements IPlayer
      *
      * @param player {Player} - The Player to pass the turn to.
      */
-    private void passTurnTo(final Player player)
+    private void passTurnToPlayer(final Player player) throws
+        InvalidPositionException, InvalidRankException
     {
         this.takeTurn();
         player.giveTurn();
@@ -349,9 +354,34 @@ public final class Player implements IPlayer
     /**
      * Passes the turn the the neighbouring Player.
      */
-    private void passTurnToNeighbour()
+    private void passTurnToNeighbour() throws
+        InvalidPositionException, InvalidRankException
     {
-        this.passTurnTo(this.getNeighbour());
+        this.passTurnToPlayerAtPosition(1);
+    }
+
+    /**
+     * Passes the turn to the Player at the specified location, CCW.
+     *
+     * @param position {int} - The relative position of the Player
+     *                      to give the turn to.
+     */
+    private void passTurnToPlayerAtPosition(int position) throws
+        InvalidPositionException, InvalidRankException
+    {
+        this.takeTurn();
+        if (position == 0)
+        {
+            this.giveTurn();
+        }
+        else if (position > 0)
+        {
+            this.getNeighbour().passTurnToPlayerAtPosition(--position);
+        }
+        else
+        {
+            throw new InvalidPositionException();
+        }
     }
 
     /**
@@ -376,9 +406,10 @@ public final class Player implements IPlayer
      * This steals the turn from whoever is currently in turn.
      * And gives the turn to the neighbour.
      */
-    private void handleBombing()
+    private void handleBombing() throws
+        InvalidPositionException, InvalidRankException
     {
-        this.getNeighbour().stealsTurn(this.getNeighbour());
+        this.stealsTurn(this.getNeighbour());
     }
 
     /**
@@ -386,11 +417,12 @@ public final class Player implements IPlayer
      *
      * @param player {Player} - The Player to pass the turn to.
      */
-    private void stealsTurn(final Player player)
+    private void stealsTurn(final Player player) throws
+        InvalidPositionException, InvalidRankException
     {
         if (this.isInTurn())
         {
-            this.passTurnTo(player);
+            this.passTurnToPlayer(player);
         }
         else
         {
@@ -401,7 +433,8 @@ public final class Player implements IPlayer
     /**
      * Gives the turn to this Player.
      */
-    private void giveTurn()
+    private void giveTurn() throws
+        InvalidPositionException, InvalidRankException
     {
         this.inTurn = true;
         this.handleTurnRecieve();
@@ -410,7 +443,8 @@ public final class Player implements IPlayer
     /**
      * Handles the receiving of a turn.
      */
-    private void handleTurnRecieve()
+    private void handleTurnRecieve() throws
+        InvalidPositionException, InvalidRankException
     {
         this.checkWinTrick();
         this.checkEmptyCarded();
@@ -437,7 +471,8 @@ public final class Player implements IPlayer
      * Checks whether the Player has no more Cards left and thus needs to
      * give the turn to its neighbour.
      */
-    private void checkEmptyCarded()
+    private void checkEmptyCarded() throws
+        InvalidPositionException, InvalidRankException
     {
         if (this.getCards().size() == 0)
         {
@@ -456,10 +491,11 @@ public final class Player implements IPlayer
     /**
      * Handles a Dog being played.
      */
-    private void handleDogging()
+    private void handleDogging() throws
+        InvalidPositionException, InvalidRankException
     {
         this.checkWinTrick();
-        this.passTurnTo(this.getPlayerAtPositionCCW(2));
+        this.passTurnToPlayerAtPosition(2);
     }
 
     /**
@@ -495,7 +531,7 @@ public final class Player implements IPlayer
     /**
      * Handle the end of a round.
      */
-    private void handleRoundEnd()
+    private void handleRoundEnd() throws InvalidRankException
     {
         this.takeTurn();
         this.getTable().clear();

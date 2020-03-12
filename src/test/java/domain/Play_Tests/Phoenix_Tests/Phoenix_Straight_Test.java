@@ -21,23 +21,32 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
         final int start, final int end, final int phoenix
     )
     {
-        CardCollection cards = new CardCollection();
-        for (int current = start; current < end + 1; ++current)
+        try
         {
-            if (current == phoenix)
+            CardCollection cards = new CardCollection();
+            for (int current = start; current < end + 1; ++current)
             {
-                cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
+                if (current == phoenix)
+                {
+                    cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
+                }
+                else
+                {
+                    cards.add(createRandomCard(current));
+                }
             }
-            else
-            {
-                cards.add(createRandomCard(current));
-            }
+            return cards.createPlay(TEST_PLAYER, Set.STRAIGHT);
         }
-        return cards.createPlay(TEST_PLAYER, Set.STRAIGHT);
+        catch (TaiPanException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_playInValidityTooShortArray()
+    public void test_playInValidityTooShortArray() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -52,7 +61,8 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_playValidityStraightPhoenixOnEnd()
+    public void test_playValidityStraightPhoenixOnEnd() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -69,12 +79,31 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_playValidityStraightPhoenixOnBegin()
+    public void test_playValidityStraightPhoenixOnBegin() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(3));
         cards.add(createRandomCard(4));
+        cards.add(createRandomCard(5));
+        cards.add(createRandomCard(6));
+
+        ArrayList<Set> result = new ArrayList<Set>();
+        result.add(Set.STRAIGHT);
+
+        Assert.assertEquals(result, cards.determineTypesOfSet());
+        new Straight(cards, TEST_PLAYER);
+    }
+
+    @Test
+    public void test_playValidityStraightPhoenixWithin() throws
+        InvalidRankException, InvalidPlayException
+    {
+        CardCollection cards = new CardCollection();
+        cards.add(createRandomCard(2));
+        cards.add(createRandomCard(3));
+        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
         cards.add(createRandomCard(5));
         cards.add(createRandomCard(6));
 
@@ -86,24 +115,8 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_playValidityStraightPhoenixWithin()
-    {
-        CardCollection cards = new CardCollection();
-        cards.add(createRandomCard(2));
-        cards.add(createRandomCard(3));
-        cards.add(SpecialCard.createSpecialCard(SpecialRank.PHOENIX));
-        cards.add(createRandomCard(5));
-        cards.add(createRandomCard(6));
-
-        ArrayList<Set> result = new ArrayList<Set>();
-        result.add(Set.STRAIGHT);
-
-        Assert.assertEquals(result, cards.determineTypesOfSet());
-        new Straight(cards, TEST_PLAYER);
-    }
-
-    @Test
-    public void test_playValidityStraightPhoenixAsExtra()
+    public void test_playValidityStraightPhoenixAsExtra() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -121,7 +134,8 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_playValidityStraightMahjongAndPhoenix()
+    public void test_playValidityStraightMahjongAndPhoenix() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
@@ -140,7 +154,8 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
     }
 
     @Test
-    public void test_playValidityStraightPhoenixAfterMahjong()
+    public void test_playValidityStraightPhoenixAfterMahjong() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
@@ -159,7 +174,8 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_playInvalidityBrokenStraight()
+    public void test_playInvalidityBrokenStraight() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -175,7 +191,8 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_playInvalidityBrokenStraight2()
+    public void test_playInvalidityBrokenStraight2() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -191,7 +208,8 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_playInvalidityBrokenStraight3()
+    public void test_playInvalidityBrokenStraight3() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -207,7 +225,8 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_playInvalidityStraightWithExtra()
+    public void test_playInvalidityStraightWithExtra() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -225,7 +244,8 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_playInvalidityStraightWithPair()
+    public void test_playInvalidityStraightWithPair() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));
@@ -242,7 +262,8 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_playInvalidityTripleWithTwoSingles()
+    public void test_playInvalidityTripleWithTwoSingles() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(4));
@@ -259,7 +280,8 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
     }
 /*
     @Test(expected = InvalidPlayException.class)
-    public void test_playInvaliditySuperLongStraight()
+    public void test_playInvaliditySuperLongStraight() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         for (StandardRank rank : StandardRank.values())
@@ -275,7 +297,8 @@ public class Phoenix_Straight_Test extends Play_Test_Helper
     }
 */
     @Test(expected = InvalidPlayException.class)
-    public void test_playInvalidityStraightWithOnlyPairs()
+    public void test_playInvalidityStraightWithOnlyPairs() throws
+        InvalidRankException, InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(createRandomCard(2));

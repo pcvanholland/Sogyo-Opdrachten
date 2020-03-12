@@ -6,8 +6,7 @@ import org.junit.Test;
 public class Pass_Test extends Player_Test_Helper
 {
     @Test
-    public void test_passTurnsPlayerOutOfTurn() throws
-        CantPlayException, CantPassException
+    public void test_passTurnsPlayerOutOfTurn() throws TaiPanException
     {
         Player firstPlayer = this.createSeededGame(START_SEED);
         CardCollection cards = new CardCollection();
@@ -24,8 +23,7 @@ public class Pass_Test extends Player_Test_Helper
     }
 
     @Test(expected = CantPassException.class)
-    public void test_cantPassWhenOutOfTurn() throws
-        CantPlayException, CantPassException
+    public void test_cantPassWhenOutOfTurn() throws TaiPanException
     {
         Player firstPlayer = this.createPlayerInTurn();
 
@@ -33,8 +31,7 @@ public class Pass_Test extends Player_Test_Helper
     }
 
     @Test(expected = CantPassException.class)
-    public void test_cantPassWhenLeading() throws
-        CantPlayException, CantPassException
+    public void test_cantPassWhenLeading() throws TaiPanException
     {
         Player firstPlayer = this.createPlayerInTurn();
 
@@ -42,8 +39,7 @@ public class Pass_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_allPassTakesTrick() throws
-        CantPlayException, CantPassException
+    public void test_allPassTakesTrick() throws TaiPanException
     {
         Player firstPlayer = this.createSeededGame(START_SEED);
         CardCollection cards = new CardCollection();

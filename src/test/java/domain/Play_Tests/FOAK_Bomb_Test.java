@@ -6,7 +6,7 @@ import org.junit.Test;
 public class FOAK_Bomb_Test extends Play_Test_Helper
 {
     @Test
-    public void test_initFourOfAKind()
+    public void test_initFourOfAKind() throws InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
@@ -18,7 +18,7 @@ public class FOAK_Bomb_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidPlayException.class)
-    public void test_initFourOfAKindFailsWhenWrong()
+    public void test_initFourOfAKindFailsWhenWrong() throws InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));
@@ -30,7 +30,8 @@ public class FOAK_Bomb_Test extends Play_Test_Helper
     }
 
     @Test(expected = InvalidBombException.class)
-    public void test_initFourOfAKindFailsWhenTriedWithDifferentType()
+    public void test_initFourOfAKindFailsWhenTriedWithDifferentType() throws
+        InvalidPlayException
     {
         CardCollection cards = new CardCollection();
         cards.add(new PlayingCard(StandardSuit.JADE, StandardRank.TWO));

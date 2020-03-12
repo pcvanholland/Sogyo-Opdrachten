@@ -10,7 +10,7 @@ public class TaiPan implements ITaiPan
     /**
      * Default constructor of a Tai-Pan game.
      */
-    public TaiPan()
+    public TaiPan() throws InvalidRankException
     {
         this.playingTable = new Table();
         this.firstPlayer = new Player(this.playingTable);
@@ -21,7 +21,7 @@ public class TaiPan implements ITaiPan
      *
      * @param seed {int} - The seed to use for the Dealer.
      */
-    public TaiPan(final int seed)
+    public TaiPan(final int seed) throws InvalidRankException
     {
         this.playingTable = new Table();
         this.firstPlayer = new Player(this.playingTable, seed);
@@ -38,41 +38,12 @@ public class TaiPan implements ITaiPan
     public void play(final int playerNumber,
         final ArrayList<Card> cards,
         final Set type
-    )
+    ) throws TaiPanException
     {
-        try
-        {
-            this.getPlayer(playerNumber).play(
-                new CardCollection(cards),
-                type
-            );
-        }
-        catch (CantPlayPlayerException e)
-        {
-            //e.printStackTrace();
-            System.out.println(
-                "Player " + playerNumber + " has tried to play out of turn."
-            );
-        }
-        catch (PlayerDontHasCardException e)
-        {
-            //e.printStackTrace();
-            System.out.println(
-                "Player " + playerNumber + " has tried to play Cards which " +
-                "they don't have."
-            );
-        }
-        catch (InvalidPlayException e)
-        {
-            //e.printStackTrace();
-            System.out.println(
-                "Player " + playerNumber + " has tried to play an invalid Play."
-            );
-        }
-        catch (CantPlayException e)
-        {
-            e.printStackTrace();
-        }
+        this.getPlayer(playerNumber).play(
+            new CardCollection(cards),
+            type
+        );
     }
 
     /**
@@ -81,19 +52,9 @@ public class TaiPan implements ITaiPan
      * @param playerNumber {int} - The Player that wants to pass.
      */
     @Override
-    public void pass(final int playerNumber)
+    public void pass(final int playerNumber) throws TaiPanException
     {
-        try
-        {
-            this.getPlayer(playerNumber).pass();
-        }
-        catch (CantPassException e)
-        {
-            //e.printStackTrace();
-            System.out.println(
-                "Player " + playerNumber + " can't pass at the moment."
-            );
-        }
+        this.getPlayer(playerNumber).pass();
     }
 
     /**
@@ -102,19 +63,10 @@ public class TaiPan implements ITaiPan
      * @param playerNumber {int} - The Player that wants to draw Cards.
      */
     @Override
-    public void letPlayerDrawCards(final int playerNumber)
+    public void letPlayerDrawCards(final int playerNumber) throws
+        TaiPanException
     {
-        try
-        {
-            this.getPlayer(playerNumber).drawCards();
-        }
-        catch (CantDrawTooManyTimesException e)
-        {
-            //e.printStackTrace();
-            System.out.println(
-                "Player " + playerNumber + " has tried to draw too many Cards."
-            );
-        }
+        this.getPlayer(playerNumber).drawCards();
     }
 
     /**
@@ -136,8 +88,13 @@ public class TaiPan implements ITaiPan
      * @return {Player} - The Player at the specified location.
      */
     @Override
-    public Player getPlayer(final int playerNumber)
+    public Player getPlayer(final int playerNumber) throws
+        InvalidPositionException
     {
+        if (playerNumber < 0 || playerNumber > Player.NUM_PLAYERS)
+        {
+            throw new InvalidPositionException();
+        }
         return this.firstPlayer.getPlayerAtPositionCCW(playerNumber);
     }
 
@@ -154,7 +111,7 @@ public class TaiPan implements ITaiPan
      * @return {int[]} - The score of the two teams.
      */
     @Override
-    public int[] getScore()
+    public int[] getScore() throws InvalidPositionException
     {
         int[] score = {0, 0};
         score[0] = this.getPlayer(0).getScore() +

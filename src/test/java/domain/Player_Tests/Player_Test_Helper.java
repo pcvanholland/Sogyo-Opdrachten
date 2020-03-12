@@ -30,20 +30,19 @@ abstract class Player_Test_Helper
      */
     Player createSeededPlayer(final int seed)
     {
-        Player player = new Player(new Table(), seed);
-
         // Draw Cards to get in turn.
         try
         {
+            Player player = new Player(new Table(), seed);
             player.drawCards();
             player.drawCards();
+            return player;
         }
-        catch (CantDrawTooManyTimesException e)
+        catch (TaiPanException e)
         {
             e.printStackTrace();
         }
-
-        return player;
+        return null;
     }
 
     /**
@@ -64,7 +63,7 @@ abstract class Player_Test_Helper
             player.getPlayerAtPositionCCW(3).drawCards();
             player.getPlayerAtPositionCCW(3).drawCards();
         }
-        catch (CantDrawTooManyTimesException e)
+        catch (TaiPanException e)
         {
             e.printStackTrace();
         }

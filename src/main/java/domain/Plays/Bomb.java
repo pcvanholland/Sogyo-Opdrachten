@@ -8,7 +8,8 @@ final class Bomb extends Play
      * @param newCards {Card[]} - An ArrayList of Cards comprising the new Bomb.
      * @param newOwner {Player} - The Player who played this Bomb.
      */
-    Bomb(final CardCollection newCards, final Player newOwner)
+    Bomb(final CardCollection newCards, final Player newOwner) throws
+        InvalidPlayException
     {
         super(newCards, newOwner);
         if (!isBomb(newCards))

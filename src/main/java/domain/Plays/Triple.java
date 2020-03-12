@@ -9,7 +9,8 @@ final class Triple extends Play
      * @param newCards {Card[]} - An ArrayList of Cards.
      * @param newOwner {Player} - The Player who played this Triple.
      */
-    Triple(final CardCollection newCards, final Player newOwner)
+    Triple(final CardCollection newCards, final Player newOwner) throws
+        InvalidPlayException
     {
         super(newCards, newOwner);
         if (!isTriple(newCards))
