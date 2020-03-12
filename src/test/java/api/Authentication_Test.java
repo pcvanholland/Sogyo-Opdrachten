@@ -8,12 +8,12 @@ import org.mockito.Mockito;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class TaiPan_Login_Test
+public class Authentication_Test
 {
     @Test
     public void test_init()
     {
-        new TaiPan();
+        new Authentication();
     }
 
     @Test
@@ -22,15 +22,15 @@ public class TaiPan_Login_Test
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
-        Player player = new Player();
+        PlayerRequest  player = new PlayerRequest() ;
         player.setName("FirstPlayer");
         player.setPassword("guesswhat");
 
-        PlayerHelper tp = new PlayerHelper();
-        tp.register(request, player);
+        Authentication auth = new Authentication();
+        auth.register(request, player);
 
-        Assert.assertEquals(200, tp.login(request, player).getStatus());
-        tp.unregister(request, player);
+        Assert.assertEquals(200, auth.login(request, player).getStatus());
+        auth.unregister(request, player);
     }
 
     @Test
@@ -39,13 +39,13 @@ public class TaiPan_Login_Test
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
-        Player player = new Player();
+        PlayerRequest  player = new PlayerRequest() ;
         player.setName("FirstPlayer");
         player.setPassword("guasswhat");
 
-        PlayerHelper tp = new PlayerHelper();
+        Authentication auth = new Authentication();
 
-        Assert.assertEquals(500, tp.login(request, player).getStatus());
+        Assert.assertEquals(500, auth.login(request, player).getStatus());
     }
 
     @Test
@@ -54,15 +54,15 @@ public class TaiPan_Login_Test
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
-        Player player = new Player();
+        PlayerRequest  player = new PlayerRequest() ;
         player.setName("FirstPlayer");
         player.setPassword("guesswhat");
 
-        PlayerHelper tp = new PlayerHelper();
-        tp.register(request, player);
+        Authentication auth = new Authentication();
+        auth.register(request, player);
 
-        Assert.assertEquals(500, tp.register(request, player).getStatus());
-        tp.unregister(request, player);
+        Assert.assertEquals(500, auth.register(request, player).getStatus());
+        auth.unregister(request, player);
     }
 
     @Test
@@ -71,14 +71,14 @@ public class TaiPan_Login_Test
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
-        Player player = new Player();
+        PlayerRequest  player = new PlayerRequest() ;
         player.setName("FirstPlayer");
         player.setPassword("guesswhat");
 
-        PlayerHelper tp = new PlayerHelper();
-        tp.register(request, player);
+        Authentication auth = new Authentication();
+        auth.register(request, player);
 
-        Assert.assertEquals(200, tp.unregister(request, player).getStatus());
+        Assert.assertEquals(200, auth.unregister(request, player).getStatus());
     }
 
     @Test
@@ -87,13 +87,13 @@ public class TaiPan_Login_Test
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
-        Player player = new Player();
+        PlayerRequest  player = new PlayerRequest() ;
         player.setName("FirstPlayer");
         player.setPassword("guesswhat");
 
-        PlayerHelper tp = new PlayerHelper();
+        Authentication auth = new Authentication();
 
-        Assert.assertEquals(500, tp.unregister(request, player).getStatus());
+        Assert.assertEquals(500, auth.unregister(request, player).getStatus());
     }
 
     @Test
@@ -102,17 +102,17 @@ public class TaiPan_Login_Test
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
-        Player player = new Player();
+        PlayerRequest  player = new PlayerRequest() ;
         player.setName("FirstPlayer");
         player.setPassword("guesswhat");
 
-        PlayerHelper tp = new PlayerHelper();
-        tp.register(request, player);
+        Authentication auth = new Authentication();
+        auth.register(request, player);
         player.setPassword("guasswhat");
 
-        Assert.assertEquals(500, tp.unregister(request, player).getStatus());
+        Assert.assertEquals(500, auth.unregister(request, player).getStatus());
 
         player.setPassword("guesswhat");
-        tp.unregister(request, player);
+        auth.unregister(request, player);
     }
 }

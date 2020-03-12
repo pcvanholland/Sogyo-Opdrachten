@@ -3,18 +3,18 @@ package taipan.api;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class Game_Test
+public class TaiPan_Test
 {
     @Test
     public void test_init()
     {
-        Game tp = new Game("");
+        TaiPan tp = new TaiPan("");
     }
 
     @Test
     public void test_newGameMakesTaiPan()
     {
-        Game tp = new Game("");
+        TaiPan tp = new TaiPan("");
 
         Assert.assertTrue(
             tp.getImplementation() instanceof taipan.domain.TaiPan
@@ -25,7 +25,7 @@ public class Game_Test
     public void test_getHostName()
     {
         String hostname = "HostName";
-        Game tp = new Game(hostname);
+        TaiPan tp = new TaiPan(hostname);
 
         Assert.assertEquals(hostname, tp.getHostName());
     }
@@ -33,7 +33,7 @@ public class Game_Test
     @Test
     public void test_joinGame()
     {
-        Game tp = new Game("");
+        TaiPan tp = new TaiPan("");
 
         Assert.assertEquals(1, tp.joinGame(""));
     }
@@ -41,7 +41,7 @@ public class Game_Test
     @Test
     public void test_gameStartsNotFull()
     {
-        Game tp = new Game("");
+        TaiPan tp = new TaiPan("");
 
         Assert.assertFalse(tp.isFull());
     }
@@ -49,7 +49,7 @@ public class Game_Test
     @Test
     public void test_gameGetsFull()
     {
-        Game tp = new Game("");
+        TaiPan tp = new TaiPan("");
         tp.joinGame("");
         tp.joinGame("");
         tp.joinGame("");
@@ -60,7 +60,7 @@ public class Game_Test
     @Test
     public void test_fullGameJoinBecomesObserver()
     {
-        Game tp = new Game("");
+        TaiPan tp = new TaiPan("");
         tp.joinGame("");
         tp.joinGame("");
         tp.joinGame("");

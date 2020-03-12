@@ -8,12 +8,12 @@ import org.mockito.Mockito;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class TaiPan_Join_Test
+public class Lobby_Test
 {
     @Test
     public void test_init()
     {
-        new TaiPan();
+        new Lobby();
     }
 
     @Test
@@ -22,14 +22,14 @@ public class TaiPan_Join_Test
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
-        Lobby tp = new Lobby();
+        Lobby lobby = new Lobby();
 
-        //Assert.assertEquals(200, tp.startGane(request).getStatus());
+        //Assert.assertEquals(200, lobby.startGane(request).getStatus());
 
         // No session,,,
         Assert.assertEquals(
             500,
-            tp.startGame(request, "FirstPlayer").getStatus()
+            lobby.startGame(request, "FirstPlayer").getStatus()
         );
     }
 
@@ -39,15 +39,15 @@ public class TaiPan_Join_Test
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
-        Lobby tp = new Lobby();
+        Lobby lobby = new Lobby();
         JoinRequest joinRequest = new JoinRequest();
         joinRequest.setPlayerName("SecondPlayer");
         joinRequest.setGameID(0);
 
-        //Assert.assertEquals(200, tp.startGane(request).getStatus());
+        //Assert.assertEquals(200, lobby.startGane(request).getStatus());
 
         // No session,,,
-        Assert.assertEquals(500, tp.joinGame(request, joinRequest).getStatus());
+        Assert.assertEquals(500, lobby.joinGame(request, joinRequest).getStatus());
     }
 
     @Test
@@ -56,20 +56,20 @@ public class TaiPan_Join_Test
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
-        Lobby tp = new Lobby();
-        tp.startGame(request, "FirstPlayer");
+        Lobby lobby = new Lobby();
+        lobby.startGame(request, "FirstPlayer");
         for (int i = 0; i < PlayerData.MAX_NUMBER_OF_PLAYERS - 1; ++i)
         {
             JoinRequest joinRequest = new JoinRequest();
             joinRequest.setPlayerName("Player " + i);
             joinRequest.setGameID(0);
-            tp.joinGame(request, joinRequest);
+            lobby.joinGame(request, joinRequest);
         }
         JoinRequest joinRequest = new JoinRequest();
         joinRequest.setPlayerName("TooLatePlayer");
         joinRequest.setGameID(0);
 
-        Assert.assertEquals(500, tp.joinGame(request, joinRequest).getStatus());
+        Assert.assertEquals(500, lobby.joinGame(request, joinRequest).getStatus());
     }
 
     @Test
@@ -78,11 +78,11 @@ public class TaiPan_Join_Test
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
-        Lobby tp = new Lobby();
+        Lobby lobby = new Lobby();
 
-        //Assert.assertEquals(200, tp.startGane(request).getStatus());
+        //Assert.assertEquals(200, lobby.startGane(request).getStatus());
 
         // No session,,,
-        Assert.assertEquals(500, tp.listGames(request).getStatus());
+        Assert.assertEquals(500, lobby.listGames(request).getStatus());
     }
 }

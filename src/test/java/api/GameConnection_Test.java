@@ -8,12 +8,12 @@ import org.mockito.Mockito;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class TaiPan_Play_Test
+public class GameConnection_Test
 {
     @Test
     public void test_init()
     {
-        new TaiPan();
+        new GameConnection();
     }
 
     @Test
@@ -24,7 +24,7 @@ public class TaiPan_Play_Test
 
         String play = "test";
 
-        TaiPan tp = new TaiPan();
+        GameConnection tp = new GameConnection();
 
         //Assert.assertEquals(200, tp.getPlayTypes(request, play).getStatus());
 
@@ -38,7 +38,7 @@ public class TaiPan_Play_Test
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
-        TaiPan tp = new TaiPan();
+        GameConnection tp = new GameConnection();
         //Lobby lobby = new Lobby();
         //lobby.startGame(request);
 
@@ -54,7 +54,7 @@ public class TaiPan_Play_Test
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
-        TaiPan tp = new TaiPan();
+        GameConnection tp = new GameConnection();
         //Lobby lobby = new Lobby();
         //lobby.startGame(request);
 
@@ -70,7 +70,7 @@ public class TaiPan_Play_Test
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
-        TaiPan tp = new TaiPan();
+        GameConnection tp = new GameConnection();
         Play play = new Play();
         play.setPlayerID("0");
         play.setType("TEST");
@@ -91,7 +91,7 @@ public class TaiPan_Play_Test
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 
-        TaiPan tp = new TaiPan();
+        GameConnection tp = new GameConnection();
 
         //Lobby lobby = new Lobby();
         //lobby.startGame(request);

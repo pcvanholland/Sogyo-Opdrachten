@@ -3,7 +3,7 @@ package taipan.api;
 /**
  * This class is used to add or remove a player from the database.
  */
-public class Player
+public class PlayerRequest
 {
     private String name;
     private String password;

@@ -1,4 +1,4 @@
-package taipan.api;
+package taipan.database;
 
 import java.util.Arrays;
 
@@ -11,7 +11,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 
-public class DataBase
+public class MongoDBConnection
 {
     private static final String IP = "172.17.0.4";
     private static final int PORT = 27017;
@@ -43,7 +43,7 @@ public class DataBase
     /**
      * Prints the entries in the "players" collection.
      */
-    protected void printCollection()
+    void printCollection()
     {
         this.openConnection();
         DBCursor cursor = this.mongoCollection.find();
@@ -62,7 +62,7 @@ public class DataBase
      *
      * @return {boolean} - Whether the addition was successful.
      */
-    protected boolean addPlayer(final String name, final String password)
+    public boolean addPlayer(final String name, final String password)
     {
         this.openConnection();
         BasicDBObject query = new BasicDBObject();
@@ -90,7 +90,7 @@ public class DataBase
      *
      * @return {boolean} - Whether the removal was successful.
      */
-    protected boolean removePlayer(final String name, final String password)
+    public boolean removePlayer(final String name, final String password)
     {
         if (!verifyPassword(name, password))
         {
@@ -114,7 +114,7 @@ public class DataBase
      * @return {boolean} - Whether the username/password combination
      *                      is present in the "players" database.
      */
-    protected boolean verifyPassword(final String name, final String test)
+    public boolean verifyPassword(final String name, final String test)
     {
         this.openConnection();
         BasicDBObject query = new BasicDBObject();

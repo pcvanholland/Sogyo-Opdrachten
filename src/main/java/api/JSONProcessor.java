@@ -8,13 +8,13 @@ import org.json.simple.JSONObject;
 /**
  * This is a class that processes JSON to String and vice versa.
  */
-public abstract class JSONProcessor
+abstract class JSONProcessor
 {
     /**
      * @param textfornow {String} - Some text to JSONify.
      * @return {String} - JSONString of the given text.
      */
-    public static String createJSONResponse(final String textfornow)
+    static String createJSONResponse(final String textfornow)
     {
         JSONObject result = new JSONObject();
         result.put("result", textfornow);
@@ -28,12 +28,12 @@ public abstract class JSONProcessor
      * @param games {Game[]} - An ArrayList of active games.
      * @return {String} - A JSON-String representing the active games.
      */
-    public static String createJSONGameList(
-        final ArrayList<Game> games
+    static String createJSONGameList(
+        final ArrayList<TaiPan> games
     )
     {
         JSONArray result = new JSONArray();
-        for (Game game : games)
+        for (TaiPan game : games)
         {
             JSONObject gameJSON = new JSONObject();
             gameJSON.put("id", game.getID());
@@ -52,7 +52,7 @@ public abstract class JSONProcessor
      *
      * @return {String} - A JSON-String representing the gamestate.
      */
-    public static String createJSONPlayTypes(
+    static String createJSONPlayTypes(
         final taipan.domain.TaiPan game,
         final String play
     )

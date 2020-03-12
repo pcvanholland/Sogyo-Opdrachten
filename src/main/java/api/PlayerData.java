@@ -5,7 +5,7 @@ package taipan.api;
  */
 public class PlayerData
 {
-    protected static final int MAX_NUMBER_OF_PLAYERS = 4;
+    static final int MAX_NUMBER_OF_PLAYERS = 4;
     private String[] playerNames = new String[MAX_NUMBER_OF_PLAYERS];
 
     /**
@@ -14,7 +14,7 @@ public class PlayerData
      * @param name {String} - The name of the player to add.
      * @return {int} - The playerID of the Player.
      */
-    protected int addPlayer(final String name)
+    int addPlayer(final String name)
     {
         for (int i = 0; i < playerNames.length; ++i)
         {
@@ -30,7 +30,7 @@ public class PlayerData
     /**
      * @return {boolean} - Whether this game is full.
      */
-    protected boolean isGameFull()
+    boolean isGameFull()
     {
         for (String player : playerNames)
         {
@@ -46,7 +46,7 @@ public class PlayerData
      * @param playerNumber {int} - The Player to get the name of.
      * @return {int} - The name of the specified Player.
      */
-    protected String getPlayerName(final int playerNumber)
+    String getPlayerName(final int playerNumber)
     {
         return this.playerNames[playerNumber];
     }

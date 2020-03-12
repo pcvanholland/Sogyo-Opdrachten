@@ -14,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/user/")
-public class PlayerHelper
+public class Authentication
 {
     private static final int SUCCESS = 200;
     private static final int FAILURE = 500;
@@ -34,11 +34,12 @@ public class PlayerHelper
     @Path("login")
     public Response login(
         final @Context HttpServletRequest request,
-        final Player player
+        final PlayerRequest player
     )
     {
 System.out.println("Post on login.");
-        DataBase db = new DataBase();
+        taipan.database.MongoDBConnection db =
+            new taipan.database.MongoDBConnection();
 
         if (db.verifyPassword(player.getName(), player.getPassword()))
         {
@@ -63,11 +64,12 @@ System.out.println("Post on login.");
     @Path("register")
     public Response register(
         final @Context HttpServletRequest request,
-        final Player player
+        final PlayerRequest player
     )
     {
 System.out.println("Post on register.");
-        DataBase db = new DataBase();
+        taipan.database.MongoDBConnection db =
+            new taipan.database.MongoDBConnection();
 
         if (db.addPlayer(player.getName(), player.getPassword()))
         {
@@ -92,11 +94,12 @@ System.out.println("Post on register.");
     @Path("unregister")
     public Response unregister(
         final @Context HttpServletRequest request,
-        final Player player
+        final PlayerRequest player
     )
     {
 System.out.println("Post on unregister.");
-        DataBase db = new DataBase();
+        taipan.database.MongoDBConnection db =
+            new taipan.database.MongoDBConnection();
 
         if (db.removePlayer(player.getName(), player.getPassword()))
         {
