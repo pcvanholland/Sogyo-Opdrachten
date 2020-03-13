@@ -175,7 +175,7 @@ public final class Player implements IPlayer
      *
      * @param cardsToAdd {Card[]} - The ArrayList of Cards to add.
      */
-    void addCards(final ArrayList<Card> cardsToAdd)
+    private void addCards(final ArrayList<Card> cardsToAdd)
     {
         for (Card card : cardsToAdd)
         {
