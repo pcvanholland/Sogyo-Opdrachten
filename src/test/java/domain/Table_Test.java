@@ -137,13 +137,4 @@ public class Table_Test
 
         Assert.assertNull(table.getCurrentTrick());
     }
-
-    @Test
-    public void test_noFinishedPlayersYet() throws TaiPanException
-    {
-        Table table = new Table();
-        new Player(table);
-
-        Assert.assertNull(table.getFirstPlayerOut());
-    }
 }

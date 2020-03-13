@@ -12,7 +12,7 @@ public class PlayHelper_Test extends Play_Test_Helper
     @Test
     public void test_() throws Exception
     {
-        for (int i = 0; i < 100000000; ++i)
+        for (int i = 0; i < 10000000; ++i)
         {
             Table playingTable = new Table();
             Player player = new Player(playingTable, i);

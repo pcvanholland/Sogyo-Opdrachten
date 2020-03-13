@@ -65,20 +65,6 @@ public class Init_Test extends Player_Test_Helper
     }
 
     @Test
-    public void test_playersStartWithoutWonTricks() throws TaiPanException
-    {
-        Player firstPlayer = new Player(new Table());
-
-        for (int i = 0; i < 4; ++i)
-        {
-            Assert.assertEquals(
-                new ArrayList<Trick>(),
-                firstPlayer.getPlayerAtPositionCCW(i).getWonTricks()
-            );
-        }
-    }
-
-    @Test
     public void test_playersBeginWithZeroPoints() throws TaiPanException
     {
         Player firstPlayer = new Player(new Table());
@@ -88,6 +74,19 @@ public class Init_Test extends Player_Test_Helper
             Assert.assertEquals(
                 0,
                 firstPlayer.getPlayerAtPositionCCW(i).getScore()
+            );
+        }
+    }
+
+    @Test
+    public void test_noFinishedPlayersYet() throws TaiPanException
+    {
+        Player firstPlayer = new Player(new Table());
+
+        for (int i = 0; i < 4; ++i)
+        {
+            Assert.assertNull(
+                firstPlayer.getPlayerAtPositionCCW(i).getFirstPlayerOut()
             );
         }
     }

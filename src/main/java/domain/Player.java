@@ -11,9 +11,9 @@ public final class Player implements IPlayer
     private Player neighbour;
 
     private int handsDrawn = 0;
-
-    private ArrayList<Card> cards = new ArrayList<Card>();
-    private ArrayList<Trick> wonTricks = new ArrayList<Trick>();
+    private final Player[] finishedPlayers = new Player[4];
+    private final ArrayList<Card> cards = new ArrayList<Card>();
+    private final ArrayList<Trick> wonTricks = new ArrayList<Trick>();
     private boolean inTurn = false;
     private int score = 0;
 
@@ -154,12 +154,12 @@ public final class Player implements IPlayer
     {
         if (this.handsDrawn() == 0)
         {
-            this.cards.addAll(this.getDealer().drawFirstHand());
+            this.addCards(this.getDealer().drawFirstHand());
             this.handsDrawn++;
         }
         else if (this.handsDrawn() == 1)
         {
-            this.cards.addAll(this.getDealer().drawSecondHand());
+            this.addCards(this.getDealer().drawSecondHand());
             this.handsDrawn++;
             this.inTurn = this.hasMahJong();
         }
@@ -167,6 +167,30 @@ public final class Player implements IPlayer
         {
             throw new CantDrawTooManyTimesException();
         }
+    }
+
+    /**
+     * Adds the specified Cards to this Player's Cards.
+     * PackageProtected so we can use it in our tests.
+     *
+     * @param cardsToAdd {Card[]} - The ArrayList of Cards to add.
+     */
+    void addCards(final ArrayList<Card> cardsToAdd)
+    {
+        for (Card card : cardsToAdd)
+        {
+            this.addCard(card);
+        }
+    }
+
+    /**
+     * Adds a specified Card to this Player's hand of Cards.
+     *
+     * @param cardToAdd {Card} - The Card to add.
+     */
+    private void addCard(final Card cardToAdd)
+    {
+        this.cards.add(cardToAdd);
     }
 
     /**
@@ -525,14 +549,14 @@ public final class Player implements IPlayer
     {
         if (this.checkEmptyCarded())
         {
-            this.getTable().declareFinished(this);
+            this.declareFinished();
         }
     }
 
     /**
      * @return {Trick[]} - The Tricks won by this Player.
      */
-    ArrayList<Trick> getWonTricks()
+    private ArrayList<Trick> getWonTricks()
     {
         return this.wonTricks;
     }
@@ -623,6 +647,10 @@ public final class Player implements IPlayer
         {
             this.score += trick.getScore();
         }
+        for (Card card : this.getCards())
+        {
+            this.score += card.getScore();
+        }
     }
 
     /**
@@ -631,5 +659,62 @@ public final class Player implements IPlayer
     int getScore()
     {
         return this.score;
+    }
+
+    /**
+     * Clears the array of finished Players to null.
+     */
+    private void clearFinishedPlayers()
+    {
+        for (int i = 0; i < this.getFinishedPlayers().length; ++i)
+        {
+            finishedPlayers[i] = null;
+        }
+    }
+
+    /**
+     * @return {Player[]} - The order at which the Players
+     *                  got rid of their Cards.
+     */
+    private Player[] getFinishedPlayers()
+    {
+        return this.finishedPlayers;
+    }
+
+    /**
+     * @return {Player} - The Player who first got rid of their Cards.
+     */
+    Player getFirstPlayerOut()
+    {
+        return this.getFinishedPlayers()[0];
+    }
+
+    /**
+     * Declares that this Player is finished to all Players.
+     */
+    private void declareFinished()
+    {
+        this.getNeighbour().declareFinished(this);
+    }
+
+    /**
+     * Is called by a Player who has played their last Card.
+     *
+     * @param {Player} - The calling Player.
+     */
+    private void declareFinished(final Player player)
+    {
+        for (int i = 0; i < this.getFinishedPlayers().length; ++i)
+        {
+            if (finishedPlayers[i] == null)
+            {
+                finishedPlayers[i] = player;
+                break;
+            }
+        }
+        if (player != this)
+        {
+            this.getNeighbour().declareFinished(player);
+        }
     }
 }

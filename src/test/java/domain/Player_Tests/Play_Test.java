@@ -338,9 +338,12 @@ public class Play_Test extends Player_Test_Helper
         }
         taipan.play(0, cards, Set.STRAIGHT);
 
-        Assert.assertEquals(
-            taipan.getPlayer(0),
-            taipan.getPlayingTable().getFirstPlayerOut()
-        );
+        for (int i = 0; i < Player.NUM_PLAYERS; ++i)
+        {
+            Assert.assertEquals(
+                taipan.getPlayer(0),
+                taipan.getPlayer(i).getFirstPlayerOut()
+            );
+        }
     }
 }
