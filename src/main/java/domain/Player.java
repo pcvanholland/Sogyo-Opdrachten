@@ -571,7 +571,7 @@ public final class Player implements IPlayer
     private void handleRoundEnd() throws InvalidRankException
     {
         this.takeTurn();
-        this.getTable().clear();
+        this.getTable().reset();
         this.getDealer().reset();
 
         this.getNeighbour().handleRoundEnd(this);
@@ -587,11 +587,10 @@ public final class Player implements IPlayer
         this.getCards().clear();
         this.handsDrawn = 0;
 
-        if (player == this)
+        if (player != this)
         {
-            return;
+            this.getNeighbour().handleRoundEnd(player);
         }
-        this.getNeighbour().handleRoundEnd(player);
     }
 
     int getScore()

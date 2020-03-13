@@ -89,7 +89,7 @@ public final class Table implements ITable
     Trick giveTrick()
     {
         Trick trickToGive = this.getCurrentTrick();
-        this.clear();
+        this.clearTrick();
 
         return trickToGive;
     }
@@ -97,9 +97,29 @@ public final class Table implements ITable
     /**
      * Clears the Table from its Trick.
      */
-    void clear()
+    private void clearTrick()
     {
         this.trick = null;
+    }
+
+    /**
+     * Resets the Table for a new round.
+     */
+    void reset()
+    {
+        this.clearTrick();
+        this.clearFinishedPlayers();
+    }
+
+    /**
+     * Clears the array of finished Players to null.
+     */
+    private void clearFinishedPlayers()
+    {
+        for (int i = 0; i < finishedPlayers.length; ++i)
+        {
+            finishedPlayers[i] = null;
+        }
     }
 
     /**
@@ -126,11 +146,12 @@ public final class Table implements ITable
      */
     void declareFinished(final Player player)
     {
-        for (int i = 0; i < finishedPlayers.length; ++i)
+        for (int i = 0; i < this.getFinishedPlayers().length; ++i)
         {
             if (finishedPlayers[i] == null)
             {
                 finishedPlayers[i] = player;
+                break;
             }
         }
     }
