@@ -81,8 +81,8 @@ abstract class JSONProcessor
      * @param game {TaiPan} - The Game to JSONify.
      * @return {JSONObject} - The JSON representation of the Game.
      */
-    static JSONObject createJSONGameState(final taipan.domain.TaiPan game) throws
-        taipan.domain.TaiPanException
+    static JSONObject createJSONGameState(final taipan.domain.TaiPan game)
+        throws taipan.domain.TaiPanException
     {
         JSONObject result = new JSONObject();
         result.put("players", createJSONPlayers(game));

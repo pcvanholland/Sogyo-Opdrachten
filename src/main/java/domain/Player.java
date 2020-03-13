@@ -11,7 +11,7 @@ public final class Player implements IPlayer
     private Player neighbour;
 
     private int handsDrawn = 0;
-    private final Player[] finishedPlayers = new Player[4];
+    private final Player[] finishedPlayers = new Player[NUM_PLAYERS];
     private final ArrayList<Card> cards = new ArrayList<Card>();
     private final ArrayList<Trick> wonTricks = new ArrayList<Trick>();
     private boolean inTurn = false;
@@ -175,7 +175,7 @@ public final class Player implements IPlayer
      *
      * @param cardsToAdd {Card[]} - The ArrayList of Cards to add.
      */
-    private void addCards(final ArrayList<Card> cardsToAdd)
+    void addCards(final ArrayList<Card> cardsToAdd)
     {
         for (Card card : cardsToAdd)
         {
@@ -623,6 +623,7 @@ public final class Player implements IPlayer
         this.coinScore();
         this.getCards().clear();
         this.resetHandsDrawn();
+        this.clearFinishedPlayers();
 
         if (player != this)
         {
@@ -693,7 +694,7 @@ public final class Player implements IPlayer
      * @return {Player[]} - The order at which the Players
      *                  got rid of their Cards.
      */
-    private Player[] getFinishedPlayers()
+    Player[] getFinishedPlayers()
     {
         return this.finishedPlayers;
     }
@@ -717,15 +718,15 @@ public final class Player implements IPlayer
     /**
      * Is called by a Player who has played their last Card.
      *
-     * @param {Player} - The calling Player.
+     * @param player {Player} - The calling Player.
      */
     private void declareFinished(final Player player)
     {
         for (int i = 0; i < this.getFinishedPlayers().length; ++i)
         {
-            if (finishedPlayers[i] == null)
+            if (this.finishedPlayers[i] == null)
             {
-                finishedPlayers[i] = player;
+                this.finishedPlayers[i] = player;
                 break;
             }
         }

@@ -360,4 +360,43 @@ public class Play_Test extends Player_Test_Helper
             );
         }
     }
+
+    @Test
+    public void test_firstOutMarksAsSuchAlsoAsSecondGoesOut() throws
+        TaiPanException
+    {
+        TaiPan taipan = new TaiPan(START_STREET_SEED);
+        taipan.letPlayerDrawCards(0);
+        taipan.letPlayerDrawCards(0);
+        ArrayList<Card> p1cards = new ArrayList<Card>();
+        p1cards.add(Play_Test_Helper.createRandomCard(2));
+        taipan.getPlayer(1).addCards(p1cards);
+        taipan.letPlayerDrawCards(2);
+        taipan.letPlayerDrawCards(3);
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        for (Card card : taipan.getPlayer(0).getCards())
+        {
+            cards.add(card);
+        }
+        taipan.play(0, cards, Set.STRAIGHT);
+        taipan.pass(1);
+        taipan.pass(2);
+        taipan.pass(3);
+
+        ArrayList<Card> cards2 = new ArrayList<Card>();
+        for (Card card : taipan.getPlayer(1).getCards())
+        {
+            cards2.add(card);
+        }
+        taipan.play(1, cards2, Set.SINGLE);
+
+        for (int i = 0; i < Player.NUM_PLAYERS; ++i)
+        {
+            Assert.assertEquals(
+                taipan.getPlayer(0),
+                taipan.getPlayer(i).getFirstPlayerOut()
+            );
+        }
+    }
 }

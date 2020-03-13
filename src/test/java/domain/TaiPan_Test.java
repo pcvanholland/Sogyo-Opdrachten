@@ -37,6 +37,20 @@ public class TaiPan_Test extends TaiPan_Test_Helper
         Assert.assertEquals(14, tp.getPlayer(playerID).getCards().size());
     }
 
+    @Test(expected = InvalidPositionException.class)
+    public void test_askNegativePosition() throws TaiPanException
+    {
+        TaiPan tp = new TaiPan();
+        tp.getPlayer(-1);
+    }
+
+    @Test(expected = InvalidPositionException.class)
+    public void test_askTooLargePosition() throws TaiPanException
+    {
+        TaiPan tp = new TaiPan();
+        tp.getPlayer(Player.NUM_PLAYERS + 1);
+    }
+
     @Test
     public void test_play() throws TaiPanException
     {
