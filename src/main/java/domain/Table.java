@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public final class Table implements ITable
 {
     private Trick trick;
+    private final Player[] finishedPlayers = new Player[4];
 
     /**
      * @return {Trick} - The current Trick that is being played.
@@ -99,5 +100,38 @@ public final class Table implements ITable
     void clear()
     {
         this.trick = null;
+    }
+
+    /**
+     * @return {Player[]} - The order at which the Players
+     *                  got rid of their Cards.
+     */
+    private Player[] getFinishedPlayers()
+    {
+        return this.finishedPlayers;
+    }
+
+    /**
+     * @return {Player} - The Player who first got rid of their Cards.
+     */
+    Player getFirstPlayerOut()
+    {
+        return this.getFinishedPlayers()[0];
+    }
+
+    /**
+     * Is called by a Player who has played its last Card.
+     *
+     * @param {Player} - The calling Player.
+     */
+    void declareFinished(final Player player)
+    {
+        for (int i = 0; i < finishedPlayers.length; ++i)
+        {
+            if (finishedPlayers[i] == null)
+            {
+                finishedPlayers[i] = player;
+            }
+        }
     }
 }

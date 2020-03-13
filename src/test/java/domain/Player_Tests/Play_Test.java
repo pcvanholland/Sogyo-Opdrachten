@@ -320,4 +320,27 @@ public class Play_Test extends Player_Test_Helper
             );
         }
     }
+
+    @Test
+    public void test_firstOutMarksAsSuch() throws TaiPanException
+    {
+        TaiPan taipan = new TaiPan(START_STREET_SEED);
+        for (int i = 0; i < Player.NUM_PLAYERS; ++i)
+        {
+            taipan.letPlayerDrawCards(i);
+            taipan.letPlayerDrawCards(i);
+        }
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        for (Card card : taipan.getPlayer(0).getCards())
+        {
+            cards.add(card);
+        }
+        taipan.play(0, cards, Set.STRAIGHT);
+
+        Assert.assertEquals(
+            taipan.getPlayer(0),
+            taipan.getPlayingTable().getFirstPlayerOut()
+        );
+    }
 }

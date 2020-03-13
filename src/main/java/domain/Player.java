@@ -222,11 +222,12 @@ public final class Player implements IPlayer
     /**
      * @param play {Play} - The Play to play.
      */
-    private void play(final Play play) throws
-        CantPlayTableException, InvalidPositionException, InvalidRankException
+    private void play(final Play play) throws CantPlayTableException,
+        InvalidPositionException, InvalidRankException
     {
         this.getTable().play(play);
         this.handleTurnPassing(play);
+        this.checkAndHandleLastCardsPlayed();
     }
 
     /**
@@ -329,8 +330,8 @@ public final class Player implements IPlayer
      * Passes the turn from this Player to their neighbour
      * without playing any Card.
      */
-    void pass() throws
-        CantPassException, InvalidPositionException, InvalidRankException
+    void pass() throws CantPassException, InvalidPositionException,
+        InvalidRankException
     {
         if (!this.mayPass())
         {
@@ -446,8 +447,59 @@ public final class Player implements IPlayer
     private void handleTurnRecieve() throws
         InvalidPositionException, InvalidRankException
     {
-        this.checkWinTrick();
-        this.checkEmptyCarded();
+        this.checkAndHandleWinTrick();
+        this.checkAndHandleEmptyCarded();
+        this.checkAndHandleLastPlayerOut();
+    }
+
+    /**
+     * Checks whether the passing has gone round and the trick thus needs
+     * to be won.
+     */
+    private void checkAndHandleWinTrick()
+    {
+        if (this.checkWinTrick())
+        {
+            this.wonTricks.add(this.getTable().giveTrick());
+        }
+    }
+
+    /**
+     * @return {boolean} - Whether the current Trick has gone round.
+     */
+    private boolean checkWinTrick()
+    {
+        return this.getTable().getCurrentTrick() != null &&
+            this.getTable().getLastPlay().getOwner() == this;
+    }
+
+    /**
+     * Checks whether the Player has no more Cards left and thus needs to
+     * give the turn to its neighbour.
+     */
+    private void checkAndHandleEmptyCarded() throws
+        InvalidPositionException, InvalidRankException
+    {
+        if (this.checkEmptyCarded())
+        {
+            this.passTurnToNeighbour();
+        }
+    }
+
+    /**
+     * @return {boolean} - Whether this Player has no Cards left.
+     */
+    private boolean checkEmptyCarded()
+    {
+        return this.getCards().isEmpty();
+    }
+
+    /**
+     * Checks whether this is the last Player with Cards left
+     * which means the round is over.
+     */
+    private void checkAndHandleLastPlayerOut() throws InvalidRankException
+    {
         if (this.isLastPlayerWithCards())
         {
             this.handleRoundEnd();
@@ -455,28 +507,13 @@ public final class Player implements IPlayer
     }
 
     /**
-     * Checks whether the passing has gone round and the trick thus needs
-     * to be won.
+     * Handles when this Player just played its last Cards.
      */
-    private void checkWinTrick()
+    private void checkAndHandleLastCardsPlayed()
     {
-        if (this.getTable().getCurrentTrick() != null &&
-            this.getTable().getLastPlay().getOwner() == this)
+        if (this.checkEmptyCarded())
         {
-            this.wonTricks.add(this.getTable().giveTrick());
-        }
-    }
-
-    /**
-     * Checks whether the Player has no more Cards left and thus needs to
-     * give the turn to its neighbour.
-     */
-    private void checkEmptyCarded() throws
-        InvalidPositionException, InvalidRankException
-    {
-        if (this.getCards().size() == 0)
-        {
-            this.passTurnToNeighbour();
+            this.getTable().declareFinished(this);
         }
     }
 
@@ -494,7 +531,7 @@ public final class Player implements IPlayer
     private void handleDogging() throws
         InvalidPositionException, InvalidRankException
     {
-        this.checkWinTrick();
+        this.checkAndHandleWinTrick();
         this.passTurnToPlayerAtPosition(2);
     }
 

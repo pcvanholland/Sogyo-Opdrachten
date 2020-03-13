@@ -38,4 +38,23 @@ public class Score_Test extends Player_Test_Helper
 
         Assert.assertEquals(25, firstPlayer.getScore());
     }
+
+    @Test
+    public void test_winningScoredCardChangesPointsIncludingPhoenix() throws
+        TaiPanException
+    {
+        Player firstPlayer = createSeededGame(START_STREET_PHOENIX_SEED);
+        CardCollection cards = new CardCollection();
+        for (Card card : firstPlayer.getCards())
+        {
+            cards.add(card);
+        }
+
+        firstPlayer.play(cards, Set.STRAIGHT);
+        firstPlayer.getPlayerAtPositionCCW(1).pass();
+        firstPlayer.getPlayerAtPositionCCW(2).pass();
+        firstPlayer.getPlayerAtPositionCCW(3).pass();
+
+        Assert.assertEquals(0, firstPlayer.getScore());
+    }
 }
