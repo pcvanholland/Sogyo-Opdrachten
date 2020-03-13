@@ -645,12 +645,29 @@ public final class Player implements IPlayer
     {
         for (Trick trick : this.getWonTricks())
         {
-            this.score += trick.getScore();
+            if (this.isLastPlayerWithCards())
+            {
+                this.getFirstPlayerOut().addScore(trick.getScore());
+            }
+            else
+            {
+                this.addScore(trick.getScore());
+            }
         }
         for (Card card : this.getCards())
         {
-            this.score += card.getScore();
+            this.getNeighbour().addScore(card.getScore());
         }
+    }
+
+    /**
+     * Adds the specified score to this Player.
+     *
+     * @param scoreToAdd {int} - The score to add.
+     */
+    private void addScore(final int scoreToAdd)
+    {
+        this.score += scoreToAdd;
     }
 
     /**

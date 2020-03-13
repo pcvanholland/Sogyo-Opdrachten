@@ -274,11 +274,16 @@ public class Play_Test extends Player_Test_Helper
     @Test
     public void test_lastPlayerStopsRound() throws TaiPanException
     {
-        Player firstPlayer = createPlayerInTurn();
-        CardCollection cards = new CardCollection();
-        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
+        Player firstPlayer = createSeededPlayer(START_STREET_SEED);
+        firstPlayer.getPlayerAtPositionCCW(1).drawCards();
+        firstPlayer.getPlayerAtPositionCCW(1).drawCards();
 
-        firstPlayer.play(cards, Set.SINGLE);
+        CardCollection cards = new CardCollection();
+        for (Card card : firstPlayer.getCards())
+        {
+            cards.add(card);
+        }
+        firstPlayer.play(cards, Set.STRAIGHT);
 
         Assert.assertEquals(0, firstPlayer.getCards().size());
     }
@@ -286,12 +291,16 @@ public class Play_Test extends Player_Test_Helper
     @Test
     public void test_roundEndCanRedraw() throws TaiPanException
     {
-        Player firstPlayer = createPlayerInTurn();
+        Player firstPlayer = createSeededPlayer(START_STREET_SEED);
+        firstPlayer.getPlayerAtPositionCCW(1).drawCards();
+        firstPlayer.getPlayerAtPositionCCW(1).drawCards();
 
         CardCollection cards = new CardCollection();
-        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
-
-        firstPlayer.play(cards, Set.SINGLE);
+        for (Card card : firstPlayer.getCards())
+        {
+            cards.add(card);
+        }
+        firstPlayer.play(cards, Set.STRAIGHT);
 
         for (int i = 0; i < Player.NUM_PLAYERS; ++i)
         {
@@ -304,11 +313,16 @@ public class Play_Test extends Player_Test_Helper
     @Test
     public void test_roundEndRedrawFillsPlayers() throws TaiPanException
     {
-        Player firstPlayer = createPlayerInTurn();
-        CardCollection cards = new CardCollection();
-        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
+        Player firstPlayer = createSeededPlayer(START_STREET_SEED);
+        firstPlayer.getPlayerAtPositionCCW(1).drawCards();
+        firstPlayer.getPlayerAtPositionCCW(1).drawCards();
 
-        firstPlayer.play(cards, Set.SINGLE);
+        CardCollection cards = new CardCollection();
+        for (Card card : firstPlayer.getCards())
+        {
+            cards.add(card);
+        }
+        firstPlayer.play(cards, Set.STRAIGHT);
 
         for (int i = 0; i < Player.NUM_PLAYERS; ++i)
         {

@@ -194,37 +194,44 @@ public class TaiPan_Test extends TaiPan_Test_Helper
         cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
 
         tp.play(playerID, cards, Set.SINGLE);
-        tp.pass(playerID + 1);
-        tp.pass(playerID + 2);
-        tp.pass(playerID + 3);
+        tp.pass(++playerID);
+        tp.pass(++playerID);
+        tp.pass(++playerID);
 
         for (int i = 0; i < tp.getScore().length; ++i)
         {
             Assert.assertEquals(expectedResult[i], tp.getScore()[i]);
         }
     }
-/*
+
     @Test
     public void test_nonEmptyScore() throws TaiPanException
     {
         int playerID = 0;
-        int[] expectedResult = new int[] {25, 0};
-        TaiPan tp = createSeededGame(Player_Test_Helper.START_STREET_SEED);
+        int score1 = 0;
+        TaiPan tp = new TaiPan(Player_Test_Helper.START_STREET_SEED);
+        tp.letPlayerDrawCards(playerID);
+        tp.letPlayerDrawCards(playerID);
+        tp.letPlayerDrawCards(playerID + 1);
+        tp.letPlayerDrawCards(playerID + 1);
 
         ArrayList<Card> cards = new ArrayList<Card>();
         for (Card card : tp.getPlayer(playerID).getCards())
         {
             cards.add(card);
+            score1 += card.getScore();
         }
+        for (Card card : tp.getPlayer(playerID + 1).getCards())
+        {
+            score1 += card.getScore();
+        }
+        int[] expectedResult = new int[] {score1, 0};
 
         tp.play(playerID, cards, Set.STRAIGHT);
-        tp.pass(playerID + 1);
-        tp.pass(playerID + 2);
-        tp.pass(playerID + 3);
 
         for (int i = 0; i < tp.getScore().length; ++i)
         {
             Assert.assertEquals(expectedResult[i], tp.getScore()[i]);
         }
-    }*/
+    }
 }

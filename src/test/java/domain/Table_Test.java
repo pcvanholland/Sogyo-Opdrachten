@@ -126,14 +126,18 @@ public class Table_Test
     public void test_roundEndClearsTable() throws TaiPanException
     {
         Table table = new Table();
-        Player firstPlayer = new Player(table, Player_Test_Helper.START_SEED);
+        Player firstPlayer =
+            new Player(table, Player_Test_Helper.START_STREET_SEED);
         firstPlayer.drawCards();
         firstPlayer.drawCards();
+        firstPlayer.getPlayerAtPositionCCW(1).drawCards();
 
         CardCollection cards = new CardCollection();
-        cards.add(SpecialCard.createSpecialCard(SpecialRank.MAHJONG));
-
-        firstPlayer.play(cards, Set.SINGLE);
+        for (Card card : firstPlayer.getCards())
+        {
+            cards.add(card);
+        }
+        firstPlayer.play(cards, Set.STRAIGHT);
 
         Assert.assertNull(table.getCurrentTrick());
     }
