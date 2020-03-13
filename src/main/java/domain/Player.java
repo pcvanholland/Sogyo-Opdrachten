@@ -10,10 +10,12 @@ public final class Player implements IPlayer
     private Dealer dealer;
     private Player neighbour;
 
+    private int handsDrawn = 0;
+
     private ArrayList<Card> cards = new ArrayList<Card>();
     private ArrayList<Trick> wonTricks = new ArrayList<Trick>();
     private boolean inTurn = false;
-    private int handsDrawn = 0;
+    private int score = 0;
 
     /**
      * The default constructor for the first Player.
@@ -460,8 +462,18 @@ public final class Player implements IPlayer
     {
         if (this.checkWinTrick())
         {
-            this.wonTricks.add(this.getTable().giveTrick());
+            this.getTable().giveTrickToWinner();
         }
+    }
+
+    /**
+     * Gives a trick to this Player.
+     *
+     * @param trickToGive {Trick} - The Trick to give to this Player.
+     */
+    void giveTrick(final Trick trickToGive)
+    {
+        this.getWonTricks().add(trickToGive);
     }
 
     /**
@@ -571,7 +583,7 @@ public final class Player implements IPlayer
     private void handleRoundEnd() throws InvalidRankException
     {
         this.takeTurn();
-        this.getTable().reset();
+        this.getTable().handleRoundEnd();
         this.getDealer().reset();
 
         this.getNeighbour().handleRoundEnd(this);
@@ -584,8 +596,9 @@ public final class Player implements IPlayer
      */
     private void handleRoundEnd(final Player player)
     {
+        this.coinScore();
         this.getCards().clear();
-        this.handsDrawn = 0;
+        this.resetHandsDrawn();
 
         if (player != this)
         {
@@ -593,13 +606,30 @@ public final class Player implements IPlayer
         }
     }
 
-    int getScore()
+    /**
+     * Resets the hands drawn to zero.
+     */
+    private void resetHandsDrawn()
     {
-        int result = 0;
+        this.handsDrawn = 0;
+    }
+
+    /**
+     * Coins the potential score to actual scoring.
+     */
+    private void coinScore()
+    {
         for (Trick trick : this.getWonTricks())
         {
-            result += trick.getScore();
+            this.score += trick.getScore();
         }
-        return result;
+    }
+
+    /**
+     * @return {int} - The current score of this Player.
+     */
+    int getScore()
+    {
+        return this.score;
     }
 }

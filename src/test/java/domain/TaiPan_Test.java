@@ -203,7 +203,7 @@ public class TaiPan_Test extends TaiPan_Test_Helper
             Assert.assertEquals(expectedResult[i], tp.getScore()[i]);
         }
     }
-
+/*
     @Test
     public void test_nonEmptyScore() throws TaiPanException
     {
@@ -226,5 +226,5 @@ public class TaiPan_Test extends TaiPan_Test_Helper
         {
             Assert.assertEquals(expectedResult[i], tp.getScore()[i]);
         }
-    }
+    }*/
 }

@@ -82,16 +82,24 @@ public final class Table implements ITable
     }
 
     /**
-     * Takes the current Trick and gives it to the asker.
-     *
-     * @return {Trick} - The current Trick.
-     */
-    Trick giveTrick()
+    * Handles the end of a round.
+    */
+    void handleRoundEnd()
     {
-        Trick trickToGive = this.getCurrentTrick();
-        this.clearTrick();
+        this.giveTrickToWinner();
+        this.clearFinishedPlayers();
+    }
 
-        return trickToGive;
+    /**
+     * Takes the current Trick and gives it to the Player who won it.
+     */
+    void giveTrickToWinner()
+    {
+        if (!this.getCurrentPlays().isEmpty())
+        {
+            this.getLastPlay().getOwner().giveTrick(this.getCurrentTrick());
+        }
+        this.clearTrick();
     }
 
     /**
@@ -103,20 +111,11 @@ public final class Table implements ITable
     }
 
     /**
-     * Resets the Table for a new round.
-     */
-    void reset()
-    {
-        this.clearTrick();
-        this.clearFinishedPlayers();
-    }
-
-    /**
      * Clears the array of finished Players to null.
      */
     private void clearFinishedPlayers()
     {
-        for (int i = 0; i < finishedPlayers.length; ++i)
+        for (int i = 0; i < this.getFinishedPlayers().length; ++i)
         {
             finishedPlayers[i] = null;
         }
